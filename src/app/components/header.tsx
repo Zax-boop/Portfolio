@@ -10,18 +10,18 @@ const Header = () => {
         <p className="font-semibold">Work Experience</p>
         <span className="absolute -bottom-1 left-0 w-0 h-1 bg-white transition-all group-hover:w-full"></span>
       </Link>
-      <div className="relative group">
+      <Link href={"/projects"} className="relative group">
         <p className="font-semibold">Projects</p>
         <span className="absolute -bottom-1 left-0 w-0 h-1 bg-white transition-all group-hover:w-full"></span>
-      </div>
-      <div className="relative group">
+      </Link>
+      <Link href={"/extracurriculars"} className="relative group">
         <p className="font-semibold">Extracurriculars</p>
         <span className="absolute -bottom-1 left-0 w-0 h-1 bg-white transition-all group-hover:w-full"></span>
-      </div>
-      <div className="relative group">
+      </Link>
+      <Link href={"/contact"} className="relative group">
         <p className="font-semibold">Contact Me</p>
         <span className="absolute -bottom-1 left-0 w-0 h-1 bg-white transition-all group-hover:w-full"></span>
-      </div>
+      </Link>
     </div>
   </header>;
 }

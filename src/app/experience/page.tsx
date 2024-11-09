@@ -13,7 +13,7 @@ export default function experience() {
   useEffect(() => {
     const timerId = setTimeout(() => {
       setTimer(true);
-    }, 1300); 
+    }, 1100); 
     return () => clearTimeout(timerId);
   }, []);
   return (

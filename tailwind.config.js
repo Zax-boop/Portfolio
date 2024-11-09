@@ -7,8 +7,8 @@ module.exports = {
     extend: {
       animation: {
         borderTransition: 'borderTransition 3s linear',
-        fadeInDelayed: 'fadeIn 1s ease-in 3s', 
-        fadeInDelayedShort: 'fadeIn 1s ease-in 1.3s', 
+        fadeInDelayed: 'fadeIn 1s ease-in 2.8s', 
+        fadeInDelayedShort: 'fadeIn 1s ease-in 1.1s', 
       },
       keyframes: {
         borderTransition: {
