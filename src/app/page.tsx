@@ -7,6 +7,7 @@ import linkedin_logo from "../../public/linkedinLogo.png"
 import github_logo from "../../public/github_logo.png"
 import Image from 'next/image';
 import { useEffect, useState } from "react";
+import ImageSlider from "./components/slideshow";
 
 export default function Home() {
   const pathname = usePathname()
@@ -14,34 +15,42 @@ export default function Home() {
   useEffect(() => {
     const timerId = setTimeout(() => {
       setTimer(true);
-    }, 2800); 
+    }, 2800);
     return () => clearTimeout(timerId);
   }, []);
+
   return (
     <div className="flex flex-col w-full h-full items-center">
       <Header />
       <div className="flex flex-col w-4/5 items-start">
         <PoppingLetters className="font-semibold text-[10.8rem] mt-12" text={"ROHAN ARYA"} />
-        <PoppingLetters className="text-6xl w-3/5" text="Full Stack Developer in California" initialDelay={1000} speed={30} />
-        <div className={`flex flex-row mt-20 text-6xl w-full`}>
-          <PoppingLetters text="Download my&nbsp;" initialDelay={2200} speed={30} />
-          <div className="relative group">
-            <a
-              href="/Resume_Rohan_Arya.pdf"
-              download="Resume"
-            >
-              <PoppingLetters className="" text="Resume" initialDelay={2600} speed={30} />
-            </a>
-            <span className="absolute -bottom-1 left-0 w-0 h-1 bg-white transition-all group-hover:w-full"></span>
+        <div className="flex flex-row justify-between w-full mt-20">
+          <div className="flex flex-col w-4/5">
+            <PoppingLetters className="text-6xl " text="Full Stack Developer Based in California" initialDelay={1000} speed={30} />
+            <div className={`flex flex-row mt-4 text-3xl w-full`}>
+              {/* <PoppingLetters text="Download my&nbsp;" initialDelay={2200} speed={30} /> */}
+              <div className="relative group">
+                <a
+                  href="/Resume_Rohan_Arya.pdf"
+                  download="Resume"
+                >
+                  <PoppingLetters className="" text="Resume" initialDelay={2200} speed={30} />
+                </a>
+                <span className="absolute -bottom-[0.1rem] left-0 w-0 h-1 bg-white transition-all group-hover:w-full"></span>
+              </div>
+            </div>
+            <div className={`flex flex-row mt-2 gap-2 ${!timer && `opacity-0`} animate-fadeInDelayed`}>
+              <a target="_blank" href="https://www.linkedin.com/in/rohan-arya/">
+                <Image src={linkedin_logo} className="w-[3rem]" alt="linkedin" />
+              </a>
+              <a target="_blank" href="https://github.com/Zax-boop">
+                <Image src={github_logo} className="w-[3rem] bg-white" alt="github" />
+              </a>
+            </div>
           </div>
-        </div>
-        <div className={`flex flex-row gap-2 ${!timer && `opacity-0`} animate-fadeInDelayed`}>
-          <a target="_blank" href="https://www.linkedin.com/in/rohan-arya/">         
-           <Image src={linkedin_logo} className="w-[3rem]" alt="linkedin"/>
-          </a>
-          <a target="_blank" href="https://github.com/Zax-boop">         
-          <Image src={github_logo} className="w-[3rem] bg-white" alt="github"/>
-          </a>
+          <div className={`flex flex-col justify-end items-end w-2/5 ${!timer && `opacity-0`} animate-fadeInDelayed`}>
+            <ImageSlider />
+          </div>
         </div>
       </div>
     </div>
