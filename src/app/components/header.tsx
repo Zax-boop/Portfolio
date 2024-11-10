@@ -14,8 +14,8 @@ const Header = () => {
         <p className="font-semibold">Projects</p>
         <span className="absolute -bottom-1 left-0 w-0 h-1 bg-white transition-all group-hover:w-full"></span>
       </Link>
-      <Link href={"/extracurriculars"} className="relative group">
-        <p className="font-semibold">Extracurriculars</p>
+      <Link href={"/about"} className="relative group">
+        <p className="font-semibold">About Me</p>
         <span className="absolute -bottom-1 left-0 w-0 h-1 bg-white transition-all group-hover:w-full"></span>
       </Link>
       <Link href={"/contact"} className="relative group">
