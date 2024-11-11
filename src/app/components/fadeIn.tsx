@@ -2,7 +2,7 @@
 
 import { useRef, useState, useEffect } from "react";
 
-export default function FadeInSection({ children }: {children: any}) {
+export default function FadeInSection({ children, className }: {children: any, className?: string}) {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
 
@@ -35,7 +35,7 @@ export default function FadeInSection({ children }: {children: any}) {
       ref={sectionRef}
       className={`transition-opacity duration-1000 ease-in-out ${
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-      }`}
+      } ${className}`}
     >
       {children}
     </div>

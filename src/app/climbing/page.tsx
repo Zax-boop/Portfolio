@@ -7,8 +7,6 @@ import Image from 'next/image';
 
 export default function Climbing() {
     const [mediaFiles, setMediaFiles] = useState<any[]>([]);  // Store media files from Supabase
-    // const [isLoading, setLoading] = useState(true);
-
     useEffect(() => {
         const fetchMedia = async () => {
             const media = await fetchClimbingMedia();  // Call the utility function to fetch media
@@ -18,6 +16,7 @@ export default function Climbing() {
 
         fetchMedia();  // Fetch the media files when the component mounts
     }, []);
+    const [isLoading, setLoading] = useState(true);
     return (
         <div className='flex flex-col w-full h-full items-center'>
             <Header />
@@ -29,7 +28,6 @@ export default function Climbing() {
                         // console.log(file);  // Log entire file
                         // console.log(file.url);  // Log just the url property
                         // console.log(file.url?.data);  // Log the data inside url if it exists
-                        console.log(file.url?.data?.publicUrl);          
                         return (
                             <div key={index} className="relative overflow-hidden rounded-lg shadow-lg">
                                 {['jpg', 'jpeg', 'png'].includes(fileExt || '') ? (
@@ -40,15 +38,17 @@ export default function Climbing() {
                                         height={500}
                                         layout="responsive"
                                         objectFit="cover"
-                                        className={`rounded-lg`}
+                                        className={`rounded-lg duration-700 ease-in-out group-hover:opacity-75 ${isLoading ? 'scale-110 blur-2xl grayscale' : 'scale-100 blur-0 grayscale-0'}`}
+                                        onLoadingComplete={() => setLoading(false)}
                                     />
                                 ) : ['mp4'].includes(fileExt || '') ? (
                                     <video
                                         src={file.url?.data?.publicUrl}
-                                        className="rounded-lg w-full h-full object-cover"
+                                        className={`rounded-lg w-full h-full object-cover duration-700 ease-in-out group-hover:opacity-75 ${isLoading ? 'scale-110 blur-2xl grayscale' : 'scale-100 blur-0 grayscale-0'}`}
                                         autoPlay
                                         loop
                                         muted
+                                        onLoadedData={() => setLoading(false)}
                                     />
                                 ) : null}
                             </div>
