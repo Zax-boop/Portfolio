@@ -1,23 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
-import Image from "next/image";
-import slide2 from "../../../public/home_slideshow/slide2.jpg";
-import slide4 from "../../../public/home_slideshow/slide4.jpg";
-import slide5 from "../../../public/home_slideshow/slide5.jpg";
-import slide6 from "../../../public/home_slideshow/slide6.jpg";
-import slide7 from "../../../public/home_slideshow/slide7.jpg";
-import slide9 from "../../../public/home_slideshow/slide9.jpg";
-import slide11 from "../../../public/home_slideshow/slide11.jpg";
-import slide15 from "../../../public/home_slideshow/slide15.jpg";
-import slide19 from "../../../public/home_slideshow/slide19.jpg";
-import slide22 from "../../../public/home_slideshow/slide22.jpg";
-import slide23 from "../../../public/home_slideshow/slide23.jpg";
-import slide25 from "../../../public/home_slideshow/slide25.jpg";
+import Image, { StaticImageData } from "next/image";
 
-const images = [
-    slide2, slide4, slide5, slide6, slide7, slide9, slide11, slide15, slide19, slide22, slide23, slide25,
-  ];
-  export default function ImageSlider(): JSX.Element {
+  export default function ImageSlider({images}: {images: StaticImageData[]}): JSX.Element {
     const [currentIndex, setCurrentIndex] = useState<number>(0);
     const [isHovered, setIsHovered] = useState<boolean>(false);
   

@@ -8,7 +8,23 @@ import github_logo from "../../public/github_logo.png"
 import Image from 'next/image';
 import { useEffect, useState } from "react";
 import ImageSlider from "./components/slideshow";
+import slide2 from "../../public/home_slideshow/slide2.jpg"
+import slide4 from "../../public/home_slideshow/slide4.jpg";
+import slide5 from "../../public/home_slideshow/slide5.jpg";
+import slide6 from "../../public/home_slideshow/slide6.jpg";
+import slide7 from "../../public/home_slideshow/slide7.jpg";
+import slide9 from "../../public/home_slideshow/slide9.jpg";
+import slide11 from "../../public/home_slideshow/slide11.jpg";
+import slide15 from "../../public/home_slideshow/slide15.jpg";
+import slide19 from "../../public/home_slideshow/slide19.jpg";
+import slide22 from "../../public/home_slideshow/slide22.jpg";
+import slide23 from "../../public/home_slideshow/slide23.jpg";
+import slide25 from "../../public/home_slideshow/slide25.jpg";
+import slide26 from "../../public/home_slideshow/slide26.jpg";
 
+const images = [
+    slide2, slide26, slide5, slide6, slide7, slide9, slide11, slide15, slide19, slide22, slide23, slide25, slide4,
+  ];
 export default function Home() {
   const pathname = usePathname()
   const [timer, setTimer] = useState(false);
@@ -49,7 +65,7 @@ export default function Home() {
             </div>
           </div>
           <div className={`flex flex-col justify-end items-end w-2/5 ${!timer && `opacity-0`} animate-fadeInDelayed`}>
-            <ImageSlider />
+            <ImageSlider images={images}/>
           </div>
         </div>
       </div>
