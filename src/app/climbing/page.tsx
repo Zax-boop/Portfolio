@@ -8,19 +8,21 @@ import PoppingLetters from "../components/poppingLetters";
 import { PlusIcon } from "lucide-react";
 import addClimbingMedia from "../../../utils/addClimbingMedia";
 
-
 export default function Climbing() {
     const [mediaFiles, setMediaFiles] = useState<any[]>([]);
-    const [isLoading, setLoading] = useState(true);
+    // const [loadingStates, setLoadingStates] = useState<boolean[]>([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchMedia = async () => {
             const media = await fetchClimbingMedia();
             setMediaFiles(media);
+            // setLoadingStates(new Array(media.length).fill(true));
         };
 
         fetchMedia();
     }, []);
+
     const handleFileChange = async (event: any) => {
         const file = event.target.files[0];
         if (file) {
@@ -29,7 +31,14 @@ export default function Climbing() {
         }
     };
 
-    // Assuming these three video URLs are in `mediaFiles`
+    // const handleLoadedData = (index: number) => {
+    //     setLoadingStates(prevStates => {
+    //         const updatedStates = [...prevStates];
+    //         updatedStates[index] = false;
+    //         return updatedStates;
+    //     });
+    // };
+
     const backgroundVideos = mediaFiles.filter((file) => file.name.endsWith(".mp4")).slice(4, 7);
 
     return (
@@ -44,12 +53,11 @@ export default function Climbing() {
                             autoPlay
                             loop
                             muted
-                            className={`w-1/3 h-full object-cover duration-700 ease-in-out group-hover:opacity-75 ${isLoading
+                            className={`w-1/3 h-full object-cover duration-700 ease-in-out group-hover:opacity-75 ${loading
                                 ? "scale-110 blur-2xl grayscale"
                                 : "scale-100 blur-0 grayscale-0"
                                 }`}
                             onLoadedData={() => setLoading(false)}
-
                         />
                     ))}
                 </div>
@@ -84,7 +92,7 @@ export default function Climbing() {
                                         height={500}
                                         layout="responsive"
                                         objectFit="cover"
-                                        className={`rounded-lg duration-700 ease-in-out group-hover:opacity-75 ${isLoading
+                                        className={`rounded-lg transform transition-transform hover:scale-110  duration-700 ease-in-out group-hover:opacity-75 ${loading
                                             ? "scale-110 blur-2xl grayscale"
                                             : "scale-100 blur-0 grayscale-0"
                                             }`}
@@ -93,7 +101,7 @@ export default function Climbing() {
                                 ) : ["mp4"].includes(fileExt || "") ? (
                                     <video
                                         src={file.url?.data?.publicUrl}
-                                        className={`rounded-lg w-full h-full object-cover duration-700 ease-in-out group-hover:opacity-75 ${isLoading
+                                        className={`rounded-lg w-full h-full transform transition-transform hover:scale-110  object-cover duration-700 ease-in-out group-hover:opacity-75 ${loading
                                             ? "scale-110 blur-2xl grayscale"
                                             : "scale-100 blur-0 grayscale-0"
                                             }`}
