@@ -34,99 +34,103 @@ export default function experience() {
           </div>
         </div>
         <div className={`flex flex-row gap-2 ${!timer && `opacity-0`} animate-fadeInDelayedShort`}>
-          <a target="_blank" href="https://www.linkedin.com/in/rohan-arya/">
+          <a target="_blank" href="https://www.linkedin.com/in/rohan-arya/"
+            className="transform transition-transform duration-200 hover:scale-110"
+          >
             <Image src={linkedin_logo} className="w-[3rem]" alt="linkedin" />
           </a>
-          <a target="_blank" href="https://github.com/Zax-boop">
-            <Image src={github_logo} className="w-[3rem] bg-white" alt="github" />
+          <a target="_blank" href="https://github.com/Zax-boop"
+            className="transform transition-transform duration-200 hover:scale-110"
+          >
+            <Image src={github_logo} className="w-[3rem] bg-white rounded-md" alt="github" />
           </a>
         </div>
         <FadeInSection>
-        <div className='flex flex-row mt-10 items-center gap-2'>
-          <div className='flex flex-col'>
-            <p className='text-4xl font-medium'>ColomboAI - Full Stack Developer</p>
-            <p className='text-2xl font-medium'>August 2024 - Present</p>
-            <div className="list-disc pl-6 mt-2 text-lg">
-              <li>Worked as part of a global team spanning the U.S and India</li>
-              <li>Developed social media application using Flutter and Dart for mobile and Next.js and
-                Tailwind for desktop</li>
-              <li>Implemented authentication and user management features using Firebase Authentication
-                boosting app security</li>
-              <li>Wrote unit tests and integration tests, fixing bugs and documenting processes to augment
-                productivity by 30%</li>
-              <li>Wrote SQL queries for handling large scale data models</li>
-              <li>Utilized Java to create and consume RESTful services to communicate across the stack</li>
+          <div className='flex flex-row mt-10 items-center gap-2'>
+            <div className='flex flex-col'>
+              <p className='text-4xl font-medium'>ColomboAI - Full Stack Developer</p>
+              <p className='text-2xl font-medium'>August 2024 - Present</p>
+              <div className="list-disc pl-6 mt-2 text-lg">
+                <li>Worked as part of a global team spanning the U.S and India</li>
+                <li>Developed social media application using Flutter and Dart for mobile and Next.js and
+                  Tailwind for desktop</li>
+                <li>Implemented authentication and user management features using Firebase Authentication
+                  boosting app security</li>
+                <li>Wrote unit tests and integration tests, fixing bugs and documenting processes to augment
+                  productivity by 30%</li>
+                <li>Wrote SQL queries for handling large scale data models</li>
+                <li>Utilized Java to create and consume RESTful services to communicate across the stack</li>
+              </div>
             </div>
+            <a target='_blank' href='https://caidev.colomboai.com/' className="w-[32rem] rounded-lg overflow-hidden transform transition-transform duration-200 hover:scale-110">
+              <video
+                src="/colombo_demo.mov"
+                className="w-full"
+                autoPlay
+                loop
+                muted
+              />
+            </a>
           </div>
-          <div className="w-[32rem] rounded-lg overflow-hidden">
-            <video
-              src="/colombo_demo.mov"
-              className="w-full"
-              autoPlay
-              loop
-              muted
-            />
-          </div>
-        </div>
         </FadeInSection>
         <FadeInSection>
-        <div className='flex flex-row mt-10 items-center gap-2'>
-          <div className='flex flex-col'>
-            <p className='text-4xl font-medium'>Hatch Recruiting - Full Stack Developer</p>
-            <p className='text-2xl font-medium'>February 2023 - August 2024</p>
-            <div className="list-disc pl-6 mt-2 text-lg">
-              <li>Implemented resume parsing algorithm in Python to extract and structure key information such
-                as skills, education, and work experience from diverse resume formats reducing time to find a
-                perfect candidate by 95%</li>
-              <li>Implemented 4 figmas weekly with Next.js, React.js, Typescript, Tailwind, and CSS</li>
-              <li>Designed and built DB endpoints in Python and Next.js, with an ORM to ensure stateful user
-                data storage</li>
-              <li>Deployed backend server within docker container in AWS EC2 instance to facilitate traffic
-                between frontend and PostgreSQL improving efficiency by 12%</li>
-              <li>Wrote SQL queries for handling large scale data models</li>
-              <li>Utilized Java to create and consume RESTful services to communicate across the stack</li>
+          <div className='flex flex-row mt-10 items-center gap-2'>
+            <div className='flex flex-col'>
+              <p className='text-4xl font-medium'>Hatch Recruiting - Full Stack Developer</p>
+              <p className='text-2xl font-medium'>February 2023 - August 2024</p>
+              <div className="list-disc pl-6 mt-2 text-lg">
+                <li>Implemented resume parsing algorithm in Python to extract and structure key information such
+                  as skills, education, and work experience from diverse resume formats reducing time to find a
+                  perfect candidate by 95%</li>
+                <li>Implemented 4 figmas weekly with Next.js, React.js, Typescript, Tailwind, and CSS</li>
+                <li>Designed and built DB endpoints in Python and Next.js, with an ORM to ensure stateful user
+                  data storage</li>
+                <li>Deployed backend server within docker container in AWS EC2 instance to facilitate traffic
+                  between frontend and PostgreSQL improving efficiency by 12%</li>
+                <li>Wrote SQL queries for handling large scale data models</li>
+                <li>Utilized Java to create and consume RESTful services to communicate across the stack</li>
+              </div>
             </div>
+            <a target='_blank' href='https://dev.hatchrecruiting.com/' className="w-[60rem] rounded-lg overflow-hidden transform transition-transform duration-200 hover:scale-110">
+              <video
+                src="/hatch_demo.mov"
+                className="w-full"
+                autoPlay
+                loop
+                muted
+              />
+            </a>
           </div>
-          <div className="w-[60rem] rounded-lg overflow-hidden">
-            <video
-              src="/hatch_demo.mov"
-              className="w-full"
-              autoPlay
-              loop
-              muted
-            />
-          </div>
-        </div>
         </FadeInSection>
         <FadeInSection>
-        <div className='flex flex-row mt-10 items-center gap-2'>
-          <div className='flex flex-col'>
-            <p className='text-4xl font-medium'>Stealth Startup - Full Stack Developer</p>
-            <p className='text-2xl font-medium'>May 2024 - September 2024</p>
-            <div className="pl-6 mt-2 text-lg">
-              <li>Designed and implemented payment infrastructure using the Stripe API, optimizing transaction
-                processes by 50%</li>
-              <li>Implemented authentication and user management features using Firebase Authentication
-                boosting app security</li>
-              <li>Integrated and managed Firestore database, increasing efficiency of seamless data storage
-                and retrieval by 18%</li>
-              <li>Deployed backend server within docker container in AWS EC2 instance to facilitate traffic
-                between frontend and PostgreSQL improving efficiency by 12%</li>
-              <li>Wrote unit tests and integration tests, fixing bugs and documenting processes to augment
-                productivity by 20%</li>
-              <li>Developed a mobile application using Flutter and Dart, focusing on user-friendly UI/UX design</li>
+          <div className='flex flex-row mt-10 items-center gap-2'>
+            <div className='flex flex-col'>
+              <p className='text-4xl font-medium'>Stealth Startup - Full Stack Developer</p>
+              <p className='text-2xl font-medium'>May 2024 - September 2024</p>
+              <div className="pl-6 mt-2 text-lg">
+                <li>Designed and implemented payment infrastructure using the Stripe API, optimizing transaction
+                  processes by 50%</li>
+                <li>Implemented authentication and user management features using Firebase Authentication
+                  boosting app security</li>
+                <li>Integrated and managed Firestore database, increasing efficiency of seamless data storage
+                  and retrieval by 18%</li>
+                <li>Deployed backend server within docker container in AWS EC2 instance to facilitate traffic
+                  between frontend and PostgreSQL improving efficiency by 12%</li>
+                <li>Wrote unit tests and integration tests, fixing bugs and documenting processes to augment
+                  productivity by 20%</li>
+                <li>Developed a mobile application using Flutter and Dart, focusing on user-friendly UI/UX design</li>
+              </div>
+            </div>
+            <div className="w-[18rem] rounded-[2.1rem] overflow-hidden transform transition-transform duration-200 hover:scale-110">
+              <video
+                src="/slip_demo.mov"
+                className="w-full h-full object-cover transform scale-105 object-center"
+                autoPlay
+                loop
+                muted
+              />
             </div>
           </div>
-          <div className="w-[18rem] rounded-[2.1rem] overflow-hidden">
-            <video
-              src="/slip_demo.mov"
-              className="w-full h-full object-cover transform scale-105 object-center"
-              autoPlay
-              loop
-              muted
-            />
-          </div>
-        </div>
         </FadeInSection>
         <FadeInSection>
           <div className='flex flex-col mt-10'>
