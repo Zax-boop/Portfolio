@@ -59,7 +59,7 @@ export default function AlbumForm() {
                         <form onSubmit={handleSubmit} className="space-y-4 flex w-full flex-col">
                             <div className='flex flex-row w-full'>
                                 <div className='w-1/2 self-start flex flex-col items-center gap-3'>
-                                    <Image src={coverImage} width={400} height={400} alt='placeholder' />
+                                    <Image src={coverImage} width={400} height={400} alt='placeholder' className='transform transition-transform hover:scale-105 duration-300'/>
                                     <label className="flex flex-row justify-center items-center gap-2  pl-3 mr-4 py-2 bg-black border border-white text-white rounded-full hover:bg-white hover:text-black transition duration-300 cursor-pointer">
                                         {coverImage === album_placeholder ? "Choose Cover" : "Change Cover"}
                                         <PlusIcon className="w-5 h-5 mr-2" />
@@ -109,7 +109,7 @@ export default function AlbumForm() {
                                             onFocus={e => setCommentFocus(true)}
                                             onBlur={() => setCommentFocus(false)}
                                             onChange={(e) => setComments(e.target.value)}
-                                            rows={2} 
+                                            rows={3} 
                                         />
                                         <span
                                             className={`absolute bottom-1.5 left-0 h-[2px] bg-white transition-all duration-300 ${commentFocus || comments ? "w-full" : "w-0"

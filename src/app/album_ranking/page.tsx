@@ -2,30 +2,14 @@
 
 import React, { useState, useEffect } from 'react';
 import Header from '../components/header';
-import addAlbum from "../../../utils/addAlbum.js";
 import fetchAlbums from "../../../utils/fetchAlbums";
 import PoppingLetters from '../components/poppingLetters';
 import AlbumForm from '../components/albumModal';
-import Image from 'next/image';
 
 export default function Albums() {
-    const [name, setName] = useState('');
-    const [artist, setArtist] = useState('');
-    const [comments, setComments] = useState('');
-    const [imageFile, setImageFile] = useState(null);
     const [albums, setAlbums] = useState<any>([]);
-    const [rank, setRank] = useState("")
     const [loading, setLoading] = useState(true);
     const [isLoading, setIsLoading] = useState(true)
-
-    const handleFileChange = (e: any) => {
-        setImageFile(e.target.files[0]);
-    };
-
-    const handleSubmit = async (e: any) => {
-        e.preventDefault();
-        const result = await addAlbum(name, artist, comments, imageFile, Number(rank));
-    };
 
     useEffect(() => {
         const getAlbums = async () => {
@@ -99,11 +83,12 @@ export default function Albums() {
                 <PoppingLetters text="Albums" className="absolute text-white text-6xl font-bold z-10 text-center" />
                 <div className="absolute inset-0 bg-black opacity-50"></div>
             </div>
-            <div className="flex flex-col w-4/5 space-y-8 mt-8">
+            <div className="flex flex-col w-4/5 mt-8">
                 <AlbumForm/>
-                <hr className="border-t border-gray-300 my-4" />
+                <p>*Disclaimer: This is just my opinion and what I enjoyed listening to the most regardless of critical bias.</p>
+                <hr className="border-t border-gray-300" />
                 {albums.map((album: any, index: number) => (
-                    <div key={album.id || `${album.name}-${album.artist}-${index}`} className="flex flex-col space-y-4">
+                    <div key={album.id || `${album.name}-${album.artist}-${index}`} className="flex flex-col space-y-4 mt-8">
                         <div className="flex flex-row">
                             <h2 className="text-xl font-semibold mr-4">{album.Rank}.</h2>
                             <img
@@ -121,7 +106,6 @@ export default function Albums() {
                                 <p className="text-lg mt-2">{album.comment}</p>
                             </div>
                         </div>
-                        {/* Only render <hr /> if it’s not the last album */}
                         {index < albums.length - 1 && <hr className="border-t border-gray-300 my-4" />}
                     </div>
                 ))}
