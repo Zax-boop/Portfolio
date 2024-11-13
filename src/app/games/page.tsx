@@ -147,7 +147,6 @@ export default function GamesRanking() {
                                 <p className="text-lg mt-2">{game.comments}</p>
                             </div>
                         </div>
-                        {/* Only render <hr /> if it’s not the last album */}
                         {index < games.length - 1 && <hr className="border-t border-gray-300 my-4" />}
                     </div>
                 ))}

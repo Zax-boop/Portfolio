@@ -14,7 +14,7 @@ export default function About() {
       <div className='flex flex-col w-4/5 mt-10'>
         <FadeInSection>
           <div className='flex flex-row gap-8'>
-            <img src={"/prof_photo.jpg"} className='w-[25rem] rounded-[40px] transform transition-transform duration-200 hover:scale-110' />
+            <img src={"/prof_photo.jpg"} className='w-[25rem] rounded-[40px] transform transition-transform duration-200 hover:scale-105' />
             <p className='text-xl'>
               From a young age, I found myself frustrated with technology, often questioning why things did not work as expected. Over time, I realized that software development held the key to solving these issues. During my junior year of high school, I took an online Python course that introduced me to the power of coding, and I was captivated. In 2021, I began my studies at the University of Illinois Urbana-Champaign, where I am pursuing a degree in Computer Science and Statistics, with plans to graduate in May 2025.
             </p>
@@ -27,7 +27,7 @@ export default function About() {
               <p className='text-xl'>
                 One of my greatest obsessions is consuming media in all its forms, from art and books to video games, albums, and TV shows. I am fascinated by the idea that someone's work can be immortalized in history, whether it's a small album by a lesser-known artist or an iconic piece like the Mona Lisa. Inspired by this, I began creating rankings and lists to document and celebrate these contributions. This started in my freshman year of college with my album rankings, which now include over 300 entries. Over time, I expanded these lists to include TV shows, video games, books, and more, all of which can be found below.</p>
             </div>
-            <img src={"/climbing_ex.jpg"} className='rounded-lg w-[20rem] transform transition-transform duration-200 hover:scale-110' />
+            <img src={"/climbing_ex.jpg"} className='rounded-lg w-[20rem] transform transition-transform duration-200 hover:scale-105' />
           </div>
         </FadeInSection>
         <div className='flex flex-row self-start gap-5 mt-5'>

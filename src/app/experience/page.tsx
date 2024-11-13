@@ -62,15 +62,18 @@ export default function experience() {
                 <li>Utilized Java to create and consume RESTful services to communicate across the stack</li>
               </div>
             </div>
-            <a target='_blank' href='https://caidev.colomboai.com/' className="w-[32rem] rounded-lg overflow-hidden transform transition-transform duration-200 hover:scale-110">
-              <video
-                src="/colombo_demo.mov"
-                className="w-full"
-                autoPlay
-                loop
-                muted
-              />
-            </a>
+            <div className='flex flex-col items-center gap-2 w-[32rem]'>
+              <a target='_blank' href='https://colomboai.com/' className="w-[32rem] rounded-lg overflow-hidden transform transition-transform duration-200 hover:scale-105 hover:cursor-pointer">
+                <video
+                  src="/colombo_demo.mov"
+                  className="w-full cursor-pointer"
+                  autoPlay
+                  loop
+                  muted
+                />
+              </a>
+              <a target='_blank' href='https://colomboai.com/' style={{ cursor: 'pointer' }} className="cursor-pointer text-[#5454d0] underline">https://colomboai.com/</a>
+            </div>
           </div>
         </FadeInSection>
         <FadeInSection>
@@ -91,7 +94,7 @@ export default function experience() {
                 <li>Utilized Java to create and consume RESTful services to communicate across the stack</li>
               </div>
             </div>
-            <a target='_blank' href='https://dev.hatchrecruiting.com/' className="w-[60rem] rounded-lg overflow-hidden transform transition-transform duration-200 hover:scale-110">
+            <a target='_blank' href='https://dev.hatchrecruiting.com/' className="w-[60rem] rounded-lg overflow-hidden transform transition-transform duration-200 hover:scale-105">
               <video
                 src="/hatch_demo.mov"
                 className="w-full"
