@@ -16,11 +16,18 @@ export default function AlbumForm() {
     const [imageFile, setImageFile] = useState(null);
     const [albums, setAlbums] = useState<any>([]);
     const [rank, setRank] = useState("")
-    const [coverImage, setCoverImage] = useState(album_placeholder);
+    const [coverImage, setCoverImage] = useState<any>(album_placeholder);
+    const [nameFocus, setNameFocus] = useState(false);
+    const [artistFocus, setArtistFocus] = useState(false);
+    const [commentFocus, setCommentFocus] = useState(false);
+    const [rankFocus, setRankFocus] = useState(false);
+
 
     const handleFileChange = (e: any) => {
         // console.log(e.target.files[0])
         setImageFile(e.target.files[0]);
+        const url = URL.createObjectURL(e.target.files[0])
+        setCoverImage(url)
         // setCoverImage(e.target.files[0]);        
     };
 
@@ -52,7 +59,7 @@ export default function AlbumForm() {
                         <form onSubmit={handleSubmit} className="space-y-4 flex w-full flex-col">
                             <div className='flex flex-row w-full'>
                                 <div className='w-1/2 self-start flex flex-col items-center gap-3'>
-                                    <Image src={coverImage} alt='placeholder' />
+                                    <Image src={coverImage} width={400} height={400} alt='placeholder' />
                                     <label className="flex flex-row justify-center items-center gap-2  pl-3 mr-4 py-2 bg-black border border-white text-white rounded-full hover:bg-white hover:text-black transition duration-300 cursor-pointer">
                                         {coverImage === album_placeholder ? "Choose Cover" : "Change Cover"}
                                         <PlusIcon className="w-5 h-5 mr-2" />
@@ -64,33 +71,65 @@ export default function AlbumForm() {
                                     </label>
                                 </div>
                                 <div className='flex flex-col w-1/2 ml-2 gap-4'>
-                                    <input
-                                        type="text"
-                                        className="w-full bg-transparent outline-none text-white border-b-[1px] border-white"
-                                        placeholder="Album Name"
-                                        value={name}
-                                        onChange={(e) => setName(e.target.value)}
-                                    />
-                                    <input
-                                        type="text"
-                                        className="w-full bg-transparent outline-none text-white border-b-[1px] border-white"
-                                        placeholder="Artist"
-                                        value={artist}
-                                        onChange={(e) => setArtist(e.target.value)}
-                                    />
-                                    <textarea
-                                        placeholder="Comments"
-                                        className="w-full bg-transparent outline-none text-white border-b-[1px] border-white"
-                                        value={comments}
-                                        onChange={(e) => setComments(e.target.value)}
-                                    />
-                                    <input
-                                        type="number"
-                                        placeholder="Rank"
-                                        className="w-full bg-transparent outline-none text-white border-b-[1px] border-white"
-                                        value={rank}
-                                        onChange={(e) => setRank(e.target.value)}
-                                    />
+                                    <div className="relative group">
+                                        <input
+                                            type="text"
+                                            className="w-full bg-transparent text-2xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
+                                            placeholder="Album Name"
+                                            value={name}
+                                            onFocus={e => setNameFocus(true)}
+                                            onBlur={() => setNameFocus(false)}
+                                            onChange={(e) => setName(e.target.value)}
+                                        />
+                                        <span
+                                            className={`absolute -bottom-0.5 left-0 h-[2px] bg-white transition-all duration-300 ${nameFocus || name ? "w-full" : "w-0"
+                                                }`}
+                                        />
+                                    </div>
+                                    <div className="relative group">
+                                        <input
+                                            type="text"
+                                            className="w-full bg-transparent text-2xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
+                                            placeholder="Artist"
+                                            value={artist}
+                                            onFocus={e => setArtistFocus(true)}
+                                            onBlur={() => setArtistFocus(false)}
+                                            onChange={(e) => setArtist(e.target.value)}
+                                        />
+                                        <span
+                                            className={`absolute -bottom-0.5 left-0 h-[2px] bg-white transition-all duration-300 ${artistFocus || artist ? "w-full" : "w-0"
+                                                }`}
+                                        />
+                                    </div>
+                                    <div className="relative group">
+                                        <textarea
+                                            className="w-full bg-transparent text-2xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
+                                            placeholder="Comments"
+                                            value={comments}
+                                            onFocus={e => setCommentFocus(true)}
+                                            onBlur={() => setCommentFocus(false)}
+                                            onChange={(e) => setComments(e.target.value)}
+                                            rows={2} 
+                                        />
+                                        <span
+                                            className={`absolute bottom-1.5 left-0 h-[2px] bg-white transition-all duration-300 ${commentFocus || comments ? "w-full" : "w-0"
+                                                }`}
+                                        />
+                                    </div>
+                                    <div className="relative group">
+                                        <input
+                                            type="number"
+                                            className="w-full bg-transparent text-2xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
+                                            placeholder="Rank"
+                                            value={rank}
+                                            onFocus={e => setRankFocus(true)}
+                                            onBlur={() => setRankFocus(false)}
+                                            onChange={(e) => setRank(e.target.value)}
+                                        />
+                                        <span
+                                            className={`absolute -bottom-0.5 left-0 h-[2px] bg-white transition-all duration-300 ${rankFocus || rank ? "w-full" : "w-0"}`}
+                                        />
+                                    </div>
                                 </div>
                             </div>
                             <button

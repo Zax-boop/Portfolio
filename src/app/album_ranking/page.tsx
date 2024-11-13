@@ -6,6 +6,7 @@ import addAlbum from "../../../utils/addAlbum.js";
 import fetchAlbums from "../../../utils/fetchAlbums";
 import PoppingLetters from '../components/poppingLetters';
 import AlbumForm from '../components/albumModal';
+import Image from 'next/image';
 
 export default function Albums() {
     const [name, setName] = useState('');
@@ -108,12 +109,16 @@ export default function Albums() {
                             <img
                                 src={album.image}
                                 alt={`${album.name} album cover`}
-                                className="w-[30rem] h-[30rem] object-cover mb-4"
+                                className={`w-[30rem] h-[30rem] object-cover mb-4 transform transition-transform hover:scale-105 duration-300 ${isLoading
+                            ? "scale-110 blur-2xl grayscale"
+                            : "scale-100 blur-0 grayscale-0"
+                            }`}
+                                onLoadedData={e => setIsLoading(false)}
                             />
                             <div className='ml-4'>
                                 <p className="text-6xl text-white">{album.name}</p>
-                                <p className="text-3xl text-gray-500">{album.artist}</p>
-                                <p className="mt-2">{album.comment}</p>
+                                <p className="text-3xl text-gray-400">{album.artist}</p>
+                                <p className="text-lg mt-2">{album.comment}</p>
                             </div>
                         </div>
                         {/* Only render <hr /> if it’s not the last album */}
