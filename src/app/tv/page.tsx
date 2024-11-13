@@ -2,22 +2,20 @@
 
 import React, { useState, useEffect } from 'react';
 import Header from '../components/header';
-import addAlbum from "../../../utils/addAlbum.js";
 import PoppingLetters from '../components/poppingLetters';
-import AlbumForm from '../components/albumModal';
-import fetchGames from "../../../utils/fetchGames"
-import GameForm from '../components/gameModal';
+import fetchTV from "../../../utils/fetchTV"
+import TVForm from '../components/tvModal';
 
 export default function TVRanking() {
-    const [games, setGames] = useState<any>([]);
+    const [tv, setTV] = useState<any>([]);
     const [loading, setLoading] = useState(true);
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
         const getGames = async () => {
-            const data = await fetchGames();
+            const data = await fetchTV();
             if (data) {
-                setGames(data);
+                setTV(data);
             }
             setLoading(false);
         };
@@ -87,16 +85,16 @@ export default function TVRanking() {
                 <div className="absolute inset-0 bg-black opacity-50"></div>
             </div>
             <div className="flex flex-col w-4/5 mt-8">
-                <GameForm/>
+                <TVForm/>
                 <p>*Disclaimer: This is just my opinion and what I enjoyed playing the most regardless of critical bias. </p>
                 <hr className="border-t border-gray-300" />
-                {games.map((game: any, index: number) => (
-                    <div key={game.id || `${game.name}-${game.studio}-${index}`} className="flex flex-col space-y-4 mt-8">
+                {tv.map((show: any, index: number) => (
+                    <div key={show.id || `${show.name}-${show.director}-${index}`} className="flex flex-col space-y-4 mt-8">
                         <div className="flex flex-row">
-                            <h2 className="text-xl font-semibold mr-4">{game.rank}.</h2>
+                            <h2 className="text-xl font-semibold mr-4">{show.rank}.</h2>
                             <img
-                                src={game.image}
-                                alt={`${game.name} album cover`}
+                                src={show.image}
+                                alt={`${show.name} album cover`}
                                 className={`w-[30rem] h-[30rem] min-w-[30rem] min-h-[30rem] object-cover mb-4 transform transition-transform hover:scale-105 duration-300 ${isLoading
                             ? "scale-110 blur-2xl grayscale"
                             : "scale-100 blur-0 grayscale-0"
@@ -104,12 +102,12 @@ export default function TVRanking() {
                                 onLoadedData={e => setIsLoading(false)}
                             />
                             <div className='ml-4'>
-                                <p className="text-6xl text-white">{game.name}</p>
-                                <p className="text-3xl text-gray-400">{game.studio}</p>
-                                <p className="text-lg mt-2">{game.comments}</p>
+                                <p className="text-6xl text-white">{show.name}</p>
+                                <p className="text-3xl text-gray-400">{show.director}</p>
+                                <p className="text-lg mt-2">{show.comments}</p>
                             </div>
                         </div>
-                        {index < games.length - 1 && <hr className="border-t border-gray-300 my-4" />}
+                        {index < show.length - 1 && <hr className="border-t border-gray-300 my-4" />}
                     </div>
                 ))}
             </div>

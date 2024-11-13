@@ -1,13 +1,13 @@
 import supabase from "./supabaseclient";  
 
-export default async function fetchGames() {
+export default async function fetchTV() {
   const { data, error } = await supabase
-    .from('video_game_rankings')
-    .select('name, studio, image, comments, rank') 
+    .from('tv_rankings')
+    .select('name, director, comments, image, rank') 
     .order('rank', { ascending: true }); 
 
   if (error) {
-    console.error('Error fetching games:', error);
+    console.error('Error fetching tv shows:', error);
     return null;
   }
 
