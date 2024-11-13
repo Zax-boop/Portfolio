@@ -8,7 +8,7 @@ import AlbumForm from '../components/albumModal';
 import fetchGames from "../../../utils/fetchGames"
 import GameForm from '../components/gameModal';
 
-export default function GamesRanking() {
+export default function TVRanking() {
     const [games, setGames] = useState<any>([]);
     const [loading, setLoading] = useState(true);
     const [isLoading, setIsLoading] = useState(true)
@@ -34,9 +34,9 @@ export default function GamesRanking() {
             <Header />
             <div className="relative flex items-center justify-center w-full h-[80vh] mt-10 overflow-hidden">
                 <div className="absolute inset-0 flex w-full h-full overflow-hidden">
-                    <div className='w-1/3 h-full'>
+                    <div className='w-1/2 h-full'>
                         <video
-                            src={"/sekiro_mp4.mp4"}
+                            src={"/breaking_bad_mp4.mp4"}
                             autoPlay
                             loop
                             muted
@@ -47,31 +47,7 @@ export default function GamesRanking() {
                             onLoadedData={() => setIsLoading(false)}
                         />
                         <video
-                            src={"/cloud_mp4.mp4"}
-                            autoPlay
-                            loop
-                            muted
-                            className={`w-full h-1/2 object-fill duration-700 ease-in-out group-hover:opacity-75 ${isLoading
-                                ? "scale-110 blur-2xl grayscale"
-                                : "scale-100 blur-0 grayscale-0"
-                                }`}
-                            onLoadedData={() => setIsLoading(false)}
-                        />
-                    </div>
-                    <div className='w-1/3 h-full'>
-                        <video
-                            src={"/hades2_mp4.mp4"}
-                            autoPlay
-                            loop
-                            muted
-                            className={`w-full h-1/2 object-fill duration-700 ease-in-out group-hover:opacity-75 ${isLoading
-                                ? "scale-110 blur-2xl grayscale"
-                                : "scale-100 blur-0 grayscale-0"
-                                }`}
-                            onLoadedData={() => setIsLoading(false)}
-                        />
-                        <video
-                            src={"/ror2_mp4.mp4"}
+                            src={"/bojack_mp4.mp4"}
                             autoPlay
                             loop
                             muted
@@ -82,9 +58,9 @@ export default function GamesRanking() {
                             onLoadedData={() => setIsLoading(false)}
                         />
                     </div>
-                    <div className='w-1/3 h-full'>
+                    <div className='w-1/2 h-full'>
                         <video
-                            src={"/mario_mp4.mp4"}
+                            src={"/sopranos_mp4.mp4"}
                             autoPlay
                             loop
                             muted
@@ -95,7 +71,7 @@ export default function GamesRanking() {
                             onLoadedData={() => setIsLoading(false)}
                         />
                         <video
-                            src={"/cuphead_mp4.mp4"}
+                            src={"/hill_house_mp4.mp4"}
                             autoPlay
                             loop
                             muted
@@ -107,7 +83,7 @@ export default function GamesRanking() {
                         />
                     </div>
                 </div>
-                <PoppingLetters text="Video Games" className="absolute text-white text-6xl font-bold z-10 text-center" />
+                <PoppingLetters text="TV Shows" className="absolute text-white text-6xl font-bold z-10 text-center" />
                 <div className="absolute inset-0 bg-black opacity-50"></div>
             </div>
             <div className="flex flex-col w-4/5 mt-8">

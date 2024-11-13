@@ -69,19 +69,19 @@ export default function Home() {
                 <a
                   target="_blank"
                   href="https://www.linkedin.com/in/rohan-arya/"
-                  className="transform transition-transform duration-200 hover:scale-110"
+                  className="transform transition-transform duration-200 hover:scale-105"
                 >
                   <Image src={linkedin_logo} className="w-[3rem]" alt="linkedin" />
                 </a>
 
                 <a target="_blank" href="https://github.com/Zax-boop"                   
-                className="transform transition-transform duration-200 hover:scale-110"
+                className="transform transition-transform duration-200 hover:scale-105"
                 >
                   <Image src={github_logo} className="w-[3rem] bg-white rounded-sm" alt="github" />
                 </a>
               </div>
             </div>
-            <div className={`flex transform transition-transform duration-200 hover:scale-110 flex-col justify-end items-end w-2/5 ${!timer && "opacity-0"} animate-fadeInDelayed`}>
+            <div className={`flex transform transition-transform duration-200 hover:scale-105 flex-col justify-end items-end w-2/5 ${!timer && "opacity-0"} animate-fadeInDelayed`}>
               <ImageSlider images={images} />
             </div>
           </div>

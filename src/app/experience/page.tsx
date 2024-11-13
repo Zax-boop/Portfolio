@@ -35,12 +35,12 @@ export default function experience() {
         </div>
         <div className={`flex flex-row gap-2 ${!timer && `opacity-0`} animate-fadeInDelayedShort`}>
           <a target="_blank" href="https://www.linkedin.com/in/rohan-arya/"
-            className="transform transition-transform duration-200 hover:scale-110"
+            className="transform transition-transform duration-200 hover:scale-105"
           >
             <Image src={linkedin_logo} className="w-[3rem]" alt="linkedin" />
           </a>
           <a target="_blank" href="https://github.com/Zax-boop"
-            className="transform transition-transform duration-200 hover:scale-110"
+            className="transform transition-transform duration-200 hover:scale-105"
           >
             <Image src={github_logo} className="w-[3rem] bg-white rounded-md" alt="github" />
           </a>
@@ -63,7 +63,7 @@ export default function experience() {
               </div>
             </div>
             <div className='flex flex-col items-center gap-2 w-[32rem]'>
-              <a target='_blank' href='https://colomboai.com/' className="w-[32rem] rounded-lg overflow-hidden transform transition-transform duration-200 hover:scale-105 hover:cursor-pointer">
+              <a target='_blank' href='https://colomboai.com/' className="w-[32rem] rounded-lg overflow-hidden transform transition-transform duration-200 hover:scale-105">
                 <video
                   src="/colombo_demo.mov"
                   className="w-full cursor-pointer"
@@ -94,7 +94,8 @@ export default function experience() {
                 <li>Utilized Java to create and consume RESTful services to communicate across the stack</li>
               </div>
             </div>
-            <a target='_blank' href='https://dev.hatchrecruiting.com/' className="w-[60rem] rounded-lg overflow-hidden transform transition-transform duration-200 hover:scale-105">
+            <div className='flex flex-col gap-2 items-center w-[32rem]'>
+            <a target='_blank' href='https://dev.hatchrecruiting.com/' className="w-[32rem] rounded-lg overflow-hidden transform transition-transform duration-200 hover:scale-105">
               <video
                 src="/hatch_demo.mov"
                 className="w-full"
@@ -103,6 +104,9 @@ export default function experience() {
                 muted
               />
             </a>
+            <a target='_blank' href='https://dev.hatchrecruiting.com/' style={{ cursor: 'pointer' }} className="cursor-pointer text-[#5454d0] underline">https://dev.hatchrecruiting.com/</a>
+            </div>
+           
           </div>
         </FadeInSection>
         <FadeInSection>
@@ -124,7 +128,7 @@ export default function experience() {
                 <li>Developed a mobile application using Flutter and Dart, focusing on user-friendly UI/UX design</li>
               </div>
             </div>
-            <div className="w-[18rem] rounded-[2.1rem] overflow-hidden transform transition-transform duration-200 hover:scale-110">
+            <div className="w-[18rem] rounded-[2.1rem] overflow-hidden transform transition-transform duration-200 hover:scale-105">
               <video
                 src="/slip_demo.mov"
                 className="w-full h-full object-cover transform scale-105 object-center"

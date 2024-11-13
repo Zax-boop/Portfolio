@@ -92,7 +92,7 @@ export default function Climbing() {
                                         height={500}
                                         layout="responsive"
                                         objectFit="cover"
-                                        className={`rounded-lg transform transition-transform hover:scale-110  duration-700 ease-in-out group-hover:opacity-75 ${loading
+                                        className={`rounded-lg transform transition-transform hover:scale-105  duration-700 ease-in-out group-hover:opacity-75 ${loading
                                             ? "scale-110 blur-2xl grayscale"
                                             : "scale-100 blur-0 grayscale-0"
                                             }`}
@@ -101,7 +101,7 @@ export default function Climbing() {
                                 ) : ["mp4"].includes(fileExt || "") ? (
                                     <video
                                         src={file.url?.data?.publicUrl}
-                                        className={`rounded-lg w-full h-full transform transition-transform hover:scale-110  object-cover duration-700 ease-in-out group-hover:opacity-75 ${loading
+                                        className={`rounded-lg w-full h-full transform transition-transform hover:scale-105  object-cover duration-700 ease-in-out group-hover:opacity-75 ${loading
                                             ? "scale-110 blur-2xl grayscale"
                                             : "scale-100 blur-0 grayscale-0"
                                             }`}
