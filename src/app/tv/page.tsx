@@ -86,7 +86,7 @@ export default function TVRanking() {
             </div>
             <div className="flex flex-col w-4/5 mt-8">
                 <TVForm/>
-                <p>*Disclaimer: This is just my opinion and what I enjoyed playing the most regardless of critical bias. </p>
+                <p>*Disclaimer: This is just my opinion and what I enjoyed watching the most regardless of critical bias. </p>
                 <hr className="border-t border-gray-300" />
                 {tv.map((show: any, index: number) => (
                     <div key={show.id || `${show.name}-${show.director}-${index}`} className="flex flex-col space-y-4 mt-8">

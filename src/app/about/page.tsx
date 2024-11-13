@@ -7,6 +7,7 @@ import Image from 'next/image'
 import cinema from "../../../public/cinema.jpg"
 import hades from "../../../public/hades_ex.webp"
 import sopranos from "../../../public/sopranos_ex.jpg"
+import cb from "../../../public/cb.jpg"
 
 export default function About() {
   return (
@@ -31,31 +32,37 @@ export default function About() {
             <img src={"/climbing_ex.jpg"} className='rounded-lg w-[20rem] transform transition-transform duration-200 hover:scale-105' />
           </div>
         </FadeInSection>
-        <div className='flex flex-row self-start gap-5 mt-5'>
-        <FadeInSection className='self-start'>
-          <Link href='/album_ranking' className='self-start flex flex-col items-center gap-1'>
-            <Image src={cinema} alt='climbing_ex' className='w-[17rem] h-[17rem] object-cover rounded-[40px] transform transition-transform duration-200 hover:scale-105' />
-            <p className='text-3xl cursor-pointer'>Album Rankings</p>
-          </Link>
-        </FadeInSection>
-        <FadeInSection className='self-start'>
-          <Link href='/climbing' className='self-start flex flex-col items-center gap-1'>
-            <Image src={climbing_app} alt='climbing_ex' className='w-[17rem] h-[17rem] object-cover rounded-[40px] transform transition-transform duration-200 hover:scale-105' />
-            <p className='text-3xl cursor-pointer'>Climbing</p>
-          </Link>
-        </FadeInSection>
-        <FadeInSection className='self-start'>
-          <Link href='/tv' className='self-start flex flex-col items-center gap-1'>
-            <Image src={sopranos} alt='sopranos_ex' className='w-[17rem] h-[17rem] object-cover rounded-[40px] transform transition-transform duration-200 hover:scale-105' />
-            <p className='text-3xl cursor-pointer'>TV Shows</p>
-          </Link>
-        </FadeInSection>
-        <FadeInSection className='self-start'>
-          <Link href='/games' className='self-start flex flex-col items-center gap-1'>
-            <Image src={hades} alt='hades_ex' className='w-[17rem] h-[17rem] object-cover rounded-[40px] transform transition-transform duration-200 hover:scale-105' />
-            <p className='text-3xl cursor-pointer'>Video Games</p>
-          </Link>
-        </FadeInSection>
+        <div className='flex flex-row flex-wrap self-start gap-5 mt-5'>
+          <FadeInSection className='self-start'>
+            <Link href='/album_ranking' className='self-start flex flex-col items-center gap-1'>
+              <Image src={cinema} alt='climbing_ex' className='w-[17rem] h-[17rem] object-cover rounded-[40px] transform transition-transform duration-200 hover:scale-105' />
+              <p className='text-3xl cursor-pointer'>Albums</p>
+            </Link>
+          </FadeInSection>
+          <FadeInSection className='self-start'>
+            <Link href='/anime' className='self-start flex flex-col items-center gap-1'>
+              <Image src={cb} alt='climbing_ex' className='w-[17rem] h-[17rem] object-cover rounded-[40px] transform transition-transform duration-200 hover:scale-105' />
+              <p className='text-3xl cursor-pointer'>Anime</p>
+            </Link>
+          </FadeInSection>
+          <FadeInSection className='self-start'>
+            <Link href='/climbing' className='self-start flex flex-col items-center gap-1'>
+              <Image src={climbing_app} alt='climbing_ex' className='w-[17rem] h-[17rem] object-cover rounded-[40px] transform transition-transform duration-200 hover:scale-105' />
+              <p className='text-3xl cursor-pointer'>Climbing</p>
+            </Link>
+          </FadeInSection>
+          <FadeInSection className='self-start'>
+            <Link href='/tv' className='self-start flex flex-col items-center gap-1'>
+              <Image src={sopranos} alt='sopranos_ex' className='w-[17rem] h-[17rem] object-cover rounded-[40px] transform transition-transform duration-200 hover:scale-105' />
+              <p className='text-3xl cursor-pointer'>TV Shows</p>
+            </Link>
+          </FadeInSection>
+          <FadeInSection className='self-start'>
+            <Link href='/games' className='self-start flex flex-col items-center gap-1'>
+              <Image src={hades} alt='hades_ex' className='w-[17rem] h-[17rem] object-cover rounded-[40px] transform transition-transform duration-200 hover:scale-105' />
+              <p className='text-3xl cursor-pointer'>Video Games</p>
+            </Link>
+          </FadeInSection>
         </div>
       </div>
     </div>
