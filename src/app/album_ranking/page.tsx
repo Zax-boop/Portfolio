@@ -5,6 +5,7 @@ import Header from '../components/header';
 import fetchAlbums from "../../../utils/fetchAlbums";
 import PoppingLetters from '../components/poppingLetters';
 import AlbumForm from '../components/albumModal';
+import FadeInSection from '../components/fadeIn';
 
 export default function Albums() {
     const [albums, setAlbums] = useState<any>([]);
@@ -88,7 +89,7 @@ export default function Albums() {
                 <p>*Disclaimer: This is just my opinion and what I enjoyed listening to the most regardless of critical bias.</p>
                 <hr className="border-t border-gray-300" />
                 {albums.map((album: any, index: number) => (
-                    <div key={album.id || `${album.name}-${album.artist}-${index}`} className="flex flex-col space-y-4 mt-8">
+                    <FadeInSection key={album.id || `${album.name}-${album.artist}-${index}`} className="flex flex-col space-y-4 mt-8">
                         <div className="flex flex-row">
                             <h2 className="text-xl font-semibold mr-4">{album.Rank}.</h2>
                             <img
@@ -107,7 +108,7 @@ export default function Albums() {
                             </div>
                         </div>
                         {index < albums.length - 1 && <hr className="border-t border-gray-300 my-4" />}
-                    </div>
+                    </FadeInSection>
                 ))}
             </div>
 

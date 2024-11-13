@@ -5,9 +5,10 @@ import Header from '../components/header';
 import fetchAnime from "../../../utils/fetchAnime";
 import PoppingLetters from '../components/poppingLetters';
 import AnimeForm from '../components/animeModal';
+import FadeInSection from '../components/fadeIn';
 
 export default function Anime() {
-    const [anime, setAnime] = useState<any>([]);
+    const [animeList, setAnimeList] = useState<any>([]);
     const [loading, setLoading] = useState(true);
     const [isLoading, setIsLoading] = useState(true)
 
@@ -15,7 +16,7 @@ export default function Anime() {
         const getAnime = async () => {
             const data = await fetchAnime();
             if (data) {
-                setAnime(data);
+                setAnimeList(data);
             }
             setLoading(false);
         };
@@ -51,8 +52,8 @@ export default function Anime() {
                 <AnimeForm/>
                 <p>*Disclaimer: This is just my opinion and what I enjoyed watching the most regardless of critical bias.</p>
                 <hr className="border-t border-gray-300" />
-                {anime.map((anime: any, index: number) => (
-                    <div key={anime.id || `${anime.name}-${anime.artist}-${index}`} className="flex flex-col space-y-4 mt-8">
+                {animeList.map((anime: any, index: number) => (
+                    <FadeInSection key={anime.id || `${anime.name}-${anime.artist}-${index}`} className="flex flex-col space-y-4 mt-8">
                         <div className="flex flex-row">
                             <h2 className="text-xl font-semibold mr-4">{anime.rank}.</h2>
                             <img
@@ -70,8 +71,8 @@ export default function Anime() {
                                 <p className="text-lg mt-2">{anime.comments}</p>
                             </div>
                         </div>
-                        {index < anime.length - 1 && <hr className="border-t border-gray-300 my-4" />}
-                    </div>
+                        {index < animeList.length - 1 && <hr className="border-t border-gray-300 my-4" />}
+                    </FadeInSection>
                 ))}
             </div>
 

@@ -7,6 +7,7 @@ import PoppingLetters from '../components/poppingLetters';
 import AlbumForm from '../components/albumModal';
 import fetchGames from "../../../utils/fetchGames"
 import GameForm from '../components/gameModal';
+import FadeInSection from '../components/fadeIn';
 
 export default function GamesRanking() {
     const [games, setGames] = useState<any>([]);
@@ -115,7 +116,7 @@ export default function GamesRanking() {
                 <p>*Disclaimer: This is just my opinion and what I enjoyed playing the most regardless of critical bias. </p>
                 <hr className="border-t border-gray-300" />
                 {games.map((game: any, index: number) => (
-                    <div key={game.id || `${game.name}-${game.studio}-${index}`} className="flex flex-col space-y-4 mt-8">
+                    <FadeInSection key={game.id || `${game.name}-${game.studio}-${index}`} className="flex flex-col space-y-4 mt-8">
                         <div className="flex flex-row">
                             <h2 className="text-xl font-semibold mr-4">{game.rank}.</h2>
                             <img
@@ -134,7 +135,7 @@ export default function GamesRanking() {
                             </div>
                         </div>
                         {index < games.length - 1 && <hr className="border-t border-gray-300 my-4" />}
-                    </div>
+                    </FadeInSection>
                 ))}
             </div>
 

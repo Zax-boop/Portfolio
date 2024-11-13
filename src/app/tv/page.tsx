@@ -5,6 +5,7 @@ import Header from '../components/header';
 import PoppingLetters from '../components/poppingLetters';
 import fetchTV from "../../../utils/fetchTV"
 import TVForm from '../components/tvModal';
+import FadeInSection from '../components/fadeIn';
 
 export default function TVRanking() {
     const [tv, setTV] = useState<any>([]);
@@ -89,7 +90,7 @@ export default function TVRanking() {
                 <p>*Disclaimer: This is just my opinion and what I enjoyed watching the most regardless of critical bias. </p>
                 <hr className="border-t border-gray-300" />
                 {tv.map((show: any, index: number) => (
-                    <div key={show.id || `${show.name}-${show.director}-${index}`} className="flex flex-col space-y-4 mt-8">
+                    <FadeInSection key={show.id || `${show.name}-${show.director}-${index}`} className="flex flex-col space-y-4 mt-8">
                         <div className="flex flex-row">
                             <h2 className="text-xl font-semibold mr-4">{show.rank}.</h2>
                             <img
@@ -107,8 +108,8 @@ export default function TVRanking() {
                                 <p className="text-lg mt-2">{show.comments}</p>
                             </div>
                         </div>
-                        {index < show.length - 1 && <hr className="border-t border-gray-300 my-4" />}
-                    </div>
+                        {index < tv.length - 1 && <hr className="border-t border-gray-300 my-4" />}
+                    </FadeInSection>
                 ))}
             </div>
 

@@ -7,6 +7,7 @@ import Image from "next/image";
 import PoppingLetters from "../components/poppingLetters";
 import { PlusIcon } from "lucide-react";
 import addClimbingMedia from "../../../utils/addClimbingMedia";
+import FadeInSection from "../components/fadeIn";
 
 export default function Climbing() {
     const [mediaFiles, setMediaFiles] = useState<any[]>([]);
@@ -80,7 +81,7 @@ export default function Climbing() {
                     {mediaFiles.map((file, index) => {
                         const fileExt = file.name.split(".").pop()?.toLowerCase();
                         return (
-                            <div
+                            <FadeInSection
                                 key={index}
                                 className="relative overflow-hidden rounded-lg shadow-lg"
                             >
@@ -111,7 +112,7 @@ export default function Climbing() {
                                         onLoadedData={() => setLoading(false)}
                                     />
                                 ) : null}
-                            </div>
+                            </FadeInSection>
                         );
                     })}
                 </div>
