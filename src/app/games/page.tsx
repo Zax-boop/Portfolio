@@ -135,7 +135,7 @@ export default function GamesRanking() {
                             <img
                                 src={game.image}
                                 alt={`${game.name} album cover`}
-                                className={`w-[30rem] h-[30rem] object-cover mb-4 transform transition-transform hover:scale-105 duration-300 ${isLoading
+                                className={`w-[30rem] h-[30rem] min-w-[30rem] min-h-[30rem] object-cover mb-4 transform transition-transform hover:scale-105 duration-300 ${isLoading
                             ? "scale-110 blur-2xl grayscale"
                             : "scale-100 blur-0 grayscale-0"
                             }`}
