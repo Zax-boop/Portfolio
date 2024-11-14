@@ -6,6 +6,7 @@ import fetchAlbums from "../../../utils/fetchAlbums";
 import PoppingLetters from '../components/poppingLetters';
 import AlbumForm from '../components/albumModal';
 import FadeInSection from '../components/fadeIn';
+import ImageTrack from '../components/ImageTrack';
 
 export default function Albums() {
     const [albums, setAlbums] = useState<any>([]);
@@ -84,8 +85,12 @@ export default function Albums() {
                 <PoppingLetters text="Albums" className="absolute text-white text-6xl font-bold z-10 text-center" />
                 <div className="absolute inset-0 bg-black opacity-50"></div>
             </div>
+            <div className='mt-4'>
+                <ImageTrack data={albums}/>
+
+            </div>
             <div className="flex flex-col w-4/5 mt-8">
-                <AlbumForm/>
+                <AlbumForm />
                 <p>*Disclaimer: This is just my opinion and what I enjoyed listening to the most regardless of critical bias.</p>
                 <hr className="border-t border-gray-300" />
                 {albums.map((album: any, index: number) => (
@@ -96,9 +101,9 @@ export default function Albums() {
                                 src={album.image}
                                 alt={`${album.name} album cover`}
                                 className={`w-[30rem] h-[30rem] min-w-[30rem] min-h-[30rem] object-cover mb-4 transform transition-transform hover:scale-105 duration-300 ${isLoading
-                            ? "scale-110 blur-2xl grayscale"
-                            : "scale-100 blur-0 grayscale-0"
-                            }`}
+                                    ? "scale-110 blur-2xl grayscale"
+                                    : "scale-100 blur-0 grayscale-0"
+                                    }`}
                                 onLoadedData={e => setIsLoading(false)}
                             />
                             <div className='ml-4'>

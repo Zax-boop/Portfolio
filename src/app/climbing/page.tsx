@@ -11,14 +11,14 @@ import FadeInSection from "../components/fadeIn";
 
 export default function Climbing() {
     const [mediaFiles, setMediaFiles] = useState<any[]>([]);
-    // const [loadingStates, setLoadingStates] = useState<boolean[]>([]);
+    const [loadingStates, setLoadingStates] = useState<boolean[]>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchMedia = async () => {
             const media = await fetchClimbingMedia();
             setMediaFiles(media);
-            // setLoadingStates(new Array(media.length).fill(true));
+            setLoadingStates(new Array(media.length).fill(false));
         };
 
         fetchMedia();
@@ -32,13 +32,13 @@ export default function Climbing() {
         }
     };
 
-    // const handleLoadedData = (index: number) => {
-    //     setLoadingStates(prevStates => {
-    //         const updatedStates = [...prevStates];
-    //         updatedStates[index] = false;
-    //         return updatedStates;
-    //     });
-    // };
+    const handleLoadedData = (index: number) => {
+        setLoadingStates(prevStates => {
+            const updatedStates = [...prevStates];
+            updatedStates[index] = false;
+            return updatedStates;
+        });
+    };
 
     const backgroundVideos = mediaFiles.filter((file) => file.name.endsWith(".mp4")).slice(4, 7);
 
@@ -93,29 +93,26 @@ export default function Climbing() {
                                         height={500}
                                         layout="responsive"
                                         objectFit="cover"
-                                        className={`rounded-lg transform transition-transform hover:scale-105  duration-700 ease-in-out group-hover:opacity-75 ${loading
-                                            ? "scale-110 blur-2xl grayscale"
-                                            : "scale-100 blur-0 grayscale-0"
+                                        className={`rounded-lg transform transition-transform hover:scale-105 duration-700 ease-in-out group-hover:opacity-75 ${loadingStates[index] ? "scale-110 blur-2xl grayscale" : "scale-100 blur-0 grayscale-0"
                                             }`}
-                                        onLoadingComplete={() => setLoading(false)}
+                                        onLoadingComplete={() => handleLoadedData(index)}
                                     />
                                 ) : ["mp4"].includes(fileExt || "") ? (
                                     <video
                                         src={file.url?.data?.publicUrl}
-                                        className={`rounded-lg w-full h-full transform transition-transform hover:scale-105  object-cover duration-700 ease-in-out group-hover:opacity-75 ${loading
-                                            ? "scale-110 blur-2xl grayscale"
-                                            : "scale-100 blur-0 grayscale-0"
+                                        className={`rounded-lg w-full h-full transform transition-transform hover:scale-105 object-cover duration-700 ease-in-out group-hover:opacity-75 ${loadingStates[index] ? "scale-110 blur-2xl grayscale" : "scale-100 blur-0 grayscale-0"
                                             }`}
                                         autoPlay
                                         loop
                                         muted
-                                        onLoadedData={() => setLoading(false)}
+                                        onLoadedData={() => handleLoadedData(index)}
                                     />
                                 ) : null}
                             </FadeInSection>
                         );
                     })}
                 </div>
+
             </div>
         </div>
     );
