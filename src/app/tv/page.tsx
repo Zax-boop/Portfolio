@@ -1,28 +1,39 @@
 "use client"
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Header from '../components/header';
 import PoppingLetters from '../components/poppingLetters';
 import fetchTV from "../../../utils/fetchTV"
 import TVForm from '../components/tvModal';
 import FadeInSection from '../components/fadeIn';
+import ImageTrack from '../components/ImageTrack';
 
 export default function TVRanking() {
     const [tv, setTV] = useState<any>([]);
     const [loading, setLoading] = useState(true);
     const [isLoading, setIsLoading] = useState(true)
+    const showRefs = useRef<any>([]);
 
     useEffect(() => {
         const getGames = async () => {
             const data = await fetchTV();
             if (data) {
                 setTV(data);
+                showRefs.current = data.map(() => React.createRef());
             }
             setLoading(false);
         };
-
         getGames();
     }, []);
+
+    const scrollToShows = (index: any) => {
+        if (showRefs.current[index]) {
+            showRefs.current[index].current.scrollIntoView({
+                behavior: "smooth",
+                block: "center",
+            });
+        }
+    };
 
     if (loading) {
         return <div>Loading...</div>;
@@ -85,12 +96,18 @@ export default function TVRanking() {
                 <PoppingLetters text="TV Shows" className="absolute text-white text-6xl font-bold z-10 text-center" />
                 <div className="absolute inset-0 bg-black opacity-50"></div>
             </div>
+            <div className='mt-4'>
+                <ImageTrack data={tv} onImageClick={scrollToShows} />
+            </div>
             <div className="flex flex-col w-4/5 mt-8">
                 <TVForm/>
                 <p>*Disclaimer: This is just my opinion and what I enjoyed watching the most regardless of critical bias. </p>
                 <hr className="border-t border-gray-300" />
                 {tv.map((show: any, index: number) => (
-                    <FadeInSection key={show.id || `${show.name}-${show.director}-${index}`} className="flex flex-col space-y-4 mt-8">
+                    <FadeInSection 
+                    key={show.id || `${show.name}-${show.director}-${index}`} 
+                    ref={showRefs.current[index]}
+                    className="flex flex-col space-y-4 mt-8">
                         <div className="flex flex-row">
                             <h2 className="text-xl font-semibold mr-4">{show.rank}.</h2>
                             <img

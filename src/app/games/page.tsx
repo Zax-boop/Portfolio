@@ -1,30 +1,40 @@
 "use client"
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Header from '../components/header';
-import addAlbum from "../../../utils/addAlbum.js";
 import PoppingLetters from '../components/poppingLetters';
-import AlbumForm from '../components/albumModal';
 import fetchGames from "../../../utils/fetchGames"
 import GameForm from '../components/gameModal';
 import FadeInSection from '../components/fadeIn';
+import ImageTrack from '../components/ImageTrack';
 
 export default function GamesRanking() {
     const [games, setGames] = useState<any>([]);
     const [loading, setLoading] = useState(true);
     const [isLoading, setIsLoading] = useState(true)
+    const gameRefs = useRef<any>([]);
 
     useEffect(() => {
         const getGames = async () => {
             const data = await fetchGames();
             if (data) {
                 setGames(data);
+                gameRefs.current = data.map(() => React.createRef());
             }
             setLoading(false);
         };
 
         getGames();
     }, []);
+
+    const scrollToGames = (index: any) => {
+        if (gameRefs.current[index]) {
+            gameRefs.current[index].current.scrollIntoView({
+                behavior: "smooth",
+                block: "center",
+            });
+        }
+    };
 
     if (loading) {
         return <div>Loading...</div>;
@@ -111,12 +121,18 @@ export default function GamesRanking() {
                 <PoppingLetters text="Video Games" className="absolute text-white text-6xl font-bold z-10 text-center" />
                 <div className="absolute inset-0 bg-black opacity-50"></div>
             </div>
+            <div className='mt-4'>
+                <ImageTrack data={games} onImageClick={scrollToGames} />
+            </div>
             <div className="flex flex-col w-4/5 mt-8">
                 <GameForm/>
                 <p>*Disclaimer: This is just my opinion and what I enjoyed playing the most regardless of critical bias. </p>
                 <hr className="border-t border-gray-300" />
                 {games.map((game: any, index: number) => (
-                    <FadeInSection key={game.id || `${game.name}-${game.studio}-${index}`} className="flex flex-col space-y-4 mt-8">
+                    <FadeInSection 
+                    key={game.id || `${game.name}-${game.studio}-${index}`} 
+                    ref={gameRefs.current[index]}
+                    className="flex flex-col space-y-4 mt-8">
                         <div className="flex flex-row">
                             <h2 className="text-xl font-semibold mr-4">{game.rank}.</h2>
                             <img

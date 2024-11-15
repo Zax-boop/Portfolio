@@ -13,8 +13,7 @@ export default function Anime() {
     const [loading, setLoading] = useState(true);
     const [isLoading, setIsLoading] = useState(true)
     const animeRefs = useRef<any>([]);
-
-
+    
     useEffect(() => {
         const getAnime = async () => {
             const data = await fetchAnime();
