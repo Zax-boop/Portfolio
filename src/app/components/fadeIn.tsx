@@ -1,10 +1,10 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, forwardRef } from "react";
 
-export default function FadeInSection({ children, className }: {children: any, className?: string}) {
+const FadeInSection = forwardRef(({ children, className }: {children: any, className: string}, ref) => {
   const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef(null);
+  const sectionRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -32,7 +32,11 @@ export default function FadeInSection({ children, className }: {children: any, c
 
   return (
     <div
-      ref={sectionRef}
+      ref={(node) => {
+        sectionRef.current = node;
+        if (typeof ref === 'function') ref(node);
+        else if (ref) ref.current = node;
+      }}
       className={`transition-opacity duration-1000 ease-in-out ${
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
       } ${className}`}
@@ -40,4 +44,7 @@ export default function FadeInSection({ children, className }: {children: any, c
       {children}
     </div>
   );
-}
+});
+FadeInSection.displayName = "FadeInSection";
+
+export default FadeInSection;

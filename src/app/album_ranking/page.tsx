@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Header from '../components/header';
 import fetchAlbums from "../../../utils/fetchAlbums";
 import PoppingLetters from '../components/poppingLetters';
@@ -11,19 +11,30 @@ import ImageTrack from '../components/ImageTrack';
 export default function Albums() {
     const [albums, setAlbums] = useState<any>([]);
     const [loading, setLoading] = useState(true);
-    const [isLoading, setIsLoading] = useState(true)
+    const [isLoading, setIsLoading] = useState(true);
+    const albumRefs = useRef<any>([]);
 
     useEffect(() => {
         const getAlbums = async () => {
             const data = await fetchAlbums();
             if (data) {
                 setAlbums(data);
+                albumRefs.current = data.map(() => React.createRef());
             }
             setLoading(false);
         };
 
         getAlbums();
     }, []);
+
+    const scrollToAlbum = (index: any) => {
+        if (albumRefs.current[index]) {
+            albumRefs.current[index].current.scrollIntoView({
+                behavior: "smooth",
+                block: "center",
+            });
+        }
+    };
 
     if (loading) {
         return <div>Loading...</div>;
@@ -86,15 +97,18 @@ export default function Albums() {
                 <div className="absolute inset-0 bg-black opacity-50"></div>
             </div>
             <div className='mt-4'>
-                <ImageTrack data={albums}/>
-
+                <ImageTrack data={albums} onImageClick={scrollToAlbum} />
             </div>
             <div className="flex flex-col w-4/5 mt-8">
                 <AlbumForm />
                 <p>*Disclaimer: This is just my opinion and what I enjoyed listening to the most regardless of critical bias.</p>
                 <hr className="border-t border-gray-300" />
-                {albums.map((album: any, index: number) => (
-                    <FadeInSection key={album.id || `${album.name}-${album.artist}-${index}`} className="flex flex-col space-y-4 mt-8">
+                {albums.map((album: any, index: any) => (
+                    <FadeInSection
+                        key={album.id || `${album.name}-${album.artist}-${index}`}
+                        ref={albumRefs.current[index]}
+                        className="flex flex-col space-y-4 mt-8"
+                    >
                         <div className="flex flex-row">
                             <h2 className="text-xl font-semibold mr-4">{album.Rank}.</h2>
                             <img
@@ -104,7 +118,7 @@ export default function Albums() {
                                     ? "scale-110 blur-2xl grayscale"
                                     : "scale-100 blur-0 grayscale-0"
                                     }`}
-                                onLoadedData={e => setIsLoading(false)}
+                                onLoad={() => setIsLoading(false)}
                             />
                             <div className='ml-4'>
                                 <p className="text-6xl text-white">{album.name}</p>
@@ -116,7 +130,6 @@ export default function Albums() {
                     </FadeInSection>
                 ))}
             </div>
-
         </div>
     );
 }
