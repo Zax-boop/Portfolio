@@ -12,23 +12,22 @@ const SplashScreen = ({ finishLoading }) => {
         });
         loader.add({
             targets: ["#logo", "#bottom-line"],
-            opacity: [0, 1],  // Fade in both the image and the line
-            clipPath: ["inset(0 100% 0 0)", "inset(0 0% 0 0)"], // Image appears from left to right
-            width: ["0%", "100%"],  // Line expands from 0% to 100%
-            duration: 1000,  // 1 second for both the image and the line to appear
-            easing: "linear",  // Linear easing for a smooth reveal
+            opacity: [0, 1],
+            clipPath: ["inset(0 100% 0 0)", "inset(0 0% 0 0)"],
+            width: ["0%", "100%"],
+            duration: 1000,
+            easing: "linear",
         });
-        
+
         loader.add({
             targets: ["#logo", "#bottom-line"],
-            opacity: [1, 0],  // Fade out both the image and the line
-            clipPath: ["inset(0 0% 0 0)", "inset(0 0% 0 100%)"], // Image disappears from left to right (clip from left)
-            width: ["100%", "0%"],  // Line shrinks from 100% to 0% (from left to right)
-            right: ["0%", "100%"],
-            duration: 1000,  // 1 second for both the image and the line to disappear
-            easing: "linear",  // Linear easing for the disappearing effect
-            delay: 1000,  // Delay the disappearance by 1 second (after they have fully appeared)
-        });      
+            opacity: [1, 0],
+            clipPath: ["inset(0 0% 0 0)", "inset(0 0% 0 100%)"],
+            width: ["100%", "0%"],
+            left: ["0%", "100%"],
+            duration: 1000,
+            easing: "linear",
+        });
     };
 
     useEffect(() => {
@@ -40,24 +39,23 @@ const SplashScreen = ({ finishLoading }) => {
     return (
         <div className="flex h-screen items-center justify-center">
             <div className="relative">
-                <Image
+                <div
                     id="logo"
-                    src={cinema}
-                    alt="placeholder"
-                    className="min-w-[5rem] min-h-[5rem]"
-                    width={60}
-                    height={60}
-                    style={{ opacity: 0 }} 
-                />
+                    className="min-w-[5rem] min-h-[5rem] flex flex-row justify-center items-center"
+                    style={{ opacity: 0 }}>
+                    <p
+                    className="text-[3.5rem]"
+                    >RA</p>
+                </div>
                 <span
                     id="bottom-line"
                     className="absolute -bottom-1 left-0 h-1 bg-white"
-                    style={{ width: "0%" }} 
+                    style={{ width: "0%" }}
                 ></span>
                 <span
                     id="top-line"
                     className="absolute -top-1 right-0 h-1 bg-white"
-                    style={{ width: "0%" }} 
+                    style={{ width: "0%" }}
                 ></span>
             </div>
         </div>
