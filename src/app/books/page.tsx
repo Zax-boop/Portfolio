@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Header from '../components/header';
 import PoppingLetters from '../components/poppingLetters';
 import BookForm from '../components/bookModal';
@@ -10,23 +10,35 @@ import circe from "../../../public/circe.jpg"
 import atss from "../../../public/atss.jpg"
 import sisyphus from "../../../public/sisyphus.jpg"
 import fetchBooks from "../../../utils/fetchBooks.js"
+import ImageTrack from '../components/ImageTrack';
 
 export default function TVRanking() {
     const [books, setBooks] = useState<any>([]);
     const [loading, setLoading] = useState(true);
     const [isLoading, setIsLoading] = useState(true)
+    const bookRefs = useRef<any>([]);
 
     useEffect(() => {
         const getBooks = async () => {
             const data = await fetchBooks();
             if (data) {
                 setBooks(data);
+                bookRefs.current = data.map(() => React.createRef());
             }
             setLoading(false);
         };
 
         getBooks();
     }, []);
+
+    const scrollToBook = (index: any) => {
+        if (bookRefs.current[index]) {
+            bookRefs.current[index].current.scrollIntoView({
+                behavior: "smooth",
+                block: "center",
+            });
+        }
+    };
 
     if (loading) {
         return <div>Loading...</div>;
@@ -74,12 +86,18 @@ export default function TVRanking() {
                 <PoppingLetters text="Books" className="absolute text-white text-6xl font-bold z-10 text-center" />
                 <div className="absolute inset-0 bg-black opacity-50"></div>
             </div>
+            <div className='mt-4'>
+                <ImageTrack data={books} onImageClick={scrollToBook} width={"w-[15rem]"} />
+            </div>
             <div className="flex flex-col w-4/5 mt-8">
                 <BookForm />
                 <p className='mt-1'>*Disclaimer: This is just my opinion and what I enjoyed reading the most regardless of critical bias. Moreover, I chose not to rank the books I read just because each book feels too unique to compare to one another.</p>
                 <hr className="border-t border-gray-300" />
                 {books.map((book: any, index: number) => (
-                    <FadeInSection key={book.id || `${book.name}-${book.author}-${index}`} className="flex flex-col space-y-4 mt-8">
+                    <FadeInSection 
+                    key={book.id || `${book.name}-${book.author}-${index}`} 
+                    ref={bookRefs.current[index]}
+                    className="flex flex-col space-y-4 mt-8">
                         <div className="flex flex-row">
                             <img
                                 src={book.image}

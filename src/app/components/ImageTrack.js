@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
-const ImageTrack = ({ data, onImageClick }) => {
+const ImageTrack = ({ data, onImageClick, width = 'w-[20rem]' }) => {
   const trackRef = useRef(null);
   const [scrollPercentage, setScrollPercentage] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
@@ -72,7 +72,7 @@ const ImageTrack = ({ data, onImageClick }) => {
             alt={`Climbing media ${index}`}
             width={400}
             height={400}
-            className="image w-[20rem] h-[30rem] object-cover object-[100%_center] cursor-pointer"
+            className={`image ${width} h-[30rem] object-cover object-[100%_center] cursor-pointer`}
             draggable="false"
             onClick={() => onImageClick(index)}
           />
