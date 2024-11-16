@@ -87,7 +87,7 @@ export default function TVRanking() {
                 <div className="absolute inset-0 bg-black opacity-50"></div>
             </div>
             <div className='mt-4'>
-                <ImageTrack data={books} onImageClick={scrollToBook} width={"w-[15rem]"} />
+                <ImageTrack data={books} onImageClick={scrollToBook} width={"w-[12rem]"} />
             </div>
             <div className="flex flex-col w-4/5 mt-8">
                 <BookForm />
