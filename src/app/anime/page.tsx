@@ -7,13 +7,14 @@ import PoppingLetters from '../components/poppingLetters';
 import AnimeForm from '../components/animeModal';
 import FadeInSection from '../components/fadeIn';
 import ImageTrack from '../components/ImageTrack';
+import DeleteAnime from '../components/deleteAnime';
 
 export default function Anime() {
     const [animeList, setAnimeList] = useState<any>([]);
     const [loading, setLoading] = useState(true);
     const [isLoading, setIsLoading] = useState(true)
     const animeRefs = useRef<any>([]);
-    
+
     useEffect(() => {
         const getAnime = async () => {
             const data = await fetchAnime();
@@ -82,8 +83,11 @@ export default function Anime() {
                                     }`}
                                 onLoadedData={e => setIsLoading(false)}
                             />
-                            <div className='ml-4'>
-                                <p className="text-6xl text-white">{anime.name}</p>
+                            <div className='ml-4 w-full'>
+                                <div className='flex flex-row w-full justify-between'>
+                                    <p className="text-6xl text-white">{anime.name}</p>
+                                    <DeleteAnime id={anime.id} rank={anime.rank} />
+                                </div>
                                 <p className="text-3xl text-gray-400">{anime.studio}</p>
                                 <p className="text-lg mt-2">{anime.comments}</p>
                             </div>

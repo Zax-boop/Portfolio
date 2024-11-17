@@ -3,7 +3,7 @@ import supabase from "./supabaseclient";
 export default async function fetchAnime() {
   const { data, error } = await supabase
     .from('anime_rankings')
-    .select('name, studio, comments, image, rank') 
+    .select('name, studio, comments, image, rank, id') 
     .order('rank', { ascending: true }); 
 
   if (error) {

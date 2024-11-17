@@ -36,7 +36,7 @@ export default function AlbumForm() {
             console.log(result);
             setIsModalOpen(false);
         } catch (error) {
-            console.error("Error deleting album:", error);
+            console.error("Error adding album:", error);
         } finally {
             setLoading(false);
             window.location.reload();

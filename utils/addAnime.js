@@ -17,6 +17,28 @@ export default async function addAnime(name, studio, comments, imageFile, rank) 
     
     imageUrl = supabase.storage.from('anime').getPublicUrl(fileName).data.publicUrl;
   }
+  const { data: animeToUpdate, error: fetchError } = await supabase
+    .from('anime_rankings')
+    .select('*')
+    .gte('rank', rank); 
+
+  if (fetchError) {
+    console.error('Error fetching anime to update:', fetchError);
+    return null;
+  }
+  animeToUpdate.sort((a, b) => b.rank - a.rank)
+  console.log(animeToUpdate)
+  for (const anime of animeToUpdate) {
+    const { error: updateError } = await supabase
+      .from('anime_rankings')
+      .update({ rank: anime.rank + 1 }) 
+      .eq('id', anime.id);
+
+    if (updateError) {
+      console.error(`Error updating rank for anime ID ${anime.id}:`, updateError);
+      return null;
+    }
+  }
   const { data, error } = await supabase
     .from('anime_rankings')
     .insert([{ name, studio, comments, image: imageUrl, rank}]);

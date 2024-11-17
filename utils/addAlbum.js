@@ -2,8 +2,6 @@ import supabase from "./supabaseclient";
 
 export default async function addAlbum(name, artist, comment, imageFile, Rank) {
   let imageUrl = "";
-
-  // Step 1: Upload image if provided
   if (imageFile) {
     const fileName = `${Date.now()}_${imageFile.name}`;
 

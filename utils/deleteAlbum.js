@@ -20,9 +20,7 @@ export default async function deleteAlbum(albumId, rank) {
       console.error('Error fetching albums to update:', fetchError);
       return null;
     }
-    console.log(albumsToUpdate)
     albumsToUpdate.sort((a, b) => a.Rank - b.Rank);
-    console.log(albumsToUpdate)
     for (const album of albumsToUpdate) {
       const { error: updateError } = await supabase
         .from('album_rankings')
