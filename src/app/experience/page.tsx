@@ -45,7 +45,7 @@ export default function experience() {
             <Image src={github_logo} className="w-[3rem] bg-white rounded-md" alt="github" />
           </a>
         </div>
-        <FadeInSection>
+        <FadeInSection className=''>
           <div className='flex flex-row mt-10 items-center gap-2'>
             <div className='flex flex-col'>
               <p className='text-4xl font-medium'>ColomboAI - Full Stack Developer</p>
@@ -76,7 +76,7 @@ export default function experience() {
             </div>
           </div>
         </FadeInSection>
-        <FadeInSection>
+        <FadeInSection className=''>
           <div className='flex flex-row mt-10 items-center gap-2'>
             <div className='flex flex-col'>
               <p className='text-4xl font-medium'>Hatch Recruiting - Full Stack Developer</p>
@@ -106,10 +106,9 @@ export default function experience() {
             </a>
             <a target='_blank' href='https://dev.hatchrecruiting.com/' style={{ cursor: 'pointer' }} className="cursor-pointer text-[#5454d0] underline">https://dev.hatchrecruiting.com/</a>
             </div>
-           
           </div>
         </FadeInSection>
-        <FadeInSection>
+        <FadeInSection className=''>
           <div className='flex flex-row mt-10 items-center gap-2'>
             <div className='flex flex-col'>
               <p className='text-4xl font-medium'>Stealth Startup - Full Stack Developer</p>
@@ -139,7 +138,7 @@ export default function experience() {
             </div>
           </div>
         </FadeInSection>
-        <FadeInSection>
+        <FadeInSection className=''>
           <div className='flex flex-col mt-10'>
             <p className='text-4xl font-medium'>DisplayRide - Software Engineer Intern</p>
             <p className='text-2xl font-medium'>July 2022 - December 2022</p>

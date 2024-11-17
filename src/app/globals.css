@@ -36,3 +36,13 @@ input[type="number"] {
     -moz-appearance: textfield;
     appearance: none;
 }
+
+::-webkit-scrollbar-track {
+  background: black; /* Makes track invisible */
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  background: transparent;
+}
