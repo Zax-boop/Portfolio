@@ -8,6 +8,9 @@ import linkedin_logo from "../../public/linkedinLogo.png";
 import github_logo from "../../public/github_logo.png";
 import Image from "next/image";
 import VideoSlider from "./components/videoSlider";
+import ExperienceTimeline from "./components/experienceTimeline";
+import AboutSection from "./components/aboutSection";
+import ProjectSection from "./components/projectSection";
 
 const videos = ["/hatch_demo.mov", "/addAlbum.mov", "/colombo_demo.mov"];
 
@@ -41,8 +44,8 @@ export default function Home() {
       }
 
       const totalDistance = svg.clientHeight - window.innerHeight;
-      const adjustedDistance = distance - threshold; 
-      const percentage = Math.min(Math.max(adjustedDistance / totalDistance, 0), 1); 
+      const adjustedDistance = distance - threshold;
+      const percentage = Math.min(Math.max(adjustedDistance / totalDistance, 0), 1);
 
       const pathLength = path.getTotalLength();
 
@@ -50,7 +53,7 @@ export default function Home() {
       path.style.strokeDashoffset = `${pathLength * (1 - percentage)}`;
     };
 
-    scroll(); 
+    scroll();
 
     window.addEventListener("scroll", scroll);
 
@@ -59,7 +62,7 @@ export default function Home() {
 
 
   return (
-    <div className="flex flex-col w-full h-full items-center no-scrollbar-track" style={{"overflow": "overlay"}}>
+    <div className="flex flex-col w-full h-full items-center no-scrollbar-track" style={{ "overflow": "overlay" }}>
       <svg
         width="100%"
         height="2000"
@@ -143,85 +146,9 @@ export default function Home() {
       </div>
       <div className="w-4/5 flex flex-col mt-[1rem] z-10">
         <p className="w-full flex flex-row justify-center items-center text-5xl">Work Experience</p>
-        <div className='flex flex-col mt-10 items-center gap-2'>
-          <div className='flex flex-col gap-2 items-center w-full'>
-            <a target='_blank' href='https://dev.hatchrecruiting.com/' className="w-full rounded-lg overflow-hidden">
-              <video
-                src="/hatch_demo.mov"
-                className="w-full"
-                autoPlay
-                loop
-                muted
-              />
-            </a>
-            <a target='_blank' href='https://dev.hatchrecruiting.com/' style={{ cursor: 'pointer' }} className="cursor-pointer text-[#5454d0] underline">https://dev.hatchrecruiting.com/</a>
-          </div>
-
-          <div className='flex flex-col'>
-            <p className='text-4xl font-medium'>Hatch Recruiting - Full Stack Developer</p>
-            <p className='text-2xl font-medium'>February 2023 - August 2024</p>
-            <div className="list-disc pl-6 mt-2 text-lg">
-              <li>Implemented resume parsing algorithm in Python to extract and structure key information such
-                as skills, education, and work experience from diverse resume formats reducing time to find a
-                perfect candidate by 95%</li>
-              <li>Implemented 4 figmas weekly with Next.js, React.js, Typescript, Tailwind, and CSS</li>
-              <li>Designed and built DB endpoints in Python and Next.js, with an ORM to ensure stateful user
-                data storage</li>
-              <li>Deployed backend server within docker container in AWS EC2 instance to facilitate traffic
-                between frontend and PostgreSQL improving efficiency by 12%</li>
-              <li>Wrote SQL queries for handling large scale data models</li>
-              <li>Utilized Java to create and consume RESTful services to communicate across the stack</li>
-            </div>
-          </div>
-        </div>
-        <div className='flex flex-col mt-[1rem] gap-2'>
-          <div className='flex flex-col items-center gap-2 w-full'>
-            <a target='_blank' href='https://colomboai.com/' className="w-full rounded-lg overflow-hidden cursor-pointer">
-              <video
-                src="/colombo_demo.mov"
-                className="w-full cursor-pointer"
-                autoPlay
-                loop
-                muted
-              />
-            </a>
-            {/* <a target='_blank' href='https://colomboai.com/' style={{ cursor: 'pointer' }} className="cursor-pointer text-[#5454d0] underline">https://colomboai.com/</a> */}
-          </div>
-          <div className='flex flex-col w-2/5 '>
-            <p className='text-4xl font-medium'>ColomboAI</p>
-            <p className='text-3xl font-medium text-gray-400'>Full Stack Developer</p>
-            <p className='text-2xl font-medium'>August 2024 - Present</p>
-            <p>Collaborated with a global team across the U.S. and India to develop a social media application. Leveraged Flutter and Dart for mobile development and Next.js with Tailwind CSS for desktop interfaces. Implemented secure authentication and user management using Firebase Authentication, enhancing app security. Increased productivity by 30% by writing unit and integration tests, debugging, and documenting workflows. Designed SQL queries for managing large-scale data models and utilized Java to create and consume RESTful services for seamless communication across the stack.</p>
-          </div>
-        </div>
-        <div className='flex flex-row mt-10 items-center gap-2'>
-            <div className='flex flex-col'>
-              <p className='text-4xl font-medium'>Stealth Startup - Full Stack Developer</p>
-              <p className='text-2xl font-medium'>May 2024 - September 2024</p>
-              <div className="pl-6 mt-2 text-lg">
-                <li>Designed and implemented payment infrastructure using the Stripe API, optimizing transaction
-                  processes by 50%</li>
-                <li>Implemented authentication and user management features using Firebase Authentication
-                  boosting app security</li>
-                <li>Integrated and managed Firestore database, increasing efficiency of seamless data storage
-                  and retrieval by 18%</li>
-                <li>Deployed backend server within docker container in AWS EC2 instance to facilitate traffic
-                  between frontend and PostgreSQL improving efficiency by 12%</li>
-                <li>Wrote unit tests and integration tests, fixing bugs and documenting processes to augment
-                  productivity by 20%</li>
-                <li>Developed a mobile application using Flutter and Dart, focusing on user-friendly UI/UX design</li>
-              </div>
-            </div>
-            <div className="w-[18rem] rounded-[2.1rem] overflow-hidden transform transition-transform duration-200 hover:scale-105">
-              <video
-                src="/slip_demo.mov"
-                className="w-full h-full object-cover transform scale-105 object-center"
-                autoPlay
-                loop
-                muted
-              />
-            </div>
-          </div>
+        <ExperienceTimeline />
+        <ProjectSection/>
+        <AboutSection />
       </div>
     </div>
   );

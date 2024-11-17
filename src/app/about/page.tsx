@@ -16,7 +16,7 @@ export default function About() {
     <div className='flex flex-col w-full h-full items-center'>
       <Header />
       <div className='flex flex-col w-4/5 mt-10'>
-        <FadeInSection>
+        <FadeInSection className=''>
           <div className='flex flex-row gap-8'>
             <img src={"/prof_photo.jpg"} className='w-[25rem] rounded-[40px] transform transition-transform duration-200 hover:scale-105' />
             <p className='text-xl'>
@@ -24,7 +24,7 @@ export default function About() {
             </p>
           </div>
         </FadeInSection>
-        <FadeInSection>
+        <FadeInSection className=''>
           <div className='flex flex-row gap-8 mt-4'>
             <div className='flex flex-col gap-2'>
               <p className='text-xl'>Aside from software, I have many passions and interests I pursue. One of my favorites is rock climbing which I have been doing since my sophomore year of college. To the right is an image of me climbing a 70ft cliff. Aside from climbing, others sports I have had interest in include Ping Pong, American Football, Hiking, and Archery.</p>

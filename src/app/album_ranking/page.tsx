@@ -7,6 +7,7 @@ import PoppingLetters from '../components/poppingLetters';
 import AlbumForm from '../components/albumModal';
 import FadeInSection from '../components/fadeIn';
 import ImageTrack from '../components/ImageTrack';
+import DeleteAlbum from '../components/deleteAlbum';
 
 export default function Albums() {
     const [albums, setAlbums] = useState<any>([]);
@@ -120,8 +121,11 @@ export default function Albums() {
                                     }`}
                                 onLoad={() => setIsLoading(false)}
                             />
-                            <div className='ml-4'>
-                                <p className="text-6xl text-white">{album.name}</p>
+                            <div className='ml-4 w-full'>
+                                <div className='w-full flex flex-row justify-between'>
+                                    <p className="text-6xl text-white">{album.name}</p>
+                                    <DeleteAlbum id={album.id} Rank={album.Rank}/>
+                                </div>
                                 <p className="text-3xl text-gray-400">{album.artist}</p>
                                 <p className="text-lg mt-2">{album.comment}</p>
                             </div>
