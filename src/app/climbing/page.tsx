@@ -93,19 +93,21 @@ export default function Climbing() {
                                         height={500}
                                         layout="responsive"
                                         objectFit="cover"
-                                        className={`rounded-lg transform transition-transform hover:scale-105 duration-700 ease-in-out group-hover:opacity-75 ${loadingStates[index] ? "scale-110 blur-2xl grayscale" : "scale-100 blur-0 grayscale-0"
-                                            }`}
-                                        onLoadingComplete={() => handleLoadedData(index)}
+                                        className={`rounded-lg transform transition-transform hover:scale-105 duration-700 ease-in-out group-hover:opacity-75`}
+                                        // ${loadingStates[index] ? "scale-110 blur-2xl grayscale" : "scale-100 blur-0 grayscale-0"
+                                        // }
+                                        // onLoadingComplete={() => handleLoadedData(index)}
                                     />
                                 ) : ["mp4"].includes(fileExt || "") ? (
                                     <video
                                         src={file.url?.data?.publicUrl}
-                                        className={`rounded-lg w-full h-full transform transition-transform hover:scale-105 object-cover duration-700 ease-in-out group-hover:opacity-75 ${loadingStates[index] ? "scale-110 blur-2xl grayscale" : "scale-100 blur-0 grayscale-0"
-                                            }`}
+                                        className={`rounded-lg w-full h-full transform transition-transform hover:scale-105 object-cover duration-700 ease-in-out group-hover:opacity-75 `}
+                                        // ${loadingStates[index] ? "scale-110 blur-2xl grayscale" : "scale-100 blur-0 grayscale-0"
+                                        // }
                                         autoPlay
                                         loop
                                         muted
-                                        onLoadedData={() => handleLoadedData(index)}
+                                        // onLoadedData={() => handleLoadedData(index)}
                                     />
                                 ) : null}
                             </FadeInSection>

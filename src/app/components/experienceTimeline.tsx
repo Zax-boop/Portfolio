@@ -3,12 +3,42 @@
 import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.css';
 import { BriefcaseIcon, GraduationCap } from 'lucide-react';
-
+import FadeInSection from './fadeIn';
+import { useRef, useState, useEffect } from 'react';
 import React from 'react'
 
 export default function ExperienceTimeline() {
+    const lineRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (lineRef.current) {
+      observer.observe(lineRef.current);
+    }
+
+    return () => {
+      if (lineRef.current) {
+        observer.unobserve(lineRef.current);
+      }
+    };
+  }, []);
     return (
         <div className='mt-10'>
+            <FadeInSection className="w-full flex flex-row justify-center items-center text-5xl">Work Experience</FadeInSection>
+            <div
+                ref={lineRef}
+                className={`h-[0.1rem] bg-white transition-all duration-700 mt-2 ${isVisible ? "w-full" : "w-0"
+                    }`}
+            />
             <VerticalTimeline>
                 <VerticalTimelineElement
                     className="vertical-timeline-element--work"
@@ -38,15 +68,15 @@ export default function ExperienceTimeline() {
                             <span className="absolute -bottom-[0.1rem] left-0 w-0 h-1 bg-white transition-all group-hover:w-full"></span>
                         </div>
                         <div className='flex flex-row flex-wrap !mt-2 gap-2'>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black'>Flutter</p>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black'>Dart</p>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black'>Next.js</p>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black'>Typescript</p>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black'>Tailwind CSS</p>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black'>Firebase</p>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black'>SQL</p>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black'>Java</p>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black'>REST</p>
+                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Flutter</p>
+                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Dart</p>
+                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Next.js</p>
+                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Typescript</p>
+                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Tailwind CSS</p>
+                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Firebase</p>
+                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>SQL</p>
+                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Java</p>
+                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>REST</p>
 
                         </div>
                     </div>
@@ -66,10 +96,10 @@ export default function ExperienceTimeline() {
                             <p className='!text-xl !mt-0 font-medium'>Full Stack Developer</p>
                             <p className='!mt-0 !text-md'>Developed mobile application using Flutter and Dart. Implemented payment infrastructure using Stripe API and authentication using Firebase. Integrated and managed Firestore database.</p>
                             <div className='flex flex-row flex-wrap !mt-2 gap-2'>
-                                <p className='!mt-0 py-1.5 px-3 rounded-xl bg-black text-white'>Flutter</p>
-                                <p className='!mt-0 py-1.5 px-3 rounded-xl bg-black text-white'>Dart</p>
-                                <p className='!mt-0 py-1.5 px-3 rounded-xl bg-black text-white'>Stripe</p>
-                                <p className='!mt-0 py-1.5 px-3 rounded-xl bg-black text-white'>Firebase</p>
+                                <p className='!mt-0 py-1.5 px-3 rounded-xl bg-black text-white hover:opacity-70 transition duration-300 ease-in-out'>Flutter</p>
+                                <p className='!mt-0 py-1.5 px-3 rounded-xl bg-black text-white hover:opacity-70 transition duration-300 ease-in-out'>Dart</p>
+                                <p className='!mt-0 py-1.5 px-3 rounded-xl bg-black text-white hover:opacity-70 transition duration-300 ease-in-out'>Stripe</p>
+                                <p className='!mt-0 py-1.5 px-3 rounded-xl bg-black text-white hover:opacity-70 transition duration-300 ease-in-out'>Firebase</p>
                             </div>
                         </div>
                         <div className="min-w-[12rem] rounded-[2.1rem] overflow-hidden">
@@ -112,15 +142,15 @@ export default function ExperienceTimeline() {
                             <span className="absolute -bottom-[0.1rem] left-0 w-0 h-1 bg-white transition-all group-hover:w-full"></span>
                         </div>
                         <div className='flex flex-row flex-wrap !mt-2 gap-2'>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black'>Python</p>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black'>React.js</p>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black'>Next.js</p>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black'>Typescript</p>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black'>Tailwind CSS</p>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black'>AWS</p>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black'>PostgreSQL</p>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black'>Java</p>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black'>REST</p>
+                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Python</p>
+                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>React.js</p>
+                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Next.js</p>
+                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Typescript</p>
+                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Tailwind CSS</p>
+                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>AWS</p>
+                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>PostgreSQL</p>
+                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Java</p>
+                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>REST</p>
                         </div>
                     </div>
                 </VerticalTimelineElement>
@@ -138,10 +168,10 @@ export default function ExperienceTimeline() {
                         <p className='!mt-0'>Redesigned driver support page to have better UI/UX for user-friendliness using React.js and
                             Typescript. Designed driver support time lapse sections for customer devices on Firebase servers.</p>
                         <div className='flex flex-row flex-wrap !mt-2 gap-2'>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black'>React.js</p>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black'>Typescript</p>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black'>CSS</p>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black'>Firebase</p>
+                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>React.js</p>
+                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Typescript</p>
+                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>CSS</p>
+                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Firebase</p>
                         </div>
                     </div>
                 </VerticalTimelineElement>
@@ -160,9 +190,9 @@ export default function ExperienceTimeline() {
                             Oriented Programming and Design), Data Structures, Discrete Structures, Computer Science
                             I, Advanced Data Analysis</p>
                         <div className='flex flex-row flex-wrap !mt-2 gap-2'>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black'>Python</p>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black'>Java</p>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black'>C++</p>
+                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Python</p>
+                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Java</p>
+                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>C++</p>
                         </div>
                     </div>
                 </VerticalTimelineElement>

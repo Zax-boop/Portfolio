@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import PoppingLetters from "./components/poppingLetters";
 import Header from "./components/header";
 import { usePathname } from "next/navigation";
@@ -11,12 +11,20 @@ import VideoSlider from "./components/videoSlider";
 import ExperienceTimeline from "./components/experienceTimeline";
 import AboutSection from "./components/aboutSection";
 import ProjectSection from "./components/projectSection";
+import FadeInSection from "./components/fadeIn";
+import ContactSection from "./components/contactSection";
 
 const videos = ["/hatch_demo.mov", "/addAlbum.mov", "/colombo_demo.mov"];
 
 export default function Home() {
   const pathname = usePathname();
   const [timer, setTimer] = useState(false);
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" }); // Smooth scroll to the element
+    }
+  };
 
   useEffect(() => {
     const timerId = setTimeout(() => {
@@ -31,7 +39,7 @@ export default function Home() {
 
     if (!svg || !path) return;
 
-    const threshold = 40 * 16; // Convert 40rem to pixels (1rem = 16px by default)
+    const threshold = 40 * 16;
 
     const scroll = () => {
       const distance = window.scrollY;
@@ -59,8 +67,6 @@ export default function Home() {
 
     return () => window.removeEventListener("scroll", scroll);
   }, []);
-
-
   return (
     <div className="flex flex-col w-full h-full items-center no-scrollbar-track" style={{ "overflow": "overlay" }}>
       <svg
@@ -79,7 +85,27 @@ export default function Home() {
           strokeLinecap="round"
         />
       </svg>
-      <Header />
+      <header className={`flex flex-row justify-between mt-4 w-4/5 border-[0.5px] border-[#333] py-3 px-6 rounded-full ${pathname === "/" && `animate-borderTransition`} hover:border-white/[0.3] transition-all duration-500 ease-in`}>
+        <button onClick={() => scrollToSection("experience")} className="font-semibold text-xl">RA</button>
+        <div className="flex flex-row gap-[2rem]">
+          <button onClick={() => scrollToSection("experience")} className="relative group">
+            <p className="font-semibold">Work Experience</p>
+            <span className="absolute -bottom-1 left-0 w-0 h-1 bg-white transition-all group-hover:w-full"></span>
+          </button>
+          <button onClick={() => scrollToSection("projects")} className="relative group">
+            <p className="font-semibold">Projects</p>
+            <span className="absolute -bottom-1 left-0 w-0 h-1 bg-white transition-all group-hover:w-full"></span>
+          </button>
+          <button onClick={() => scrollToSection("about")} className="relative group">
+            <p className="font-semibold">About Me</p>
+            <span className="absolute -bottom-1 left-0 w-0 h-1 bg-white transition-all group-hover:w-full"></span>
+          </button>
+          <button onClick={() => scrollToSection("contact")} className="relative group">
+            <p className="font-semibold">Contact Me</p>
+            <span className="absolute -bottom-1 left-0 w-0 h-1 bg-white transition-all group-hover:w-full"></span>
+          </button>
+        </div>
+      </header>
       <div className="relative flex flex-col w-full mt-1 h-[90vh] items-center overflow-hidden">
         <video
           src="/cb.mp4"
@@ -145,10 +171,18 @@ export default function Home() {
         </div>
       </div>
       <div className="w-4/5 flex flex-col mt-[1rem] z-10">
-        <p className="w-full flex flex-row justify-center items-center text-5xl">Work Experience</p>
-        <ExperienceTimeline />
-        <ProjectSection/>
-        <AboutSection />
+        <div id="experience">
+          <ExperienceTimeline />
+        </div>
+        <div id="projects">
+          <ProjectSection />
+        </div>
+        <div id="about">
+          <AboutSection />
+        </div>
+        <div id="contact">
+          <ContactSection />
+        </div>
       </div>
     </div>
   );
