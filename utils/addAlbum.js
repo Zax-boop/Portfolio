@@ -46,6 +46,5 @@ export default async function addAlbum(name, artist, comment, imageFile, Rank) {
     console.error('Error inserting data:', error);
     return null;
   }
-
   return data;
 }

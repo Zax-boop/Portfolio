@@ -13,6 +13,8 @@ import AboutSection from "./components/aboutSection";
 import ProjectSection from "./components/projectSection";
 import FadeInSection from "./components/fadeIn";
 import ContactSection from "./components/contactSection";
+import SignInForm from "../app/components/signIn"
+import SignOut from "./components/signOut";
 
 const videos = ["/hatch_demo.mov", "/addAlbum.mov", "/colombo_demo.mov"];
 
@@ -171,6 +173,8 @@ export default function Home() {
         </div>
       </div>
       <div className="w-4/5 flex flex-col mt-[1rem] z-10">
+      <SignInForm/>
+      <SignOut/>
         <div id="experience">
           <ExperienceTimeline />
         </div>

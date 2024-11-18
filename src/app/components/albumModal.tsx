@@ -1,14 +1,15 @@
 "use client"
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import addAlbum from '../../../utils/addAlbum';
 import { PlusIcon } from 'lucide-react';
 import album_placeholder from "../../../public/album_placeholder.png"
 import Image from 'next/image';
+import supabase from "../../../utils/supabaseclient"
+import { User } from '@supabase/supabase-js';
 
 export default function AlbumForm() {
     const [isModalOpen, setIsModalOpen] = useState(false);
-
     const [name, setName] = useState('');
     const [artist, setArtist] = useState('');
     const [comments, setComments] = useState('');
@@ -20,7 +21,15 @@ export default function AlbumForm() {
     const [commentFocus, setCommentFocus] = useState(false);
     const [rankFocus, setRankFocus] = useState(false);
     const [loading, setLoading] = useState(false);
-
+    const [user, setUser] = useState<User | null>(null);
+    useEffect(() => {
+      const getSession = async () => {
+        const { data } = await supabase.auth.getSession();
+        setUser(data.session?.user || null);
+      };
+  
+      getSession();
+    }, []);
 
     const handleFileChange = (e: any) => {
         setImageFile(e.target.files[0]);
@@ -33,17 +42,14 @@ export default function AlbumForm() {
         setLoading(true);
         try {
             const result = await addAlbum(name, artist, comments, imageFile, Number(rank));
-            console.log(result);
-            setIsModalOpen(false);
         } catch (error) {
             console.error("Error adding album:", error);
         } finally {
             setLoading(false);
+            setIsModalOpen(false);
             window.location.reload();
         }
     };
-
-
     return (
         <div className={`flex flex-col w-full items-center justify-center`}>
             <div className={`flex flex-row w-full justify-end`}>
@@ -138,10 +144,12 @@ export default function AlbumForm() {
                                     </div>
                                 </div>
                             </div>
+                            <div className='flex flex-col w-full items-center'>
+                            {!user && <p className=' text-red-600'>You are not authenticated.</p>}
                             <button
                                 type="submit"
-                                className="w-full py-2 flex flex-row justify-center bg-blue-600 text-white rounded-md hover:bg-blue-700 transition"
-                                disabled={loading}
+                                className={`w-full py-2 flex flex-row justify-center bg-blue-600 text-white rounded-md hover:bg-blue-700 transition ${!user && `opacity-70`}`}
+                                disabled={loading || !user}
                             >
                                 {loading ? (
                                     <svg
@@ -168,6 +176,7 @@ export default function AlbumForm() {
                                     "Submit"
                                 )}
                             </button>
+                            </div>
                         </form>
                     </div>
                 </div>

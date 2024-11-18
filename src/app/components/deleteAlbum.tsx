@@ -1,12 +1,23 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Trash2 } from "lucide-react";
 import deleteAlbum from "../../../utils/deleteAlbum";
+import supabase from "../../../utils/supabaseclient"
+import { User } from '@supabase/supabase-js';
 
 export default function DeleteAlbum({ id, Rank }: { id: any; Rank: any }) {
     const [modalOpen, setModalOpen] = useState(false);
     const [loading, setLoading] = useState(false); 
+    const [user, setUser] = useState<User | null>(null);
+    useEffect(() => {
+      const getSession = async () => {
+        const { data } = await supabase.auth.getSession();
+        setUser(data.session?.user || null);
+      };
+  
+      getSession();
+    }, []);
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
@@ -40,7 +51,7 @@ export default function DeleteAlbum({ id, Rank }: { id: any; Rank: any }) {
                             ✕
                         </button>
                         <div className="flex flex-col w-full items-center gap-2">
-                            <p className="text-xl">Are you sure you want to delete this album?</p>
+                            <p className={`text-xl ${!user && `text-red-600`}`}>{!user ? `You are not authenticated and cannot delete this album!` : `Are you sure you want to delete this album?`}</p>
                             <div className="flex flex-row gap-2">
                                 <button
                                     onClick={() => setModalOpen(false)}
@@ -50,8 +61,8 @@ export default function DeleteAlbum({ id, Rank }: { id: any; Rank: any }) {
                                 </button>
                                 <button
                                     onClick={handleSubmit}
-                                    className="bg-red-400 px-2 py-1.5 hover:opacity-80 transition duration-300 ease-in-out rounded-lg text-black flex items-center justify-center"
-                                    disabled={loading} 
+                                    className={`bg-red-400 px-2 py-1.5 hover:opacity-80 transition duration-300 ease-in-out rounded-lg text-black flex items-center justify-center ${!user && `opacity-70`}`}
+                                    disabled={loading || !user} 
                                 >
                                     {loading ? (
                                         <svg
