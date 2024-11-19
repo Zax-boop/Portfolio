@@ -7,6 +7,9 @@ import fetchGames from "../../../utils/fetchGames"
 import GameForm from '../components/gameModal';
 import FadeInSection from '../components/fadeIn';
 import ImageTrack from '../components/ImageTrack';
+import SignInForm from '../components/signIn';
+import DeleteGames from '../components/deleteGames';
+import UpdateGamesModal from '../components/updateGames';
 
 export default function GamesRanking() {
     const [games, setGames] = useState<any>([]);
@@ -43,6 +46,7 @@ export default function GamesRanking() {
     return (
         <div className='flex flex-col w-full h-full items-center'>
             <Header />
+            <SignInForm/>
             <div className="relative flex items-center justify-center w-full h-[80vh] mt-10 overflow-hidden">
                 <div className="absolute inset-0 flex w-full h-full overflow-hidden">
                     <div className='w-1/3 h-full'>
@@ -144,9 +148,14 @@ export default function GamesRanking() {
                             }`}
                                 onLoadedData={e => setIsLoading(false)}
                             />
-                            <div className='ml-4'>
-                                <p className="text-6xl text-white">{game.name}</p>
-                                <p className="text-3xl text-gray-400">{game.studio}</p>
+                            <div className='ml-4 w-full'>
+                            <div className='flex flex-row w-full justify-between'>
+                                    <p className="text-6xl text-white">{game.name}</p>
+                                    <div className='flex flex-row items-center gap-2'>
+                                        <DeleteGames id={game.id} rank={game.rank} />
+                                        <UpdateGamesModal game={game}/>
+                                    </div>
+                                </div>                                <p className="text-3xl text-gray-400">{game.studio}</p>
                                 <p className="text-lg mt-2">{game.comments}</p>
                             </div>
                         </div>

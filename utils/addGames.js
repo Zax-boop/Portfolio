@@ -17,6 +17,27 @@ export default async function addGame(name, studio, comments, imageFile, rank) {
     
     imageUrl = supabase.storage.from('video_games').getPublicUrl(fileName).data.publicUrl;
   }
+  const { data: gamesToUpdate, error: fetchError } = await supabase
+    .from('video_game_rankings')
+    .select('*')
+    .gte('rank', rank); 
+
+  if (fetchError) {
+    console.error('Error fetching games to update:', fetchError);
+    return null;
+  }
+  gamesToUpdate.sort((a, b) => b.rank - a.rank)
+  for (const game of gamesToUpdate) {
+    const { error: updateError } = await supabase
+      .from('video_game_rankings')
+      .update({ rank: game.rank + 1 }) 
+      .eq('id', game.id);
+
+    if (updateError) {
+      console.error(`Error updating rank for game ID ${game.id}:`, updateError);
+      return null;
+    }
+  }
   const { data, error } = await supabase
     .from('video_game_rankings')
     .insert([{ name, studio, comments, image: imageUrl, rank}]);

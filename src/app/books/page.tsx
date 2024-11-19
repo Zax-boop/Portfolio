@@ -11,6 +11,9 @@ import atss from "../../../public/atss.jpg"
 import sisyphus from "../../../public/sisyphus.jpg"
 import fetchBooks from "../../../utils/fetchBooks.js"
 import ImageTrack from '../components/ImageTrack';
+import SignInForm from '../components/signIn';
+import DeleteBook from '../components/deleteBook';
+import UpdateBookModal from '../components/updateBook';
 
 export default function TVRanking() {
     const [books, setBooks] = useState<any>([]);
@@ -47,6 +50,7 @@ export default function TVRanking() {
     return (
         <div className='flex flex-col w-full h-full items-center'>
             <Header />
+            <SignInForm />
             <div className="relative flex items-center justify-center w-full h-[80vh] mt-10 overflow-hidden">
                 <div className="absolute inset-0 flex w-full h-full overflow-hidden">
                     <div className='w-1/3 h-full'>
@@ -94,10 +98,10 @@ export default function TVRanking() {
                 <p className='mt-1'>*Disclaimer: This is just my opinion and what I enjoyed reading the most regardless of critical bias. Moreover, I chose not to rank the books I read just because each book feels too unique to compare to one another.</p>
                 <hr className="border-t border-gray-300" />
                 {books.map((book: any, index: number) => (
-                    <FadeInSection 
-                    key={book.id || `${book.name}-${book.author}-${index}`} 
-                    ref={bookRefs.current[index]}
-                    className="flex flex-col space-y-4 mt-8">
+                    <FadeInSection
+                        key={book.id || `${book.name}-${book.author}-${index}`}
+                        ref={bookRefs.current[index]}
+                        className="flex flex-col space-y-4 mt-8">
                         <div className="flex flex-row">
                             <img
                                 src={book.image}
@@ -108,9 +112,14 @@ export default function TVRanking() {
                                     }`}
                                 onLoadedData={e => setIsLoading(false)}
                             />
-                            <div className='ml-4'>
-                                <p className="text-6xl text-white">{book.name}</p>
-                                <p className="text-3xl text-gray-400">{book.author}</p>
+                            <div className='ml-4 w-full'>
+                                <div className='flex flex-row w-full justify-between'>
+                                    <p className="text-6xl text-white">{book.name}</p>
+                                    <div className='flex flex-row items-center gap-2'>
+                                        <DeleteBook id={book.id} />
+                                        <UpdateBookModal book={book}/>
+                                    </div>
+                                </div>                                <p className="text-3xl text-gray-400">{book.author}</p>
                                 <p className="text-lg mt-2">{book.comments}</p>
                             </div>
                         </div>

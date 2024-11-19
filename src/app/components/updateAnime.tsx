@@ -1,20 +1,20 @@
 "use client"
 
 import { useState, useEffect } from 'react';
-import updateAlbum from '../../../utils/updateAlbum';
-import album_placeholder from "../../../public/album_placeholder.png";
+import updateAnime from '../../../utils/updateAnime';
+import show_placeholder from "../../../public/show_placeholder.svg";
 import Image from 'next/image';
 import supabase from "../../../utils/supabaseclient";
 import { User } from '@supabase/supabase-js';
 import { Pencil } from 'lucide-react';
 
-export default function UpdateAlbumModal({ album }: { album: any }) {
-    const [name, setName] = useState(album?.name || '');
-    const [artist, setArtist] = useState(album?.artist || '');
-    const [comments, setComments] = useState(album?.comment || '');
+export default function UpdateAnimeModal({ anime }: { anime: any }) {
+    const [name, setName] = useState(anime?.name || '');
+    const [studio, setStudio] = useState(anime?.studio || '');
+    const [comments, setComments] = useState(anime?.comments || '');
     const [imageFile, setImageFile] = useState(null);
-    const [rank, setRank] = useState(album?.Rank || '');
-    const [coverImage, setCoverImage] = useState<any>(album?.image || album_placeholder);
+    const [rank, setRank] = useState(anime?.rank || '');
+    const [coverImage, setCoverImage] = useState<any>(anime?.image || show_placeholder);
     const [loading, setLoading] = useState(false);
     const [modalOpen, setModalOpen] = useState(false)
     const [user, setUser] = useState<User | null>(null);
@@ -28,14 +28,14 @@ export default function UpdateAlbumModal({ album }: { album: any }) {
     }, []);
 
     useEffect(() => {
-        if (album) {
-            setName(album.name || '');
-            setArtist(album.artist || '');
-            setComments(album.comment || '');
-            setRank(album.Rank || '');
-            setCoverImage(album.image || album_placeholder);
+        if (anime) {
+            setName(anime.name || '');
+            setStudio(anime.studio || '');
+            setComments(anime.comments || '');
+            setRank(anime.rank || '');
+            setCoverImage(anime.image || show_placeholder);
         }
-    }, [album]);
+    }, [anime]);
 
     const handleFileChange = (e: any) => {
         setImageFile(e.target.files[0]);
@@ -50,14 +50,14 @@ export default function UpdateAlbumModal({ album }: { album: any }) {
         try {
             const updatedFields = {
                 name,
-                artist,
-                comment: comments,
+                studio,
+                comments: comments,
                 imageFile,
-                Rank: Number(rank),
+                rank: Number(rank),
             };
-            await updateAlbum(album.id, updatedFields);
+            await updateAnime(anime.id, updatedFields);
         } catch (error) {
-            console.error("Error updating album:", error);
+            console.error("Error updating anime:", error);
         } finally {
             setLoading(false);
             setModalOpen(false)
@@ -77,7 +77,7 @@ export default function UpdateAlbumModal({ album }: { album: any }) {
                     >
                         ✕
                     </button>
-                    <h2 className="text-xl font-bold mb-4">Edit Album</h2>
+                    <h2 className="text-xl font-bold mb-4">Edit Anime</h2>
                     <form onSubmit={handleSubmit} className="space-y-4 flex w-full flex-col">
                         <div className='flex flex-row w-full'>
                             <div className='w-1/2 self-start flex flex-col items-center gap-3'>
@@ -85,11 +85,11 @@ export default function UpdateAlbumModal({ album }: { album: any }) {
                                     src={coverImage}
                                     width={300}
                                     height={300}
-                                    alt='album cover'
+                                    alt='anime cover'
                                     className='transform transition-transform hover:scale-105 duration-300'
                                 />
                                 <label className="flex flex-row justify-center items-center gap-2 px-3 mr-4 py-2 bg-black border border-white text-white rounded-full hover:bg-white hover:text-black transition duration-300 cursor-pointer">
-                                    {coverImage === album_placeholder ? "Choose Cover" : "Change Cover"}
+                                    {coverImage === show_placeholder ? "Choose Cover" : "Change Cover"}
                                     <input
                                         type="file"
                                         className="hidden"
@@ -101,16 +101,16 @@ export default function UpdateAlbumModal({ album }: { album: any }) {
                                 <input
                                     type="text"
                                     className="w-full bg-transparent text-2xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
-                                    placeholder="Album Name"
+                                    placeholder="Anime Name"
                                     value={name}
                                     onChange={(e) => setName(e.target.value)}
                                 />
                                 <input
                                     type="text"
                                     className="w-full bg-transparent text-2xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
-                                    placeholder="Artist"
-                                    value={artist}
-                                    onChange={(e) => setArtist(e.target.value)}
+                                    placeholder="Studio"
+                                    value={studio}
+                                    onChange={(e) => setStudio(e.target.value)}
                                 />
                                 <textarea
                                     className="w-full bg-transparent text-2xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
@@ -157,7 +157,7 @@ export default function UpdateAlbumModal({ album }: { album: any }) {
                                     ></path>
                                 </svg>
                             ) : (
-                                "Update Album"
+                                "Update Anime"
                             )}
                         </button>
                         </div>

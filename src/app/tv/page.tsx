@@ -7,13 +7,15 @@ import fetchTV from "../../../utils/fetchTV"
 import TVForm from '../components/tvModal';
 import FadeInSection from '../components/fadeIn';
 import ImageTrack from '../components/ImageTrack';
+import SignInForm from '../components/signIn';
+import DeleteTV from '../components/deleteTV';
+import UpdateTVModal from '../components/updateTV';
 
 export default function TVRanking() {
     const [tv, setTV] = useState<any>([]);
     const [loading, setLoading] = useState(true);
     const [isLoading, setIsLoading] = useState(true)
     const showRefs = useRef<any>([]);
-
     useEffect(() => {
         const getGames = async () => {
             const data = await fetchTV();
@@ -42,6 +44,7 @@ export default function TVRanking() {
     return (
         <div className='flex flex-col w-full h-full items-center'>
             <Header />
+            <SignInForm/>
             <div className="relative flex items-center justify-center w-full h-[80vh] mt-10 overflow-hidden">
                 <div className="absolute inset-0 flex w-full h-full overflow-hidden">
                     <div className='w-1/2 h-full'>
@@ -119,9 +122,14 @@ export default function TVRanking() {
                             }`}
                                 onLoadedData={e => setIsLoading(false)}
                             />
-                            <div className='ml-4'>
-                                <p className="text-6xl text-white">{show.name}</p>
-                                <p className="text-3xl text-gray-400">{show.director}</p>
+                            <div className='ml-4 w-full'>
+                            <div className='flex flex-row w-full justify-between'>
+                                    <p className="text-6xl text-white">{show.name}</p>
+                                    <div className='flex flex-row items-center gap-2'>
+                                        <DeleteTV id={show.id} rank={show.rank} />
+                                        <UpdateTVModal tv={show}/>
+                                    </div>
+                                </div>                                <p className="text-3xl text-gray-400">{show.director}</p>
                                 <p className="text-lg mt-2">{show.comments}</p>
                             </div>
                         </div>

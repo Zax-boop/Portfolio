@@ -87,9 +87,9 @@ export default async function updateAlbum(id, updatedFields) {
     }
 
     const fieldsToUpdate = {
-        ...(name && { name }),
-        ...(artist && { artist }),
-        ...(comment && { comment }),
+        ...(name !== undefined && { name }),
+        ...(artist !== undefined && { artist }),
+        ...(comment !== undefined && { comment }),
         ...(imageUrl && { image: imageUrl }),
         ...(Rank !== undefined && { Rank }),
     };

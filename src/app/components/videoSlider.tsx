@@ -7,8 +7,14 @@ interface VideoSliderProps {
 
 export default function VideoSlider({ videos }: VideoSliderProps): JSX.Element {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [timer, setTimer] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
-
+  useEffect(() => {
+    const timerId = setTimeout(() => {
+      setTimer(true);
+    }, 2800);
+    return () => clearTimeout(timerId);
+  }, []);
   const nextSlide = (): void => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % videos.length);
   };
@@ -33,7 +39,7 @@ export default function VideoSlider({ videos }: VideoSliderProps): JSX.Element {
   }, [currentIndex]);
 
   useEffect(() => {
-    if (videoRef.current) {
+    if (videoRef.current && timer) {
       var playPromise = videoRef.current.play();
     }
   }, [currentIndex]);

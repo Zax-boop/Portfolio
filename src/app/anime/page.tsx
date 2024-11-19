@@ -8,6 +8,8 @@ import AnimeForm from '../components/animeModal';
 import FadeInSection from '../components/fadeIn';
 import ImageTrack from '../components/ImageTrack';
 import DeleteAnime from '../components/deleteAnime';
+import SignInForm from '../components/signIn';
+import UpdateAnimeModal from '../components/updateAnime';
 
 export default function Anime() {
     const [animeList, setAnimeList] = useState<any>([]);
@@ -44,6 +46,7 @@ export default function Anime() {
     return (
         <div className='flex flex-col w-full h-full items-center'>
             <Header />
+            <SignInForm />
             <div className="relative flex items-center justify-center w-full h-[80vh] mt-10 overflow-hidden">
                 <div className="absolute inset-0 flex w-full h-full overflow-hidden">
                     <video
@@ -86,7 +89,10 @@ export default function Anime() {
                             <div className='ml-4 w-full'>
                                 <div className='flex flex-row w-full justify-between'>
                                     <p className="text-6xl text-white">{anime.name}</p>
-                                    <DeleteAnime id={anime.id} rank={anime.rank} />
+                                    <div className='flex flex-row items-center gap-2'>
+                                        <DeleteAnime id={anime.id} rank={anime.rank} />
+                                        <UpdateAnimeModal anime={anime} />
+                                    </div>
                                 </div>
                                 <p className="text-3xl text-gray-400">{anime.studio}</p>
                                 <p className="text-lg mt-2">{anime.comments}</p>

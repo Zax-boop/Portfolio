@@ -2,11 +2,11 @@
 
 import React, { useState, useEffect } from "react";
 import { Trash2 } from "lucide-react";
-import deleteAnime from "../../../utils/deleteAnime";
+import deleteTV from "../../../utils/deleteTV";
 import { User } from "@supabase/supabase-js";
 import supabase from "../../../utils/supabaseclient";
 
-export default function DeleteAnime({ id, rank }: { id: any; rank: any }) {
+export default function DeleteTV({ id, rank }: { id: any; rank: any }) {
     const [modalOpen, setModalOpen] = useState(false);
     const [loading, setLoading] = useState(false);
     const [user, setUser] = useState<User | null>(null);
@@ -22,10 +22,10 @@ export default function DeleteAnime({ id, rank }: { id: any; rank: any }) {
         e.preventDefault();
         setLoading(true);
         try {
-            const result = await deleteAnime(id, rank);
+            const result = await deleteTV(id, rank);
             setModalOpen(false);
         } catch (error) {
-            console.log("Error deleting anime:", error);
+            console.log("Error deleting tv:", error);
         } finally {
             setLoading(false);
             window.location.reload();
@@ -49,7 +49,7 @@ export default function DeleteAnime({ id, rank }: { id: any; rank: any }) {
                             ✕
                         </button>
                         <div className="flex flex-col w-full items-center gap-2">
-                            <p className={`text-xl ${!user && `text-red-600`}`}>{!user ? `You are not authenticated and cannot delete this album!` : `Are you sure you want to delete this anime?`}</p>
+                            <p className={`text-xl ${!user && `text-red-600`}`}>{!user ? `You are not authenticated and cannot delete this album!` : `Are you sure you want to delete this TV show?`}</p>
                             <div className="flex flex-row gap-2">
                                 <button
                                     onClick={() => setModalOpen(false)}

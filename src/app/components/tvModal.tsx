@@ -1,10 +1,12 @@
 "use client"
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { PlusIcon } from 'lucide-react';
 import show_placeholder from "../../../public/show_placeholder.svg"
 import Image from 'next/image';
-import addShows from "../../../utils/addShows"
+import addTV from "../../../utils/addTV"
+import { User } from '@supabase/supabase-js';
+import supabase from '../../../utils/supabaseclient';
 
 export default function TVForm() {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -19,21 +21,28 @@ export default function TVForm() {
     const [directorFocus, setDirectorFocus] = useState(false);
     const [commentFocus, setCommentFocus] = useState(false);
     const [rankFocus, setRankFocus] = useState(false);
-
-
+    const [loading, setLoading] = useState(false)
+    const [user, setUser] = useState<User | null>(null);
+    useEffect(() => {
+        const getSession = async () => {
+            const { data } = await supabase.auth.getSession();
+            setUser(data.session?.user || null);
+        };
+        getSession();
+    }, []);
     const handleFileChange = (e: any) => {
         setImageFile(e.target.files[0]);
         const url = URL.createObjectURL(e.target.files[0])
         setCoverImage(url)
     };
-
     const handleSubmit = async (e: any) => {
         e.preventDefault();
-        const result = await addShows(name, director, comments, imageFile, Number(rank));
+        setLoading(true)
+        const result = await addTV(name, director, comments, imageFile, Number(rank));
+        setLoading(false)
         setIsModalOpen(false);
+        window.location.reload()
     };
-
-
     return (
         <div className={`flex flex-col w-full items-center justify-center`}>
             <div className={`flex flex-row w-full justify-end`}>
@@ -128,12 +137,39 @@ export default function TVForm() {
                                     </div>
                                 </div>
                             </div>
-                            <button
-                                type="submit"
-                                className="w-full py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition"
-                            >
-                                Submit
-                            </button>
+                            <div className='flex flex-col w-full items-center'>
+                                {!user && <p className=' text-red-600'>You are not authenticated.</p>}
+                                <button
+                                    type="submit"
+                                    className={`w-full py-2 flex flex-row justify-center bg-blue-600 text-white rounded-md hover:bg-blue-700 transition ${(loading || !user) && `opacity-70`} `}
+                                    disabled={loading || !user}
+                                >
+                                    {loading ? (
+                                        <svg
+                                            className="animate-spin h-5 w-5 text-black"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <circle
+                                                className="opacity-25"
+                                                cx="12"
+                                                cy="12"
+                                                r="10"
+                                                stroke="currentColor"
+                                                strokeWidth="4"
+                                            ></circle>
+                                            <path
+                                                className="opacity-75"
+                                                fill="currentColor"
+                                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.963 7.963 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                                            ></path>
+                                        </svg>
+                                    ) : (
+                                        "Submit"
+                                    )}
+                                </button>
+                            </div>
                         </form>
                     </div>
                 </div>

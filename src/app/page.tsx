@@ -161,12 +161,12 @@ export default function Home() {
                 </a>
               </div>
             </div>
-            <div
+            {<div
               className={`flex transform transition-transform duration-200 hover:scale-105 flex-col justify-end items-end w-2/5 ${!timer && "opacity-0"
                 } animate-fadeInDelayed`}
             >
               <VideoSlider videos={videos} />
-            </div>
+            </div>}
           </div>
         </div>
       </div>
