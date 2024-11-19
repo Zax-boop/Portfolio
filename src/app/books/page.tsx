@@ -61,18 +61,19 @@ export default function TVRanking() {
                                 ? "scale-110 blur-2xl grayscale"
                                 : "scale-100 blur-0 grayscale-0"
                                 }`}
-                            onLoadingComplete={() => setIsLoading(false)}
+                            onLoad={() => setIsLoading(false)}
                         />
                     </div>
                     <div className='w-1/3 h-full'>
                         <Image
                             src={atss}
                             alt='Atss'
+                            priority
                             className={`w-full h-full object-fill duration-700 ease-in-out group-hover:opacity-75 ${isLoading
                                 ? "scale-110 blur-2xl grayscale"
                                 : "scale-100 blur-0 grayscale-0"
                                 }`}
-                            onLoadingComplete={() => setIsLoading(false)}
+                            onLoad={() => setIsLoading(false)}
                         />
                     </div>
                     <div className='w-1/3 h-full'>
@@ -83,7 +84,7 @@ export default function TVRanking() {
                                 ? "scale-110 blur-2xl grayscale"
                                 : "scale-100 blur-0 grayscale-0"
                                 }`}
-                            onLoadingComplete={() => setIsLoading(false)}
+                            onLoad={() => setIsLoading(false)}
                         />
                     </div>
                 </div>

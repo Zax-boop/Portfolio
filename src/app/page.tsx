@@ -12,19 +12,43 @@ import AboutSection from "./components/aboutSection";
 import ProjectSection from "./components/projectSection";
 import ContactSection from "./components/contactSection";
 import SignInForm from "../app/components/signIn"
+import LazyLoader from "./components/lazyLoader";
+import Link from "next/link";
 
 const videos = ["/hatch_demo.mov", "/addAlbum.mov", "/colombo_demo.mov"];
 
 export default function Home() {
   const pathname = usePathname();
   const [timer, setTimer] = useState(false);
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" }); // Smooth scroll to the element
-    }
-  };
+  const lineRef = useRef<HTMLDivElement>(null);
+    const [isVisible, setIsVisible] = useState(false);
 
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                if (entries[0].isIntersecting) {
+                    setIsVisible(true);
+                }
+            },
+            { threshold: 0.1 }
+        );
+
+        if (lineRef.current) {
+            observer.observe(lineRef.current);
+        }
+
+        return () => {
+            if (lineRef.current) {
+                observer.unobserve(lineRef.current);
+            }
+        };
+    }, []);
+  // const scrollToSection = (id: string) => {
+  //   const element = document.getElementById(id);
+  //   if (element) {
+  //     element.scrollIntoView({ behavior: "smooth" });
+  //   }
+  // };
   useEffect(() => {
     const timerId = setTimeout(() => {
       setTimer(true);
@@ -66,6 +90,7 @@ export default function Home() {
 
     return () => window.removeEventListener("scroll", scroll);
   }, []);
+  const videoRef = useRef<HTMLVideoElement>(null); 
   return (
     <div className="flex flex-col w-full h-full items-center">
       <SignInForm />
@@ -85,9 +110,14 @@ export default function Home() {
           strokeLinecap="round"
         />
       </svg>
-      <header className={`flex flex-row justify-between mt-4 w-4/5 border-[0.5px] border-[#333] py-3 px-6 rounded-full ${pathname === "/" && `animate-borderTransition`} hover:border-white/[0.3] transition-all duration-500 ease-in`}>
-        <button onClick={() => scrollToSection("experience")} className="font-semibold text-xl">RA</button>
-        <div className="flex flex-row gap-[2rem]">
+      <header className={`w-4/5 flex flex-col items-start mt-4 py-3`}>
+        <Link href={"/"} className="font-semibold text-xl cursor-pointer">RA</Link>
+        <div
+                ref={lineRef}
+                className={`h-[0.1rem] bg-white transition-all duration-700 mt-2 ${isVisible ? "w-full" : "w-0"
+                    }`}
+            />
+        {/* <div className="flex flex-row gap-[2rem]">
           <button onClick={() => scrollToSection("experience")} className="relative group">
             <p className="font-semibold">Work Experience</p>
             <span className="absolute -bottom-1 left-0 w-0 h-1 bg-white transition-all group-hover:w-full"></span>
@@ -104,10 +134,11 @@ export default function Home() {
             <p className="font-semibold">Contact Me</p>
             <span className="absolute -bottom-1 left-0 w-0 h-1 bg-white transition-all group-hover:w-full"></span>
           </button>
-        </div>
+        </div> */}
       </header>
       <div className="relative flex flex-col w-full mt-1 h-[90vh] items-center overflow-hidden">
         <video
+          ref={videoRef}
           src="/cb.mp4"
           autoPlay
           loop
@@ -171,18 +202,18 @@ export default function Home() {
         </div>
       </div>
       <div className="w-4/5 flex flex-col mt-[1rem] z-10">
-        <div id="experience">
+        <LazyLoader id="experience">
           <ExperienceTimeline />
-        </div>
-        <div id="projects">
+        </LazyLoader>
+        <LazyLoader id="projects">
           <ProjectSection />
-        </div>
-        <div id="about">
+        </LazyLoader>
+        <LazyLoader id="about">
           <AboutSection />
-        </div>
-        <div id="contact">
+        </LazyLoader>
+        <LazyLoader id="contact">
           <ContactSection />
-        </div>
+        </LazyLoader>
       </div>
     </div>
   );

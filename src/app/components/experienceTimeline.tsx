@@ -9,28 +9,28 @@ import React from 'react'
 
 export default function ExperienceTimeline() {
     const lineRef = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
+    const [isVisible, setIsVisible] = useState(false);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          setIsVisible(true);
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                if (entries[0].isIntersecting) {
+                    setIsVisible(true);
+                }
+            },
+            { threshold: 0.1 }
+        );
+
+        if (lineRef.current) {
+            observer.observe(lineRef.current);
         }
-      },
-      { threshold: 0.1 }
-    );
 
-    if (lineRef.current) {
-      observer.observe(lineRef.current);
-    }
-
-    return () => {
-      if (lineRef.current) {
-        observer.unobserve(lineRef.current);
-      }
-    };
-  }, []);
+        return () => {
+            if (lineRef.current) {
+                observer.unobserve(lineRef.current);
+            }
+        };
+    }, []);
     return (
         <div className='mt-10'>
             <FadeInSection className="w-full flex flex-row justify-center items-center text-5xl">Work Experience</FadeInSection>
