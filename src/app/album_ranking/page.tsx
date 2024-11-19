@@ -127,7 +127,7 @@ export default function Albums() {
                             <div className='ml-4 w-full'>
                                 <div className='w-full flex flex-row justify-between'>
                                     <p className="text-6xl text-white">{album.name}</p>
-                                    <div className='flex flex-row items-center'>
+                                    <div className='flex flex-row items-center gap-2'>
                                         <DeleteAlbum id={album.id} Rank={album.Rank} />
                                         <UpdateAlbumModal album={album} />
                                     </div>

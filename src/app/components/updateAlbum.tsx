@@ -67,7 +67,9 @@ export default function UpdateAlbumModal({ album }: { album: any }) {
 
     return (
         <div className={`flex flex-col w-full items-center justify-center`}>
-            <Pencil onClick={e => setModalOpen(true)} className='cursor-pointer'/>
+            <div onClick={e => setModalOpen(true)} className='hover:bg-blue-400 cursor-pointer transition duration-300 ease-in-out p-1 rounded-lg self-start'>
+                <Pencil/>
+            </div>
             {modalOpen && <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
                 <div className="bg-black w-full max-w-[50rem] p-4 rounded-lg shadow-lg relative">
                     <button
