@@ -55,7 +55,7 @@ export default function ProjectSection() {
                     <p className='py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>RLS</p>
                     <p className='py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Authentication</p>
                 </FadeInSection>
-                <FadeInSection className='flex flex-row w-full mt-4 justify-between'>
+                <FadeInSection className='flex flex-row flex-wrap w-full mt-4 gap-3 justify-between'>
                     <div className='flex w-[47%] flex-col gap-1 items-center'>
                         <video
                             src={"/addAlbum.mov"}
@@ -77,6 +77,27 @@ export default function ProjectSection() {
                             ref={videoRef}
                         />
                         <p>Example of removing data</p>
+                    </div>
+                    <div className='flex w-[47%] flex-col gap-1 items-center'>
+                        <video
+                            src={"/authEx.mov"}
+                            className="w-full object-cover rounded-xl"
+                            muted
+                            autoPlay
+                            loop
+                        />
+                        <p>Example of authentication</p>
+                    </div>
+                    <div className='flex w-[47%] flex-col gap-1 items-center'>
+                        <video
+                            src={"/updateEx.mov"}
+                            className="w-full object-cover rounded-xl"
+                            muted
+                            autoPlay
+                            loop
+                            ref={videoRef}
+                        />
+                        <p>Example of updating data</p>
                     </div>
                 </FadeInSection>
             </div>

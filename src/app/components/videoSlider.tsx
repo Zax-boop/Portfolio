@@ -43,7 +43,6 @@ export default function VideoSlider({ videos }: VideoSliderProps): JSX.Element {
       var playPromise = videoRef.current.play();
     }
   }, [currentIndex]);
-
   return (
     <div className="relative w-full mx-auto">
       <div className="relative w-[35rem] h-[20rem] group overflow-hidden">

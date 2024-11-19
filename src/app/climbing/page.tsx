@@ -8,12 +8,24 @@ import PoppingLetters from "../components/poppingLetters";
 import { PlusIcon } from "lucide-react";
 import addClimbingMedia from "../../../utils/addClimbingMedia";
 import FadeInSection from "../components/fadeIn";
+import SignInForm from "../components/signIn";
+import { User } from "@supabase/supabase-js";
+import supabase from "../../../utils/supabaseclient";
 
 export default function Climbing() {
     const [mediaFiles, setMediaFiles] = useState<any[]>([]);
     const [loadingStates, setLoadingStates] = useState<boolean[]>([]);
     const [loading, setLoading] = useState(true);
-
+    const [showWarning, setShowWarning] = useState(false)
+    const [user, setUser] = useState<User | null>(null);
+    useEffect(() => {
+      const getSession = async () => {
+        const { data } = await supabase.auth.getSession();
+        setUser(data.session?.user || null);
+      };
+  
+      getSession();
+    }, []);
     useEffect(() => {
         const fetchMedia = async () => {
             const media = await fetchClimbingMedia();
@@ -28,6 +40,7 @@ export default function Climbing() {
         const file = event.target.files[0];
         if (file) {
             const mediaURL = await addClimbingMedia(file);
+            window.location.reload()
         }
     };
 
@@ -44,6 +57,7 @@ export default function Climbing() {
     return (
         <div className="flex flex-col w-full h-full items-center">
             <Header />
+            <SignInForm/>
             <div className="relative flex items-center justify-center w-full h-[80vh] mt-10 overflow-hidden">
                 <div className="absolute inset-0 flex w-full h-full overflow-hidden">
                     {backgroundVideos.map((file, index) => (
@@ -66,16 +80,17 @@ export default function Climbing() {
             </div>
             <div className="flex flex-col w-full mt-10">
                 <div className="flex flex-row w-full justify-end">
-                    <label className="flex items-center gap-2 self-start pl-3 mr-4 py-2 bg-black border border-white text-white rounded-full hover:bg-white hover:text-black transition duration-300 cursor-pointer">
+                    <label onClick={e => {!user && setShowWarning(true)}} className="flex items-center gap-2 self-start pl-3 mr-4 py-2 bg-black border border-white text-white rounded-full hover:bg-white hover:text-black transition duration-300 cursor-pointer">
                         Add New
                         <PlusIcon className="w-5 h-5 mr-2" />
-                        <input
+                        {user && <input
                             type="file"
                             className="hidden"
                             onChange={handleFileChange}
-                        />
+                        />}
                     </label>
                 </div>
+                {showWarning && <p className="text-red-600 w-full text-right pr-4 mt-1">You are not authenticated.</p>}
                 <div className="p-4 columns-4 gap-4 space-y-4">
                     {mediaFiles.map((file, index) => {
                         const fileExt = file.name.split(".").pop()?.toLowerCase();

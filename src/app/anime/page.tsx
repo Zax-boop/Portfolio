@@ -16,7 +16,7 @@ export default function Anime() {
     const [loading, setLoading] = useState(true);
     const [isLoading, setIsLoading] = useState(true)
     const animeRefs = useRef<any>([]);
-
+    const videoRef = useRef<HTMLVideoElement>(null);
     useEffect(() => {
         const getAnime = async () => {
             const data = await fetchAnime();
@@ -42,7 +42,6 @@ export default function Anime() {
     if (loading) {
         return <div>Loading...</div>;
     }
-
     return (
         <div className='flex flex-col w-full h-full items-center'>
             <Header />
@@ -51,6 +50,7 @@ export default function Anime() {
                 <div className="absolute inset-0 flex w-full h-full overflow-hidden">
                     <video
                         src={"/cb.mp4"}
+                        ref={videoRef}
                         autoPlay
                         loop
                         muted
