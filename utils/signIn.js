@@ -7,9 +7,8 @@ export default async function signIn(email, password) {
   });
 
   if (error) {
-    console.error('Error signing in:', error.message);
     return null;
   }
 
-  return data; // Contains user session info
+  return data; 
 }

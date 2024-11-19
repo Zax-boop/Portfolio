@@ -2,7 +2,6 @@
 
 import { useEffect, useState, useRef } from "react";
 import PoppingLetters from "./components/poppingLetters";
-import Header from "./components/header";
 import { usePathname } from "next/navigation";
 import linkedin_logo from "../../public/linkedinLogo.png";
 import github_logo from "../../public/github_logo.png";
@@ -11,10 +10,8 @@ import VideoSlider from "./components/videoSlider";
 import ExperienceTimeline from "./components/experienceTimeline";
 import AboutSection from "./components/aboutSection";
 import ProjectSection from "./components/projectSection";
-import FadeInSection from "./components/fadeIn";
 import ContactSection from "./components/contactSection";
 import SignInForm from "../app/components/signIn"
-import SignOut from "./components/signOut";
 
 const videos = ["/hatch_demo.mov", "/addAlbum.mov", "/colombo_demo.mov"];
 
@@ -70,7 +67,8 @@ export default function Home() {
     return () => window.removeEventListener("scroll", scroll);
   }, []);
   return (
-    <div className="flex flex-col w-full h-full items-center no-scrollbar-track" style={{ "overflow": "overlay" }}>
+    <div className="flex flex-col w-full h-full items-center">
+      <SignInForm />
       <svg
         width="100%"
         height="2000"
@@ -173,8 +171,6 @@ export default function Home() {
         </div>
       </div>
       <div className="w-4/5 flex flex-col mt-[1rem] z-10">
-      <SignInForm/>
-      <SignOut/>
         <div id="experience">
           <ExperienceTimeline />
         </div>

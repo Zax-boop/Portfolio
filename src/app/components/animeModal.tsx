@@ -29,7 +29,6 @@ export default function AnimeForm() {
         setLoading(true);
         try {
             const result = await addAnime(name, studio, comments, imageFile, Number(rank));
-            console.log(result);
             setIsModalOpen(false);
         } catch (error) {
             console.error("Error adding anime:", error);

@@ -8,6 +8,8 @@ import AlbumForm from '../components/albumModal';
 import FadeInSection from '../components/fadeIn';
 import ImageTrack from '../components/ImageTrack';
 import DeleteAlbum from '../components/deleteAlbum';
+import SignInForm from '../components/signIn';
+import UpdateAlbumModal from '../components/updateAlbum';
 
 export default function Albums() {
     const [albums, setAlbums] = useState<any>([]);
@@ -43,6 +45,7 @@ export default function Albums() {
 
     return (
         <div className='flex flex-col w-full h-full items-center'>
+            <SignInForm />
             <Header />
             <div className="relative flex items-center justify-center w-full h-[80vh] mt-10 overflow-hidden">
                 <div className="absolute inset-0 flex w-full h-full overflow-hidden">
@@ -124,7 +127,10 @@ export default function Albums() {
                             <div className='ml-4 w-full'>
                                 <div className='w-full flex flex-row justify-between'>
                                     <p className="text-6xl text-white">{album.name}</p>
-                                    <DeleteAlbum id={album.id} Rank={album.Rank}/>
+                                    <div className='flex flex-row items-center'>
+                                        <DeleteAlbum id={album.id} Rank={album.Rank} />
+                                        <UpdateAlbumModal album={album} />
+                                    </div>
                                 </div>
                                 <p className="text-3xl text-gray-400">{album.artist}</p>
                                 <p className="text-lg mt-2">{album.comment}</p>

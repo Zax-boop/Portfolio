@@ -20,7 +20,6 @@ const fetchClimbingMedia = async () => {
             const filePath = supabase.storage.from('climbing').getPublicUrl(file.name);
             return { name: file.name, url: filePath };
         });
-        console.log(filesWithUrls);
         return filesWithUrls;
     } catch (error) {
         console.error("Error fetching climbing media:", error);

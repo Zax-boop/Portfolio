@@ -5,7 +5,7 @@ import supabase from "../../../utils/supabaseclient"
 import { User } from '@supabase/supabase-js';
 
 export default function ProtectedPage() {
-  const [user, setUser] = useState<User | null>(null); // Explicitly typing the state
+  const [user, setUser] = useState<User | null>(null);
   useEffect(() => {
     const getSession = async () => {
       const { data } = await supabase.auth.getSession();

@@ -13,10 +13,9 @@ export default function DeleteAnime({ id, rank }: { id: any; rank: any }) {
         setLoading(true);
         try {
             const result = await deleteAnime(id, rank);
-            console.log(result); 
             setModalOpen(false); 
         } catch (error) {
-            console.error("Error deleting anime:", error);
+            console.log("Error deleting anime:", error);
         } finally {
             setLoading(false); 
             window.location.reload(); 

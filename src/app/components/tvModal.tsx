@@ -22,11 +22,9 @@ export default function TVForm() {
 
 
     const handleFileChange = (e: any) => {
-        // console.log(e.target.files[0])
         setImageFile(e.target.files[0]);
         const url = URL.createObjectURL(e.target.files[0])
         setCoverImage(url)
-        // setCoverImage(e.target.files[0]);        
     };
 
     const handleSubmit = async (e: any) => {

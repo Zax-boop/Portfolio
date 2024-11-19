@@ -24,10 +24,9 @@ export default function DeleteAlbum({ id, Rank }: { id: any; Rank: any }) {
         setLoading(true);
         try {
             const result = await deleteAlbum(id, Rank);
-            console.log(result); 
             setModalOpen(false); 
         } catch (error) {
-            console.error("Error deleting album:", error);
+            console.log("Error deleting album:", error);
         } finally {
             setLoading(false); 
             window.location.reload(); 
@@ -86,7 +85,7 @@ export default function DeleteAlbum({ id, Rank }: { id: any; Rank: any }) {
                                             ></path>
                                         </svg>
                                     ) : (
-                                        "Yes"
+                                        "Delete"
                                     )}
                                 </button>
                             </div>

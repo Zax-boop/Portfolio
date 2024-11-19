@@ -27,7 +27,6 @@ export default async function addAnime(name, studio, comments, imageFile, rank) 
     return null;
   }
   animeToUpdate.sort((a, b) => b.rank - a.rank)
-  console.log(animeToUpdate)
   for (const anime of animeToUpdate) {
     const { error: updateError } = await supabase
       .from('anime_rankings')

@@ -28,7 +28,6 @@ export default function Climbing() {
         const file = event.target.files[0];
         if (file) {
             const mediaURL = await addClimbingMedia(file);
-            console.log('Uploaded media URL:', mediaURL);
         }
     };
 
