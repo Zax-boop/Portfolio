@@ -14,6 +14,12 @@ import ContactSection from "./components/contactSection";
 import SignInForm from "../app/components/signIn"
 import LazyLoader from "./components/lazyLoader";
 import Link from "next/link";
+// import { Montserrat } from 'next/font/google';
+
+// const montserrat = Montserrat({
+//   subsets: ['latin'],
+//   variable: '--font-montserrat',
+// });
 
 const videos = ["/hatch_demo.mov", "/addAlbum.mov", "/colombo_demo.mov"];
 
@@ -21,28 +27,28 @@ export default function Home() {
   const pathname = usePathname();
   const [timer, setTimer] = useState(false);
   const lineRef = useRef<HTMLDivElement>(null);
-    const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            (entries) => {
-                if (entries[0].isIntersecting) {
-                    setIsVisible(true);
-                }
-            },
-            { threshold: 0.1 }
-        );
-
-        if (lineRef.current) {
-            observer.observe(lineRef.current);
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setIsVisible(true);
         }
+      },
+      { threshold: 0.1 }
+    );
 
-        return () => {
-            if (lineRef.current) {
-                observer.unobserve(lineRef.current);
-            }
-        };
-    }, []);
+    if (lineRef.current) {
+      observer.observe(lineRef.current);
+    }
+
+    return () => {
+      if (lineRef.current) {
+        observer.unobserve(lineRef.current);
+      }
+    };
+  }, []);
   // const scrollToSection = (id: string) => {
   //   const element = document.getElementById(id);
   //   if (element) {
@@ -90,9 +96,9 @@ export default function Home() {
 
     return () => window.removeEventListener("scroll", scroll);
   }, []);
-  const videoRef = useRef<HTMLVideoElement>(null); 
+  const videoRef = useRef<HTMLVideoElement>(null);
   return (
-    <div className="flex flex-col w-full h-full items-center">
+    <div className={`flex flex-col w-full h-full items-center`}>
       <SignInForm />
       <svg
         width="100%"
@@ -113,10 +119,10 @@ export default function Home() {
       <header className={`w-4/5 flex flex-col items-start mt-4 py-3`}>
         <Link href={"/"} className="font-semibold text-xl cursor-pointer">RA</Link>
         <div
-                ref={lineRef}
-                className={`h-[0.1rem] bg-white transition-all duration-700 mt-2 ${isVisible ? "w-full" : "w-0"
-                    }`}
-            />
+          ref={lineRef}
+          className={`h-[0.1rem] bg-white transition-all duration-700 mt-2 ${isVisible ? "w-full" : "w-0"
+            }`}
+        />
         {/* <div className="flex flex-row gap-[2rem]">
           <button onClick={() => scrollToSection("experience")} className="relative group">
             <p className="font-semibold">Work Experience</p>
@@ -137,18 +143,18 @@ export default function Home() {
         </div> */}
       </header>
       <div className="relative flex flex-col w-full mt-1 h-[90vh] items-center overflow-hidden">
-        <video
+        {/* <video
           ref={videoRef}
           src="/cb.mp4"
           autoPlay
           loop
           muted
           className="absolute inset-0 w-full h-full object-cover"
-        />
+        /> */}
         <div className="absolute inset-0 bg-black opacity-50"></div>
         <div className="relative flex flex-col w-4/5 items-start z-10">
           <PoppingLetters
-            className="font-semibold text-[10.5rem] mt-12"
+            className="font-semibold text-[10rem] mt-12"
             text={"ROHAN ARYA"}
           />
           <div className="flex flex-row justify-between w-full mt-20">
@@ -161,7 +167,7 @@ export default function Home() {
               />
               <div className="flex flex-row mt-4 text-3xl w-full">
                 <div className="relative group">
-                  <a href="/Resume_Rohan_Arya.pdf" download="Resume">
+                  <a href="/Resume_Rohan_Arya.pdf" target="_blank">
                     <PoppingLetters text="Resume" initialDelay={2200} speed={30} />
                   </a>
                   <span className="absolute -bottom-[0.1rem] left-0 w-0 h-1 bg-white transition-all group-hover:w-full"></span>

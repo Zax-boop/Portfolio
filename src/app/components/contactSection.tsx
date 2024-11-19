@@ -11,7 +11,6 @@ import { useRef, useState, useEffect } from 'react'
 export default function ContactSection() {
     const lineRef = useRef<HTMLDivElement>(null);
     const [isVisible, setIsVisible] = useState(false);
-
     useEffect(() => {
         const observer = new IntersectionObserver(
             (entries) => {
@@ -54,7 +53,7 @@ export default function ContactSection() {
 
             </FadeInSection>
             <FadeInSection className="self-start relative group mt-2">
-                <a href="/Resume_Rohan_Arya.pdf" download="Resume">
+                <a href="/Resume_Rohan_Arya.pdf" target='_blank'>
                     <p className="text-4xl">Resume</p>
                 </a>
                 <span className="absolute -bottom-[0.1rem] left-0 w-0 h-1 bg-white transition-all group-hover:w-full"></span>

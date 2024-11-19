@@ -21,6 +21,9 @@ module.exports = {
           '100%': { opacity: 1 },
         },
       },
+      // fontFamily: {
+      //   sans: ['var(--font-montserrat)', 'sans-serif'],
+      // },
     },
   },
   plugins: [],

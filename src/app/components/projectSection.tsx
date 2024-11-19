@@ -101,7 +101,8 @@ export default function ProjectSection() {
                     </div>
                 </FadeInSection>
             </div>
-            <div className='flex flex-row justify-between mt-4'>
+            <div className='flex flex-row justify-between w-full mt-4'>
+            <div className='flex flex-col w-[47%] gap-2'>
                 <div className='flex flex-col'>
                     <FadeInSection className='text-3xl'>Soul Boy</FadeInSection>
                     <FadeInSection className=''>Developed a 2.5 dimensional platform using Unreal Engine 5 and Blueprints.</FadeInSection>
@@ -114,9 +115,11 @@ export default function ProjectSection() {
                     <FadeInSection className='flex flex-row flex-wrap gap-2 mt-2'>
                         <p className='py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>UE5</p>
                         <p className='py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Blueprints</p>
+                        <p className='py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Creativity</p>
+                        <p className='py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Design</p>
                     </FadeInSection>
                 </div>
-                <FadeInSection className='w-1/2'>
+                <FadeInSection className='w-full'>
                 <video
                     src={"/soul_boy_ex.mp4"}
                     className="w-full object-cover rounded-xl"
@@ -125,6 +128,28 @@ export default function ProjectSection() {
                     loop
                 />
                 </FadeInSection>
+            </div>
+            <div className='flex flex-col w-[47%] gap-2'>
+                <div className='flex flex-col'>
+                    <FadeInSection className='text-3xl'>Idle Animation</FadeInSection>
+                    <FadeInSection className=''>Developed an idle animation for a character using Aseprite</FadeInSection>
+                    <FadeInSection className='flex flex-row flex-wrap gap-2 mt-2'>
+                        <p className='py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Aseprite</p>
+                        <p className='py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Creativity</p>
+                        <p className='py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Design</p>
+                        <p className='py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Animation</p>
+                    </FadeInSection>
+                </div>
+                <FadeInSection className='w-full'>
+                <video
+                    src={"/IdleAnimation.mov"}
+                    className="w-full object-cover rounded-xl"
+                    muted
+                    autoPlay
+                    loop
+                />
+                </FadeInSection>
+            </div>
             </div>
         </div>
     )

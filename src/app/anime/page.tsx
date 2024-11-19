@@ -102,7 +102,6 @@ export default function Anime() {
                     </FadeInSection>
                 ))}
             </div>
-
         </div>
     );
 }

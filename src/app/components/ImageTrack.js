@@ -7,7 +7,6 @@ const ImageTrack = ({ data, onImageClick, width = 'w-[20rem]' }) => {
   const [scrollPercentage, setScrollPercentage] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const [scrollDirection, setScrollDirection] = useState(1);
-
   const handleOnScroll = () => {
     if (trackRef.current) {
       const scrollWidth = trackRef.current.scrollWidth - trackRef.current.clientWidth;
