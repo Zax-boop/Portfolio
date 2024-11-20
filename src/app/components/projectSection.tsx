@@ -46,7 +46,7 @@ export default function ProjectSection() {
             />
             <div className='flex flex-col'>
                 <FadeInSection className='xs:text-lg sm:text-2xl xl:text-3xl mt-[1rem]'>Portfolio Website</FadeInSection>
-                <FadeInSection className='xs:text-xs sm:text-base'>This is the website you are currently on! The website is developed with Next.js and Tailwind CSS. The data is stored in Supabase, a BaaS PostgreSQL database. Authentication was implemented using Supabase, complete with RLS (Row Level Security). Various data structures can be selected, inserted, deleted, and updated all by using the website.</FadeInSection>
+                <FadeInSection className='xs:text-xs sm:text-base'>This is the website you are currently on! The website is developed with Next.js and Tailwind CSS. The data is stored in Supabase, a BaaS PostgreSQL database. Authentication was implemented using Supabase, complete with RLS (Row Level Security). Various data structures can be selected, inserted, deleted, and updated all by using the website. Project deployed on Vercel.</FadeInSection>
                 <FadeInSection className='flex flex-row flex-wrap mt-2 gap-2'>
                     <p className='xs:py-1.5 xs:px-1.5 sm:py-1.5 sm:px-3 xs:text-xs xs:rounded-lg sm:rounded-xl sm:text-base flex flex-row items-center self-start bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Next.js</p>
                     <p className='xs:py-1.5 xs:px-1.5 sm:py-1.5 sm:px-3 xs:text-xs xs:rounded-lg sm:rounded-xl sm:text-base flex flex-row items-center self-start bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Tailwind CSS</p>
@@ -55,6 +55,7 @@ export default function ProjectSection() {
                     <p className='xs:py-1.5 xs:px-1.5 sm:py-1.5 sm:px-3 xs:text-xs xs:rounded-lg sm:rounded-xl sm:text-base flex flex-row items-center self-start bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>PostgreSQL</p>
                     <p className='xs:py-1.5 xs:px-1.5 sm:py-1.5 sm:px-3 xs:text-xs xs:rounded-lg sm:rounded-xl sm:text-base flex flex-row items-center self-start bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>RLS</p>
                     <p className='xs:py-1.5 xs:px-1.5 sm:py-1.5 sm:px-3 xs:text-xs xs:rounded-lg sm:rounded-xl sm:text-base flex flex-row items-center self-start bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Authentication</p>
+                    <p className='xs:py-1.5 xs:px-1.5 sm:py-1.5 sm:px-3 xs:text-xs xs:rounded-lg sm:rounded-xl sm:text-base flex flex-row items-center self-start bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Vercel</p>
                 </FadeInSection>
                 <FadeInSection className='flex xs:flex-col sm:flex-row flex-wrap w-full mt-4 xs:gap-[2rem] sm:gap-3 justify-between'>
                     <div className='flex xs:w-full sm:w-[47%] flex-col gap-1 items-center'>
