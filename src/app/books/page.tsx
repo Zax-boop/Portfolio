@@ -15,7 +15,7 @@ import SignInForm from '../components/signIn';
 import DeleteBook from '../components/deleteBook';
 import UpdateBookModal from '../components/updateBook';
 
-export default function TVRanking() {
+export default function Books() {
     const [books, setBooks] = useState<{
         name: string;
         author: string;
