@@ -66,7 +66,7 @@ export default function UpdateAnimeModal({ anime }: { anime: any }) {
     };
 
     return (
-        <div className={`flex flex-col w-full items-center justify-center`}>
+        <div className={`flex flex-col w-full items-center justify-center xs:hidden sm:block`}>
             <div onClick={e => setModalOpen(true)} className='hover:bg-blue-400 cursor-pointer transition duration-300 ease-in-out p-1 rounded-lg self-start'>
                 <Pencil/>
             </div>

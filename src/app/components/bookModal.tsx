@@ -46,7 +46,7 @@ export default function BookForm() {
 
 
     return (
-        <div className={`flex flex-col w-full items-center justify-center`}>
+        <div className={`flex flex-col w-full items-center justify-center xs:hidden md:block`}>
             <div className={`flex flex-row w-full justify-end`}>
                 <label onClick={e => setIsModalOpen(true)} className="flex items-center gap-2 self-start pl-3 mr-4 py-2 bg-black border border-white text-white rounded-full hover:bg-white hover:text-black transition duration-300 cursor-pointer">
                     Add Book

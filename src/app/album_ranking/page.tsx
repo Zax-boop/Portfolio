@@ -47,7 +47,7 @@ export default function Albums() {
         <div className='flex flex-col w-full h-full items-center'>
             <SignInForm />
             <Header />
-            <div className="relative flex items-center justify-center w-full xs:h-[15rem] sm:h-[80vh] xs:mt-4 sm:mt-10 overflow-hidden">
+            <div className="relative flex items-center justify-center w-full xs:h-[15rem] sm:h-[30rem] xl:h-[80vh] xs:mt-4 sm:mt-10 overflow-hidden">
                 <div className="absolute inset-0 flex w-full h-full overflow-hidden">
                     <div className='w-1/3 h-full'>
                         <video
@@ -140,7 +140,7 @@ export default function Albums() {
                                         <UpdateAlbumModal album={album} />
                                     </div>
                                 </div>
-                                <p className="xs:text-base sm:text-lg text-3xl text-gray-400">{album.artist}</p>
+                                <p className="xs:text-base sm:text-lg xl:text-3xl text-gray-400">{album.artist}</p>
                                 <p className="xs:text-[0.5rem] sm:text-sm xl:text-lg xs:mt-0.5 sm:mt-1 xl:mt-2">{album.comment}</p>
                             </div>
                         </div>
