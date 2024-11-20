@@ -27,7 +27,8 @@ export default function Albums() {
           try {
             const fetchedAlbums: Album[] | null = await fetchAlbums();
             setAlbums(fetchedAlbums ?? []); 
-          } catch (error) {
+            albumRefs.current = (fetchedAlbums ?? []).map(() => React.createRef());
+        } catch (error) {
             console.error("Failed to fetch albums:", error);
             setAlbums([]);
           }

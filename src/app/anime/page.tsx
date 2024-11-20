@@ -32,6 +32,7 @@ export default function Anime() {
           try {
             const fetchedAnime: Anime[] | null = await fetchAnime();
             setAnimeList(fetchedAnime ?? []); 
+            animeRefs.current = (fetchedAnime ?? []).map(() => React.createRef());
           } catch (error) {
             console.error("Failed to fetch albums:", error);
             setAnimeList([]);

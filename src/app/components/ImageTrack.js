@@ -4,6 +4,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import { useMediaQuery } from "react-responsive";
 
 const ImageTrack = ({ data, onImageClick, width = 'xs:w-[6.67rem] sm:w-[10rem] xl:w-[20rem]' }) => {
+  console.log(data)
   const isMobile = useMediaQuery({ query: '(max-width: 650px)' })
   const trackRef = useRef(null);
   const [scrollPercentage, setScrollPercentage] = useState(0);
