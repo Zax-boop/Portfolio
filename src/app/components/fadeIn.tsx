@@ -2,7 +2,7 @@
 
 import React, { useRef, useState, useEffect, forwardRef } from "react";
 
-const FadeInSection = forwardRef(({ children, className }: {children: any, className: string}, ref) => {
+const FadeInSection = forwardRef(({ children, className }: {children: React.ReactNode, className: string}, ref) => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement | null>(null);
 

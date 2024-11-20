@@ -16,10 +16,16 @@ import DeleteBook from '../components/deleteBook';
 import UpdateBookModal from '../components/updateBook';
 
 export default function TVRanking() {
-    const [books, setBooks] = useState<any>([]);
+    const [books, setBooks] = useState<{
+        name: string;
+        author: string;
+        comments: string;
+        image: string;
+        id: string;
+    }[]>([]);
     const [loading, setLoading] = useState(true);
     const [isLoading, setIsLoading] = useState(true)
-    const bookRefs = useRef<any>([]);
+    const bookRefs = useRef<React.RefObject<HTMLDivElement>[]>([]);
 
     useEffect(() => {
         const getBooks = async () => {
@@ -34,12 +40,14 @@ export default function TVRanking() {
         getBooks();
     }, []);
 
-    const scrollToBook = (index: any) => {
+    const scrollToBook = (index: number) => {
         if (bookRefs.current[index]) {
-            bookRefs.current[index].current.scrollIntoView({
-                behavior: "smooth",
-                block: "center",
-            });
+            if (bookRefs.current[index].current) {
+                bookRefs.current[index].current.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center",
+                });
+            }
         }
     };
 
@@ -98,7 +106,13 @@ export default function TVRanking() {
                 <BookForm />
                 <p className='xs:text-xs sm:text-base sm:mt-2 xl:mt-0 xs:mb-1 sm:mb-0'>*Disclaimer: This is just my opinion and what I enjoyed reading the most regardless of critical bias. Moreover, I chose not to rank the books I read just because each book feels too unique to compare to one another.</p>
                 <hr className="border-t border-gray-300" />
-                {books.map((book: any, index: number) => (
+                {books.map((book: {
+                    name: string;
+                    author: string;
+                    comments: string;
+                    image: string;
+                    id: string;
+                }, index: number) => (
                     <FadeInSection
                         key={book.id || `${book.name}-${book.author}-${index}`}
                         ref={bookRefs.current[index]}
@@ -112,7 +126,7 @@ export default function TVRanking() {
                                         ? "scale-110 blur-2xl grayscale"
                                         : "scale-100 blur-0 grayscale-0"
                                     }`}
-                                onLoadedData={e => setIsLoading(false)}
+                                onLoadedData={() => setIsLoading(false)}
                             />
                             <div className='xs:ml-2 sm:ml-4 w-full'>
                                 <div className='flex flex-row w-full justify-between'>
@@ -126,7 +140,7 @@ export default function TVRanking() {
                                 <p className="xs:text-[0.5rem] sm:text-sm xl:text-lg xs:mt-0.5 sm:mt-1 xl:mt-2">{book.comments}</p>
                             </div>
                         </div>
-                        {index < books.length - 1 && <hr className="border-t border-gray-300 xs:my-1 sm:my-2 xl:my-4"/>}
+                        {index < books.length - 1 && <hr className="border-t border-gray-300 xs:my-1 sm:my-2 xl:my-4" />}
                     </FadeInSection>
                 ))}
             </div>

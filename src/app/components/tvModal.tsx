@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { PlusIcon } from 'lucide-react';
 import show_placeholder from "../../../public/show_placeholder.svg"
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 import addTV from "../../../utils/addTV"
 import { User } from '@supabase/supabase-js';
 import supabase from '../../../utils/supabaseclient';
@@ -14,9 +14,9 @@ export default function TVForm() {
     const [name, setName] = useState('');
     const [director, setDirector] = useState('');
     const [comments, setComments] = useState('');
-    const [imageFile, setImageFile] = useState(null);
+    const [imageFile, setImageFile] = useState<File | null>(null);
     const [rank, setRank] = useState("")
-    const [coverImage, setCoverImage] = useState<any>(show_placeholder);
+    const [coverImage, setCoverImage] = useState<string | StaticImageData>(show_placeholder);
     const [nameFocus, setNameFocus] = useState(false);
     const [directorFocus, setDirectorFocus] = useState(false);
     const [commentFocus, setCommentFocus] = useState(false);
@@ -30,15 +30,17 @@ export default function TVForm() {
         };
         getSession();
     }, []);
-    const handleFileChange = (e: any) => {
-        setImageFile(e.target.files[0]);
-        const url = URL.createObjectURL(e.target.files[0])
-        setCoverImage(url)
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files) {
+            setImageFile(e.target.files[0]);
+            const url = URL.createObjectURL(e.target.files[0])
+            setCoverImage(url)
+        }
     };
-    const handleSubmit = async (e: any) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setLoading(true)
-        const result = await addTV(name, director, comments, imageFile, Number(rank));
+        await addTV(name, director, comments, imageFile, Number(rank));
         setLoading(false)
         setIsModalOpen(false);
         window.location.reload()
@@ -46,7 +48,7 @@ export default function TVForm() {
     return (
         <div className={`flex flex-col w-full items-center justify-center xs:hidden sm:block`}>
             <div className={`flex flex-row w-full justify-end`}>
-                <label onClick={e => setIsModalOpen(true)} className="flex items-center gap-2 self-start pl-3 mr-4 py-2 bg-black border border-white text-white rounded-full hover:bg-white hover:text-black transition duration-300 cursor-pointer">
+                <label onClick={() => setIsModalOpen(true)} className="flex items-center gap-2 self-start pl-3 mr-4 py-2 bg-black border border-white text-white rounded-full hover:bg-white hover:text-black transition duration-300 cursor-pointer">
                     Add TV Show
                     <PlusIcon className="w-5 h-5 mr-2" />
                 </label>
@@ -82,7 +84,7 @@ export default function TVForm() {
                                             className="w-full bg-transparent text-2xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
                                             placeholder="TV Show Name"
                                             value={name}
-                                            onFocus={e => setNameFocus(true)}
+                                            onFocus={() => setNameFocus(true)}
                                             onBlur={() => setNameFocus(false)}
                                             onChange={(e) => setName(e.target.value)}
                                         />
@@ -97,7 +99,7 @@ export default function TVForm() {
                                             className="w-full bg-transparent text-2xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
                                             placeholder="Director"
                                             value={director}
-                                            onFocus={e => setDirectorFocus(true)}
+                                            onFocus={() => setDirectorFocus(true)}
                                             onBlur={() => setDirectorFocus(false)}
                                             onChange={(e) => setDirector(e.target.value)}
                                         />
@@ -111,7 +113,7 @@ export default function TVForm() {
                                             className="w-full bg-transparent text-2xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
                                             placeholder="Comments"
                                             value={comments}
-                                            onFocus={e => setCommentFocus(true)}
+                                            onFocus={() => setCommentFocus(true)}
                                             onBlur={() => setCommentFocus(false)}
                                             onChange={(e) => setComments(e.target.value)}
                                             rows={3} 
@@ -127,7 +129,7 @@ export default function TVForm() {
                                             className="w-full bg-transparent text-2xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
                                             placeholder="Rank"
                                             value={rank}
-                                            onFocus={e => setRankFocus(true)}
+                                            onFocus={() => setRankFocus(true)}
                                             onBlur={() => setRankFocus(false)}
                                             onChange={(e) => setRank(e.target.value)}
                                         />

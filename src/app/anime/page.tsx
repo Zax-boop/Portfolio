@@ -12,10 +12,17 @@ import SignInForm from '../components/signIn';
 import UpdateAnimeModal from '../components/updateAnime';
 
 export default function Anime() {
-    const [animeList, setAnimeList] = useState<any>([]);
+    const [animeList, setAnimeList] = useState<{
+        name: string;
+        studio: string;
+        comments: string;
+        image: string;
+        rank: number;
+        id: string;
+    }[]>();
     const [loading, setLoading] = useState(true);
     const [isLoading, setIsLoading] = useState(true)
-    const animeRefs = useRef<any>([]);
+    const animeRefs = useRef<React.RefObject<HTMLDivElement>[]>([]);
     const videoRef = useRef<HTMLVideoElement>(null);
     useEffect(() => {
         const getAnime = async () => {
@@ -30,12 +37,14 @@ export default function Anime() {
         getAnime();
     }, []);
 
-    const scrollToAnime = (index: any) => {
+    const scrollToAnime = (index: number) => {
         if (animeRefs.current[index]) {
-            animeRefs.current[index].current.scrollIntoView({
-                behavior: "smooth",
-                block: "center",
-            });
+            if (animeRefs.current[index].current) {
+                animeRefs.current[index].current.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center",
+                });
+            }
         }
     };
 
@@ -54,8 +63,8 @@ export default function Anime() {
                         autoPlay
                         loop
                         muted
-                        controls={false} 
-                        playsInline 
+                        controls={false}
+                        playsInline
                         className={`w-full h-full object-fill duration-700 ease-in-out group-hover:opacity-75 ${isLoading
                             ? "scale-110 blur-2xl grayscale"
                             : "scale-100 blur-0 grayscale-0"
@@ -73,8 +82,15 @@ export default function Anime() {
                 <AnimeForm />
                 <p className='xs:text-xs sm:text-base sm:mt-2 xl:mt-0 xs:mb-1 sm:mb-0'>*Disclaimer: This is just my opinion and what I enjoyed watching the most regardless of critical bias.</p>
                 <hr className="border-t border-gray-300" />
-                {animeList.map((anime: any, index: number) => (
-                    <FadeInSection key={anime.id || `${anime.name}-${anime.artist}-${index}`}
+                {animeList?.map((anime: {
+                    name: string;
+                    studio: string;
+                    comments: string;
+                    image: string;
+                    rank: number;
+                    id: string;
+                }, index: number) => (
+                    <FadeInSection key={anime.id || `${anime.name}-${anime.studio}-${index}`}
                         ref={animeRefs.current[index]}
                         className="flex flex-col xl:space-y-4 xs:mt-4 xl:mt-8">
                         <div className="flex flex-row">
@@ -86,7 +102,7 @@ export default function Anime() {
                                     ? "scale-110 blur-2xl grayscale"
                                     : "scale-100 blur-0 grayscale-0"
                                     }`}
-                                onLoadedData={e => setIsLoading(false)}
+                                onLoadedData={() => setIsLoading(false)}
                             />
                             <div className='xs:ml-2 sm:ml-4 w-full'>
                                 <div className='flex flex-row w-full justify-between'>

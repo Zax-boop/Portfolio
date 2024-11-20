@@ -1,11 +1,7 @@
-import React, { useState, useEffect } from "react";
-import Image from "next/image";
+import React, { useEffect } from "react";
 import anime from "animejs";
-import cinema from "../../../public/cinema.jpg";
 
 const SplashScreen = ({ finishLoading }) => {
-    const [isMounted, setIsMounted] = useState(false);
-
     const animate = () => {
         const loader = anime.timeline({
             complete: () => finishLoading(),
@@ -31,7 +27,7 @@ const SplashScreen = ({ finishLoading }) => {
     };
 
     useEffect(() => {
-        const timeout = setTimeout(() => setIsMounted(true), 10);
+        const timeout = setTimeout(() => 10);
         animate();
         return () => clearTimeout(timeout);
     }, []);

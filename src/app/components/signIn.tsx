@@ -21,7 +21,7 @@ export default function SignInForm() {
     getSession();
   }, []);
 
-  const handleSignIn = async (e: any) => {
+  const handleSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     setError('');
@@ -37,10 +37,18 @@ export default function SignInForm() {
     window.location.reload();
   };
 
+  const handleButton = () => {
+    if (!user) {
+      setModalOpen(true)
+    } else {
+      handleSignOut()
+    }
+  }
+
   return (
     <>
         <div className='absolute top-5 xs:hidden sm:block right-4'>
-          <label onClick={e => { !user ? setModalOpen(true) : handleSignOut() }} className="flex flex-row justify-center items-center gap-2 self-start xs:px-2 xl:px-3 xs:py-1.5 xl:py-2 bg-black border border-white text-white rounded-full hover:bg-white hover:text-black transition duration-300 cursor-pointer xs:text-xs sm:text-xs lg:text-sm xl:text-base">
+          <label onClick={() => handleButton()} className="flex flex-row justify-center items-center gap-2 self-start xs:px-2 xl:px-3 xs:py-1.5 xl:py-2 bg-black border border-white text-white rounded-full hover:bg-white hover:text-black transition duration-300 cursor-pointer xs:text-xs sm:text-xs lg:text-sm xl:text-base">
             {!user ? `Sign In` : `Sign Out`}
           </label>
         </div>

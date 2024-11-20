@@ -143,7 +143,7 @@ export default function ProjectSection() {
             <div className='flex flex-col xs:w-full sm:w-[47%] gap-2'>
                 <div className='flex flex-col'>
                     <FadeInSection className='sm:text-2xl xl:text-3xl'>Idle Animation</FadeInSection>
-                    <FadeInSection className='xs:text-xs sm:text-base'>Developed an idle animation for a character using Aseprite</FadeInSection>
+                    <FadeInSection className='xs:text-xs sm:text-base'>Developed an idle animation for a character using Aseprite.</FadeInSection>
                     <FadeInSection className='flex flex-row flex-wrap gap-2 mt-2'>
                         <p className='xs:py-1.5 xs:px-1.5 sm:py-1.5 sm:px-3 xs:text-xs xs:rounded-lg sm:rounded-xl sm:text-base flex flex-row items-center self-start bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Aseprite</p>
                         <p className='xs:py-1.5 xs:px-1.5 sm:py-1.5 sm:px-3 xs:text-xs xs:rounded-lg sm:rounded-xl sm:text-base flex flex-row items-center self-start bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Creativity</p>

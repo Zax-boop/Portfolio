@@ -3,20 +3,29 @@
 import { useState, useEffect } from 'react';
 import updateAnime from '../../../utils/updateAnime';
 import show_placeholder from "../../../public/show_placeholder.svg";
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 import supabase from "../../../utils/supabaseclient";
 import { User } from '@supabase/supabase-js';
 import { Pencil } from 'lucide-react';
 import { useMediaQuery } from 'react-responsive';
 
-export default function UpdateAnimeModal({ anime }: { anime: any }) {
+export default function UpdateAnimeModal({ anime }: {
+    anime: {
+        name: string;
+        studio: string;
+        comments: string;
+        image: string;
+        rank: number;
+        id: string;
+    }
+}) {
     const isTablet = useMediaQuery({ query: '(max-width: 1025px)' })
     const [name, setName] = useState(anime?.name || '');
     const [studio, setStudio] = useState(anime?.studio || '');
     const [comments, setComments] = useState(anime?.comments || '');
-    const [imageFile, setImageFile] = useState(null);
+    const [imageFile, setImageFile] = useState<File | null>(null);
     const [rank, setRank] = useState(anime?.rank || '');
-    const [coverImage, setCoverImage] = useState<any>(anime?.image || show_placeholder);
+    const [coverImage, setCoverImage] = useState<string | StaticImageData>(anime?.image || show_placeholder);
     const [loading, setLoading] = useState(false);
     const [modalOpen, setModalOpen] = useState(false)
     const [user, setUser] = useState<User | null>(null);
@@ -39,13 +48,15 @@ export default function UpdateAnimeModal({ anime }: { anime: any }) {
         }
     }, [anime]);
 
-    const handleFileChange = (e: any) => {
-        setImageFile(e.target.files[0]);
-        const url = URL.createObjectURL(e.target.files[0]);
-        setCoverImage(url);
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files) {
+            setImageFile(e.target.files[0]);
+            const url = URL.createObjectURL(e.target.files[0]);
+            setCoverImage(url);
+        }
     };
 
-    const handleSubmit = async (e: any) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setLoading(true);
 
@@ -63,19 +74,19 @@ export default function UpdateAnimeModal({ anime }: { anime: any }) {
         } finally {
             setLoading(false);
             setModalOpen(false)
-            window.location.reload(); 
+            window.location.reload();
         }
     };
 
     return (
         <div className={`flex flex-col w-full items-center justify-center xs:hidden sm:block`}>
-            <div onClick={e => setModalOpen(true)} className='hover:bg-blue-400 cursor-pointer transition duration-300 ease-in-out p-1 rounded-lg self-start'>
-                <Pencil/>
+            <div onClick={() => setModalOpen(true)} className='hover:bg-blue-400 cursor-pointer transition duration-300 ease-in-out p-1 rounded-lg self-start'>
+                <Pencil />
             </div>
             {modalOpen && <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
                 <div className="bg-black w-full sm:max-w-[40rem] xl:max-w-[50rem] sm:p-2 xl:p-4 rounded-lg shadow-lg relative">
                     <button
-                        className="absolute top-2 right-2 text-gray-500 hover:text-gray-800" onClick={e => setModalOpen(false)}
+                        className="absolute top-2 right-2 text-gray-500 hover:text-gray-800" onClick={() => setModalOpen(false)}
                     >
                         ✕
                     </button>
@@ -131,37 +142,37 @@ export default function UpdateAnimeModal({ anime }: { anime: any }) {
                             </div>
                         </div>
                         <div className='flex flex-col w-full items-center'>
-                        {!user && <p className=' text-red-600 sm:text-[0.5rem] xl:text-base'>You are not authenticated.</p>}
-                        <button
-                            type="submit"
-                            className={`w-full sm:py-1 xl:py-2 sm:text-xs xl:text-base flex flex-row justify-center bg-blue-600 text-white rounded-md hover:bg-blue-700 transition ${(loading || !user) && `opacity-70`}`}
-                            disabled={loading || !user}
-                        >
-                            {loading ? (
-                                <svg
-                                    className="animate-spin h-5 w-5 text-black"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <circle
-                                        className="opacity-25"
-                                        cx="12"
-                                        cy="12"
-                                        r="10"
-                                        stroke="currentColor"
-                                        strokeWidth="4"
-                                    ></circle>
-                                    <path
-                                        className="opacity-75"
-                                        fill="currentColor"
-                                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.963 7.963 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                                    ></path>
-                                </svg>
-                            ) : (
-                                "Update Anime"
-                            )}
-                        </button>
+                            {!user && <p className=' text-red-600 sm:text-[0.5rem] xl:text-base'>You are not authenticated.</p>}
+                            <button
+                                type="submit"
+                                className={`w-full sm:py-1 xl:py-2 sm:text-xs xl:text-base flex flex-row justify-center bg-blue-600 text-white rounded-md hover:bg-blue-700 transition ${(loading || !user) && `opacity-70`}`}
+                                disabled={loading || !user}
+                            >
+                                {loading ? (
+                                    <svg
+                                        className="animate-spin h-5 w-5 text-black"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <circle
+                                            className="opacity-25"
+                                            cx="12"
+                                            cy="12"
+                                            r="10"
+                                            stroke="currentColor"
+                                            strokeWidth="4"
+                                        ></circle>
+                                        <path
+                                            className="opacity-75"
+                                            fill="currentColor"
+                                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.963 7.963 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                                        ></path>
+                                    </svg>
+                                ) : (
+                                    "Update Anime"
+                                )}
+                            </button>
                         </div>
                     </form>
                 </div>

@@ -1,6 +1,5 @@
 "use client"
 
-import localFont from "next/font/local";
 import "./globals.css";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";

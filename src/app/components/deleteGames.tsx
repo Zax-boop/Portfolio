@@ -6,7 +6,7 @@ import deleteGames from "../../../utils/deleteGames";
 import { User } from "@supabase/supabase-js";
 import supabase from "../../../utils/supabaseclient";
 
-export default function DeleteGames({ id, rank }: { id: any; rank: any }) {
+export default function DeleteGames({ id, rank }: { id: string; rank: number }) {
     const [modalOpen, setModalOpen] = useState(false);
     const [loading, setLoading] = useState(false);
     const [user, setUser] = useState<User | null>(null);
@@ -18,11 +18,11 @@ export default function DeleteGames({ id, rank }: { id: any; rank: any }) {
 
         getSession();
     }, []);
-    const handleSubmit = async (e: any) => {
+    const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         setLoading(true);
         try {
-            const result = await deleteGames(id, rank);
+            await deleteGames(id, rank);
             setModalOpen(false);
         } catch (error) {
             console.log("Error deleting game:", error);

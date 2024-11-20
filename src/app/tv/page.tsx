@@ -12,10 +12,17 @@ import DeleteTV from '../components/deleteTV';
 import UpdateTVModal from '../components/updateTV';
 
 export default function TVRanking() {
-    const [tv, setTV] = useState<any>([]);
+    const [tv, setTV] = useState<{
+        name: string;
+        director: string;
+        comments: string;
+        image: string;
+        rank: number;
+        id: string;
+    }[]>([]);
     const [loading, setLoading] = useState(true);
     const [isLoading, setIsLoading] = useState(true)
-    const showRefs = useRef<any>([]);
+    const showRefs = useRef<React.RefObject<HTMLDivElement>[]>([]);
     useEffect(() => {
         const getGames = async () => {
             const data = await fetchTV();
@@ -28,12 +35,14 @@ export default function TVRanking() {
         getGames();
     }, []);
 
-    const scrollToShows = (index: any) => {
+    const scrollToShows = (index: number) => {
         if (showRefs.current[index]) {
-            showRefs.current[index].current.scrollIntoView({
-                behavior: "smooth",
-                block: "center",
-            });
+            if (showRefs.current[index].current) {
+                showRefs.current[index].current.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center",
+                });
+            }
         }
     };
 
@@ -114,7 +123,14 @@ export default function TVRanking() {
                 <TVForm />
                 <p className='xs:text-xs sm:text-base sm:mt-2 xl:mt-0 xs:mb-1 sm:mb-0'>*Disclaimer: This is just my opinion and what I enjoyed watching the most regardless of critical bias. </p>
                 <hr className="border-t border-gray-300" />
-                {tv.map((show: any, index: number) => (
+                {tv.map((show: {
+                    name: string;
+                    director: string;
+                    comments: string;
+                    image: string;
+                    rank: number;
+                    id: string;
+                }, index: number) => (
                     <FadeInSection
                         key={show.id || `${show.name}-${show.director}-${index}`}
                         ref={showRefs.current[index]}
@@ -128,7 +144,7 @@ export default function TVRanking() {
                                     ? "scale-110 blur-2xl grayscale"
                                     : "scale-100 blur-0 grayscale-0"
                                     }`}
-                                onLoad={e => setIsLoading(false)}
+                                onLoad={() => setIsLoading(false)}
                             />
                             <div className='xs:ml-2 sm:ml-4 w-full'>
                                 <div className='flex flex-row w-full justify-between'>

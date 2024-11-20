@@ -15,8 +15,14 @@ import { useMediaQuery } from "react-responsive";
 
 export default function Climbing() {
     const isMobile = useMediaQuery({ query: '(max-width: 650px)' })
-    const [mediaFiles, setMediaFiles] = useState<any[]>([]);
-    const [loadingStates, setLoadingStates] = useState<boolean[]>([]);
+    const [mediaFiles, setMediaFiles] = useState<{
+        name: string;
+        url: {
+            data: {
+                publicUrl: string;
+            };
+        };
+    }[]>([]);
     const [loading, setLoading] = useState(true);
     const [showWarning, setShowWarning] = useState(false)
     const [user, setUser] = useState<User | null>(null);
@@ -32,26 +38,19 @@ export default function Climbing() {
         const fetchMedia = async () => {
             const media = await fetchClimbingMedia();
             setMediaFiles(media);
-            setLoadingStates(new Array(media.length).fill(false));
         };
 
         fetchMedia();
     }, []);
 
-    const handleFileChange = async (event: any) => {
-        const file = event.target.files[0];
-        if (file) {
-            const mediaURL = await addClimbingMedia(file);
-            window.location.reload()
+    const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target.files) {
+            const file = event.target.files[0];
+            if (file) {
+                await addClimbingMedia(file);
+                window.location.reload()
+            }
         }
-    };
-
-    const handleLoadedData = (index: number) => {
-        setLoadingStates(prevStates => {
-            const updatedStates = [...prevStates];
-            updatedStates[index] = false;
-            return updatedStates;
-        });
     };
 
     const backgroundVideos = mediaFiles.filter((file) => file.name.endsWith(".mp4")).slice(4, 7);
@@ -83,7 +82,7 @@ export default function Climbing() {
                 <div className="absolute inset-0 bg-black opacity-50"></div>
             </div>
             <div className="flex flex-col w-full xs:mt-2 sm:mt-4 xl:mt-10 self-start">
-                {!isMobile && <div onClick={e => (!user && setShowWarning(true))} className=" flex flex-row w-full justify-end">
+                {!isMobile && <div onClick={() => (!user && setShowWarning(true))} className=" flex flex-row w-full justify-end">
                     <label className="flex items-center gap-2 self-start xs:text-xs xs:pl-2 xs:mr-2 xs:py-1 sm:text-base sm:pl-3 sm:mr-4 sm:py-2 bg-black border border-white text-white rounded-full hover:bg-white hover:text-black transition duration-300 cursor-pointer">
                         Add Media
                         <PlusIcon className="w-5 h-5 mr-2" />

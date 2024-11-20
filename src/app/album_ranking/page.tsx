@@ -12,10 +12,17 @@ import SignInForm from '../components/signIn';
 import UpdateAlbumModal from '../components/updateAlbum';
 
 export default function Albums() {
-    const [albums, setAlbums] = useState<any>([]);
+    const [albums, setAlbums] = useState<{
+        name: string;
+        artist: string;
+        comment: string;
+        image: string;
+        Rank: number;
+        id: string;
+    }[]>();
     const [loading, setLoading] = useState(true);
     const [isLoading, setIsLoading] = useState(true);
-    const albumRefs = useRef<any>([]);
+    const albumRefs = useRef<React.RefObject<HTMLDivElement>[]>([]);
 
     useEffect(() => {
         const getAlbums = async () => {
@@ -30,12 +37,14 @@ export default function Albums() {
         getAlbums();
     }, []);
 
-    const scrollToAlbum = (index: any) => {
+    const scrollToAlbum = (index: number) => {
         if (albumRefs.current[index]) {
-            albumRefs.current[index].current.scrollIntoView({
-                behavior: "smooth",
-                block: "center",
-            });
+            if (albumRefs.current[index].current) {
+                albumRefs.current[index].current.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center",
+                });
+            }
         }
     };
 
@@ -55,8 +64,8 @@ export default function Albums() {
                             autoPlay
                             loop
                             muted
-                            controls={false} 
-                            playsInline 
+                            controls={false}
+                            playsInline
                             className={`w-full h-1/2 object-fill duration-700 ease-in-out group-hover:opacity-75 ${isLoading
                                 ? "scale-110 blur-2xl grayscale"
                                 : "scale-100 blur-0 grayscale-0"
@@ -68,8 +77,8 @@ export default function Albums() {
                             autoPlay
                             loop
                             muted
-                            controls={false} 
-                            playsInline 
+                            controls={false}
+                            playsInline
                             className={`w-full h-1/2 object-fill duration-700 ease-in-out group-hover:opacity-75 ${isLoading
                                 ? "scale-110 blur-2xl grayscale"
                                 : "scale-100 blur-0 grayscale-0"
@@ -83,8 +92,8 @@ export default function Albums() {
                         autoPlay
                         loop
                         muted
-                        controls={false} 
-                        playsInline 
+                        controls={false}
+                        playsInline
                         className={`w-1/3 h-full object-cover duration-700 ease-in-out group-hover:opacity-75 ${isLoading
                             ? "scale-110 blur-2xl grayscale"
                             : "scale-100 blur-0 grayscale-0"
@@ -96,8 +105,8 @@ export default function Albums() {
                         autoPlay
                         loop
                         muted
-                        controls={false} 
-                        playsInline 
+                        controls={false}
+                        playsInline
                         className={`w-1/3 h-full object-cover duration-700 ease-in-out group-hover:opacity-75 ${isLoading
                             ? "scale-110 blur-2xl grayscale"
                             : "scale-100 blur-0 grayscale-0"
@@ -115,7 +124,14 @@ export default function Albums() {
                 <AlbumForm />
                 <p className='xs:text-xs sm:text-base sm:mt-2 xl:mt-0 xs:mb-1 sm:mb-0'>*Disclaimer: This is just my opinion and what I enjoyed listening to the most regardless of critical bias.</p>
                 <hr className="border-t border-gray-300" />
-                {albums.map((album: any, index: any) => (
+                {albums?.map((album: {
+                    name: string;
+                    artist: string;
+                    comment: string;
+                    image: string;
+                    Rank: number;
+                    id: string;
+                }, index: number) => (
                     <FadeInSection
                         key={album.id || `${album.name}-${album.artist}-${index}`}
                         ref={albumRefs.current[index]}

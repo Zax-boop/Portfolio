@@ -2,7 +2,6 @@
 
 import { useEffect, useState, useRef } from "react";
 import PoppingLetters from "./components/poppingLetters";
-import { usePathname } from "next/navigation";
 import linkedin_logo from "../../public/linkedinLogo.png";
 import github_logo from "../../public/github_logo.png";
 import Image from "next/image";
@@ -24,7 +23,6 @@ import Link from "next/link";
 const videos = ["/hatch_demo.mov", "/addAlbum.mov", "/colombo_demo.mov"];
 
 export default function Home() {
-  const pathname = usePathname();
   const [timer, setTimer] = useState(false);
   const lineRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -96,7 +94,6 @@ export default function Home() {
 
     return () => window.removeEventListener("scroll", scroll);
   }, []);
-  const videoRef = useRef<HTMLVideoElement>(null);
   return (
     <div className={`flex flex-col w-full h-full items-center`}>
       <SignInForm />

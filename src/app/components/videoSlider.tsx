@@ -40,7 +40,7 @@ export default function VideoSlider({ videos }: VideoSliderProps): JSX.Element {
 
   useEffect(() => {
     if (videoRef.current && timer) {
-      var playPromise = videoRef.current.play();
+      videoRef.current.play();
     }
   }, [currentIndex]);
   return (

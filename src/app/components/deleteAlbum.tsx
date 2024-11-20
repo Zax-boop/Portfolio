@@ -6,7 +6,7 @@ import deleteAlbum from "../../../utils/deleteAlbum";
 import supabase from "../../../utils/supabaseclient"
 import { User } from '@supabase/supabase-js';
 
-export default function DeleteAlbum({ id, Rank }: { id: any; Rank: any }) {
+export default function DeleteAlbum({ id, Rank }: { id: string; Rank: number }) {
     const [modalOpen, setModalOpen] = useState(false);
     const [loading, setLoading] = useState(false); 
     const [user, setUser] = useState<User | null>(null);
@@ -19,11 +19,11 @@ export default function DeleteAlbum({ id, Rank }: { id: any; Rank: any }) {
       getSession();
     }, []);
 
-    const handleSubmit = async (e: any) => {
+    const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         setLoading(true);
         try {
-            const result = await deleteAlbum(id, Rank);
+            await deleteAlbum(id, Rank);
             setModalOpen(false); 
         } catch (error) {
             console.log("Error deleting album:", error);

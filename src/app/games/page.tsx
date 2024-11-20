@@ -12,10 +12,17 @@ import DeleteGames from '../components/deleteGames';
 import UpdateGamesModal from '../components/updateGames';
 
 export default function GamesRanking() {
-    const [games, setGames] = useState<any>([]);
+    const [games, setGames] = useState<{
+        name: string;
+        studio: string;
+        image: string;
+        comments: string;
+        rank: number;
+        id: string;
+    }[]>([]);
     const [loading, setLoading] = useState(true);
     const [isLoading, setIsLoading] = useState(true)
-    const gameRefs = useRef<any>([]);
+    const gameRefs = useRef<React.RefObject<HTMLDivElement>[]>([]);
 
     useEffect(() => {
         const getGames = async () => {
@@ -30,12 +37,14 @@ export default function GamesRanking() {
         getGames();
     }, []);
 
-    const scrollToGames = (index: any) => {
+    const scrollToGames = (index: number) => {
         if (gameRefs.current[index]) {
-            gameRefs.current[index].current.scrollIntoView({
-                behavior: "smooth",
-                block: "center",
-            });
+            if (gameRefs.current[index].current) {
+                gameRefs.current[index].current.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center",
+                });
+            }
         }
     };
 
@@ -46,7 +55,7 @@ export default function GamesRanking() {
     return (
         <div className='flex flex-col w-full h-full items-center'>
             <Header />
-            <SignInForm/>
+            <SignInForm />
             <div className="relative flex items-center justify-center w-full xs:h-[15rem] sm:h-[30rem] xl:h-[80vh] xs:mt-4 sm:mt-10 overflow-hidden">
                 <div className="absolute inset-0 flex w-full h-full overflow-hidden">
                     <div className='w-1/3 h-full'>
@@ -55,8 +64,8 @@ export default function GamesRanking() {
                             autoPlay
                             loop
                             muted
-                            controls={false} 
-                            playsInline 
+                            controls={false}
+                            playsInline
                             className={`w-full h-1/2 object-fill duration-700 ease-in-out group-hover:opacity-75 ${isLoading
                                 ? "scale-110 blur-2xl grayscale"
                                 : "scale-100 blur-0 grayscale-0"
@@ -68,8 +77,8 @@ export default function GamesRanking() {
                             autoPlay
                             loop
                             muted
-                            controls={false} 
-                            playsInline 
+                            controls={false}
+                            playsInline
                             className={`w-full h-1/2 object-fill duration-700 ease-in-out group-hover:opacity-75 ${isLoading
                                 ? "scale-110 blur-2xl grayscale"
                                 : "scale-100 blur-0 grayscale-0"
@@ -83,8 +92,8 @@ export default function GamesRanking() {
                             autoPlay
                             loop
                             muted
-                            controls={false} 
-                            playsInline 
+                            controls={false}
+                            playsInline
                             className={`w-full h-1/2 object-fill duration-700 ease-in-out group-hover:opacity-75 ${isLoading
                                 ? "scale-110 blur-2xl grayscale"
                                 : "scale-100 blur-0 grayscale-0"
@@ -96,8 +105,8 @@ export default function GamesRanking() {
                             autoPlay
                             loop
                             muted
-                            controls={false} 
-                            playsInline 
+                            controls={false}
+                            playsInline
                             className={`w-full h-1/2 object-fill duration-700 ease-in-out group-hover:opacity-75 ${isLoading
                                 ? "scale-110 blur-2xl grayscale"
                                 : "scale-100 blur-0 grayscale-0"
@@ -111,8 +120,8 @@ export default function GamesRanking() {
                             autoPlay
                             loop
                             muted
-                            controls={false} 
-                            playsInline 
+                            controls={false}
+                            playsInline
                             className={`w-full h-1/2 object-fill duration-700 ease-in-out group-hover:opacity-75 ${isLoading
                                 ? "scale-110 blur-2xl grayscale"
                                 : "scale-100 blur-0 grayscale-0"
@@ -124,8 +133,8 @@ export default function GamesRanking() {
                             autoPlay
                             loop
                             muted
-                            controls={false} 
-                            playsInline 
+                            controls={false}
+                            playsInline
                             className={`w-full h-1/2 object-fill duration-700 ease-in-out group-hover:opacity-75 ${isLoading
                                 ? "scale-110 blur-2xl grayscale"
                                 : "scale-100 blur-0 grayscale-0"
@@ -141,34 +150,41 @@ export default function GamesRanking() {
                 <ImageTrack data={games} onImageClick={scrollToGames} />
             </div>
             <div className="flex flex-col xs:w-[95%] sm:w-4/5 xs:mt-2 sm:mt-8">
-                <GameForm/>
+                <GameForm />
                 <p className='xs:text-xs sm:text-base sm:mt-2 xl:mt-0 xs:mb-1 sm:mb-0'>*Disclaimer: This is just my opinion and what I enjoyed playing the most regardless of critical bias. </p>
                 <hr className="border-t border-gray-300" />
-                {games.map((game: any, index: number) => (
-                    <FadeInSection 
-                    key={game.id || `${game.name}-${game.studio}-${index}`} 
-                    ref={gameRefs.current[index]}
-                    className="flex flex-col xl:space-y-4 xs:mt-4 xl:mt-8">
+                {games.map((game: {
+                    name: string;
+                    studio: string;
+                    image: string;
+                    comments: string;
+                    rank: number;
+                    id: string;
+                }, index: number) => (
+                    <FadeInSection
+                        key={game.id || `${game.name}-${game.studio}-${index}`}
+                        ref={gameRefs.current[index]}
+                        className="flex flex-col xl:space-y-4 xs:mt-4 xl:mt-8">
                         <div className="flex flex-row">
                             <h2 className="xs:text-base sm:text-lg xl:text-xl font-semibold xs:mr-1 sm:mr-2 xl:mr-4">{game.rank}.</h2>
                             <img
                                 src={game.image}
                                 alt={`${game.name} album cover`}
                                 className={`xs:w-[10rem] xs:h-[10rem] sm:w-[15rem] sm:h-[15rem] xl:w-[30rem] xl:h-[30rem] xs:min-w-[10rem] xs:min-h-[10rem] sm:min-w-[15rem] sm:min-h-[15rem] xl:min-w-[30rem] xl:min-h-[30rem] object-cover mb-4 transform transition-transform hover:scale-105 duration-300 ${isLoading
-                            ? "scale-110 blur-2xl grayscale"
-                            : "scale-100 blur-0 grayscale-0"
-                            }`}
-                                onLoadedData={e => setIsLoading(false)}
+                                    ? "scale-110 blur-2xl grayscale"
+                                    : "scale-100 blur-0 grayscale-0"
+                                    }`}
+                                onLoadedData={() => setIsLoading(false)}
                             />
                             <div className='xs:ml-2 sm:ml-4 w-full'>
-                            <div className='flex flex-row w-full justify-between'>
+                                <div className='flex flex-row w-full justify-between'>
                                     <p className="xs:text-xl sm:text-4xl xl:text-6xl text-white">{game.name}</p>
                                     <div className='flex flex-row items-center gap-2'>
                                         <DeleteGames id={game.id} rank={game.rank} />
-                                        <UpdateGamesModal game={game}/>
+                                        <UpdateGamesModal game={game} />
                                     </div>
-                                </div>                              
-                                  <p className="xs:text-base sm:text-lg xl:text-3xl text-gray-400">{game.studio}</p>
+                                </div>
+                                <p className="xs:text-base sm:text-lg xl:text-3xl text-gray-400">{game.studio}</p>
                                 <p className="xs:text-[0.5rem] sm:text-sm xl:text-lg xs:mt-0.5 sm:mt-1 xl:mt-2">{game.comments}</p>
                             </div>
                         </div>

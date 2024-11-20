@@ -6,7 +6,7 @@ import deleteBook from "../../../utils/deleteBook";
 import { User } from "@supabase/supabase-js";
 import supabase from "../../../utils/supabaseclient";
 
-export default function DeleteBook({ id }: { id: any }) {
+export default function DeleteBook({ id }: { id: string }) {
     const [modalOpen, setModalOpen] = useState(false);
     const [loading, setLoading] = useState(false);
     const [user, setUser] = useState<User | null>(null);
@@ -18,11 +18,11 @@ export default function DeleteBook({ id }: { id: any }) {
 
         getSession();
     }, []);
-    const handleSubmit = async (e: any) => {
+    const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         setLoading(true);
         try {
-            const result = await deleteBook(id);
+            await deleteBook(id);
             setModalOpen(false);
         } catch (error) {
             console.log("Error deleting book:", error);
