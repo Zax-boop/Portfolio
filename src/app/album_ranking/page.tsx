@@ -11,31 +11,44 @@ import DeleteAlbum from '../components/deleteAlbum';
 import SignInForm from '../components/signIn';
 import UpdateAlbumModal from '../components/updateAlbum';
 
-export default function Albums() {
-    const [albums, setAlbums] = useState<{
-        name: string;
-        artist: string;
-        comment: string;
-        image: string;
-        Rank: number;
-        id: string;
-    }[]>();
+interface Album {
+    name: string;
+    artist: string;
+    comment: string;
+    image: string;
+    Rank: number;
+    id: string;
+  }
+
+  interface AlbumsProps {
+    albums: Album[];
+  }
+
+export default function Albums({ albums }: AlbumsProps) {
+    // const [albums, setAlbums] = useState<{
+    //     name: string;
+    //     artist: string;
+    //     comment: string;
+    //     image: string;
+    //     Rank: number;
+    //     id: string;
+    // }[]>();
     const [loading, setLoading] = useState(true);
     const [isLoading, setIsLoading] = useState(true);
     const albumRefs = useRef<React.RefObject<HTMLDivElement>[]>([]);
 
-    useEffect(() => {
-        const getAlbums = async () => {
-            const data = await fetchAlbums();
-            if (data) {
-                setAlbums(data);
-                albumRefs.current = data.map(() => React.createRef());
-            }
-            setLoading(false);
-        };
+    // useEffect(() => {
+    //     const getAlbums = async () => {
+    //         const data = await fetchAlbums();
+    //         if (data) {
+    //             setAlbums(data);
+    //             albumRefs.current = data.map(() => React.createRef());
+    //         }
+    //         setLoading(false);
+    //     };
 
-        getAlbums();
-    }, []);
+    //     getAlbums();
+    // }, []);
 
     const scrollToAlbum = (index: number) => {
         if (albumRefs.current[index]) {
@@ -48,9 +61,13 @@ export default function Albums() {
         }
     };
 
-    if (loading) {
+    useEffect(() => {
+        setLoading(false);
+      }, []);
+    
+      if (loading) {
         return <div>Loading...</div>;
-    }
+      }
 
     return (
         <div className='flex flex-col w-full h-full items-center'>
@@ -167,3 +184,13 @@ export default function Albums() {
         </div>
     );
 }
+
+export async function getStaticProps() {
+    const albums = await fetchAlbums();
+    return {
+      props: {
+        albums, 
+      },
+      revalidate: 60, 
+    };
+  }
