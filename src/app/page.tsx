@@ -13,10 +13,12 @@ import ContactSection from "./components/contactSection";
 import SignInForm from "../app/components/signIn"
 import LazyLoader from "./components/lazyLoader";
 import Link from "next/link";
+import { useMediaQuery } from "react-responsive";
 
-const videos = ["/hatch_demo.mov", "/addAlbum.mov", "/colombo_demo.mov"];
+const videos = ["/hatch_demo.mp4", "/addAlbum.mp4", "/colombo_demo.mp4"];
 
 export default function Home() {
+  const isMobile = useMediaQuery({ query: '(max-width: 650px)' })
   const [timer, setTimer] = useState(false);
   const lineRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -92,11 +94,11 @@ export default function Home() {
     <div className={`flex flex-col w-full h-full items-center`}>
       <SignInForm />
       <svg
-        width="100%"
-        height="2000"
-        viewBox="0 0 1000 2000"
+        width={isMobile ? "200" :  "100%"}
+        height={isMobile ? "1000" : "2000"}
+        viewBox={isMobile ? "0 0 500 1000" : "0 0 1000 2000"} 
         fill="none"
-        className="absolute sm:top-[45rem] xl:top-[40rem] left-0 w-full h-auto z-0 squiggle"
+        className="absolute xs:top-[10rem] sm:top-[45rem] xl:top-[40rem] left-0 w-full h-auto z-0 squiggle"
       >
         <path
           d="M-24.5 101C285 315 5.86278 448.291 144.223 631.238C239.404 757.091 559.515 782.846 608.808 617.456C658.101 452.067 497.627 367.073 406.298 426.797C314.968 486.521 263.347 612.858 322.909 865.537C384.086 1125.06 79.3992 1007.94 100 1261.99C144.222 1807.35 819 1325 513 1142.5C152.717 927.625 -45 1916.5 1191.5 1852"
@@ -108,7 +110,7 @@ export default function Home() {
         />
       </svg>
       <header className={`w-4/5 flex flex-col items-start mt-4 xs:py-1 xl:py-3`}>
-        <Link href={"/"} className="font-semibold text-xl cursor-pointer">RA</Link>
+        <Link href={"/"} className="font-semibold text-xl cursor-pointer p-1 rounded-md hover:bg-white hover:text-black transition-all ease-in-out duration-300">RA</Link>
         <div
           ref={lineRef}
           className={`h-[0.1rem] bg-white transition-all duration-700 mt-2 ${isVisible ? "w-full" : "w-0"

@@ -58,19 +58,19 @@ export default function ProjectSection() {
                 </FadeInSection>
                 <FadeInSection className='flex xs:flex-col sm:flex-row flex-wrap w-full mt-4 xs:gap-[2rem] sm:gap-3 justify-between'>
                     <div className='flex xs:w-full sm:w-[47%] flex-col gap-1 items-center'>
-                        <VideoWithPlaceholder ref={videoRef} className='w-full object-cover rounded-xl' src='/addAlbum.mov' />
+                        <VideoWithPlaceholder ref={videoRef} className='w-full object-cover rounded-xl' src='/addAlbum.mp4' />
                         <p className='xs:text-xs sm:text-base'>Example of inserting data</p>
                     </div>
                     <div className='flex xs:w-full sm:w-[47%] flex-col gap-1 items-center'>
-                        <VideoWithPlaceholder ref={videoRef} className='w-full object-cover rounded-xl' src='/removeAlbum.mov' />
+                        <VideoWithPlaceholder ref={videoRef} className='w-full object-cover rounded-xl' src='/removeAlbum.mp4' />
                         <p className='xs:text-xs sm:text-base'>Example of removing data</p>
                     </div>
                     <div className='flex xs:w-full sm:w-[47%] flex-col gap-1 items-center'>
-                        <VideoWithPlaceholder className='w-full object-cover rounded-xl' src='/authEx.mov' />
+                        <VideoWithPlaceholder className='w-full object-cover rounded-xl' src='/authEx.mp4' />
                         <p className='xs:text-xs sm:text-base'>Example of authentication</p>
                     </div>
                     <div className='flex xs:w-full sm:w-[47%] flex-col gap-1 items-center'>
-                        <VideoWithPlaceholder ref={videoRef} className='w-full object-cover rounded-xl' src='/updateEx.mov' />
+                        <VideoWithPlaceholder ref={videoRef} className='w-full object-cover rounded-xl' src='/updateEx.mp4' />
                         <p className='xs:text-xs sm:text-base'>Example of updating data</p>
                     </div>
                 </FadeInSection>
@@ -110,7 +110,7 @@ export default function ProjectSection() {
                         </FadeInSection>
                     </div>
                     <FadeInSection className='w-full'>
-                        <VideoWithPlaceholder className='w-full object-cover rounded-xl' src='/IdleAnimation.mov' />
+                        <VideoWithPlaceholder className='w-full object-cover rounded-xl' src='/IdleAnimation.mp4' />
                     </FadeInSection>
                 </div>
             </div>

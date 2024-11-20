@@ -62,7 +62,7 @@ const ImageTrack = ({ data, onImageClick, width = 'xs:w-[6.67rem] sm:w-[10rem] x
       className="relative xs:h-[10rem] sm:h-[15rem] xl:h-[30rem] w-full overflow-x-scroll"
       ref={trackRef}
       style={{ scrollbarWidth: "none" }}
-      onMouseEnter={() => setIsHovered(true)}
+      // onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="flex gap-[2vmin] select-none">

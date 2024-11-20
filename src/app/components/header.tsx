@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 const Header = () => {
     const pathname = usePathname()
     return <header className={`flex flex-row justify-between items-center mt-4 xs:w-[90%] sm:w-4/5 border-[0.5px] border-[#333] py-2 sm:py-3 xs:px-3 sm:px-6 rounded-full ${pathname === "/" && `animate-borderTransition`} hover:border-white/[0.3] transition-all duration-500 ease-in`}>
-    <Link href={"/"} className="font-semibold xs:text-md sm:text-xl">RA</Link>
+    <Link href={"/"} className="font-semibold xs:text-md sm:text-xl p-1 rounded-md hover:bg-white hover:text-black transition-all ease-in-out duration-300">RA</Link>
     <div className="flex flex-row gap-2 sm:gap-[1rem]">
       <Link href={"/album_ranking"} className="relative group">
         <p className="font-semibold xs:text-[0.5rem] sm:text-base">Albums</p>

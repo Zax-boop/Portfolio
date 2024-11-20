@@ -30,7 +30,9 @@ export default function SignInForm() {
       setError('Invalid credentials, please try again.');
     }
     setLoading(false);
-    window.location.reload();
+    if (user) {
+      window.location.reload();
+    }
   };
   const handleSignOut = async () => {
     await supabase.auth.signOut();

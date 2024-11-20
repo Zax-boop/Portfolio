@@ -51,7 +51,7 @@ export default function ExperienceTimeline() {
                 >
                     <div className='flex flex-col'>
                         <a target='_blank' href='https://colomboai.com/' className="rounded-lg overflow-hidden cursor-pointer">
-                            <VideoWithPlaceholder className='w-full cursor-pointer' src='/colombo_demo.mov' />
+                            <VideoWithPlaceholder className='w-full cursor-pointer' src='/colombo_demo.mp4' />
                         </a>
                         <h1 className='vertical-timeline-element-title !text-3xl !mt-2'>ColomboAI</h1>
                         <p className='!xs:text-xs !xl:text-xl !mt-0 font-medium'>Full Stack Developer</p>
@@ -98,7 +98,7 @@ export default function ExperienceTimeline() {
                             </div>
                         </div>
                         <div className="min-w-[12rem] rounded-[2.1rem] xs:mt-4 sm:mt-0 overflow-hidden">
-                            <VideoWithPlaceholder aspect='aspect-[9/19.5]' className='w-full object-fill rounded-b-[2.1rem]' src='/slip_demo.mov' />
+                            <VideoWithPlaceholder aspect='aspect-[9/19.5]' className='w-full object-fill rounded-b-[2.1rem]' src='/slip_demo.mp4' />
                         </div>
                     </div>
                 </VerticalTimelineElement>
@@ -112,7 +112,7 @@ export default function ExperienceTimeline() {
                 >
                     <div className='flex flex-col'>
                             <a target='_blank' href='https://dev.hatchrecruiting.com/' className="rounded-lg overflow-hidden cursor-pointer">
-                                <VideoWithPlaceholder src='/hatch_demo.mov' className='w-full cursor-pointer'/>
+                                <VideoWithPlaceholder src='/hatch_demo.mp4' className='w-full cursor-pointer'/>
                             </a>
                         <h1 className='vertical-timeline-element-title !text-3xl !mt-2'>Hatch Recruiting</h1>
                         <p className='!text-xl !mt-0 font-medium'>Full Stack Developer</p>
