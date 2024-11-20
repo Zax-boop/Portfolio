@@ -33,7 +33,7 @@ export default function DeleteAlbum({ id, Rank }: { id: any; Rank: any }) {
         }
     };
     return (
-        <div>
+        <div className="xs:hidden sm:block">
             <div
                 onClick={() => setModalOpen(true)}
                 className="hover:bg-red-400 transition duration-300 ease-in-out p-1 rounded-lg self-start"

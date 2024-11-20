@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
-const ImageTrack = ({ data, onImageClick, width = 'w-[20rem]' }) => {
+const ImageTrack = ({ data, onImageClick, width = 'xs:w-[6.67rem] sm:w-[10rem] xl:w-[20rem]' }) => {
   const trackRef = useRef(null);
   const [scrollPercentage, setScrollPercentage] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
@@ -34,7 +34,7 @@ const ImageTrack = ({ data, onImageClick, width = 'w-[20rem]' }) => {
 
   useEffect(() => {
     let animationFrameId;
-    const scrollSpeed = 1; 
+    const scrollSpeed = 2; 
 
     const smoothScroll = () => {
       if (!isHovered && trackRef.current) {
@@ -57,7 +57,7 @@ const ImageTrack = ({ data, onImageClick, width = 'w-[20rem]' }) => {
 
   return (
     <div
-      className="relative h-[30rem] w-full overflow-x-scroll"
+      className="relative xs:h-[10rem] sm:h-[15rem] xl:h-[30rem] w-full overflow-x-scroll"
       ref={trackRef}
       style={{ scrollbarWidth: "none" }}
       onMouseEnter={() => setIsHovered(true)}
@@ -71,7 +71,7 @@ const ImageTrack = ({ data, onImageClick, width = 'w-[20rem]' }) => {
             alt={`Climbing media ${index}`}
             width={400}
             height={400}
-            className={`image ${width} h-[30rem] object-cover object-[100%_center] cursor-pointer`}
+            className={`image ${width} xs:h-[10rem] sm:h-[15rem] xl:h-[30rem] object-cover object-[100%_center] cursor-pointer`}
             draggable="false"
             onClick={() => onImageClick(index)}
           />

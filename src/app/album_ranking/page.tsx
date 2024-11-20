@@ -47,7 +47,7 @@ export default function Albums() {
         <div className='flex flex-col w-full h-full items-center'>
             <SignInForm />
             <Header />
-            <div className="relative flex items-center justify-center w-full h-[80vh] mt-10 overflow-hidden">
+            <div className="relative flex items-center justify-center w-full xs:h-[15rem] sm:h-[80vh] xs:mt-4 sm:mt-10 overflow-hidden">
                 <div className="absolute inset-0 flex w-full h-full overflow-hidden">
                     <div className='w-1/3 h-full'>
                         <video
@@ -105,46 +105,46 @@ export default function Albums() {
                         onLoadedData={() => setIsLoading(false)}
                     />
                 </div>
-                <PoppingLetters text="Albums" className="absolute text-white text-6xl font-bold z-10 text-center" />
+                <PoppingLetters text="Albums" className="absolute text-white xs:text-2xl sm:text-6xl font-bold z-10 text-center" />
                 <div className="absolute inset-0 bg-black opacity-50"></div>
             </div>
             <div className='mt-4'>
                 <ImageTrack data={albums} onImageClick={scrollToAlbum} />
             </div>
-            <div className="flex flex-col w-4/5 mt-8">
+            <div className="flex flex-col xs:w-[95%] sm:w-4/5 xs:mt-2 sm:mt-8">
                 <AlbumForm />
-                <p>*Disclaimer: This is just my opinion and what I enjoyed listening to the most regardless of critical bias.</p>
+                <p className='xs:text-xs sm:text-base sm:mt-2 xl:mt-0'>*Disclaimer: This is just my opinion and what I enjoyed listening to the most regardless of critical bias.</p>
                 <hr className="border-t border-gray-300" />
                 {albums.map((album: any, index: any) => (
                     <FadeInSection
                         key={album.id || `${album.name}-${album.artist}-${index}`}
                         ref={albumRefs.current[index]}
-                        className="flex flex-col space-y-4 mt-8"
+                        className="flex flex-col xl:space-y-4 xs:mt-4 xl:mt-8"
                     >
                         <div className="flex flex-row">
-                            <h2 className="text-xl font-semibold mr-4">{album.Rank}.</h2>
+                            <h2 className="xs:text-base sm:text-lg xl:text-xl font-semibold xs:mr-1 sm:mr-2 xl:mr-4">{album.Rank}.</h2>
                             <img
                                 src={album.image}
                                 alt={`${album.name} album cover`}
-                                className={`w-[30rem] h-[30rem] min-w-[30rem] min-h-[30rem] object-cover mb-4 transform transition-transform hover:scale-105 duration-300 ${isLoading
+                                className={`xs:w-[10rem] xs:h-[10rem] sm:w-[15rem] sm:h-[15rem] xl:w-[30rem] xl:h-[30rem] xs:min-w-[10rem] xs:min-h-[10rem] sm:min-w-[15rem] sm:min-h-[15rem] xl:min-w-[30rem] xl:min-h-[30rem] object-cover mb-4 transform transition-transform hover:scale-105 duration-300 ${isLoading
                                     ? "scale-110 blur-2xl grayscale"
                                     : "scale-100 blur-0 grayscale-0"
                                     }`}
                                 onLoad={() => setIsLoading(false)}
                             />
-                            <div className='ml-4 w-full'>
+                            <div className='xs:ml-2 sm:ml-4 w-full'>
                                 <div className='w-full flex flex-row justify-between'>
-                                    <p className="text-6xl text-white">{album.name}</p>
+                                    <p className="xs:text-xl sm:text-4xl xl:text-6xl text-white">{album.name}</p>
                                     <div className='flex flex-row items-center gap-2'>
                                         <DeleteAlbum id={album.id} Rank={album.Rank} />
                                         <UpdateAlbumModal album={album} />
                                     </div>
                                 </div>
-                                <p className="text-3xl text-gray-400">{album.artist}</p>
-                                <p className="text-lg mt-2">{album.comment}</p>
+                                <p className="xs:text-base sm:text-lg text-3xl text-gray-400">{album.artist}</p>
+                                <p className="xs:text-[0.5rem] sm:text-sm xl:text-lg xs:mt-0.5 sm:mt-1 xl:mt-2">{album.comment}</p>
                             </div>
                         </div>
-                        {index < albums.length - 1 && <hr className="border-t border-gray-300 my-4" />}
+                        {index < albums.length - 1 && <hr className="border-t border-gray-300 xs:my-1 sm:my-2 xl:my-4" />}
                     </FadeInSection>
                 ))}
             </div>
