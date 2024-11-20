@@ -67,6 +67,8 @@ export default function Climbing() {
                             autoPlay
                             loop
                             muted
+                            controls={false} 
+                            playsInline 
                             className={`w-1/3 h-full object-cover duration-700 ease-in-out group-hover:opacity-75 ${loading
                                 ? "scale-110 blur-2xl grayscale"
                                 : "scale-100 blur-0 grayscale-0"
@@ -121,6 +123,8 @@ export default function Climbing() {
                                         autoPlay
                                         loop
                                         muted
+                                        controls={false} 
+                                        playsInline 
                                         // onLoadedData={() => handleLoadedData(index)}
                                     />
                                 ) : null}

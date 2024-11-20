@@ -21,6 +21,9 @@ module.exports = {
           '100%': { opacity: 1 },
         },
       },
+      screens: {
+        'xs': '300px', // Example of a custom breakpoint
+      },
       // fontFamily: {
       //   sans: ['var(--font-montserrat)', 'sans-serif'],
       // },

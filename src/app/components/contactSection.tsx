@@ -34,7 +34,7 @@ export default function ContactSection() {
     return (
         <div className="flex flex-col">
             <FadeInSection className="">
-                <p className="text-5xl mt-10">Contact Me</p>
+                <p className="xs:text-2xl sm:text-4xl xl:text-5xl mt-10">Contact Me</p>
                 <div
                     ref={lineRef}
                     className={`h-[0.1rem] bg-white transition-all duration-700 mt-2 ${isVisible ? "w-full" : "w-0"
@@ -45,16 +45,16 @@ export default function ContactSection() {
                 <a
                     href="mailto:rohan.arya01@gmail.com"
                     target="_blank"
-                    className="text-4xl"
+                    className="xs:text-[1rem] sm:text-4xl"
                 >
                     rohan.arya01@gmail.com
                 </a>
                 <span className="absolute -bottom-[0.1rem] left-0 w-0 h-1 bg-white transition-all group-hover:w-full"></span>
 
             </FadeInSection>
-            <FadeInSection className="self-start relative group mt-2">
+            <FadeInSection className="self-start relative group xl:mt-2">
                 <a href="/Resume_Rohan_Arya.pdf" target='_blank'>
-                    <p className="text-4xl">Resume</p>
+                    <p className="xs:text-[1rem] sm:text-[2rem] xl:text-4xl">Resume</p>
                 </a>
                 <span className="absolute -bottom-[0.1rem] left-0 w-0 h-1 bg-white transition-all group-hover:w-full"></span>
             </FadeInSection>
@@ -65,7 +65,7 @@ export default function ContactSection() {
                     href="https://www.linkedin.com/in/rohan-arya/"
                     className="transform transition-transform duration-200 hover:scale-105"
                 >
-                    <Image src={linkedin_logo} className="w-[3rem]" alt="linkedin" />
+                    <Image src={linkedin_logo} className="xs:w-[2rem] sm:w-[3rem]" alt="linkedin" />
                 </a>
 
                 <a
@@ -75,7 +75,7 @@ export default function ContactSection() {
                 >
                     <Image
                         src={github_logo}
-                        className="w-[3rem] bg-white rounded-sm"
+                        className="xs:w-[2rem] sm:w-[3rem] bg-white rounded-sm"
                         alt="github"
                     />
                 </a>

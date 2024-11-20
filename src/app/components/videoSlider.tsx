@@ -44,12 +44,12 @@ export default function VideoSlider({ videos }: VideoSliderProps): JSX.Element {
     }
   }, [currentIndex]);
   return (
-    <div className="relative w-full mx-auto">
-      <div className="relative w-[35rem] h-[20rem] group overflow-hidden">
+    <div className="relative w-full mx-auto xs:mt-4 xl:mt-0">
+      <div className="relative xs:w-[20rem] xs:h-[11.4rem] sm:w-[30rem] sm:h-[16.8rem] xs: xl:w-[35rem] xl:h-[20rem] group overflow-hidden">
         {videos.map((video, index) => (
           <div
             key={index}
-            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+            className={`absolute inset-0 xl:transition-opacity xl:duration-1000 xl:ease-in-out ${
               index === currentIndex ? "opacity-100" : "opacity-0"
             }`}
           >
@@ -59,6 +59,8 @@ export default function VideoSlider({ videos }: VideoSliderProps): JSX.Element {
               className="w-full h-full object-cover rounded-xl"
               muted
               autoPlay
+              controls={false} 
+              playsInline 
               onPlay={(e) => {
                 const videoElement = e.currentTarget;
                 videoElement.playbackRate = 1.5;

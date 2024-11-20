@@ -54,6 +54,8 @@ export default function Anime() {
                         autoPlay
                         loop
                         muted
+                        controls={false} 
+                        playsInline 
                         className={`w-full h-full object-fill duration-700 ease-in-out group-hover:opacity-75 ${isLoading
                             ? "scale-110 blur-2xl grayscale"
                             : "scale-100 blur-0 grayscale-0"

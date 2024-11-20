@@ -33,13 +33,13 @@ export default function ExperienceTimeline() {
     }, []);
     return (
         <div className='mt-10'>
-            <FadeInSection className="w-full flex flex-row justify-center items-center text-5xl">Work Experience</FadeInSection>
+            <FadeInSection className="w-full flex flex-row justify-center items-center xs:text-2xl sm:text-4xl xl:text-5xl">Work Experience</FadeInSection>
             <div
                 ref={lineRef}
                 className={`h-[0.1rem] bg-white transition-all duration-700 mt-2 ${isVisible ? "w-full" : "w-0"
                     }`}
             />
-            <VerticalTimeline>
+            <VerticalTimeline className='!mt-4'>
                 <VerticalTimelineElement
                     className="vertical-timeline-element--work"
                     contentStyle={{ background: 'rgb(33, 150, 243)', color: '#fff', padding: '12px' }}
@@ -56,10 +56,12 @@ export default function ExperienceTimeline() {
                                 autoPlay
                                 loop
                                 muted
+                                controls={false} 
+                                playsInline 
                             />
                         </a>
                         <h1 className='vertical-timeline-element-title !text-3xl !mt-2'>ColomboAI</h1>
-                        <p className='!text-xl !mt-0 font-medium'>Full Stack Developer</p>
+                        <p className='!xs:text-xs !xl:text-xl !mt-0 font-medium'>Full Stack Developer</p>
                         <p className='!mt-0'>Developed social media application with Flutter and Dart for mobile development and Next.js and Tailwind CSS for desktop. Implemented secure authentication using Firebase Authentication. Designed SQL queries for managing large-scale data models and utilized Java to create and consume RESTful services for seamless communication across the stack.</p>
                         <div className="relative group self-start cursor-pointer">
                             <a target='_blank' href="https://colomboai.com/">
@@ -86,11 +88,11 @@ export default function ExperienceTimeline() {
                     contentStyle={{ background: 'white', color: 'black', padding: '12px' }}
                     contentArrowStyle={{ borderRight: '7px solid white' }}
                     date="May 2024 - September 2024"
-                    dateClassName='text-white'
+                    dateClassName='text-white xs:text-black'
                     iconStyle={{ background: 'black', color: '#fff' }}
                     icon={<BriefcaseIcon />}
                 >
-                    <div className='flex flex-row'>
+                    <div className='flex xs:flex-col sm:flex-row'>
                         <div className='flex flex-col'>
                             <h1 className='vertical-timeline-element-title !text-3xl !mt-2'>Stealth Startup</h1>
                             <p className='!text-xl !mt-0 font-medium'>Full Stack Developer</p>
@@ -102,13 +104,15 @@ export default function ExperienceTimeline() {
                                 <p className='!mt-0 py-1.5 px-3 rounded-xl bg-black text-white hover:opacity-70 transition duration-300 ease-in-out'>Firebase</p>
                             </div>
                         </div>
-                        <div className="min-w-[12rem] rounded-[2.1rem] overflow-hidden">
+                        <div className="min-w-[12rem] rounded-[2.1rem] xs:mt-4 sm:mt-0 overflow-hidden">
                             <video
                                 src="/slip_demo.mov"
                                 className="w-full object-fill rounded-b-[2.1rem]"
                                 autoPlay
                                 loop
                                 muted
+                                controls={false} 
+                                playsInline 
                             />
                         </div>
                     </div>
@@ -129,6 +133,8 @@ export default function ExperienceTimeline() {
                                 autoPlay
                                 loop
                                 muted
+                                controls={false} 
+                                playsInline 
                             />
                         </a>
                         <h1 className='vertical-timeline-element-title !text-3xl !mt-2'>Hatch Recruiting</h1>

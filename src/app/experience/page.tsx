@@ -70,6 +70,8 @@ export default function experience() {
                   autoPlay
                   loop
                   muted
+                  controls={false} 
+                  playsInline 
                 />
               </a>
               <a target='_blank' href='https://colomboai.com/' style={{ cursor: 'pointer' }} className="cursor-pointer text-[#5454d0] underline">https://colomboai.com/</a>
@@ -102,6 +104,8 @@ export default function experience() {
                 autoPlay
                 loop
                 muted
+                controls={false} 
+                playsInline 
               />
             </a>
             <a target='_blank' href='https://dev.hatchrecruiting.com/' style={{ cursor: 'pointer' }} className="cursor-pointer text-[#5454d0] underline">https://dev.hatchrecruiting.com/</a>
@@ -134,6 +138,8 @@ export default function experience() {
                 autoPlay
                 loop
                 muted
+                controls={false} 
+                playsInline 
               />
             </div>
           </div>

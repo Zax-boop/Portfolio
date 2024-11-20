@@ -55,6 +55,8 @@ export default function GamesRanking() {
                             autoPlay
                             loop
                             muted
+                            controls={false} 
+                            playsInline 
                             className={`w-full h-1/2 object-fill duration-700 ease-in-out group-hover:opacity-75 ${isLoading
                                 ? "scale-110 blur-2xl grayscale"
                                 : "scale-100 blur-0 grayscale-0"
@@ -66,6 +68,8 @@ export default function GamesRanking() {
                             autoPlay
                             loop
                             muted
+                            controls={false} 
+                            playsInline 
                             className={`w-full h-1/2 object-fill duration-700 ease-in-out group-hover:opacity-75 ${isLoading
                                 ? "scale-110 blur-2xl grayscale"
                                 : "scale-100 blur-0 grayscale-0"
@@ -79,6 +83,8 @@ export default function GamesRanking() {
                             autoPlay
                             loop
                             muted
+                            controls={false} 
+                            playsInline 
                             className={`w-full h-1/2 object-fill duration-700 ease-in-out group-hover:opacity-75 ${isLoading
                                 ? "scale-110 blur-2xl grayscale"
                                 : "scale-100 blur-0 grayscale-0"
@@ -90,6 +96,8 @@ export default function GamesRanking() {
                             autoPlay
                             loop
                             muted
+                            controls={false} 
+                            playsInline 
                             className={`w-full h-1/2 object-fill duration-700 ease-in-out group-hover:opacity-75 ${isLoading
                                 ? "scale-110 blur-2xl grayscale"
                                 : "scale-100 blur-0 grayscale-0"
@@ -103,6 +111,8 @@ export default function GamesRanking() {
                             autoPlay
                             loop
                             muted
+                            controls={false} 
+                            playsInline 
                             className={`w-full h-1/2 object-fill duration-700 ease-in-out group-hover:opacity-75 ${isLoading
                                 ? "scale-110 blur-2xl grayscale"
                                 : "scale-100 blur-0 grayscale-0"
@@ -114,6 +124,8 @@ export default function GamesRanking() {
                             autoPlay
                             loop
                             muted
+                            controls={false} 
+                            playsInline 
                             className={`w-full h-1/2 object-fill duration-700 ease-in-out group-hover:opacity-75 ${isLoading
                                 ? "scale-110 blur-2xl grayscale"
                                 : "scale-100 blur-0 grayscale-0"
