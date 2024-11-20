@@ -40,7 +40,7 @@ export default function SignInForm() {
   return (
     <>
         <div className='absolute top-5 xs:hidden sm:block right-4'>
-          <label onClick={e => { !user ? setModalOpen(true) : handleSignOut() }} className="flex flex-row justify-center items-center gap-2 self-start px-3 py-2 bg-black border border-white text-white rounded-full hover:bg-white hover:text-black transition duration-300 cursor-pointer xs:text-xs md:text-sm lg:text-sm xl:text-base">
+          <label onClick={e => { !user ? setModalOpen(true) : handleSignOut() }} className="flex flex-row justify-center items-center gap-2 self-start xs:px-2 xl:px-3 xs:py-1.5 xl:py-2 bg-black border border-white text-white rounded-full hover:bg-white hover:text-black transition duration-300 cursor-pointer xs:text-xs sm:text-xs lg:text-sm xl:text-base">
             {!user ? `Sign In` : `Sign Out`}
           </label>
         </div>

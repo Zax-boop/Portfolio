@@ -67,7 +67,7 @@ export default function ExperienceTimeline() {
                             <a target='_blank' href="https://colomboai.com/">
                                 <p className='!mt-0 !font-semibold'>Visit Website</p>
                             </a>
-                            <span className="absolute -bottom-[0.1rem] left-0 w-0 h-1 bg-white transition-all group-hover:w-full"></span>
+                            <span className="absolute xs:-bottom-[0.075rem] sm:-bottom-[0.1rem] left-0 w-0 xs:h-[0.1rem] sm:h-1 bg-white transition-all group-hover:w-full"></span>
                         </div>
                         <div className='flex flex-row flex-wrap !mt-2 gap-2'>
                             <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Flutter</p>
@@ -145,7 +145,7 @@ export default function ExperienceTimeline() {
                             <a target='_blank' href="https://dev.hatchrecruiting.com/">
                                 <p className='!mt-0 !font-semibold'>Visit Website</p>
                             </a>
-                            <span className="absolute -bottom-[0.1rem] left-0 w-0 h-1 bg-white transition-all group-hover:w-full"></span>
+                            <span className="absolute xs:-bottom-[0.075rem] sm:-bottom-[0.1rem] left-0 w-0 xs:h-[0.1rem] sm:h-1 bg-white transition-all group-hover:w-full"></span>
                         </div>
                         <div className='flex flex-row flex-wrap !mt-2 gap-2'>
                             <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Python</p>

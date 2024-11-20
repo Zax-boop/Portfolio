@@ -1,8 +1,10 @@
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import "@fortawesome/fontawesome-free/css/all.min.css";
+import { useMediaQuery } from "react-responsive";
 
 const ImageTrack = ({ data, onImageClick, width = 'xs:w-[6.67rem] sm:w-[10rem] xl:w-[20rem]' }) => {
+  const isMobile = useMediaQuery({ query: '(max-width: 650px)' })
   const trackRef = useRef(null);
   const [scrollPercentage, setScrollPercentage] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
@@ -34,7 +36,7 @@ const ImageTrack = ({ data, onImageClick, width = 'xs:w-[6.67rem] sm:w-[10rem] x
 
   useEffect(() => {
     let animationFrameId;
-    const scrollSpeed = 2; 
+    const scrollSpeed = (isMobile ? 1.5 : 2); 
 
     const smoothScroll = () => {
       if (!isHovered && trackRef.current) {

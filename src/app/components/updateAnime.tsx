@@ -7,8 +7,10 @@ import Image from 'next/image';
 import supabase from "../../../utils/supabaseclient";
 import { User } from '@supabase/supabase-js';
 import { Pencil } from 'lucide-react';
+import { useMediaQuery } from 'react-responsive';
 
 export default function UpdateAnimeModal({ anime }: { anime: any }) {
+    const isTablet = useMediaQuery({ query: '(max-width: 1025px)' })
     const [name, setName] = useState(anime?.name || '');
     const [studio, setStudio] = useState(anime?.studio || '');
     const [comments, setComments] = useState(anime?.comments || '');
@@ -71,24 +73,24 @@ export default function UpdateAnimeModal({ anime }: { anime: any }) {
                 <Pencil/>
             </div>
             {modalOpen && <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-                <div className="bg-black w-full max-w-[50rem] p-4 rounded-lg shadow-lg relative">
+                <div className="bg-black w-full sm:max-w-[40rem] xl:max-w-[50rem] sm:p-2 xl:p-4 rounded-lg shadow-lg relative">
                     <button
                         className="absolute top-2 right-2 text-gray-500 hover:text-gray-800" onClick={e => setModalOpen(false)}
                     >
                         ✕
                     </button>
-                    <h2 className="text-xl font-bold mb-4">Edit Anime</h2>
-                    <form onSubmit={handleSubmit} className="space-y-4 flex w-full flex-col">
+                    <h2 className="sm:text-xs xl:text-xl font-bold sm:mb-2 xl:mb-4">Edit Anime</h2>
+                    <form onSubmit={handleSubmit} className="sm:space-y-1 xl:space-y-4 flex w-full flex-col">
                         <div className='flex flex-row w-full'>
-                            <div className='w-1/2 self-start flex flex-col items-center gap-3'>
+                            <div className='w-1/2 self-start flex flex-col items-center sm:gap-2 xl:gap-3'>
                                 <Image
                                     src={coverImage}
-                                    width={300}
-                                    height={300}
+                                    width={isTablet ? 130 : 300}
+                                    height={isTablet ? 130 : 300}
                                     alt='anime cover'
                                     className='transform transition-transform hover:scale-105 duration-300'
                                 />
-                                <label className="flex flex-row justify-center items-center gap-2 px-3 mr-4 py-2 bg-black border border-white text-white rounded-full hover:bg-white hover:text-black transition duration-300 cursor-pointer">
+                                <label className="flex flex-row justify-center items-center gap-2 sm:px-2 xl:px-3 sm:py-1 xl:py-2 bg-black border border-white text-white sm:text-xs xl:text-base rounded-full hover:bg-white hover:text-black transition duration-300 cursor-pointer">
                                     {coverImage === show_placeholder ? "Choose Cover" : "Change Cover"}
                                     <input
                                         type="file"
@@ -100,20 +102,20 @@ export default function UpdateAnimeModal({ anime }: { anime: any }) {
                             <div className='flex flex-col w-1/2 ml-2 gap-4'>
                                 <input
                                     type="text"
-                                    className="w-full bg-transparent text-2xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
+                                    className="w-full bg-transparent sm:text-sm xl:text-2xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
                                     placeholder="Anime Name"
                                     value={name}
                                     onChange={(e) => setName(e.target.value)}
                                 />
                                 <input
                                     type="text"
-                                    className="w-full bg-transparent text-2xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
+                                    className="w-full bg-transparent sm:text-sm xl:text-2xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
                                     placeholder="Studio"
                                     value={studio}
                                     onChange={(e) => setStudio(e.target.value)}
                                 />
                                 <textarea
-                                    className="w-full bg-transparent text-2xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
+                                    className="w-full bg-transparent sm:text-sm xl:text-2xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
                                     placeholder="Comments"
                                     value={comments}
                                     onChange={(e) => setComments(e.target.value)}
@@ -121,7 +123,7 @@ export default function UpdateAnimeModal({ anime }: { anime: any }) {
                                 />
                                 <input
                                     type="number"
-                                    className="w-full bg-transparent text-2xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
+                                    className="w-full bg-transparent sm:text-sm xl:text-2xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
                                     placeholder="Rank"
                                     value={rank}
                                     onChange={(e) => setRank(e.target.value)}
@@ -129,10 +131,10 @@ export default function UpdateAnimeModal({ anime }: { anime: any }) {
                             </div>
                         </div>
                         <div className='flex flex-col w-full items-center'>
-                        {!user && <p className=' text-red-600'>You are not authenticated.</p>}
+                        {!user && <p className=' text-red-600 sm:text-[0.5rem] xl:text-base'>You are not authenticated.</p>}
                         <button
                             type="submit"
-                            className={`w-full py-2 flex flex-row justify-center bg-blue-600 text-white rounded-md hover:bg-blue-700 transition ${(loading || !user) && `opacity-70`}`}
+                            className={`w-full sm:py-1 xl:py-2 sm:text-xs xl:text-base flex flex-row justify-center bg-blue-600 text-white rounded-md hover:bg-blue-700 transition ${(loading || !user) && `opacity-70`}`}
                             disabled={loading || !user}
                         >
                             {loading ? (

@@ -96,7 +96,7 @@ export default function TVRanking() {
             </div>
             <div className="flex flex-col xs:w-[95%] sm:w-4/5 xs:mt-2 sm:mt-8">
                 <BookForm />
-                <p className='xs:text-xs sm:text-base sm:mt-2 xl:mt-0'>*Disclaimer: This is just my opinion and what I enjoyed reading the most regardless of critical bias. Moreover, I chose not to rank the books I read just because each book feels too unique to compare to one another.</p>
+                <p className='xs:text-xs sm:text-base sm:mt-2 xl:mt-0 xs:mb-1 sm:mb-0'>*Disclaimer: This is just my opinion and what I enjoyed reading the most regardless of critical bias. Moreover, I chose not to rank the books I read just because each book feels too unique to compare to one another.</p>
                 <hr className="border-t border-gray-300" />
                 {books.map((book: any, index: number) => (
                     <FadeInSection

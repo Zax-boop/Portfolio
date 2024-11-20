@@ -11,8 +11,10 @@ import FadeInSection from "../components/fadeIn";
 import SignInForm from "../components/signIn";
 import { User } from "@supabase/supabase-js";
 import supabase from "../../../utils/supabaseclient";
+import { useMediaQuery } from "react-responsive";
 
 export default function Climbing() {
+    const isMobile = useMediaQuery({ query: '(max-width: 650px)' })
     const [mediaFiles, setMediaFiles] = useState<any[]>([]);
     const [loadingStates, setLoadingStates] = useState<boolean[]>([]);
     const [loading, setLoading] = useState(true);
@@ -81,7 +83,7 @@ export default function Climbing() {
                 <div className="absolute inset-0 bg-black opacity-50"></div>
             </div>
             <div className="flex flex-col w-full xs:mt-2 sm:mt-4 xl:mt-10 self-start">
-                <div onClick={e => (!user && setShowWarning(true))} className=" flex flex-row w-full justify-end">
+                {!isMobile && <div onClick={e => (!user && setShowWarning(true))} className=" flex flex-row w-full justify-end">
                     <label className="flex items-center gap-2 self-start xs:text-xs xs:pl-2 xs:mr-2 xs:py-1 sm:text-base sm:pl-3 sm:mr-4 sm:py-2 bg-black border border-white text-white rounded-full hover:bg-white hover:text-black transition duration-300 cursor-pointer">
                         Add Media
                         <PlusIcon className="w-5 h-5 mr-2" />
@@ -91,9 +93,9 @@ export default function Climbing() {
                             onChange={handleFileChange}
                         />}
                     </label>
-                </div>
+                </div>}
                 {showWarning && <p className="text-red-600 w-full text-right xs:pr-2 sm:pr-4 mt-1 xs:text-xs sm:text-base">You are not authenticated.</p>}
-                <div className="xs:p-2 xs:gap-2 xs:space-y-2 sm:p-4 columns-4 sm:gap-4 sm:space-y-4">
+                <div className="xs:p-2 xs:gap-2 xs:space-y-2 sm:p-4 xs:columns-2 sm:columns-4 sm:gap-4 sm:space-y-4">
                     {mediaFiles.map((file, index) => {
                         const fileExt = file.name.split(".").pop()?.toLowerCase();
                         return (

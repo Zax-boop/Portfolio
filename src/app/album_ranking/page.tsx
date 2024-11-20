@@ -113,7 +113,7 @@ export default function Albums() {
             </div>
             <div className="flex flex-col xs:w-[95%] sm:w-4/5 xs:mt-2 sm:mt-8">
                 <AlbumForm />
-                <p className='xs:text-xs sm:text-base sm:mt-2 xl:mt-0'>*Disclaimer: This is just my opinion and what I enjoyed listening to the most regardless of critical bias.</p>
+                <p className='xs:text-xs sm:text-base sm:mt-2 xl:mt-0 xs:mb-1 sm:mb-0'>*Disclaimer: This is just my opinion and what I enjoyed listening to the most regardless of critical bias.</p>
                 <hr className="border-t border-gray-300" />
                 {albums.map((album: any, index: any) => (
                     <FadeInSection

@@ -126,19 +126,19 @@ export default function Home() {
         {/* <div className="flex flex-row gap-[2rem]">
           <button onClick={() => scrollToSection("experience")} className="relative group">
             <p className="font-semibold">Work Experience</p>
-            <span className="absolute -bottom-1 left-0 w-0 h-1 bg-white transition-all group-hover:w-full"></span>
+            <span className="absolute xs:-bottom-[0.1rem] sm:-bottom-1 left-0 w-0 xs:h-[0.1rem] sm:h-1 bg-white transition-all group-hover:w-full"></span>
           </button>
           <button onClick={() => scrollToSection("projects")} className="relative group">
             <p className="font-semibold">Projects</p>
-            <span className="absolute -bottom-1 left-0 w-0 h-1 bg-white transition-all group-hover:w-full"></span>
+            <span className="absolute xs:-bottom-[0.1rem] sm:-bottom-1 left-0 w-0 xs:h-[0.1rem] sm:h-1 bg-white transition-all group-hover:w-full"></span>
           </button>
           <button onClick={() => scrollToSection("about")} className="relative group">
             <p className="font-semibold">About Me</p>
-            <span className="absolute -bottom-1 left-0 w-0 h-1 bg-white transition-all group-hover:w-full"></span>
+            <span className="absolute xs:-bottom-[0.1rem] sm:-bottom-1 left-0 w-0 xs:h-[0.1rem] sm:h-1 bg-white transition-all group-hover:w-full"></span>
           </button>
           <button onClick={() => scrollToSection("contact")} className="relative group">
             <p className="font-semibold">Contact Me</p>
-            <span className="absolute -bottom-1 left-0 w-0 h-1 bg-white transition-all group-hover:w-full"></span>
+            <span className="absolute xs:-bottom-[0.1rem] sm:-bottom-1 left-0 w-0 xs:h-[0.1rem] sm:h-1 bg-white transition-all group-hover:w-full"></span>
           </button>
         </div> */}
       </header>
@@ -170,7 +170,7 @@ export default function Home() {
                   <a href="/Resume_Rohan_Arya.pdf" target="_blank">
                     <PoppingLetters text="Resume" initialDelay={2200} speed={30}/>
                   </a>
-                  <span className="absolute -bottom-[0.1rem] left-0 w-0 h-1 bg-white transition-all group-hover:w-full"></span>
+                  <span className="absolute xs:-bottom-[0.075rem] sm:-bottom-[0.1rem] left-0 w-0 xs:h-[0.1rem] sm:h-1 bg-white transition-all group-hover:w-full"></span>
                 </div>
               </div>
               <div

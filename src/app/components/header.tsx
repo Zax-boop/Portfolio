@@ -8,27 +8,27 @@ const Header = () => {
     <div className="flex flex-row gap-2 sm:gap-[1rem]">
       <Link href={"/album_ranking"} className="relative group">
         <p className="font-semibold xs:text-[0.5rem] sm:text-base">Albums</p>
-        <span className="absolute -bottom-1 left-0 w-0 h-1 bg-white transition-all group-hover:w-full"></span>
+        <span className="absolute xs:-bottom-[0.1rem] sm:-bottom-1 left-0 w-0 xs:h-[0.1rem] sm:h-1 bg-white transition-all group-hover:w-full"></span>
       </Link>
       <Link href={"/anime"} className="relative group">
         <p className="font-semibold xs:text-[0.5rem] sm:text-base">Anime</p>
-        <span className="absolute -bottom-1 left-0 w-0 h-1 bg-white transition-all group-hover:w-full"></span>
+        <span className="absolute xs:-bottom-[0.1rem] sm:-bottom-1 left-0 w-0 xs:h-[0.1rem] sm:h-1 bg-white transition-all group-hover:w-full"></span>
       </Link>
       <Link href={"/books"} className="relative group">
         <p className="font-semibold xs:text-[0.5rem] sm:text-base">Books</p>
-        <span className="absolute -bottom-1 left-0 w-0 h-1 bg-white transition-all group-hover:w-full"></span>
+        <span className="absolute xs:-bottom-[0.1rem] sm:-bottom-1 left-0 w-0 xs:h-[0.1rem] sm:h-1 bg-white transition-all group-hover:w-full"></span>
       </Link>
       <Link href={"/climbing"} className="relative group">
         <p className="font-semibold xs:text-[0.5rem] sm:text-base">Climbing</p>
-        <span className="absolute -bottom-1 left-0 w-0 h-1 bg-white transition-all group-hover:w-full"></span>
+        <span className="absolute xs:-bottom-[0.1rem] sm:-bottom-1 left-0 w-0 xs:h-[0.1rem] sm:h-1 bg-white transition-all group-hover:w-full"></span>
       </Link>
       <Link href={"/tv"} className="relative group">
         <p className="font-semibold xs:text-[0.5rem] sm:text-base">TV Shows</p>
-        <span className="absolute -bottom-1 left-0 w-0 h-1 bg-white transition-all group-hover:w-full"></span>
+        <span className="absolute xs:-bottom-[0.1rem] sm:-bottom-1 left-0 w-0 xs:h-[0.1rem] sm:h-1 bg-white transition-all group-hover:w-full"></span>
       </Link>
       <Link href={"/games"} className="relative group">
         <p className="font-semibold xs:text-[0.5rem] sm:text-base">Video Games</p>
-        <span className="absolute -bottom-1 left-0 w-0 h-1 bg-white transition-all group-hover:w-full"></span>
+        <span className="absolute xs:-bottom-[0.1rem] sm:-bottom-1 left-0 w-0 xs:h-[0.1rem] sm:h-1 bg-white transition-all group-hover:w-full"></span>
       </Link>
     </div>
   </header>;

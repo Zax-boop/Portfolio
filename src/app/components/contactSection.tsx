@@ -49,14 +49,14 @@ export default function ContactSection() {
                 >
                     rohan.arya01@gmail.com
                 </a>
-                <span className="absolute -bottom-[0.1rem] left-0 w-0 h-1 bg-white transition-all group-hover:w-full"></span>
+                <span className="absolute xs:-bottom-[0.075rem] sm:-bottom-[0.1rem] left-0 w-0 xs:h-[0.1rem] sm:h-1 bg-white transition-all group-hover:w-full"></span>
 
             </FadeInSection>
             <FadeInSection className="self-start relative group xl:mt-2">
                 <a href="/Resume_Rohan_Arya.pdf" target='_blank'>
                     <p className="xs:text-[1rem] sm:text-[2rem] xl:text-4xl">Resume</p>
                 </a>
-                <span className="absolute -bottom-[0.1rem] left-0 w-0 h-1 bg-white transition-all group-hover:w-full"></span>
+                <span className="absolute xs:-bottom-[0.075rem] sm:-bottom-[0.1rem] left-0 w-0 xs:h-[0.1rem] sm:h-1 bg-white transition-all group-hover:w-full"></span>
             </FadeInSection>
             <FadeInSection
                 className={`flex flex-row mt-2 gap-2`}>

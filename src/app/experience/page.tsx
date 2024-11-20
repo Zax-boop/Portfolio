@@ -30,7 +30,7 @@ export default function experience() {
             >
               <PoppingLetters className="" text="Resume" initialDelay={600} speed={30} />
             </a>
-            <span className="absolute -bottom-1 left-0 w-0 h-1 bg-white transition-all group-hover:w-full"></span>
+            <span className="absolute xs:-bottom-[0.1rem] sm:-bottom-1 left-0 w-0 xs:h-[0.1rem] sm:h-1 bg-white transition-all group-hover:w-full"></span>
           </div>
         </div>
         <div className={`flex flex-row gap-2 ${!timer && `opacity-0`} animate-fadeInDelayedShort`}>

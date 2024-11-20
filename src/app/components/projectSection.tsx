@@ -113,18 +113,19 @@ export default function ProjectSection() {
             <div className='flex flex-col xs:w-full sm:w-[47%] gap-2'>
                 <div className='flex flex-col'>
                     <FadeInSection className='sm:text-2xl xl:text-3xl'>Soul Boy</FadeInSection>
-                    <FadeInSection className='xs:text-xs sm:text-base'>Developed a 2.5 dimensional platform using Unreal Engine 5 and Blueprints.</FadeInSection>
+                    <FadeInSection className='xs:text-xs sm:text-base'>Lead a team in developing a 2.5 dimensional platform using Unreal Engine 5 and Blueprints.</FadeInSection>
                     <FadeInSection className='relative group self-start font-semibold'>
                         <a target='_blank' href='https://github.com/Zax-boop/SoulBoy'>
                             README
                         </a>
-                        <span className="absolute -bottom-[0.1rem] left-0 w-0 h-1 bg-white transition-all group-hover:w-full"></span>
+                        <span className="absolute xs:-bottom-[0.075rem] sm:-bottom-[0.1rem] left-0 w-0 xs:h-[0.1rem] sm:h-1 bg-white transition-all group-hover:w-full"></span>
                     </FadeInSection>
                     <FadeInSection className='flex flex-row flex-wrap gap-2 mt-2'>
                         <p className='xs:py-1.5 xs:px-1.5 sm:py-1.5 sm:px-3 xs:text-xs xs:rounded-lg sm:rounded-xl sm:text-base flex flex-row items-center self-start bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>UE5</p>
                         <p className='xs:py-1.5 xs:px-1.5 sm:py-1.5 sm:px-3 xs:text-xs xs:rounded-lg sm:rounded-xl sm:text-base flex flex-row items-center self-start bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Blueprints</p>
                         <p className='xs:py-1.5 xs:px-1.5 sm:py-1.5 sm:px-3 xs:text-xs xs:rounded-lg sm:rounded-xl sm:text-base flex flex-row items-center self-start bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Creativity</p>
                         <p className='xs:py-1.5 xs:px-1.5 sm:py-1.5 sm:px-3 xs:text-xs xs:rounded-lg sm:rounded-xl sm:text-base flex flex-row items-center self-start bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Design</p>
+                        <p className='xs:py-1.5 xs:px-1.5 sm:py-1.5 sm:px-3 xs:text-xs xs:rounded-lg sm:rounded-xl sm:text-base flex flex-row items-center self-start bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Leadership</p>
                     </FadeInSection>
                 </div>
                 <FadeInSection className='w-full'>
