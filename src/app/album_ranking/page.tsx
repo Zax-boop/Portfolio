@@ -11,20 +11,31 @@ import DeleteAlbum from '../components/deleteAlbum';
 import SignInForm from '../components/signIn';
 import UpdateAlbumModal from '../components/updateAlbum';
 
-interface Album {
+type Album = {
     name: string;
     artist: string;
     comment: string;
     image: string;
     Rank: number;
     id: string;
-  }
+  };
 
-  interface AlbumsProps {
-    albums: Album[];
-  }
-
-export default function Albums({ albums }: AlbumsProps) {
+export default function Albums() {
+    const [albums, setAlbums] = useState<Album[] | null>(null);
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const fetchedAlbums: Album[] | null = await fetchAlbums();
+            setAlbums(fetchedAlbums ?? []); 
+          } catch (error) {
+            console.error("Failed to fetch albums:", error);
+            setAlbums([]);
+          }
+          setLoading(false);
+        };
+    
+        fetchData();
+      }, []); 
     // const [albums, setAlbums] = useState<{
     //     name: string;
     //     artist: string;
@@ -60,11 +71,6 @@ export default function Albums({ albums }: AlbumsProps) {
             }
         }
     };
-
-    useEffect(() => {
-        setLoading(false);
-      }, []);
-    
       if (loading) {
         return <div>Loading...</div>;
       }
@@ -141,14 +147,7 @@ export default function Albums({ albums }: AlbumsProps) {
                 <AlbumForm />
                 <p className='xs:text-xs sm:text-base sm:mt-2 xl:mt-0 xs:mb-1 sm:mb-0'>*Disclaimer: This is just my opinion and what I enjoyed listening to the most regardless of critical bias.</p>
                 <hr className="border-t border-gray-300" />
-                {albums?.map((album: {
-                    name: string;
-                    artist: string;
-                    comment: string;
-                    image: string;
-                    Rank: number;
-                    id: string;
-                }, index: number) => (
+                {albums?.map((album: Album, index: number) => (
                     <FadeInSection
                         key={album.id || `${album.name}-${album.artist}-${index}`}
                         ref={albumRefs.current[index]}
@@ -184,13 +183,3 @@ export default function Albums({ albums }: AlbumsProps) {
         </div>
     );
 }
-
-export async function getStaticProps() {
-    const albums = await fetchAlbums();
-    return {
-      props: {
-        albums, 
-      },
-      revalidate: 60, 
-    };
-  }

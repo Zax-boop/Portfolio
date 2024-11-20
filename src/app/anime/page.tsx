@@ -11,31 +11,48 @@ import DeleteAnime from '../components/deleteAnime';
 import SignInForm from '../components/signIn';
 import UpdateAnimeModal from '../components/updateAnime';
 
-export default function Anime() {
-    const [animeList, setAnimeList] = useState<{
-        name: string;
+type Anime = {
+    name: string;
         studio: string;
         comments: string;
         image: string;
         rank: number;
         id: string;
-    }[]>();
+  };
+
+export default function Anime() {
+    const [animeList, setAnimeList] = useState<
+        Anime[] | null>(null);;
     const [loading, setLoading] = useState(true);
     const [isLoading, setIsLoading] = useState(true)
     const animeRefs = useRef<React.RefObject<HTMLDivElement>[]>([]);
     const videoRef = useRef<HTMLVideoElement>(null);
     useEffect(() => {
-        const getAnime = async () => {
-            const data = await fetchAnime();
-            if (data) {
-                setAnimeList(data);
-                animeRefs.current = data.map(() => React.createRef());
-            }
-            setLoading(false);
+        const fetchData = async () => {
+          try {
+            const fetchedAnime: Anime[] | null = await fetchAnime();
+            setAnimeList(fetchedAnime ?? []); 
+          } catch (error) {
+            console.error("Failed to fetch albums:", error);
+            setAnimeList([]);
+          }
+          setLoading(false);
         };
+    
+        fetchData();
+      }, []); 
+    // useEffect(() => {
+    //     const getAnime = async () => {
+    //         const data = await fetchAnime();
+    //         if (data) {
+    //             setAnimeList(data);
+    //             animeRefs.current = data.map(() => React.createRef());
+    //         }
+    //         setLoading(false);
+    //     };
 
-        getAnime();
-    }, []);
+    //     getAnime();
+    // }, []);
 
     const scrollToAnime = (index: number) => {
         if (animeRefs.current[index]) {
