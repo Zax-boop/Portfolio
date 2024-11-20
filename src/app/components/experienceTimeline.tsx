@@ -6,6 +6,7 @@ import { BriefcaseIcon, GraduationCap } from 'lucide-react';
 import FadeInSection from './fadeIn';
 import { useRef, useState, useEffect } from 'react';
 import React from 'react'
+import VideoWithPlaceholder from './placeholderVideo';
 
 export default function ExperienceTimeline() {
     const lineRef = useRef<HTMLDivElement>(null);
@@ -50,15 +51,7 @@ export default function ExperienceTimeline() {
                 >
                     <div className='flex flex-col'>
                         <a target='_blank' href='https://colomboai.com/' className="rounded-lg overflow-hidden cursor-pointer">
-                            <video
-                                src="/colombo_demo.mov"
-                                className="w-full cursor-pointer"
-                                autoPlay
-                                loop
-                                muted
-                                controls={false} 
-                                playsInline 
-                            />
+                            <VideoWithPlaceholder className='w-full cursor-pointer' src='/colombo_demo.mov' />
                         </a>
                         <h1 className='vertical-timeline-element-title !text-3xl !mt-2'>ColomboAI</h1>
                         <p className='!xs:text-xs !xl:text-xl !mt-0 font-medium'>Full Stack Developer</p>
@@ -105,15 +98,7 @@ export default function ExperienceTimeline() {
                             </div>
                         </div>
                         <div className="min-w-[12rem] rounded-[2.1rem] xs:mt-4 sm:mt-0 overflow-hidden">
-                            <video
-                                src="/slip_demo.mov"
-                                className="w-full object-fill rounded-b-[2.1rem]"
-                                autoPlay
-                                loop
-                                muted
-                                controls={false} 
-                                playsInline 
-                            />
+                            <VideoWithPlaceholder aspect='aspect-[9/19.5]' className='w-full object-fill rounded-b-[2.1rem]' src='/slip_demo.mov' />
                         </div>
                     </div>
                 </VerticalTimelineElement>
@@ -126,17 +111,9 @@ export default function ExperienceTimeline() {
                     icon={<BriefcaseIcon />}
                 >
                     <div className='flex flex-col'>
-                        <a target='_blank' href='https://dev.hatchrecruiting.com/' className="rounded-lg overflow-hidden cursor-pointer">
-                            <video
-                                src="/hatch_demo.mov"
-                                className="w-full cursor-pointer"
-                                autoPlay
-                                loop
-                                muted
-                                controls={false} 
-                                playsInline 
-                            />
-                        </a>
+                            <a target='_blank' href='https://dev.hatchrecruiting.com/' className="rounded-lg overflow-hidden cursor-pointer">
+                                <VideoWithPlaceholder src='/hatch_demo.mov' className='w-full cursor-pointer'/>
+                            </a>
                         <h1 className='vertical-timeline-element-title !text-3xl !mt-2'>Hatch Recruiting</h1>
                         <p className='!text-xl !mt-0 font-medium'>Full Stack Developer</p>
                         <p className='!mt-0'>Implemented resume parsing algorithm in Python to extract and structure key information such
@@ -203,6 +180,6 @@ export default function ExperienceTimeline() {
                     </div>
                 </VerticalTimelineElement>
             </VerticalTimeline>
-        </div>
+        </div >
     )
 }

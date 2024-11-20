@@ -12,6 +12,7 @@ import SignInForm from "../components/signIn";
 import { User } from "@supabase/supabase-js";
 import supabase from "../../../utils/supabaseclient";
 import { useMediaQuery } from "react-responsive";
+import VideoWithPlaceholder from "../components/placeholderVideo";
 
 export default function Climbing() {
     const isMobile = useMediaQuery({ query: '(max-width: 650px)' })
@@ -116,18 +117,20 @@ export default function Climbing() {
                                     // onLoadingComplete={() => handleLoadedData(index)}
                                     />
                                 ) : ["mp4"].includes(fileExt || "") ? (
-                                    <video
-                                        src={file.url?.data?.publicUrl}
-                                        className={`rounded-lg w-full h-full transform transition-transform hover:scale-105 object-cover duration-700 ease-in-out group-hover:opacity-75 `}
-                                        // ${loadingStates[index] ? "scale-110 blur-2xl grayscale" : "scale-100 blur-0 grayscale-0"
-                                        // }
-                                        autoPlay
-                                        loop
-                                        muted
-                                        controls={false}
-                                        playsInline
-                                    // onLoadedData={() => handleLoadedData(index)}
-                                    />
+                                    // <video
+                                    //     src={file.url?.data?.publicUrl}
+                                    //     className={`rounded-lg w-full h-full transform transition-transform hover:scale-105 object-cover duration-700 ease-in-out group-hover:opacity-75 `}
+                                    //     // ${loadingStates[index] ? "scale-110 blur-2xl grayscale" : "scale-100 blur-0 grayscale-0"
+                                    //     // }
+                                    //     autoPlay
+                                    //     loop
+                                    //     muted
+                                    //     controls={false}
+                                    //     playsInline
+                                    // // onLoadedData={() => handleLoadedData(index)}
+                                    // />
+                                    <VideoWithPlaceholder aspect="aspect-[9/19.5]" src={file.url?.data?.publicUrl} className="rounded-lg w-full h-full transform transition-transform hover:scale-105 object-cover duration-700 ease-in-out group-hover:opacity-75"/>
+                                    
                                 ) : null}
                             </FadeInSection>
                         );

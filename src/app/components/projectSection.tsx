@@ -3,6 +3,7 @@
 import React from 'react'
 import { useRef, useEffect, useState } from 'react';
 import FadeInSection from './fadeIn';
+import VideoWithPlaceholder from './placeholderVideo';
 
 export default function ProjectSection() {
     const videoRef = useRef<HTMLVideoElement>(null);
@@ -57,114 +58,62 @@ export default function ProjectSection() {
                 </FadeInSection>
                 <FadeInSection className='flex xs:flex-col sm:flex-row flex-wrap w-full mt-4 xs:gap-[2rem] sm:gap-3 justify-between'>
                     <div className='flex xs:w-full sm:w-[47%] flex-col gap-1 items-center'>
-                        <video
-                            src={"/addAlbum.mov"}
-                            className="w-full object-cover rounded-xl"
-                            muted
-                            autoPlay
-                            loop
-                            ref={videoRef}
-                            controls={false} 
-                            playsInline 
-                        />
+                        <VideoWithPlaceholder ref={videoRef} className='w-full object-cover rounded-xl' src='/addAlbum.mov' />
                         <p className='xs:text-xs sm:text-base'>Example of inserting data</p>
                     </div>
                     <div className='flex xs:w-full sm:w-[47%] flex-col gap-1 items-center'>
-                        <video
-                            src={"/removeAlbum.mov"}
-                            className="w-full object-cover rounded-xl"
-                            muted
-                            autoPlay
-                            loop
-                            ref={videoRef}
-                            controls={false} 
-                            playsInline 
-                        />
+                        <VideoWithPlaceholder ref={videoRef} className='w-full object-cover rounded-xl' src='/removeAlbum.mov' />
                         <p className='xs:text-xs sm:text-base'>Example of removing data</p>
                     </div>
                     <div className='flex xs:w-full sm:w-[47%] flex-col gap-1 items-center'>
-                        <video
-                            src={"/authEx.mov"}
-                            className="w-full object-cover rounded-xl"
-                            muted
-                            autoPlay
-                            loop
-                            controls={false} 
-                            playsInline 
-                        />
+                        <VideoWithPlaceholder className='w-full object-cover rounded-xl' src='/authEx.mov' />
                         <p className='xs:text-xs sm:text-base'>Example of authentication</p>
                     </div>
                     <div className='flex xs:w-full sm:w-[47%] flex-col gap-1 items-center'>
-                        <video
-                            src={"/updateEx.mov"}
-                            className="w-full object-cover rounded-xl"
-                            muted
-                            autoPlay
-                            loop
-                            ref={videoRef}
-                            controls={false} 
-                            playsInline 
-                        />
+                        <VideoWithPlaceholder ref={videoRef} className='w-full object-cover rounded-xl' src='/updateEx.mov' />
                         <p className='xs:text-xs sm:text-base'>Example of updating data</p>
                     </div>
                 </FadeInSection>
             </div>
             <div className='flex xs:flex-col sm:flex-row xs:gap-4 sm:gap-0 justify-between w-full mt-4'>
-            <div className='flex flex-col xs:w-full sm:w-[47%] gap-2'>
-                <div className='flex flex-col'>
-                    <FadeInSection className='sm:text-2xl xl:text-3xl'>Soul Boy</FadeInSection>
-                    <FadeInSection className='xs:text-xs sm:text-base'>Lead a team in developing a 2.5 dimensional platform using Unreal Engine 5 and Blueprints.</FadeInSection>
-                    <FadeInSection className='relative group self-start font-semibold'>
-                        <a target='_blank' href='https://github.com/Zax-boop/SoulBoy'>
-                            README
-                        </a>
-                        <span className="absolute xs:-bottom-[0.075rem] sm:-bottom-[0.1rem] left-0 w-0 xs:h-[0.1rem] sm:h-1 bg-white transition-all group-hover:w-full"></span>
-                    </FadeInSection>
-                    <FadeInSection className='flex flex-row flex-wrap gap-2 mt-2'>
-                        <p className='xs:py-1.5 xs:px-1.5 sm:py-1.5 sm:px-3 xs:text-xs xs:rounded-lg sm:rounded-xl sm:text-base flex flex-row items-center self-start bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>UE5</p>
-                        <p className='xs:py-1.5 xs:px-1.5 sm:py-1.5 sm:px-3 xs:text-xs xs:rounded-lg sm:rounded-xl sm:text-base flex flex-row items-center self-start bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Blueprints</p>
-                        <p className='xs:py-1.5 xs:px-1.5 sm:py-1.5 sm:px-3 xs:text-xs xs:rounded-lg sm:rounded-xl sm:text-base flex flex-row items-center self-start bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Creativity</p>
-                        <p className='xs:py-1.5 xs:px-1.5 sm:py-1.5 sm:px-3 xs:text-xs xs:rounded-lg sm:rounded-xl sm:text-base flex flex-row items-center self-start bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Design</p>
-                        <p className='xs:py-1.5 xs:px-1.5 sm:py-1.5 sm:px-3 xs:text-xs xs:rounded-lg sm:rounded-xl sm:text-base flex flex-row items-center self-start bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Leadership</p>
-                    </FadeInSection>
-                </div>
-                <FadeInSection className='w-full'>
-                <video
-                    src={"/soul_boy_ex.mp4"}
-                    className="w-full object-cover rounded-xl"
-                    muted
-                    autoPlay
-                    loop
-                    controls={false} 
-                    playsInline 
-                />
-                </FadeInSection>
-            </div>
-            <div className='flex flex-col xs:w-full sm:w-[47%] gap-2'>
-                <div className='flex flex-col'>
-                    <FadeInSection className='sm:text-2xl xl:text-3xl'>Idle Animation</FadeInSection>
-                    <FadeInSection className='xs:text-xs sm:text-base'>Developed an idle animation for a character using Aseprite.</FadeInSection>
-                    <FadeInSection className='flex flex-row flex-wrap gap-2 mt-2'>
-                        <p className='xs:py-1.5 xs:px-1.5 sm:py-1.5 sm:px-3 xs:text-xs xs:rounded-lg sm:rounded-xl sm:text-base flex flex-row items-center self-start bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Aseprite</p>
-                        <p className='xs:py-1.5 xs:px-1.5 sm:py-1.5 sm:px-3 xs:text-xs xs:rounded-lg sm:rounded-xl sm:text-base flex flex-row items-center self-start bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Creativity</p>
-                        <p className='xs:py-1.5 xs:px-1.5 sm:py-1.5 sm:px-3 xs:text-xs xs:rounded-lg sm:rounded-xl sm:text-base flex flex-row items-center self-start bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Design</p>
-                        <p className='xs:py-1.5 xs:px-1.5 sm:py-1.5 sm:px-3 xs:text-xs xs:rounded-lg sm:rounded-xl sm:text-base flex flex-row items-center self-start bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Animation</p>
+                <div className='flex flex-col xs:w-full sm:w-[47%] gap-2'>
+                    <div className='flex flex-col'>
+                        <FadeInSection className='sm:text-2xl xl:text-3xl'>Soul Boy</FadeInSection>
+                        <FadeInSection className='xs:text-xs sm:text-base'>Lead a team in developing a 2.5 dimensional platform using Unreal Engine 5 and Blueprints.</FadeInSection>
+                        <FadeInSection className='relative group self-start font-semibold'>
+                            <a target='_blank' href='https://github.com/Zax-boop/SoulBoy'>
+                                README
+                            </a>
+                            <span className="absolute xs:-bottom-[0.075rem] sm:-bottom-[0.1rem] left-0 w-0 xs:h-[0.1rem] sm:h-1 bg-white transition-all group-hover:w-full"></span>
+                        </FadeInSection>
+                        <FadeInSection className='flex flex-row flex-wrap gap-2 mt-2'>
+                            <p className='xs:py-1.5 xs:px-1.5 sm:py-1.5 sm:px-3 xs:text-xs xs:rounded-lg sm:rounded-xl sm:text-base flex flex-row items-center self-start bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>UE5</p>
+                            <p className='xs:py-1.5 xs:px-1.5 sm:py-1.5 sm:px-3 xs:text-xs xs:rounded-lg sm:rounded-xl sm:text-base flex flex-row items-center self-start bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Blueprints</p>
+                            <p className='xs:py-1.5 xs:px-1.5 sm:py-1.5 sm:px-3 xs:text-xs xs:rounded-lg sm:rounded-xl sm:text-base flex flex-row items-center self-start bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Creativity</p>
+                            <p className='xs:py-1.5 xs:px-1.5 sm:py-1.5 sm:px-3 xs:text-xs xs:rounded-lg sm:rounded-xl sm:text-base flex flex-row items-center self-start bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Design</p>
+                            <p className='xs:py-1.5 xs:px-1.5 sm:py-1.5 sm:px-3 xs:text-xs xs:rounded-lg sm:rounded-xl sm:text-base flex flex-row items-center self-start bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Leadership</p>
+                        </FadeInSection>
+                    </div>
+                    <FadeInSection className='w-full'>
+                        <VideoWithPlaceholder className='w-full object-cover rounded-xl' src='/soul_boy_ex.mp4' />
                     </FadeInSection>
                 </div>
-                <FadeInSection className='w-full'>
-                <video
-                    src={"/IdleAnimation.mov"}
-                    className="w-full object-cover rounded-xl"
-                    muted
-                    autoPlay
-                    loop
-                    controls={false} 
-                    playsInline 
-                />
-                </FadeInSection>
-            </div>
+                <div className='flex flex-col xs:w-full sm:w-[47%] gap-2'>
+                    <div className='flex flex-col'>
+                        <FadeInSection className='sm:text-2xl xl:text-3xl'>Idle Animation</FadeInSection>
+                        <FadeInSection className='xs:text-xs sm:text-base'>Developed an idle animation for a character using Aseprite.</FadeInSection>
+                        <FadeInSection className='flex flex-row flex-wrap gap-2 mt-2'>
+                            <p className='xs:py-1.5 xs:px-1.5 sm:py-1.5 sm:px-3 xs:text-xs xs:rounded-lg sm:rounded-xl sm:text-base flex flex-row items-center self-start bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Aseprite</p>
+                            <p className='xs:py-1.5 xs:px-1.5 sm:py-1.5 sm:px-3 xs:text-xs xs:rounded-lg sm:rounded-xl sm:text-base flex flex-row items-center self-start bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Creativity</p>
+                            <p className='xs:py-1.5 xs:px-1.5 sm:py-1.5 sm:px-3 xs:text-xs xs:rounded-lg sm:rounded-xl sm:text-base flex flex-row items-center self-start bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Design</p>
+                            <p className='xs:py-1.5 xs:px-1.5 sm:py-1.5 sm:px-3 xs:text-xs xs:rounded-lg sm:rounded-xl sm:text-base flex flex-row items-center self-start bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Animation</p>
+                        </FadeInSection>
+                    </div>
+                    <FadeInSection className='w-full'>
+                        <VideoWithPlaceholder className='w-full object-cover rounded-xl' src='/IdleAnimation.mov' />
+                    </FadeInSection>
+                </div>
             </div>
         </div>
     )
 }
-

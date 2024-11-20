@@ -32,7 +32,6 @@ export default async function updateAnime(id, updatedFields) {
 
         if (currentRank !== rank) {
             if (rank < currentRank) {
-                console.log(rank)
                 const { data: animeToUpdate, error: fetchError } = await supabase
                     .from('anime_rankings')
                     .select('*')
@@ -44,7 +43,6 @@ export default async function updateAnime(id, updatedFields) {
                     return null;
                 }
                 animeToUpdate.sort((a, b) => b.rank - a.rank)
-                console.log(animeToUpdate)
                 for (const anime of animeToUpdate) {
                     const { error: updateError } = await supabase
                         .from('anime_rankings')
@@ -58,7 +56,6 @@ export default async function updateAnime(id, updatedFields) {
                 }
             }
             if (rank > currentRank) {
-                console.log(rank)
                 const { data: animeToUpdate, error: fetchError } = await supabase
                     .from('anime_rankings')
                     .select('*')
@@ -70,7 +67,6 @@ export default async function updateAnime(id, updatedFields) {
                     return null;
                 }
                 animeToUpdate.sort((a, b) => a.rank - b.rank)
-                console.log(animeToUpdate)
                 for (const anime of animeToUpdate) {
                     const { error: updateError } = await supabase
                         .from('anime_rankings')

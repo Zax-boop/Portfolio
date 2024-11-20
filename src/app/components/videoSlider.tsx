@@ -44,7 +44,7 @@ export default function VideoSlider({ videos }: VideoSliderProps): JSX.Element {
     }
   }, [currentIndex]);
   return (
-    <div className="relative w-full mx-auto xs:mt-4 xl:mt-0">
+    <div className="relative w-full mx-auto xs:mt-8 xl:mt-0">
       <div className="relative xs:w-[20rem] xs:h-[11.4rem] sm:w-[30rem] sm:h-[16.8rem] xs: xl:w-[35rem] xl:h-[20rem] group overflow-hidden">
         {videos.map((video, index) => (
           <div

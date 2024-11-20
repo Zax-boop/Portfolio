@@ -2,7 +2,6 @@ import supabase from "./supabaseclient";
 
 export default async function updateGames(id, updatedFields) {
     const { name, studio, comments, imageFile, rank } = updatedFields;
-    console.log(comments)
     let imageUrl;
     if (imageFile) {
         const fileName = `${Date.now()}_${imageFile.name}`;
@@ -33,7 +32,6 @@ export default async function updateGames(id, updatedFields) {
 
         if (currentRank !== rank) {
             if (rank < currentRank) {
-                console.log(rank)
                 const { data: gamesToUpdate, error: fetchError } = await supabase
                     .from('video_game_rankings')
                     .select('*')
@@ -45,7 +43,6 @@ export default async function updateGames(id, updatedFields) {
                     return null;
                 }
                 gamesToUpdate.sort((a, b) => b.rank - a.rank)
-                console.log(gamesToUpdate)
                 for (const game of gamesToUpdate) {
                     const { error: updateError } = await supabase
                         .from('video_game_rankings')
@@ -59,7 +56,6 @@ export default async function updateGames(id, updatedFields) {
                 }
             }
             if (rank > currentRank) {
-                console.log(rank)
                 const { data: gamesToUpdate, error: fetchError } = await supabase
                     .from('video_game_rankings')
                     .select('*')
@@ -71,7 +67,6 @@ export default async function updateGames(id, updatedFields) {
                     return null;
                 }
                 gamesToUpdate.sort((a, b) => a.rank - b.rank)
-                console.log(gamesToUpdate)
                 for (const game of gamesToUpdate) {
                     const { error: updateError } = await supabase
                         .from('video_game_rankings')

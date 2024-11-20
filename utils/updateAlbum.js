@@ -32,7 +32,6 @@ export default async function updateAlbum(id, updatedFields) {
 
         if (currentRank !== Rank) {
             if (Rank < currentRank) {
-                console.log(Rank)
                 const { data: albumsToUpdate, error: fetchError } = await supabase
                     .from('album_rankings')
                     .select('*')
@@ -44,7 +43,6 @@ export default async function updateAlbum(id, updatedFields) {
                     return null;
                 }
                 albumsToUpdate.sort((a, b) => b.Rank - a.Rank)
-                console.log(albumsToUpdate)
                 for (const album of albumsToUpdate) {
                     const { error: updateError } = await supabase
                         .from('album_rankings')
@@ -58,7 +56,6 @@ export default async function updateAlbum(id, updatedFields) {
                 }
             }
             if (Rank > currentRank) {
-                console.log(Rank)
                 const { data: albumsToUpdate, error: fetchError } = await supabase
                     .from('album_rankings')
                     .select('*')
@@ -70,7 +67,6 @@ export default async function updateAlbum(id, updatedFields) {
                     return null;
                 }
                 albumsToUpdate.sort((a, b) => a.Rank - b.Rank)
-                console.log(albumsToUpdate)
                 for (const album of albumsToUpdate) {
                     const { error: updateError } = await supabase
                         .from('album_rankings')

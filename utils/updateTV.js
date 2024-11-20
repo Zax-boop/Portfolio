@@ -2,7 +2,6 @@ import supabase from "./supabaseclient";
 
 export default async function updateTV(id, updatedFields) {
     const { name, director, comments, imageFile, rank } = updatedFields;
-    console.log(director)
     let imageUrl;
     if (imageFile) {
         const fileName = `${Date.now()}_${imageFile.name}`;
@@ -33,7 +32,6 @@ export default async function updateTV(id, updatedFields) {
 
         if (currentRank !== rank) {
             if (rank < currentRank) {
-                console.log(rank)
                 const { data: tvToUpdate, error: fetchError } = await supabase
                     .from('tv_rankings')
                     .select('*')
@@ -45,7 +43,6 @@ export default async function updateTV(id, updatedFields) {
                     return null;
                 }
                 tvToUpdate.sort((a, b) => b.rank - a.rank)
-                console.log(tvToUpdate)
                 for (const tv of tvToUpdate) {
                     const { error: updateError } = await supabase
                         .from('tv_rankings')
@@ -59,7 +56,6 @@ export default async function updateTV(id, updatedFields) {
                 }
             }
             if (rank > currentRank) {
-                console.log(rank)
                 const { data: tvToUpdate, error: fetchError } = await supabase
                     .from('tv_rankings')
                     .select('*')
@@ -71,7 +67,6 @@ export default async function updateTV(id, updatedFields) {
                     return null;
                 }
                 tvToUpdate.sort((a, b) => a.rank - b.rank)
-                console.log(tvToUpdate)
                 for (const tv of tvToUpdate) {
                     const { error: updateError } = await supabase
                         .from('tv_rankings')

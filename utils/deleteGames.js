@@ -1,8 +1,6 @@
 import supabase from "./supabaseclient";
 
 export default async function deleteGames(gameId, rank) {
-    console.log(gameId)
-    console.log(rank)
   try {
     const { data: deletedGame, error: deleteError } = await supabase
       .from('video_game_rankings')

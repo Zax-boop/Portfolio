@@ -13,12 +13,6 @@ import ContactSection from "./components/contactSection";
 import SignInForm from "../app/components/signIn"
 import LazyLoader from "./components/lazyLoader";
 import Link from "next/link";
-// import { Montserrat } from 'next/font/google';
-
-// const montserrat = Montserrat({
-//   subsets: ['latin'],
-//   variable: '--font-montserrat',
-// });
 
 const videos = ["/hatch_demo.mov", "/addAlbum.mov", "/colombo_demo.mov"];
 
@@ -151,18 +145,18 @@ export default function Home() {
         <div className="absolute inset-0 bg-black opacity-50"></div>
         <div className="relative flex flex-col w-4/5 items-start z-10">
           <PoppingLetters
-            className="font-semibold xs:text-[2rem] sm:text-[5rem] lg:text-[7rem] xl:text-[10rem] xs:mt-2 sm:mt-0 xl:mt-12"
+            className="font-semibold xs:text-[2.5rem] sm:text-[5rem] lg:text-[7rem] xl:text-[10rem] xs:mt-2 sm:mt-0 xl:mt-12"
             text={"ROHAN ARYA"}
           />
           <div className="flex xs:flex-col xl:flex-row justify-between w-full xs:mt-4 xl:mt-20">
             <div className="flex flex-col w-4/5">
               <PoppingLetters
-                className="xs:text-[1.1rem] sm:text-[3rem] xl:text-6xl"
+                className="xs:text-[1.5rem] sm:text-[3rem] xl:text-6xl"
                 text="Full Stack Developer Based in California"
                 initialDelay={1000}
                 speed={30}
               />
-              <div className="flex flex-row xl:mt-4 xs:text-[0.8rem] sm:text-[2rem] xl:text-3xl w-full">
+              <div className="flex flex-row xl:mt-4 xs:text-[1.2rem] sm:text-[2rem] xl:text-3xl w-full">
                 <div className="relative group">
                   <a href="/Resume_Rohan_Arya.pdf" target="_blank">
                     <PoppingLetters text="Resume" initialDelay={2200} speed={30}/>
@@ -179,7 +173,7 @@ export default function Home() {
                   href="https://www.linkedin.com/in/rohan-arya/"
                   className="transform transition-transform duration-200 hover:scale-105"
                 >
-                  <Image src={linkedin_logo} className="xs:w-[2rem] sm:w-[3rem]" alt="linkedin" />
+                  <Image src={linkedin_logo} className="xs:w-[3rem] sm:w-[3rem]" alt="linkedin" />
                 </a>
 
                 <a
@@ -189,7 +183,7 @@ export default function Home() {
                 >
                   <Image
                     src={github_logo}
-                    className="xs:w-[2rem] sm:w-[3rem] bg-white rounded-sm"
+                    className="xs:w-[3rem] sm:w-[3rem] bg-white rounded-sm"
                     alt="github"
                   />
                 </a>
@@ -197,7 +191,7 @@ export default function Home() {
             </div>
             {<div
               className={`flex transform transition-transform duration-200 hover:scale-105 flex-col justify-end items-end w-2/5 ${!timer && "opacity-0"
-                } animate-fadeInDelayed`}
+                } animate-fadeInDelayed xs:mb-[20rem] sm:mb-0`}
             >
               <VideoSlider videos={videos} />
             </div>}

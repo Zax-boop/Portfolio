@@ -2,7 +2,6 @@ import supabase from "./supabaseclient";
 
 export default async function updateBook(id, updatedFields) {
     const { name, author, comments, imageFile } = updatedFields;
-    console.log(comments)
     let imageUrl;
     if (imageFile) {
         const fileName = `${Date.now()}_${imageFile.name}`;
