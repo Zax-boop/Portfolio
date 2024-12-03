@@ -14,6 +14,7 @@ import SignInForm from "../app/components/signIn"
 import LazyLoader from "./components/lazyLoader";
 import Link from "next/link";
 import { useMediaQuery } from "react-responsive";
+import { ScrollText } from "lucide-react";
 
 const videos = ["/hatch_demo.mp4", "/addAlbum.mp4", "/colombo_demo.mp4"];
 
@@ -110,31 +111,38 @@ export default function Home() {
         />
       </svg>
       <header className={`w-4/5 flex flex-col items-start mt-4 xs:py-1 xl:py-3`}>
-      <div className="flex flex-row items-center w-full justify-between">
-        <Link href={"/"} className="font-semibold text-xl cursor-pointer p-1 rounded-md hover:bg-white hover:text-black transition-all ease-in-out duration-300">RA</Link>
-        <div
-          className={`flex flex-row mt-2 gap-2`}
-        >
-          <a
-            target="_blank"
-            href="https://www.linkedin.com/in/rohan-arya/"
-            className="transform transition-transform duration-200 hover:scale-105"
+        <div className="flex flex-row items-center w-full justify-between">
+          <Link href={"/"} className="font-semibold text-xl cursor-pointer p-1 rounded-md hover:bg-white hover:text-black transition-all ease-in-out duration-300">RA</Link>
+          <div
+            className={`flex flex-row mt-2 gap-2`}
           >
-            <Image src={linkedin_logo} className="xs:w-[1.5rem] sm:w-[1.5rem]" alt="linkedin" />
-          </a>
+            <a
+              href="/Resume_Rohan_Arya.pdf" 
+              target="_blank"
+              className="transform transition-transform duration-200 hover:scale-105"
+            >
+              <ScrollText className="xs:w-[1.5rem] sm:w-[1.5rem]" />
+            </a>
+            <a
+              target="_blank"
+              href="https://www.linkedin.com/in/rohan-arya/"
+              className="transform transition-transform duration-200 hover:scale-105"
+            >
+              <Image src={linkedin_logo} className="xs:w-[1.5rem] sm:w-[1.5rem]" alt="linkedin" />
+            </a>
 
-          <a
-            target="_blank"
-            href="https://github.com/Zax-boop"
-            className="transform transition-transform duration-200 hover:scale-105"
-          >
-            <Image
-              src={github_logo}
-              className="xs:w-[1.5rem] sm:w-[1.5rem] bg-white rounded-sm"
-              alt="github"
-            />
-          </a>
-        </div>
+            <a
+              target="_blank"
+              href="https://github.com/Zax-boop"
+              className="transform transition-transform duration-200 hover:scale-105"
+            >
+              <Image
+                src={github_logo}
+                className="xs:w-[1.5rem] sm:w-[1.5rem] bg-white rounded-sm"
+                alt="github"
+              />
+            </a>
+          </div>
         </div>
         <div
           ref={lineRef}
