@@ -94,9 +94,9 @@ export default function Home() {
     <div className={`flex flex-col w-full h-full items-center`}>
       <SignInForm />
       <svg
-        width={isMobile ? "200" :  "100%"}
+        width={isMobile ? "200" : "100%"}
         height={isMobile ? "1000" : "2000"}
-        viewBox={isMobile ? "0 0 500 1000" : "0 0 1000 2000"} 
+        viewBox={isMobile ? "0 0 500 1000" : "0 0 1000 2000"}
         fill="none"
         className="absolute xs:top-[10rem] sm:top-[45rem] xl:top-[40rem] left-0 w-full h-auto z-0 squiggle"
       >
@@ -110,7 +110,32 @@ export default function Home() {
         />
       </svg>
       <header className={`w-4/5 flex flex-col items-start mt-4 xs:py-1 xl:py-3`}>
+      <div className="flex flex-row items-center w-full justify-between">
         <Link href={"/"} className="font-semibold text-xl cursor-pointer p-1 rounded-md hover:bg-white hover:text-black transition-all ease-in-out duration-300">RA</Link>
+        <div
+          className={`flex flex-row mt-2 gap-2`}
+        >
+          <a
+            target="_blank"
+            href="https://www.linkedin.com/in/rohan-arya/"
+            className="transform transition-transform duration-200 hover:scale-105"
+          >
+            <Image src={linkedin_logo} className="xs:w-[1.5rem] sm:w-[1.5rem]" alt="linkedin" />
+          </a>
+
+          <a
+            target="_blank"
+            href="https://github.com/Zax-boop"
+            className="transform transition-transform duration-200 hover:scale-105"
+          >
+            <Image
+              src={github_logo}
+              className="xs:w-[1.5rem] sm:w-[1.5rem] bg-white rounded-sm"
+              alt="github"
+            />
+          </a>
+        </div>
+        </div>
         <div
           ref={lineRef}
           className={`h-[0.1rem] bg-white transition-all duration-700 mt-2 ${isVisible ? "w-full" : "w-0"
@@ -161,7 +186,7 @@ export default function Home() {
               <div className="flex flex-row xl:mt-4 xs:text-[1.2rem] sm:text-[2rem] xl:text-3xl w-full">
                 <div className="relative group">
                   <a href="/Resume_Rohan_Arya.pdf" target="_blank">
-                    <PoppingLetters text="Resume" initialDelay={2200} speed={30}/>
+                    <PoppingLetters text="Resume" initialDelay={2200} speed={30} />
                   </a>
                   <span className="absolute xs:-bottom-[0.075rem] sm:-bottom-[0.1rem] left-0 w-0 xs:h-[0.1rem] sm:h-1 bg-white transition-all group-hover:w-full"></span>
                 </div>

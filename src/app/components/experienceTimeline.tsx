@@ -81,7 +81,7 @@ export default function ExperienceTimeline() {
                     contentStyle={{ background: 'white', color: 'black', padding: '12px' }}
                     contentArrowStyle={{ borderRight: '7px solid white' }}
                     date="May 2024 - September 2024"
-                    dateClassName='text-white xs:text-black'
+                    dateClassName='sm:text-white xs:text-black'
                     iconStyle={{ background: 'black', color: '#fff' }}
                     icon={<BriefcaseIcon />}
                 >
@@ -134,6 +134,26 @@ export default function ExperienceTimeline() {
                             <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>PostgreSQL</p>
                             <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Java</p>
                             <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>REST</p>
+                        </div>
+                    </div>
+                </VerticalTimelineElement>
+                <VerticalTimelineElement
+                    className="vertical-timeline-element--work"
+                    contentStyle={{ background: '#0000FF', color: '#fff', padding: '12px' }}
+                    contentArrowStyle={{ borderRight: '7px solid  #0000FF' }}
+                    date="January 2023 - October 2023"
+                    iconStyle={{ background: '#0000FF', color: '#fff' }}
+                    icon={<BriefcaseIcon />}
+                >
+                    <div className='flex flex-col'>
+                        <h1 className='vertical-timeline-element-title !text-3xl !mt-2'>Activity and Recreation Center</h1>
+                        <p className='!text-xl !mt-0 font-medium'>Climbing Instructor</p>
+                        <p className='!mt-0'>Taught students how to belay as well as rock climbing basics. Belayed climbers during shifts. Handled cash register.</p>
+                        <div className='flex flex-row flex-wrap !mt-2 gap-2'>
+                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Leadership</p>
+                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Team Player</p>
+                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Mentorship</p>
+                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Responsibility</p>
                         </div>
                     </div>
                 </VerticalTimelineElement>
