@@ -70,7 +70,7 @@ const ImageTrack = ({ data, onImageClick, width = 'xs:w-[6.67rem] sm:w-[10rem] x
           <Image
             key={index}
             src={src.image}
-            alt={`Climbing media ${index}`}
+            alt={`Media ${index}`}
             width={400}
             height={400}
             className={`image ${width} xs:h-[10rem] sm:h-[15rem] xl:h-[30rem] object-cover object-[100%_center] cursor-pointer`}
