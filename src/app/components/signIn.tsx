@@ -4,12 +4,22 @@ import { useState, useEffect } from 'react';
 import signIn from "../../../utils/signIn"
 import { User } from '@supabase/supabase-js';
 import supabase from '../../../utils/supabaseclient';
+import PoppingLetters from './poppingLetters';
 
 export default function SignInForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const errorMessages = [
+    "Are you sure you're Rohan?", 
+    "So, you've come to challenge me I see...", 
+    "Nice try! But you'll have to try much harder than that!", 
+    "You're a persistent one aren't you...", 
+    "Fine! I'll give you a hint. My password... is... NOT... in... Latin :)",
+    "Wow... you still can't guess it after that amazing hint? Or were you foolish enough to actually try Latin?",
+    "Ok ok, last hint before I log off: have you tried... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... quitting?"]
+  const [error, setError] = useState(errorMessages[0]);
+  const [attempts, setAttempts] = useState(0);
   const [modalOpen, setModalOpen] = useState(false)
   const [user, setUser] = useState<User | null>(null);
   useEffect(() => {
@@ -27,7 +37,12 @@ export default function SignInForm() {
     setError('');
     const user = await signIn(email, password);
     if (!user) {
-      setError('Invalid credentials, please try again.');
+      setAttempts(attempts + 1)
+      if (attempts < errorMessages.length - 1) {
+        setError(errorMessages[attempts + 1])
+      } else {
+        setError('Invalid credentials, please try again.');
+      }
     }
     setLoading(false);
     if (user) {
@@ -63,7 +78,7 @@ export default function SignInForm() {
               ✕
             </button>
             <h1 className="text-2xl font-semibold text-center mb-4">Sign In</h1>
-            {error && <p className="text-red-500 mb-4">{error}</p>}
+            {error && <PoppingLetters className="text-red-500 mb-4" text={error}/>}
             <form className="space-y-4" onSubmit={handleSignIn}>
               <input
                 type="email"
