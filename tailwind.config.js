@@ -22,11 +22,8 @@ module.exports = {
         },
       },
       screens: {
-        'xs': '300px', // Example of a custom breakpoint
+        'xs': '300px',
       },
-      // fontFamily: {
-      //   sans: ['var(--font-montserrat)', 'sans-serif'],
-      // },
     },
   },
   plugins: [],
