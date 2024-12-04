@@ -11,56 +11,52 @@ import DeleteAlbum from '../components/deleteAlbum';
 import SignInForm from '../components/signIn';
 import UpdateAlbumModal from '../components/updateAlbum';
 
-type Album = {
-    name: string;
-    artist: string;
-    comment: string;
-    image: string;
-    Rank: number;
-    id: string;
-  };
-
 export default function Albums() {
-    const [albums, setAlbums] = useState<Album[] | null>(null);
-    useEffect(() => {
-        const fetchData = async () => {
-          try {
-            const fetchedAlbums: Album[] | null = await fetchAlbums();
-            setAlbums(fetchedAlbums ?? []); 
-            albumRefs.current = (fetchedAlbums ?? []).map(() => React.createRef());
-        } catch (error) {
-            console.error("Failed to fetch albums:", error);
-            setAlbums([]);
-          }
-          setLoading(false);
-        };
-    
-        fetchData();
-      }, []); 
-    // const [albums, setAlbums] = useState<{
-    //     name: string;
-    //     artist: string;
-    //     comment: string;
-    //     image: string;
-    //     Rank: number;
-    //     id: string;
-    // }[]>();
+    const [albums, setAlbums] = useState<{
+        name: string;
+        artist: string;
+        comment: string;
+        image: string;
+        Rank: number;
+        id: string;
+    }[]>([]);
+    const [filteredMedia, setFilteredMedia] = useState(albums);
     const [loading, setLoading] = useState(true);
     const [isLoading, setIsLoading] = useState(true);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [searchQuery, setSearchQuery] = useState("");
+
+    const mediaPerPage = 10;
+    const indexOfLastMedia = currentPage * mediaPerPage;
+    const indexOfFirstMedia = indexOfLastMedia - mediaPerPage;
+    const currentMedia = filteredMedia.slice(indexOfFirstMedia, indexOfLastMedia);
     const albumRefs = useRef<React.RefObject<HTMLDivElement>[]>([]);
 
-    // useEffect(() => {
-    //     const getAlbums = async () => {
-    //         const data = await fetchAlbums();
-    //         if (data) {
-    //             setAlbums(data);
-    //             albumRefs.current = data.map(() => React.createRef());
-    //         }
-    //         setLoading(false);
-    //     };
+    useEffect(() => {
+        const getAlbums = async () => {
+            const data = await fetchAlbums();
+            if (data) {
+                setAlbums(data);
+                setFilteredMedia(data);
+                albumRefs.current = data.map(() => React.createRef());
+            }
+            setLoading(false);
+        };
+        getAlbums();
+    }, []);
 
-    //     getAlbums();
-    // }, []);
+    useEffect(() => {
+        const search = searchQuery.toLowerCase();
+        setFilteredMedia(
+            albums.filter(
+                (album) =>
+                    album.name.toLowerCase().includes(search) ||
+                    album.artist.toLowerCase().includes(search) ||
+                    album.comment.toLowerCase().includes(search)
+            )
+        );
+        setCurrentPage(1);
+    }, [searchQuery, albums]);
 
     const scrollToAlbum = (index: number) => {
         if (albumRefs.current[index]) {
@@ -72,9 +68,11 @@ export default function Albums() {
             }
         }
     };
-      if (loading) {
+    if (loading) {
         return <div>Loading...</div>;
-      }
+    }
+
+    const totalPages = Math.ceil(filteredMedia.length / mediaPerPage);
 
     return (
         <div className='flex flex-col w-full h-full items-center'>
@@ -142,13 +140,43 @@ export default function Albums() {
                 <div className="absolute inset-0 bg-black opacity-50"></div>
             </div>
             <div className='mt-4'>
-                <ImageTrack data={albums} onImageClick={scrollToAlbum} />
+                <ImageTrack data={currentMedia} onImageClick={scrollToAlbum} width={`${currentMedia.length == 5 ? `xs:w-[8rem]` : `xs:w-[6.67rem]`} ${currentMedia.length == 6 ? `sm:w-[8rem]` : `sm:w-[10rem]`} ${currentMedia.length == 5 ? `xl:w-[15rem]` : `xl:w-[20rem]`}`}/>
             </div>
             <div className="flex flex-col xs:w-[95%] sm:w-4/5 xs:mt-2 sm:mt-8">
                 <AlbumForm />
                 <p className='xs:text-xs sm:text-base sm:mt-2 xl:mt-0 xs:mb-1 sm:mb-0'>*Disclaimer: This is just my opinion and what I enjoyed listening to the most regardless of critical bias.</p>
+                <div className="pagination-controls flex justify-center mt-4">
+                    {Array.from({ length: totalPages }, (_, i) => (
+                        <button
+                            key={i}
+                            className={`px-2 py-1 mx-1 ${currentPage === i + 1
+                                ? "bg-gray-800 text-white"
+                                : "bg-gray-300 text-black"
+                                }`}
+                            onClick={() => setCurrentPage(i + 1)}
+                        >
+                            {i + 1}
+                        </button>
+                    ))}
+                </div>
+                <div className="my-4">
+                    <input
+                        type="text"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        placeholder="Search books..."
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-0 text-black"
+                    />
+                </div>
                 <hr className="border-t border-gray-300" />
-                {albums?.map((album: Album, index: number) => (
+                {currentMedia.map((album: {
+                    name: string;
+                    artist: string;
+                    comment: string;
+                    image: string;
+                    Rank: number;
+                    id: string;
+                }, index: number) => (
                     <FadeInSection
                         key={album.id || `${album.name}-${album.artist}-${index}`}
                         ref={albumRefs.current[index]}
@@ -177,8 +205,22 @@ export default function Albums() {
                                 <p className="xs:text-[0.5rem] sm:text-sm xl:text-lg xs:mt-0.5 sm:mt-1 xl:mt-2">{album.comment}</p>
                             </div>
                         </div>
-                        {index < albums.length - 1 && <hr className="border-t border-gray-300 xs:my-1 sm:my-2 xl:my-4" />}
+                        {index < currentMedia.length - 1 && <hr className="border-t border-gray-300 xs:my-1 sm:my-2 xl:my-4" />}
                     </FadeInSection>
+                ))}
+            </div>
+            <div className="pagination-controls flex justify-center my-4">
+                {Array.from({ length: totalPages }, (_, i) => (
+                    <button
+                        key={i}
+                        className={`px-2 py-1 mx-1 ${currentPage === i + 1
+                            ? "bg-gray-800 text-white"
+                            : "bg-gray-300 text-black"
+                            }`}
+                        onClick={() => setCurrentPage(i + 1)}
+                    >
+                        {i + 1}
+                    </button>
                 ))}
             </div>
         </div>

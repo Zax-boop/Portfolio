@@ -16,25 +16,24 @@ import DeleteBook from "../components/deleteBook";
 import UpdateBookModal from "../components/updateBook";
 
 export default function Books() {
-    const [books, setBooks] = useState<
-        {
-            name: string;
-            author: string;
-            comments: string;
-            image: string;
-            id: string;
-        }[]
+    const [books, setBooks] = useState<{
+        name: string;
+        author: string;
+        comments: string;
+        image: string;
+        id: string;
+    }[]
     >([]);
-    const [filteredBooks, setFilteredBooks] = useState(books);
+    const [filteredMedia, setFilteredMedia] = useState(books);
     const [loading, setLoading] = useState(true);
     const [isLoading, setIsLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
-    const [searchQuery, setSearchQuery] = useState(""); 
+    const [searchQuery, setSearchQuery] = useState("");
 
-    const booksPerPage = 10;
-    const indexOfLastBook = currentPage * booksPerPage;
-    const indexOfFirstBook = indexOfLastBook - booksPerPage;
-    const currentBooks = filteredBooks.slice(indexOfFirstBook, indexOfLastBook);
+    const mediaPerPage = 10;
+    const indexOfLastMedia = currentPage * mediaPerPage;
+    const indexOfFirstMedia = indexOfLastMedia - mediaPerPage;
+    const currentMedia = filteredMedia.slice(indexOfFirstMedia, indexOfLastMedia);
 
     const bookRefs = useRef<React.RefObject<HTMLDivElement>[]>([]);
 
@@ -43,7 +42,7 @@ export default function Books() {
             const data = await fetchBooks();
             if (data) {
                 setBooks(data);
-                setFilteredBooks(data);
+                setFilteredMedia(data);
                 bookRefs.current = data.map(() => React.createRef());
             }
             setLoading(false);
@@ -54,7 +53,7 @@ export default function Books() {
 
     useEffect(() => {
         const search = searchQuery.toLowerCase();
-        setFilteredBooks(
+        setFilteredMedia(
             books.filter(
                 (book) =>
                     book.name.toLowerCase().includes(search) ||
@@ -80,7 +79,7 @@ export default function Books() {
         return <div>Loading...</div>;
     }
 
-    const totalPages = Math.ceil(filteredBooks.length / booksPerPage);
+    const totalPages = Math.ceil(filteredMedia.length / mediaPerPage);
 
     return (
         <div className="flex flex-col w-full h-full items-center">
@@ -92,11 +91,10 @@ export default function Books() {
                         <Image
                             src={circe}
                             alt="Circe"
-                            className={`w-full h-full object-fill duration-700 ease-in-out group-hover:opacity-75 ${
-                                isLoading
+                            className={`w-full h-full object-fill duration-700 ease-in-out group-hover:opacity-75 ${isLoading
                                     ? "scale-110 blur-2xl grayscale"
                                     : "scale-100 blur-0 grayscale-0"
-                            }`}
+                                }`}
                             onLoad={() => setIsLoading(false)}
                         />
                     </div>
@@ -105,11 +103,10 @@ export default function Books() {
                             src={atss}
                             alt="Atss"
                             priority
-                            className={`w-full h-full object-fill duration-700 ease-in-out group-hover:opacity-75 ${
-                                isLoading
+                            className={`w-full h-full object-fill duration-700 ease-in-out group-hover:opacity-75 ${isLoading
                                     ? "scale-110 blur-2xl grayscale"
                                     : "scale-100 blur-0 grayscale-0"
-                            }`}
+                                }`}
                             onLoad={() => setIsLoading(false)}
                         />
                     </div>
@@ -117,11 +114,10 @@ export default function Books() {
                         <Image
                             src={sisyphus}
                             alt="Sisyphus"
-                            className={`w-full h-full object-fill duration-700 ease-in-out group-hover:opacity-75 ${
-                                isLoading
+                            className={`w-full h-full object-fill duration-700 ease-in-out group-hover:opacity-75 ${isLoading
                                     ? "scale-110 blur-2xl grayscale"
                                     : "scale-100 blur-0 grayscale-0"
-                            }`}
+                                }`}
                             onLoad={() => setIsLoading(false)}
                         />
                     </div>
@@ -134,9 +130,9 @@ export default function Books() {
             </div>
             <div className="mt-4">
                 <ImageTrack
-                    data={currentBooks}
+                    data={currentMedia}
                     onImageClick={scrollToBook}
-                    width={`xs:w-[5.336rem] sm:w-[8rem] ${currentBooks.length < 8 ? `xl:w-[11rem]` : `xl:w-[12rem]`}`}
+                    width={`${currentMedia.length == 5 ? `xs:w-[6rem]` : `xs:w-[5.336rem]`} sm:w-[8rem] ${currentMedia.length == 7 ? `xl:w-[11rem]` : `xl:w-[12rem]`}`}
                 />
             </div>
             <div className="flex flex-col xs:w-[95%] sm:w-4/5 xs:mt-2 sm:mt-8">
@@ -148,21 +144,20 @@ export default function Books() {
                     compare to one another.
                 </p>
                 <div className="pagination-controls flex justify-center mt-4">
-                {Array.from({ length: totalPages }, (_, i) => (
-                    <button
-                        key={i}
-                        className={`px-2 py-1 mx-1 ${
-                            currentPage === i + 1
-                                ? "bg-gray-800 text-white"
-                                : "bg-gray-300 text-black"
-                        }`}
-                        onClick={() => setCurrentPage(i + 1)}
-                    >
-                        {i + 1}
-                    </button>
-                ))}
-            </div>
-            <div className="my-4">
+                    {Array.from({ length: totalPages }, (_, i) => (
+                        <button
+                            key={i}
+                            className={`px-2 py-1 mx-1 ${currentPage === i + 1
+                                    ? "bg-gray-800 text-white"
+                                    : "bg-gray-300 text-black"
+                                }`}
+                            onClick={() => setCurrentPage(i + 1)}
+                        >
+                            {i + 1}
+                        </button>
+                    ))}
+                </div>
+                <div className="my-4">
                     <input
                         type="text"
                         value={searchQuery}
@@ -172,7 +167,7 @@ export default function Books() {
                     />
                 </div>
                 <hr className="border-t border-gray-300" />
-                {currentBooks.map((book, index) => (
+                {currentMedia.map((book, index) => (
                     <FadeInSection
                         key={book.id || `${book.name}-${book.author}-${index}`}
                         ref={bookRefs.current[index]}
@@ -183,11 +178,10 @@ export default function Books() {
                                 src={book.image}
                                 alt={`${book.name} album cover`}
                                 className={`xs:h-[10rem] xs:w-[6.38rem] xs:min-h-[10rem] xs:min-w-[6.38rem] sm:h-[15rem] sm:w-[9.57rem] 
-                                sm:min-h-[15rem] sm:min-w-[9.57rem] xl:w-[19.14rem] xl:h-[30rem] xl:min-w-[19.14rem] xl:min-h-[30rem] object-cover mb-4 transform transition-transform hover:scale-105 duration-300 ${
-                                    isLoading
+                                sm:min-h-[15rem] sm:min-w-[9.57rem] xl:w-[19.14rem] xl:h-[30rem] xl:min-w-[19.14rem] xl:min-h-[30rem] object-cover mb-4 transform transition-transform hover:scale-105 duration-300 ${isLoading
                                         ? "scale-110 blur-2xl grayscale"
                                         : "scale-100 blur-0 grayscale-0"
-                                }`}
+                                    }`}
                                 onLoadedData={() => setIsLoading(false)}
                             />
                             <div className="xs:ml-2 sm:ml-4 w-full">
@@ -208,7 +202,7 @@ export default function Books() {
                                 </p>
                             </div>
                         </div>
-                        {index < currentBooks.length - 1 && (
+                        {index < currentMedia.length - 1 && (
                             <hr className="border-t border-gray-300 xs:my-1 sm:my-2 xl:my-4" />
                         )}
                     </FadeInSection>
@@ -218,11 +212,10 @@ export default function Books() {
                 {Array.from({ length: totalPages }, (_, i) => (
                     <button
                         key={i}
-                        className={`px-2 py-1 mx-1 ${
-                            currentPage === i + 1
+                        className={`px-2 py-1 mx-1 ${currentPage === i + 1
                                 ? "bg-gray-800 text-white"
                                 : "bg-gray-300 text-black"
-                        }`}
+                            }`}
                         onClick={() => setCurrentPage(i + 1)}
                     >
                         {i + 1}
