@@ -2,7 +2,7 @@
 
 import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.css';
-import { BriefcaseIcon, GraduationCap } from 'lucide-react';
+import { BriefcaseIcon, GraduationCap, SquareArrowUpRight } from 'lucide-react';
 import FadeInSection from './fadeIn';
 import { useRef, useState, useEffect } from 'react';
 import React from 'react'
@@ -56,11 +56,12 @@ export default function ExperienceTimeline() {
                         <h1 className='vertical-timeline-element-title !text-3xl !mt-2'>ColomboAI</h1>
                         <p className='!xs:text-xs !xl:text-xl !mt-0 font-medium'>Full Stack Developer</p>
                         <p className='!mt-0'>Developed social media application with Flutter and Dart for mobile development and Next.js and Tailwind CSS for desktop. Implemented secure authentication using Firebase Authentication. Designed SQL queries for managing large-scale data models and utilized Java to create and consume RESTful services for seamless communication across the stack.</p>
-                        <div className="relative group self-start cursor-pointer">
-                            <a target='_blank' href="https://colomboai.com/">
-                                <p className='!mt-0 !font-semibold'>Visit Website</p>
+                        <div className="relative group self-start cursor-pointer my-2">
+                            <a target='_blank' href="https://colomboai.com/" className='flex flex-row items-center gap-2'>
+                                <strong className='!font-bold'>Visit Website</strong>
+                                <SquareArrowUpRight/>
                             </a>
-                            <span className="absolute xs:-bottom-[0.075rem] sm:-bottom-[0.1rem] left-0 w-0 xs:h-[0.1rem] sm:h-1 bg-white transition-all group-hover:w-full"></span>
+                            <span className="absolute xs:-bottom-[0.075rem] sm:-bottom-[0.3rem] left-0 w-0 xs:h-[0.1rem] sm:h-1 bg-white transition-all group-hover:w-full"></span>
                         </div>
                         <div className='flex flex-row flex-wrap !mt-2 gap-2'>
                             <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Flutter</p>
@@ -118,11 +119,12 @@ export default function ExperienceTimeline() {
                         <p className='!text-xl !mt-0 font-medium'>Full Stack Developer</p>
                         <p className='!mt-0'>Implemented resume parsing algorithm in Python to extract and structure key information such
                             as skills, education, and work experience from diverse resume formats. Developed frontend with Next.js, React.js, Typescript, Tailwind, and CSS. Designed and built DB endpoints in Python and Next.js, with an ORM to ensure stateful user data storage. Deployed backend server within docker container in AWS EC2 instance to facilitate traffic between frontend and PostgreSQL. Wrote SQL queries for handling large scale data models. Utilized Java to create and consume RESTful services to communicate across the stack.</p>
-                        <div className="relative group self-start cursor-pointer">
-                            <a target='_blank' href="https://dev.hatchrecruiting.com/">
-                                <p className='!mt-0 !font-semibold'>Visit Website</p>
+                        <div className="relative group self-start cursor-pointer my-2">
+                            <a target='_blank' href="https://dev.hatchrecruiting.com/" className='flex flex-row items-center gap-2'>
+                                <strong className='!font-bold'>Visit Website</strong>
+                                <SquareArrowUpRight/>
                             </a>
-                            <span className="absolute xs:-bottom-[0.075rem] sm:-bottom-[0.1rem] left-0 w-0 xs:h-[0.1rem] sm:h-1 bg-white transition-all group-hover:w-full"></span>
+                            <span className="absolute xs:-bottom-[0.075rem] sm:-bottom-[0.3rem] left-0 w-0 xs:h-[0.1rem] sm:h-1 bg-white transition-all group-hover:w-full"></span>
                         </div>
                         <div className='flex flex-row flex-wrap !mt-2 gap-2'>
                             <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Python</p>

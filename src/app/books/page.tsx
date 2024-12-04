@@ -25,14 +25,16 @@ export default function Books() {
             id: string;
         }[]
     >([]);
+    const [filteredBooks, setFilteredBooks] = useState(books);
     const [loading, setLoading] = useState(true);
     const [isLoading, setIsLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
+    const [searchQuery, setSearchQuery] = useState(""); 
 
     const booksPerPage = 10;
     const indexOfLastBook = currentPage * booksPerPage;
     const indexOfFirstBook = indexOfLastBook - booksPerPage;
-    const currentBooks = books.slice(indexOfFirstBook, indexOfLastBook);
+    const currentBooks = filteredBooks.slice(indexOfFirstBook, indexOfLastBook);
 
     const bookRefs = useRef<React.RefObject<HTMLDivElement>[]>([]);
 
@@ -41,6 +43,7 @@ export default function Books() {
             const data = await fetchBooks();
             if (data) {
                 setBooks(data);
+                setFilteredBooks(data);
                 bookRefs.current = data.map(() => React.createRef());
             }
             setLoading(false);
@@ -48,6 +51,19 @@ export default function Books() {
 
         getBooks();
     }, []);
+
+    useEffect(() => {
+        const search = searchQuery.toLowerCase();
+        setFilteredBooks(
+            books.filter(
+                (book) =>
+                    book.name.toLowerCase().includes(search) ||
+                    book.author.toLowerCase().includes(search) ||
+                    book.comments.toLowerCase().includes(search)
+            )
+        );
+        setCurrentPage(1);
+    }, [searchQuery, books]);
 
     const scrollToBook = (index: number) => {
         if (bookRefs.current[index]) {
@@ -64,7 +80,7 @@ export default function Books() {
         return <div>Loading...</div>;
     }
 
-    const totalPages = Math.ceil(books.length / booksPerPage);
+    const totalPages = Math.ceil(filteredBooks.length / booksPerPage);
 
     return (
         <div className="flex flex-col w-full h-full items-center">
@@ -120,7 +136,7 @@ export default function Books() {
                 <ImageTrack
                     data={currentBooks}
                     onImageClick={scrollToBook}
-                    width={"xs:w-[5.336rem] sm:w-[8rem] xl:w-[12rem]"}
+                    width={`xs:w-[5.336rem] sm:w-[8rem] ${currentBooks.length < 8 ? `xl:w-[11rem]` : `xl:w-[12rem]`}`}
                 />
             </div>
             <div className="flex flex-col xs:w-[95%] sm:w-4/5 xs:mt-2 sm:mt-8">
@@ -131,7 +147,7 @@ export default function Books() {
                     rank the books I read just because each book feels too unique to
                     compare to one another.
                 </p>
-                <div className="pagination-controls flex justify-center my-4">
+                <div className="pagination-controls flex justify-center mt-4">
                 {Array.from({ length: totalPages }, (_, i) => (
                     <button
                         key={i}
@@ -146,14 +162,17 @@ export default function Books() {
                     </button>
                 ))}
             </div>
+            <div className="my-4">
+                    <input
+                        type="text"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        placeholder="Search books..."
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-0 text-black"
+                    />
+                </div>
                 <hr className="border-t border-gray-300" />
-                {currentBooks.map((book: {
-                    name: string;
-                    author: string;
-                    comments: string;
-                    image: string;
-                    id: string;
-                }, index: number) => (
+                {currentBooks.map((book, index) => (
                     <FadeInSection
                         key={book.id || `${book.name}-${book.author}-${index}`}
                         ref={bookRefs.current[index]}

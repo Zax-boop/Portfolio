@@ -92,8 +92,8 @@ export default function UpdateBookModal({ book }: {
                             <div className='w-1/2 self-start flex flex-col items-center sm:gap-2 xl:gap-3'>
                                 <Image
                                     src={coverImage}
-                                    width={isTablet ? 100 : 300}
-                                    height={isTablet ? 100 : 300}
+                                    width={isTablet ? 100 : 200}
+                                    height={isTablet ? 100 : 200}
                                     alt='book cover'
                                     className='transform transition-transform hover:scale-105 duration-300'
                                 />
@@ -110,7 +110,7 @@ export default function UpdateBookModal({ book }: {
                                 <input
                                     type="text"
                                     className="w-full bg-transparent sm:text-sm xl:text-2xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
-                                    placeholder="book Name"
+                                    placeholder="Book Name"
                                     value={name}
                                     onChange={(e) => setName(e.target.value)}
                                 />
