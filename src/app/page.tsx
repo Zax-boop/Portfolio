@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import PoppingLetters from "./components/poppingLetters";
 import linkedin_logo from "../../public/linkedinLogo.png";
 import github_logo from "../../public/github_logo.png";
@@ -12,9 +12,7 @@ import ProjectSection from "./components/projectSection";
 import ContactSection from "./components/contactSection";
 import SignInForm from "../app/components/signIn"
 import LazyLoader from "./components/lazyLoader";
-import Link from "next/link";
 import { useMediaQuery } from "react-responsive";
-import { ListOrdered, ScrollText } from "lucide-react";
 import HomeHeader from "./components/homeHeader";
 
 const videos = ["/hatch_demo.mp4", "/addAlbum.mp4", "/colombo_demo.mp4"];
@@ -22,30 +20,6 @@ const videos = ["/hatch_demo.mp4", "/addAlbum.mp4", "/colombo_demo.mp4"];
 export default function Home() {
   const isMobile = useMediaQuery({ query: '(max-width: 650px)' })
   const [timer, setTimer] = useState(false);
-  const lineRef = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (lineRef.current) {
-      observer.observe(lineRef.current);
-    }
-
-    return () => {
-      if (lineRef.current) {
-        observer.unobserve(lineRef.current);
-      }
-    };
-  }, []);
   useEffect(() => {
     const timerId = setTimeout(() => {
       setTimer(true);

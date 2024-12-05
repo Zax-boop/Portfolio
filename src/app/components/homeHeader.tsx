@@ -39,7 +39,7 @@ export default function HomeHeader() {
                 <div className={`flex flex-row mt-2 gap-2`}>
                     <div className="relative z-[100]" onMouseLeave={() => setDropdownOpen(false)}>
                         <button
-                            onClick={e => setDropdownOpen(!dropdownOpen)}
+                            onClick={() => setDropdownOpen(!dropdownOpen)}
                             className="transform transition-transform duration-200 hover:scale-105"
                         >
                             <ListOrdered className="xs:w-[1.8rem] sm:w-[1.5rem] sm:h-[1.5rem] self-start p-0.5 rounded-md hover:bg-white hover:text-black transition-all ease-in-out duration-300" />
