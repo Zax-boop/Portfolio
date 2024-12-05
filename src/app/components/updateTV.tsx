@@ -99,7 +99,7 @@ export default function UpdateTVModal({ tv }: {
                                     width={isTablet ? 130 : 300}
                                     height={isTablet ? 130 : 300}
                                     alt='tv cover'
-                                    className='transform transition-transform hover:scale-105 duration-300'
+                                    className='transform transition-transform hover:scale-105 duration-300 sm:w-[8.125rem] sm:h-[8.125rem] xl:w-[18.75rem] xl:h-[18.75rem] object-cover'
                                 />
                                 <label className="flex flex-row justify-center items-center gap-2 sm:px-2 xl:px-3 sm:py-1 xl:py-2 bg-black border border-white text-white sm:text-xs xl:text-base rounded-full hover:bg-white hover:text-black transition duration-300 cursor-pointer">
                                     {coverImage === show_placeholder ? "Choose Cover" : "Change Cover"}

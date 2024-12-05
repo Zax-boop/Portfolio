@@ -2,7 +2,16 @@ import supabase from "./supabaseclient";
 
 export default async function addAnime(name, studio, comments, imageFile, rank) {
   let imageUrl = "";
-
+  if (rank == "") {
+    const { data: list, error: fetchError } = await supabase
+      .from('anime_rankings')
+      .select('*');
+    if (fetchError) {
+      console.error('Error fetching tv to update:', fetchError);
+      return null;
+    }
+    rank = list.length + 1;
+  }
   if (imageFile) {
     const fileName = `${Date.now()}_${imageFile.name}`;
 

@@ -74,7 +74,7 @@ export default function AlbumForm() {
                         <form onSubmit={handleSubmit} className="space-y-4 flex w-full flex-col">
                             <div className='flex flex-row w-full'>
                                 <div className='w-1/2 self-start flex flex-col items-center gap-3'>
-                                    <Image src={coverImage} width={400} height={400} alt='placeholder' className='transform transition-transform hover:scale-105 duration-300' />
+                                    <Image src={coverImage} width={400} height={400} alt='placeholder' className='transform transition-transform hover:scale-105 duration-300 sm:w-[8.125rem] sm:h-[8.125rem] xl:w-[18.75rem] xl:h-[18.75rem] object-cover' />
                                     <label className="flex flex-row justify-center items-center gap-2  pl-3 mr-4 py-2 bg-black border border-white text-white rounded-full hover:bg-white hover:text-black transition duration-300 cursor-pointer">
                                         {coverImage === album_placeholder ? "Choose Cover" : "Change Cover"}
                                         <PlusIcon className="w-5 h-5 mr-2" />
@@ -151,8 +151,8 @@ export default function AlbumForm() {
                             {!user && <p className=' text-red-600'>You are not authenticated.</p>}
                             <button
                                 type="submit"
-                                className={`w-full py-2 flex flex-row justify-center bg-blue-600 text-white rounded-md hover:bg-blue-700 transition ${(loading || !user) && `opacity-70`}`}
-                                disabled={loading || !user}
+                                className={`w-full py-2 flex flex-row justify-center bg-blue-600 text-white rounded-md hover:bg-blue-700 transition ${(loading || !user  || name == "" || artist == "") && `opacity-70`}`}
+                                disabled={loading || !user || name == "" || artist == ""}
                             >
                                 {loading ? (
                                     <svg

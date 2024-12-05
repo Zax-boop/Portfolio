@@ -10,7 +10,6 @@ import supabase from '../../../utils/supabaseclient';
 
 export default function TVForm() {
     const [isModalOpen, setIsModalOpen] = useState(false);
-
     const [name, setName] = useState('');
     const [director, setDirector] = useState('');
     const [comments, setComments] = useState('');
@@ -143,8 +142,8 @@ export default function TVForm() {
                                 {!user && <p className=' text-red-600'>You are not authenticated.</p>}
                                 <button
                                     type="submit"
-                                    className={`w-full py-2 flex flex-row justify-center bg-blue-600 text-white rounded-md hover:bg-blue-700 transition ${(loading || !user) && `opacity-70`} `}
-                                    disabled={loading || !user}
+                                    className={`w-full py-2 flex flex-row justify-center bg-blue-600 text-white rounded-md hover:bg-blue-700 transition ${(loading || !user || name == "" || director == "") && `opacity-70`} `}
+                                    disabled={loading || !user || name == "" || director == ""}
                                 >
                                     {loading ? (
                                         <svg

@@ -145,8 +145,8 @@ export default function GameForm() {
                                 {!user && <p className=' text-red-600'>You are not authenticated.</p>}
                                 <button
                                     type="submit"
-                                    className={`w-full py-2 flex flex-row justify-center bg-blue-600 text-white rounded-md hover:bg-blue-700 transition ${(loading || !user) && `opacity-70`} `}
-                                    disabled={loading || !user}
+                                    className={`w-full py-2 flex flex-row justify-center bg-blue-600 text-white rounded-md hover:bg-blue-700 transition ${(loading || !user || name == "" || studio == "") && `opacity-70`} `}
+                                    disabled={loading || !user || name == "" || studio == ""}
                                 >
                                     {loading ? (
                                         <svg

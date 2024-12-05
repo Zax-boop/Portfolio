@@ -14,7 +14,8 @@ import SignInForm from "../app/components/signIn"
 import LazyLoader from "./components/lazyLoader";
 import Link from "next/link";
 import { useMediaQuery } from "react-responsive";
-import { ScrollText } from "lucide-react";
+import { ListOrdered, ScrollText } from "lucide-react";
+import HomeHeader from "./components/homeHeader";
 
 const videos = ["/hatch_demo.mp4", "/addAlbum.mp4", "/colombo_demo.mp4"];
 
@@ -23,6 +24,7 @@ export default function Home() {
   const [timer, setTimer] = useState(false);
   const lineRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -44,12 +46,6 @@ export default function Home() {
       }
     };
   }, []);
-  // const scrollToSection = (id: string) => {
-  //   const element = document.getElementById(id);
-  //   if (element) {
-  //     element.scrollIntoView({ behavior: "smooth" });
-  //   }
-  // };
   useEffect(() => {
     const timerId = setTimeout(() => {
       setTimer(true);
@@ -110,73 +106,8 @@ export default function Home() {
           strokeLinecap="round"
         />
       </svg>
-      <header className={`w-4/5 flex flex-col items-start mt-4 xs:py-1 xl:py-3`}>
-        <div className="flex flex-row items-center w-full justify-between">
-          <Link href={"/"} className="font-semibold text-xl cursor-pointer p-1 rounded-md hover:bg-white hover:text-black transition-all ease-in-out duration-300">RA</Link>
-          <div
-            className={`flex flex-row mt-2 gap-2`}
-          >
-            <a
-              href="/Resume_Rohan_Arya.pdf" 
-              target="_blank"
-              className="transform transition-transform duration-200 hover:scale-105"
-            >
-              <ScrollText className="xs:w-[1.5rem] sm:w-[1.5rem]" />
-            </a>
-            <a
-              target="_blank"
-              href="https://www.linkedin.com/in/rohan-arya/"
-              className="transform transition-transform duration-200 hover:scale-105"
-            >
-              <Image src={linkedin_logo} className="xs:w-[1.5rem] sm:w-[1.5rem]" alt="linkedin" />
-            </a>
-
-            <a
-              target="_blank"
-              href="https://github.com/Zax-boop"
-              className="transform transition-transform duration-200 hover:scale-105"
-            >
-              <Image
-                src={github_logo}
-                className="xs:w-[1.5rem] sm:w-[1.5rem] bg-white rounded-sm"
-                alt="github"
-              />
-            </a>
-          </div>
-        </div>
-        <div
-          ref={lineRef}
-          className={`h-[0.1rem] bg-white transition-all duration-700 mt-2 ${isVisible ? "w-full" : "w-0"
-            }`}
-        />
-        {/* <div className="flex flex-row gap-[2rem]">
-          <button onClick={() => scrollToSection("experience")} className="relative group">
-            <p className="font-semibold">Work Experience</p>
-            <span className="absolute xs:-bottom-[0.1rem] sm:-bottom-1 left-0 w-0 xs:h-[0.1rem] sm:h-1 bg-white transition-all group-hover:w-full"></span>
-          </button>
-          <button onClick={() => scrollToSection("projects")} className="relative group">
-            <p className="font-semibold">Projects</p>
-            <span className="absolute xs:-bottom-[0.1rem] sm:-bottom-1 left-0 w-0 xs:h-[0.1rem] sm:h-1 bg-white transition-all group-hover:w-full"></span>
-          </button>
-          <button onClick={() => scrollToSection("about")} className="relative group">
-            <p className="font-semibold">About Me</p>
-            <span className="absolute xs:-bottom-[0.1rem] sm:-bottom-1 left-0 w-0 xs:h-[0.1rem] sm:h-1 bg-white transition-all group-hover:w-full"></span>
-          </button>
-          <button onClick={() => scrollToSection("contact")} className="relative group">
-            <p className="font-semibold">Contact Me</p>
-            <span className="absolute xs:-bottom-[0.1rem] sm:-bottom-1 left-0 w-0 xs:h-[0.1rem] sm:h-1 bg-white transition-all group-hover:w-full"></span>
-          </button>
-        </div> */}
-      </header>
+      <HomeHeader/>
       <div className="relative flex flex-col w-full mt-1 xl:h-[90vh] items-center overflow-hidden">
-        {/* <video
-          ref={videoRef}
-          src="/cb.mp4"
-          autoPlay
-          loop
-          muted
-          className="absolute inset-0 w-full h-full object-cover"
-        /> */}
         <div className="absolute inset-0 bg-black opacity-50"></div>
         <div className="relative flex flex-col w-4/5 items-start z-10">
           <PoppingLetters

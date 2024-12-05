@@ -95,7 +95,7 @@ export default function UpdateBookModal({ book }: {
                                     width={isTablet ? 100 : 200}
                                     height={isTablet ? 100 : 200}
                                     alt='book cover'
-                                    className='transform transition-transform hover:scale-105 duration-300'
+                                    className='transform transition-transform hover:scale-105 duration-300 sm:w-[5.18375rem] xl:w-[11.9625rem] sm:h-[8.125rem] xl:h-[18.75rem] object-cover'
                                 />
                                 <label className="flex flex-row justify-center items-center gap-2 sm:px-2 xl:px-3 sm:py-1 xl:py-2 bg-black border border-white text-white sm:text-xs xl:text-base rounded-full hover:bg-white hover:text-black transition duration-300 cursor-pointer">
                                     {coverImage === show_placeholder ? "Choose Cover" : "Change Cover"}
