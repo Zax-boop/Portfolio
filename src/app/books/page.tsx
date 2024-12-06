@@ -92,8 +92,8 @@ export default function Books() {
                             src={circe}
                             alt="Circe"
                             className={`w-full h-full object-fill duration-700 ease-in-out group-hover:opacity-75 ${isLoading
-                                    ? "scale-110 blur-2xl grayscale"
-                                    : "scale-100 blur-0 grayscale-0"
+                                ? "scale-110 blur-2xl grayscale"
+                                : "scale-100 blur-0 grayscale-0"
                                 }`}
                             onLoad={() => setIsLoading(false)}
                         />
@@ -104,8 +104,8 @@ export default function Books() {
                             alt="Atss"
                             priority
                             className={`w-full h-full object-fill duration-700 ease-in-out group-hover:opacity-75 ${isLoading
-                                    ? "scale-110 blur-2xl grayscale"
-                                    : "scale-100 blur-0 grayscale-0"
+                                ? "scale-110 blur-2xl grayscale"
+                                : "scale-100 blur-0 grayscale-0"
                                 }`}
                             onLoad={() => setIsLoading(false)}
                         />
@@ -115,8 +115,8 @@ export default function Books() {
                             src={sisyphus}
                             alt="Sisyphus"
                             className={`w-full h-full object-fill duration-700 ease-in-out group-hover:opacity-75 ${isLoading
-                                    ? "scale-110 blur-2xl grayscale"
-                                    : "scale-100 blur-0 grayscale-0"
+                                ? "scale-110 blur-2xl grayscale"
+                                : "scale-100 blur-0 grayscale-0"
                                 }`}
                             onLoad={() => setIsLoading(false)}
                         />
@@ -143,13 +143,13 @@ export default function Books() {
                     rank the books I read just because each book feels too unique to
                     compare to one another.
                 </p>
-                <div className="pagination-controls flex justify-center mt-4">
+                <div className="flex flex-row flex-wrap justify-start mt-2">
                     {Array.from({ length: totalPages }, (_, i) => (
                         <button
                             key={i}
-                            className={`px-2 py-1 mx-1 ${currentPage === i + 1
-                                    ? "bg-gray-800 text-white"
-                                    : "bg-gray-300 text-black"
+                            className={`px-3 py-1 mx-1 my-1 ${currentPage === i + 1
+                                ? "bg-white text-black border-[1px] border-white"
+                                : "bg-black border-[1px] border-white text-white hover:bg-white hover:text-black transition-all duration-300 ease-in-out"
                                 }`}
                             onClick={() => setCurrentPage(i + 1)}
                         >
@@ -207,20 +207,20 @@ export default function Books() {
                         )}
                     </FadeInSection>
                 ))}
-            </div>
-            <div className="pagination-controls flex justify-center my-4">
-                {Array.from({ length: totalPages }, (_, i) => (
-                    <button
-                        key={i}
-                        className={`px-2 py-1 mx-1 ${currentPage === i + 1
-                                ? "bg-gray-800 text-white"
-                                : "bg-gray-300 text-black"
-                            }`}
-                        onClick={() => setCurrentPage(i + 1)}
-                    >
-                        {i + 1}
-                    </button>
-                ))}
+                <div className="flex flex-row flex-wrap justify-start mt-1">
+                    {Array.from({ length: totalPages }, (_, i) => (
+                        <button
+                            key={i}
+                            className={`px-3 py-1 xs:mx-1 sm:mx-1.5 xs:my-1 sm:my-1.5 ${currentPage === i + 1
+                                ? "bg-white text-black border-[1px] border-white"
+                                : "bg-black border-[1px] border-white text-white hover:bg-white hover:text-black transition-all duration-300 ease-in-out"
+                                }`}
+                            onClick={() => setCurrentPage(i + 1)}
+                        >
+                            {i + 1}
+                        </button>
+                    ))}
+                </div>
             </div>
         </div>
     );

@@ -171,18 +171,18 @@ export default function GamesRanking() {
                 <div className="absolute inset-0 bg-black opacity-50"></div>
             </div>
             <div className='mt-4'>
-                <ImageTrack data={currentMedia} onImageClick={scrollToGames} width={`${currentMedia.length == 5 ? `xs:w-[8rem]` : `xs:w-[6.67rem]`} ${currentMedia.length == 6 ? `sm:w-[8rem]` : `sm:w-[10rem]`} ${currentMedia.length == 5 ? `xl:w-[15rem]` : `xl:w-[20rem]`}`}/>
+                <ImageTrack data={currentMedia} onImageClick={scrollToGames} width={`${currentMedia.length == 5 ? `xs:w-[8rem]` : `xs:w-[6.67rem]`} ${currentMedia.length == 6 ? `sm:w-[8rem]` : `sm:w-[10rem]`} ${currentMedia.length == 5 ? `xl:w-[15rem]` : `xl:w-[20rem]`}`} />
             </div>
             <div className="flex flex-col xs:w-[95%] sm:w-4/5 xs:mt-2 sm:mt-8">
                 <GameForm />
                 <p className='xs:text-xs sm:text-base sm:mt-2 xl:mt-0 xs:mb-1 sm:mb-0'>*Disclaimer: This is just my opinion and what I enjoyed playing the most regardless of critical bias. </p>
-                <div className="pagination-controls flex justify-center mt-4">
+                <div className="flex flex-row flex-wrap justify-start mt-2">
                     {Array.from({ length: totalPages }, (_, i) => (
                         <button
                             key={i}
-                            className={`px-2 py-1 mx-1 ${currentPage === i + 1
-                                ? "bg-gray-800 text-white"
-                                : "bg-gray-300 text-black"
+                            className={`px-3 py-1 mx-1 my-1 ${currentPage === i + 1
+                                ? "bg-white text-black border-[1px] border-white"
+                                : "bg-black border-[1px] border-white text-white hover:bg-white hover:text-black transition-all duration-300 ease-in-out"
                                 }`}
                             onClick={() => setCurrentPage(i + 1)}
                         >
@@ -238,20 +238,20 @@ export default function GamesRanking() {
                         {index < currentMedia.length - 1 && <hr className="border-t border-gray-300 xs:my-1 sm:my-2 xl:my-4" />}
                     </FadeInSection>
                 ))}
-            </div>
-            <div className="pagination-controls flex justify-center my-4">
-                {Array.from({ length: totalPages }, (_, i) => (
-                    <button
-                        key={i}
-                        className={`px-2 py-1 mx-1 ${currentPage === i + 1
-                            ? "bg-gray-800 text-white"
-                            : "bg-gray-300 text-black"
-                            }`}
-                        onClick={() => setCurrentPage(i + 1)}
-                    >
-                        {i + 1}
-                    </button>
-                ))}
+                <div className="flex flex-row flex-wrap justify-start mt-1">
+                    {Array.from({ length: totalPages }, (_, i) => (
+                        <button
+                            key={i}
+                            className={`px-3 py-1 xs:mx-1 sm:mx-1.5 xs:my-1 sm:my-1.5 ${currentPage === i + 1
+                                ? "bg-white text-black border-[1px] border-white"
+                                : "bg-black border-[1px] border-white text-white hover:bg-white hover:text-black transition-all duration-300 ease-in-out"
+                                }`}
+                            onClick={() => setCurrentPage(i + 1)}
+                        >
+                            {i + 1}
+                        </button>
+                    ))}
+                </div>
             </div>
         </div>
     );

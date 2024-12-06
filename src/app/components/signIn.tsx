@@ -78,7 +78,7 @@ export default function SignInForm() {
               ✕
             </button>
             <h1 className="text-2xl font-semibold text-center mb-4">Sign In</h1>
-            {error && <PoppingLetters className="text-red-500 mb-4" text={error}/>}
+            {error && <PoppingLetters className="text-red-500 mb-4" text={error} speed={50}/>}
             <form className="space-y-4" onSubmit={handleSignIn}>
               <input
                 type="email"
