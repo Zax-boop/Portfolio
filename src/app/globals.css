@@ -38,7 +38,7 @@ input[type="number"] {
 }
 
 ::-webkit-scrollbar-track {
-  background: black; /* Makes track invisible */
+  background: black; 
 }
 
 ::-webkit-scrollbar {
