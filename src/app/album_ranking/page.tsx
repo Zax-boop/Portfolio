@@ -31,6 +31,13 @@ export default function Albums() {
     const indexOfFirstMedia = indexOfLastMedia - mediaPerPage;
     const currentMedia = filteredMedia.slice(indexOfFirstMedia, indexOfLastMedia);
     const albumRefs = useRef<React.RefObject<HTMLDivElement>[]>([]);
+    const searchSectionRef = useRef<HTMLDivElement>(null);
+    const switchPage = (pageIndex: number) => {
+        if (searchSectionRef.current != null) {
+            searchSectionRef.current.scrollIntoView({ behavior: "smooth" });
+        }
+        setCurrentPage(pageIndex + 1);
+    };
 
     useEffect(() => {
         const getAlbums = async () => {
@@ -140,7 +147,7 @@ export default function Albums() {
                 <div className="absolute inset-0 bg-black opacity-50"></div>
             </div>
             <div className='mt-4'>
-                <ImageTrack data={currentMedia} onImageClick={scrollToAlbum} width={`${currentMedia.length == 5 ? `xs:w-[8rem]` : `xs:w-[6.67rem]`} ${currentMedia.length == 6 ? `sm:w-[8rem]` : `sm:w-[10rem]`} ${currentMedia.length == 5 ? `xl:w-[15rem]` : `xl:w-[20rem]`}`}/>
+                <ImageTrack data={currentMedia} onImageClick={scrollToAlbum} width={`${currentMedia.length == 5 ? `xs:w-[8rem]` : `xs:w-[6.67rem]`} ${currentMedia.length == 6 ? `sm:w-[8rem]` : `sm:w-[10rem]`} ${currentMedia.length == 5 ? `xl:w-[15rem]` : `xl:w-[20rem]`}`} />
             </div>
             <div className="flex flex-col xs:w-[95%] sm:w-4/5 xs:mt-2 sm:mt-8">
                 <AlbumForm />
@@ -159,7 +166,8 @@ export default function Albums() {
                         </button>
                     ))}
                 </div>
-                <div className="my-4">
+                <div className="my-4" ref={searchSectionRef}
+                >
                     <input
                         type="text"
                         value={searchQuery}
@@ -216,7 +224,7 @@ export default function Albums() {
                                 ? "bg-white text-black border-[1px] border-white"
                                 : "bg-black border-[1px] border-white text-white hover:bg-white hover:text-black transition-all duration-300 ease-in-out"
                                 }`}
-                            onClick={() => setCurrentPage(i + 1)}
+                            onClick={() => switchPage(i)}
                         >
                             {i + 1}
                         </button>

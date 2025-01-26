@@ -32,6 +32,15 @@ export default function TVRanking() {
     const currentMedia = filteredMedia.slice(indexOfFirstMedia, indexOfLastMedia);
 
     const showRefs = useRef<React.RefObject<HTMLDivElement>[]>([]);
+
+    const searchSectionRef = useRef<HTMLDivElement>(null);
+    const switchPage = (pageIndex: number) => {
+        if (searchSectionRef.current != null) {
+            searchSectionRef.current.scrollIntoView({ behavior: "smooth" });
+        }
+        setCurrentPage(pageIndex + 1);
+    };
+
     useEffect(() => {
         const getTV = async () => {
             const data = await fetchTV();
@@ -161,7 +170,7 @@ export default function TVRanking() {
                         </button>
                     ))}
                 </div>
-                <div className="my-4">
+                <div className="my-4" ref={searchSectionRef}>
                     <input
                         type="text"
                         value={searchQuery}
@@ -217,7 +226,7 @@ export default function TVRanking() {
                                 ? "bg-white text-black border-[1px] border-white"
                                 : "bg-black border-[1px] border-white text-white hover:bg-white hover:text-black transition-all duration-300 ease-in-out"
                                 }`}
-                            onClick={() => setCurrentPage(i + 1)}
+                            onClick={() => switchPage(i)}
                         >
                             {i + 1}
                         </button>
