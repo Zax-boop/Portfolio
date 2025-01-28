@@ -77,7 +77,7 @@ export default function HomeHeader() {
                                     href="/climbing"
                                     className="block xs:px-2 sm:px-4 xs:py-1 sm:py-2 text-black hover:bg-gray-100"
                                 >
-                                    Climbing
+                                    Sports
                                 </Link>
                             </li>
                             <li>

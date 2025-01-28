@@ -54,7 +54,11 @@ export default function Climbing() {
         }
     };
 
-    const backgroundVideos = mediaFiles.filter((file) => file.name.endsWith(".mp4")).slice(4, 7);
+    const backgroundVideos = mediaFiles
+        .filter((file) => file.name.endsWith(".mp4"))
+        .filter((_, index) => (index >= 4 && index < 6) || index === 1);
+
+    const shuffledMediaFiles = [...mediaFiles].sort(() => Math.random() - 0.5);
 
     return (
         <div className="flex flex-col w-full h-full items-center">
@@ -79,7 +83,7 @@ export default function Climbing() {
                         />
                     ))}
                 </div>
-                <PoppingLetters text="Climbing" className="absolute text-white xs:text-2xl sm:text-6xl font-bold z-10 text-center" />
+                <PoppingLetters text="Sports" className="absolute text-white xs:text-2xl sm:text-6xl font-bold z-10 text-center" />
                 <div className="absolute inset-0 bg-black opacity-50"></div>
             </div>
             <div className="flex flex-col w-full xs:mt-2 sm:mt-4 xl:mt-10 self-start">
@@ -96,7 +100,7 @@ export default function Climbing() {
                 </div>}
                 {showWarning && <p className="text-red-600 w-full text-right xs:pr-2 sm:pr-4 mt-1 xs:text-xs sm:text-base">You are not authenticated.</p>}
                 <div className="xs:p-2 xs:gap-2 xs:space-y-2 sm:p-4 xs:columns-2 sm:columns-4 sm:gap-4 sm:space-y-4">
-                    {mediaFiles.map((file, index) => {
+                    {shuffledMediaFiles.map((file, index) => {
                         const fileExt = file.name.split(".").pop()?.toLowerCase();
                         return (
                             <FadeInSection
@@ -106,37 +110,21 @@ export default function Climbing() {
                                 {["jpg", "jpeg", "png"].includes(fileExt || "") ? (
                                     <Image
                                         src={file.url?.data?.publicUrl}
-                                        alt={`Climbing media ${index}`}
+                                        alt={`Sports media ${index}`}
                                         width={500}
                                         height={500}
                                         layout="responsive"
                                         objectFit="cover"
                                         className={`rounded-lg transform transition-transform hover:scale-105 duration-700 ease-in-out group-hover:opacity-75`}
-                                    // ${loadingStates[index] ? "scale-110 blur-2xl grayscale" : "scale-100 blur-0 grayscale-0"
-                                    // }
-                                    // onLoadingComplete={() => handleLoadedData(index)}
                                     />
                                 ) : ["mp4"].includes(fileExt || "") ? (
-                                    // <video
-                                    //     src={file.url?.data?.publicUrl}
-                                    //     className={`rounded-lg w-full h-full transform transition-transform hover:scale-105 object-cover duration-700 ease-in-out group-hover:opacity-75 `}
-                                    //     // ${loadingStates[index] ? "scale-110 blur-2xl grayscale" : "scale-100 blur-0 grayscale-0"
-                                    //     // }
-                                    //     autoPlay
-                                    //     loop
-                                    //     muted
-                                    //     controls={false}
-                                    //     playsInline
-                                    // // onLoadedData={() => handleLoadedData(index)}
-                                    // />
-                                    <VideoWithPlaceholder aspect="aspect-[9/19.5]" src={file.url?.data?.publicUrl} className="rounded-lg w-full h-full transform transition-transform hover:scale-105 object-cover duration-700 ease-in-out group-hover:opacity-75"/>
-                                    
+                                    <VideoWithPlaceholder aspect="aspect-[9/19.5]" src={file.url?.data?.publicUrl} className="rounded-lg w-full h-full transform transition-transform hover:scale-105 object-cover duration-700 ease-in-out group-hover:opacity-75" />
+
                                 ) : null}
                             </FadeInSection>
                         );
                     })}
                 </div>
-
             </div>
         </div>
     );

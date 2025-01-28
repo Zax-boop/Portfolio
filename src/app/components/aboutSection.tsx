@@ -84,7 +84,7 @@ export default function AboutSection() {
         <FadeInSection className='self-start'>
           <Link href='/climbing' className='self-start flex flex-col items-center xs:gap-0.5 sm:gap-1'>
             <Image src={climbing_app} alt='climbing_ex' className='xs:w-[5rem] xs:h-[5rem] sm:h-[15rem] sm:w-[15rem] xl:w-[17rem] xl:h-[17rem]  self-start object-cover xs:rounded-lg sm:rounded-[40px] xl:transform xl:transition-transform xl:duration-200 xl:hover:scale-105' />
-            <p className='xs:text-sm sm:text-3xl cursor-pointer'>Climbing</p>
+            <p className='xs:text-sm sm:text-3xl cursor-pointer'>Sports</p>
           </Link>
         </FadeInSection>
         <FadeInSection className='self-start'>
