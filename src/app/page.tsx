@@ -91,12 +91,12 @@ export default function Home() {
           <div className="flex xs:flex-col xl:flex-row justify-between w-full xs:mt-4 xl:mt-20">
             <div className="flex flex-col w-4/5">
               <PoppingLetters
-                className="xs:text-[1.5rem] sm:text-[3rem] xl:text-6xl"
+                className="xs:text-[1.5rem] sm:text-[3rem] xl:text-6xl 2xl:text-7xl"
                 text="Full Stack Developer Based in California"
                 initialDelay={1000}
                 speed={30}
               />
-              <div className="flex flex-row xl:mt-4 xs:text-[1.2rem] sm:text-[2rem] xl:text-3xl w-full">
+              <div className="flex flex-row xl:mt-4 xs:text-[1.2rem] sm:text-[2rem] xl:text-3xl 2xl:text-4xl w-full">
                 <div className="relative group">
                   <a href="/Resume_Rohan_Arya.pdf" target="_blank">
                     <PoppingLetters text="Resume" initialDelay={2200} speed={30} />

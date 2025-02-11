@@ -140,7 +140,7 @@ export default function Books() {
                 <ImageTrack
                     data={currentMedia}
                     onImageClick={scrollToBook}
-                    width={`${currentMedia.length == 5 ? `xs:w-[6rem]` : `xs:w-[5.336rem]`} sm:w-[8rem] ${currentMedia.length == 7 ? `xl:w-[11rem]` : `xl:w-[12rem]`}`}
+                    width={`${currentMedia.length == 5 ? `xs:w-[6rem]` : `xs:w-[5.336rem]`} sm:w-[8rem] ${currentMedia.length == 7 ? `xl:w-[11rem] 2xl:w-[14rem]` : `xl:w-[12rem] 2xl:w-[15rem]`}`}
                 />
             </div>
             <div className="flex flex-col xs:w-[95%] sm:w-4/5 xs:mt-2 sm:mt-8">

@@ -5,6 +5,7 @@ import { useMediaQuery } from "react-responsive";
 
 const ImageTrack = ({ data, onImageClick, width = 'xs:w-[6.67rem] sm:w-[10rem] xl:w-[20rem]', scroll = 2 }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 650px)' })
+  const isBungus = useMediaQuery({ query: '(min-width: 1700px)' })
   const trackRef = useRef(null);
   const [scrollPercentage, setScrollPercentage] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
@@ -41,7 +42,7 @@ const ImageTrack = ({ data, onImageClick, width = 'xs:w-[6.67rem] sm:w-[10rem] x
     const smoothScroll = () => {
       if (!isHovered && trackRef.current) {
         const maxScrollLeft = trackRef.current.scrollWidth - trackRef.current.clientWidth;
-        if (trackRef.current.scrollLeft >= maxScrollLeft) {
+        if (trackRef.current.scrollLeft >= (maxScrollLeft - (isBungus ? 100 : 0))) {
           setScrollDirection(-1); 
         } else if (trackRef.current.scrollLeft <= 0) {
           setScrollDirection(1);
