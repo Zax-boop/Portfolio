@@ -15,7 +15,7 @@ import LazyLoader from "./components/lazyLoader";
 import { useMediaQuery } from "react-responsive";
 import HomeHeader from "./components/homeHeader";
 
-const videos = ["/hatch_demo.mp4", "/addAlbum.mp4", "/colombo_demo.mp4"];
+const videos = ["/hatch_demo.mp4", "prismera_demo.mp4", "/addAlbum.mp4", "/colombo_demo.mp4"];
 
 export default function Home() {
   const isMobile = useMediaQuery({ query: '(max-width: 650px)' })

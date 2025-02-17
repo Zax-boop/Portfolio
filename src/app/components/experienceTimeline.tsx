@@ -43,9 +43,44 @@ export default function ExperienceTimeline() {
             <VerticalTimeline className='!mt-4'>
                 <VerticalTimelineElement
                     className="vertical-timeline-element--work"
+                    contentStyle={{ background: 'rgb(254, 76, 0)', color: '#fff', padding: '12px' }}
+                    contentArrowStyle={{ borderRight: '7px solid  rgb(254, 76, 0)' }}
+                    date="December 2024 - Present"
+                    iconStyle={{ background: 'rgb(254, 76, 0)', color: '#fff' }}
+                    icon={<BriefcaseIcon />}
+                >
+                    <div className='flex flex-col'>
+                        <a target='_blank' href='https://colomboai.com/' className="rounded-lg overflow-hidden cursor-pointer">
+                            <VideoWithPlaceholder className='w-full cursor-pointer' src='/prismera_demo.mp4' />
+                        </a>
+                        <h1 className='vertical-timeline-element-title !text-3xl !mt-2'>Prismera</h1>
+                        <p className='!xs:text-xs !xl:text-xl !mt-0 font-medium'>Full Stack Developer</p>
+                        <p className='!mt-0'>Worked across the stack on real estate lease parser. Used Next.js, Typescript, and Tailwind CSS for the frontend. Wrote REST APIs in python. Utilized Java to create and consume RESTful services for seamless communication across the stack. Used Firebase for authentication.</p>
+                        <div className="relative group self-start cursor-pointer my-2">
+                            <a target='_blank' href="https://prismera.ai/" className='flex flex-row items-center gap-2'>
+                                <strong className='!font-bold'>Visit Website</strong>
+                                <SquareArrowUpRight />
+                            </a>
+                            <span className="absolute xs:-bottom-[0.075rem] sm:-bottom-[0.3rem] left-0 w-0 xs:h-[0.1rem] sm:h-1 bg-white transition-all group-hover:w-full"></span>
+                        </div>
+                        <div className='flex flex-row flex-wrap !mt-2 gap-2'>
+                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Next.js</p>
+                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Typescript</p>
+                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Tailwind CSS</p>
+                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Firebase</p>
+                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Java</p>
+                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>REST</p>
+                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Python</p>
+                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>REST APIs</p>
+
+                        </div>
+                    </div>
+                </VerticalTimelineElement>
+                <VerticalTimelineElement
+                    className="vertical-timeline-element--work"
                     contentStyle={{ background: 'rgb(33, 150, 243)', color: '#fff', padding: '12px' }}
                     contentArrowStyle={{ borderRight: '7px solid  rgb(33, 150, 243)' }}
-                    date="August 2024 - Present"
+                    date="August 2024 - December 2024"
                     iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
                     icon={<BriefcaseIcon />}
                 >
@@ -59,7 +94,7 @@ export default function ExperienceTimeline() {
                         <div className="relative group self-start cursor-pointer my-2">
                             <a target='_blank' href="https://colomboai.com/" className='flex flex-row items-center gap-2'>
                                 <strong className='!font-bold'>Visit Website</strong>
-                                <SquareArrowUpRight/>
+                                <SquareArrowUpRight />
                             </a>
                             <span className="absolute xs:-bottom-[0.075rem] sm:-bottom-[0.3rem] left-0 w-0 xs:h-[0.1rem] sm:h-1 bg-white transition-all group-hover:w-full"></span>
                         </div>
@@ -112,9 +147,9 @@ export default function ExperienceTimeline() {
                     icon={<BriefcaseIcon />}
                 >
                     <div className='flex flex-col'>
-                            <a target='_blank' href='https://dev.hatchrecruiting.com/' className="rounded-lg overflow-hidden cursor-pointer">
-                                <VideoWithPlaceholder src='/hatch_demo.mp4' className='w-full cursor-pointer'/>
-                            </a>
+                        <a target='_blank' href='https://dev.hatchrecruiting.com/' className="rounded-lg overflow-hidden cursor-pointer">
+                            <VideoWithPlaceholder src='/hatch_demo.mp4' className='w-full cursor-pointer' />
+                        </a>
                         <h1 className='vertical-timeline-element-title !text-3xl !mt-2'>Hatch Recruiting</h1>
                         <p className='!text-xl !mt-0 font-medium'>Full Stack Developer</p>
                         <p className='!mt-0'>Implemented resume parsing algorithm in Python to extract and structure key information such
@@ -122,7 +157,7 @@ export default function ExperienceTimeline() {
                         <div className="relative group self-start cursor-pointer my-2">
                             <a target='_blank' href="https://dev.hatchrecruiting.com/" className='flex flex-row items-center gap-2'>
                                 <strong className='!font-bold'>Visit Website</strong>
-                                <SquareArrowUpRight/>
+                                <SquareArrowUpRight />
                             </a>
                             <span className="absolute xs:-bottom-[0.075rem] sm:-bottom-[0.3rem] left-0 w-0 xs:h-[0.1rem] sm:h-1 bg-white transition-all group-hover:w-full"></span>
                         </div>
