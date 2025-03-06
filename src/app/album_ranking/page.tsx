@@ -147,7 +147,7 @@ export default function Albums() {
                 <div className="absolute inset-0 bg-black opacity-50"></div>
             </div>
             <div className='mt-4'>
-                <ImageTrack data={currentMedia} onImageClick={scrollToAlbum} width={`${currentMedia.length == 5 ? `xs:w-[8rem]` : `xs:w-[6.67rem]`} ${currentMedia.length == 6 ? `sm:w-[8rem]` : `sm:w-[10rem]`} ${currentMedia.length == 5 ? `xl:w-[15rem]` : `xl:w-[20rem]`}`} />
+                <ImageTrack data={currentMedia} onImageClick={scrollToAlbum} width={`${currentMedia.length == 5 ? `xs:w-[8rem]` : `xs:w-[6.67rem]`} ${currentMedia.length == 6 ? `sm:w-[8rem] 2xl:w-[15rem]` : `sm:w-[10rem] 2xl:w-[20rem]`} ${currentMedia.length == 5 ? `xl:w-[15rem]` : `xl:w-[20rem]`}`} />
             </div>
             <div className="flex flex-col xs:w-[95%] sm:w-4/5 xs:mt-2 sm:mt-8">
                 <AlbumForm />
@@ -172,7 +172,7 @@ export default function Albums() {
                         type="text"
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        placeholder="Search books..."
+                        placeholder="Search albums..."
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-0 text-black"
                     />
                 </div>
