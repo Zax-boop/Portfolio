@@ -1,6 +1,6 @@
 import supabase from "./supabaseclient";
 
-export default async function addAlbum(name, artist, comment, imageFile, Rank) {
+export default async function addAlbum(name, artist, comment, imageFile, Rank, genres) {
   let imageUrl = "";
   if (Rank == "") {
     const { data: list, error: fetchError } = await supabase
@@ -50,7 +50,7 @@ export default async function addAlbum(name, artist, comment, imageFile, Rank) {
   }
   const { data, error } = await supabase
     .from('album_rankings')
-    .insert([{ name, artist, comment, image: imageUrl, Rank }]);
+    .insert([{ name, artist, comment, image: imageUrl, Rank, genres }]);
 
   if (error) {
     console.error('Error inserting data:', error);

@@ -10,6 +10,7 @@ import ImageTrack from '../components/ImageTrack';
 import DeleteAlbum from '../components/deleteAlbum';
 import SignInForm from '../components/signIn';
 import UpdateAlbumModal from '../components/updateAlbum';
+import MusicGenre from '../components/musicGenre';
 
 export default function Albums() {
     const [albums, setAlbums] = useState<{
@@ -18,6 +19,7 @@ export default function Albums() {
         comment: string;
         image: string;
         Rank: number;
+        genres: string[];
         id: string;
     }[]>([]);
     const [filteredMedia, setFilteredMedia] = useState(albums);
@@ -59,7 +61,8 @@ export default function Albums() {
                 (album) =>
                     album.name.toLowerCase().includes(search) ||
                     album.artist.toLowerCase().includes(search) ||
-                    album.comment.toLowerCase().includes(search)
+                    album.comment.toLowerCase().includes(search) || 
+                    album.genres?.some((genre) => genre.toLowerCase().includes(search))
             )
         );
         setCurrentPage(1);
@@ -183,6 +186,7 @@ export default function Albums() {
                     comment: string;
                     image: string;
                     Rank: number;
+                    genres: string[];
                     id: string;
                 }, index: number) => (
                     <FadeInSection
@@ -211,6 +215,11 @@ export default function Albums() {
                                 </div>
                                 <p className="xs:text-base sm:text-lg xl:text-3xl text-gray-400">{album.artist}</p>
                                 <p className="xs:text-[0.5rem] sm:text-sm xl:text-lg xs:mt-0.5 sm:mt-1 xl:mt-2">{album.comment}</p>
+                                <div className="flex flex-wrap gap-2 mt-2">
+                                    {album.genres?.slice().sort().map((genre, index) => (
+                                        <MusicGenre genre={genre} key={index} />
+                                    ))}
+                                </div>
                             </div>
                         </div>
                         {index < currentMedia.length - 1 && <hr className="border-t border-gray-300 xs:my-1 sm:my-2 xl:my-4" />}

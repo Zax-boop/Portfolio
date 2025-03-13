@@ -16,6 +16,7 @@ export default function UpdateAlbumModal({ album }: {
         comment: string;
         image: string;
         Rank: number;
+        genres: string[];
         id: string;
     }
 }) {
@@ -25,6 +26,7 @@ export default function UpdateAlbumModal({ album }: {
     const [comments, setComments] = useState(album?.comment || '');
     const [imageFile, setImageFile] = useState<File | null>(null);
     const [rank, setRank] = useState(album?.Rank || '');
+    const [genres, setGenres] = useState(album?.genres || []);
     const [coverImage, setCoverImage] = useState<string | StaticImageData>(album?.image || album_placeholder);
     const [loading, setLoading] = useState(false);
     const [modalOpen, setModalOpen] = useState(false)
@@ -67,6 +69,7 @@ export default function UpdateAlbumModal({ album }: {
                 comment: comments,
                 imageFile,
                 Rank: Number(rank),
+                genres
             };
             await updateAlbum(album.id, updatedFields);
         } catch (error) {
@@ -77,7 +80,74 @@ export default function UpdateAlbumModal({ album }: {
             window.location.reload();
         }
     };
+    const genreColors: { [key: string]: string } = {
+        ambient: "bg-blue-300",
+        alternative: "bg-teal-600",
+        bubblegum: "bg-pink-300",
+        classical: "bg-purple-700",
+        citypop: "bg-purple-400",
+        club: "bg-fuchsia-600",
+        country: "bg-yellow-600",
+        cpop: "bg-red-600",
+        dreampop: "bg-pink-500",
+        electronic: "bg-purple-500",
+        experimental: "bg-amber-500",
+        flamenco: "bg-red-500",
+        folk: "bg-green-700",
+        french: "bg-blue-600",
+        funk: "bg-yellow-700",
+        grunge: "bg-gray-600",
+        hiphop: "bg-indigo-500",
+        house: "bg-pink-600",
+        indierock: "bg-red-500",
+        indiepop: "bg-red-400",
+        italian: "bg-green-500",
+        jazz: "bg-blue-700",
+        jpop: "bg-blue-400",
+        jrock: "bg-gray-700",
+        kpop: "bg-rose-500",
+        latin: "bg-yellow-400",
+        lofi: "bg-sky-400",
+        metal: "bg-black",
+        pop: "bg-blue-500",
+        psychedelic: "bg-green-600",
+        punk: "bg-red-700",
+        rap: "bg-gray-800",
+        randb: "bg-orange-500",
+        rock: "bg-gray-500",
+        shoegaze: "bg-indigo-400",
+        soul: "bg-orange-700",
+        synthpop: "bg-pink-400",
+        synth: "bg-pink-800",
+        triphop: "bg-indigo-600",
+        videogame: "bg-purple-600",
+    };
 
+    const genre_list = [
+        "Ambient", "Alternative", "Bubblegum", "Classical", "City Pop", "Club", "Country", "C-Pop",
+        "Dream Pop", "Electronic", "Experimental", "Flamenco", "Folk", "French", "Funk", "Grunge", "Hip-Hop",
+        "House", "Indie Pop", "Indie Rock", "Italian", "Jazz", "J-Pop", "J-Rock",
+        "K-Pop", "Latin", "Lo-Fi", "Metal", "Pop", "Psychedelic", "Punk", "Rap",
+        "R&B", "Rock", "Shoegaze", "Soul", "Synth Pop", "Synth", "Video Game", "Trip-Hop"
+    ];
+
+
+    const returnColor = (genre: string) => {
+        const formattedGenre = genre.toLowerCase()
+            .replace(/\s+/g, '')
+            .replace(/&/g, 'and')
+            .replace(/-/g, '');
+        const bgColor = genreColors[formattedGenre] || "bg-gray-300";
+        return bgColor;
+    }
+
+    const handleGenreSwitch = (genre: string) => {
+        if (genres.includes(genre)) {
+            setGenres(genres.filter((g) => g !== genre));
+        } else {
+            setGenres([...genres, genre]);
+        }
+    };
     return (
         <div className={`flex flex-col w-full items-center justify-center xs:hidden sm:block`}>
             <div onClick={() => setModalOpen(true)} className='hover:bg-blue-400 cursor-pointer transition duration-300 ease-in-out p-1 rounded-lg self-start'>
@@ -113,32 +183,40 @@ export default function UpdateAlbumModal({ album }: {
                             <div className='flex flex-col w-1/2 ml-2 gap-4'>
                                 <input
                                     type="text"
-                                    className="w-full bg-transparent sm:text-sm xl:text-2xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
+                                    className="w-full bg-transparent sm:text-sm xl:text-xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
                                     placeholder="Album Name"
                                     value={name}
                                     onChange={(e) => setName(e.target.value)}
                                 />
                                 <input
                                     type="text"
-                                    className="w-full bg-transparent sm:text-sm xl:text-2xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
+                                    className="w-full bg-transparent sm:text-sm xl:text-xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
                                     placeholder="Artist"
                                     value={artist}
                                     onChange={(e) => setArtist(e.target.value)}
                                 />
                                 <textarea
-                                    className="w-full bg-transparent sm:text-sm xl:text-2xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
+                                    className="w-full bg-transparent sm:text-sm xl:text-xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
                                     placeholder="Comments"
                                     value={comments}
                                     onChange={(e) => setComments(e.target.value)}
-                                    rows={3}
+                                    rows={2}
                                 />
                                 <input
                                     type="number"
-                                    className="w-full bg-transparent sm:text-sm xl:text-2xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
+                                    className="w-full bg-transparent sm:text-sm xl:text-xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
                                     placeholder="Rank"
                                     value={rank}
                                     onChange={(e) => setRank(e.target.value)}
                                 />
+                                <div className='flex flex-row flex-wrap gap-2 max-h-32 overflow-scroll'>
+                                    {genre_list.slice().sort().map((genre, index) => (
+                                        <div onClick={() => handleGenreSwitch(genre)} key={index} className={genres.includes(genre) ? `px-2 py-1 rounded-lg text-white font-bold ${returnColor(genre)} cursor-pointer opacity-100 transition-all duration-300 ease-in-out hover:opacity-30` :
+                                            `cursor-pointer px-2 py-1 rounded-lg bg-black text-white transition-all duration-300 ease-in-out ${returnColor(genre)} hover:opacity-100 opacity-30`}>
+                                            {genre}
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
                         </div>
                         <div className='flex flex-col w-full items-center'>
