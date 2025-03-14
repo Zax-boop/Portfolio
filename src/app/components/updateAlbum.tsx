@@ -83,12 +83,15 @@ export default function UpdateAlbumModal({ album }: {
     const genreColors: { [key: string]: string } = {
         ambient: "bg-blue-300",
         alternative: "bg-teal-600",
+        bossanova: "bg-emerald-500",
+        brazilianpop: "bg-emerald-400",
         bubblegum: "bg-pink-300",
         classical: "bg-purple-700",
         citypop: "bg-purple-400",
         club: "bg-fuchsia-600",
         country: "bg-yellow-600",
         cpop: "bg-red-600",
+        dance: "bg-rose-500",
         dreampop: "bg-pink-500",
         electronic: "bg-purple-500",
         experimental: "bg-amber-500",
@@ -105,10 +108,12 @@ export default function UpdateAlbumModal({ album }: {
         jazz: "bg-blue-700",
         jpop: "bg-blue-400",
         jrock: "bg-gray-700",
+        korean: "bg-green-400",
         kpop: "bg-rose-500",
         latin: "bg-yellow-400",
         lofi: "bg-sky-400",
         metal: "bg-black",
+        polish: "bg-yellow-500",
         pop: "bg-blue-500",
         psychedelic: "bg-green-600",
         punk: "bg-red-700",
@@ -117,18 +122,18 @@ export default function UpdateAlbumModal({ album }: {
         rock: "bg-gray-500",
         shoegaze: "bg-indigo-400",
         soul: "bg-orange-700",
-        synthpop: "bg-pink-400",
+        spanish: "bg-red-400",
         synth: "bg-pink-800",
         triphop: "bg-indigo-600",
         videogame: "bg-purple-600",
     };
 
     const genre_list = [
-        "Ambient", "Alternative", "Bubblegum", "Classical", "City Pop", "Club", "Country", "C-Pop",
+        "Ambient", "Alternative", "Bossa Nova", "Brazilian Pop", "Bubblegum", "Classical", "City Pop", "Club", "Country", "C-Pop", "Dance",
         "Dream Pop", "Electronic", "Experimental", "Flamenco", "Folk", "French", "Funk", "Grunge", "Hip-Hop",
-        "House", "Indie Pop", "Indie Rock", "Italian", "Jazz", "J-Pop", "J-Rock",
-        "K-Pop", "Latin", "Lo-Fi", "Metal", "Pop", "Psychedelic", "Punk", "Rap",
-        "R&B", "Rock", "Shoegaze", "Soul", "Synth Pop", "Synth", "Video Game", "Trip-Hop"
+        "House", "Indie Pop", "Indie Rock", "Italian", "Jazz", "J-Pop", "J-Rock", "Korean",
+        "K-Pop", "Latin", "Lo-Fi", "Metal", "Polish", "Pop", "Psychedelic", "Punk", "Rap",
+        "R&B", "Rock", "Shoegaze", "Soul", "Spanish", "Synth", "Video Game", "Trip-Hop"
     ];
 
 
