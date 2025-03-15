@@ -207,7 +207,7 @@ export default function Albums() {
                             />
                             <div className='xs:ml-2 sm:ml-4 w-full'>
                                 <div className='w-full flex flex-row justify-between'>
-                                    <p className="xs:text-xl sm:text-4xl xl:text-6xl text-white">{album.name}</p>
+                                    <p className={`xs:text-xl sm:text-4xl ${album.name == "D>E>A>T>H>M>E>T>A>L" ? `xl:text-4xl` : `xl:text-6xl`} text-white text-wrap`}>{album.name}</p>
                                     <div className='flex flex-row items-center gap-2'>
                                         <DeleteAlbum id={album.id} Rank={album.Rank} />
                                         <UpdateAlbumModal album={album} />

@@ -85,6 +85,7 @@ export default function UpdateAlbumModal({ album }: {
         alternative: "bg-teal-600",
         bossanova: "bg-emerald-500",
         brazilianpop: "bg-emerald-400",
+        breakcore: "bg-rose-600",
         bubblegum: "bg-pink-300",
         classical: "bg-purple-700",
         citypop: "bg-purple-400",
@@ -105,6 +106,7 @@ export default function UpdateAlbumModal({ album }: {
         indierock: "bg-red-500",
         indiepop: "bg-red-400",
         italian: "bg-green-500",
+        japanese: "bg-blue-400",
         jazz: "bg-blue-700",
         jpop: "bg-blue-400",
         jrock: "bg-gray-700",
@@ -120,6 +122,7 @@ export default function UpdateAlbumModal({ album }: {
         rap: "bg-gray-800",
         randb: "bg-orange-500",
         rock: "bg-gray-500",
+        sailorwave: "bg-pink-200",
         shoegaze: "bg-indigo-400",
         soul: "bg-orange-700",
         spanish: "bg-red-400",
@@ -129,11 +132,10 @@ export default function UpdateAlbumModal({ album }: {
     };
 
     const genre_list = [
-        "Ambient", "Alternative", "Bossa Nova", "Brazilian Pop", "Bubblegum", "Classical", "City Pop", "Club", "Country", "C-Pop", "Dance",
-        "Dream Pop", "Electronic", "Experimental", "Flamenco", "Folk", "French", "Funk", "Grunge", "Hip-Hop",
-        "House", "Indie Pop", "Indie Rock", "Italian", "Jazz", "J-Pop", "J-Rock", "Korean",
+        "Ambient", "Alternative", "Bossa Nova", "Brazilian Pop", "Breakcore", "Bubblegum", "Classical", "City Pop", "Club", "Country", "C-Pop", "Dance", "Dream Pop", "Electronic", "Experimental", "Flamenco", "Folk", "French", "Funk", "Grunge", "Hip-Hop",
+        "House", "Indie Pop", "Indie Rock", "Italian", "Japanese", "Jazz", "J-Pop", "J-Rock", "Korean",
         "K-Pop", "Latin", "Lo-Fi", "Metal", "Polish", "Pop", "Psychedelic", "Punk", "Rap",
-        "R&B", "Rock", "Shoegaze", "Soul", "Spanish", "Synth", "Video Game", "Trip-Hop"
+        "R&B", "Rock", "Sailorwave", "Shoegaze", "Soul", "Spanish", "Synth", "Video Game", "Trip-Hop"
     ];
 
 
