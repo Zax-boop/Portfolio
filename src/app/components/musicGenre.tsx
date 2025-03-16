@@ -1,4 +1,4 @@
-export default function MusicGenre({ genre }: { genre: string }) {
+export default function MusicGenre({ genre, bad }: { genre: string, bad?: boolean }) {
     const genreColors: { [key: string]: string } = {
         ambient: "bg-blue-300",
         alternative: "bg-teal-600",
@@ -56,8 +56,8 @@ export default function MusicGenre({ genre }: { genre: string }) {
         .replace(/-/g, '');
     const bgColor = genreColors[formattedGenre] || "bg-gray-300";
     return (
-        <div className={`xs:px-1 sm:px-4 xs:py-1 sm:py-2 xs:rounded-md sm:rounded-lg text-white xs:font-medium sm:font-bold xs:text-[0.5rem] sm:text-base ${bgColor}`}>
-            {genre}
+        <div className={`xs:px-1 sm:px-4 xs:py-1 sm:py-2 xs:rounded-md sm:rounded-lg text-white xs:font-medium sm:font-bold xs:text-[0.5rem] sm:text-base ${bgColor} transform transition-transform duration-200 hover:scale-105 cursor-pointer`}>
+            {bad ? `bad` : genre}
         </div>
     );
 }  
