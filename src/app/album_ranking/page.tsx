@@ -248,8 +248,8 @@ export default function Albums() {
                                             :
                                             <div className="flex flex-row flex-wrap gap-2">
                                                 {recommendedAlbums.map(recAlbum => (
-                                                    <div onClick={() => setSearchQuery(recAlbum.name)} key={recAlbum.id} className="transform transition-transform duration-200 hover:scale-105">
-                                                        <img src={recAlbum.image} alt={recAlbum.name} className="xs:w-12 xs:h-12 sm:w-16 sm:h-16 xl:w-16 xl:h-16 object-cover rounded-lg" />
+                                                    <div onClick={() => setSearchQuery(recAlbum.name)} key={recAlbum.id} className="transform transition-transform duration-200 hover:scale-105 cursor-pointer">
+                                                        <img src={recAlbum.image} alt={recAlbum.name} className="xs:w-6 xs:h-6 sm:w-16 sm:h-16 xl:w-16 xl:h-16 object-cover xs:rounded-sm sm:rounded-lg" />
                                                     </div>
                                                 ))}
                                             </div>}
