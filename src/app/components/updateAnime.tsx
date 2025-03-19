@@ -16,6 +16,7 @@ export default function UpdateAnimeModal({ anime }: {
         comments: string;
         image: string;
         rank: number;
+        genres: string[];
         id: string;
     }
 }) {
@@ -25,7 +26,12 @@ export default function UpdateAnimeModal({ anime }: {
     const [comments, setComments] = useState(anime?.comments || '');
     const [imageFile, setImageFile] = useState<File | null>(null);
     const [rank, setRank] = useState(anime?.rank || '');
+    const [genres, setGenres] = useState(anime?.genres || []);
     const [coverImage, setCoverImage] = useState<string | StaticImageData>(anime?.image || show_placeholder);
+    const [nameFocus, setNameFocus] = useState(false);
+    const [studioFocus, setStudioFocus] = useState(false);
+    const [commentFocus, setCommentFocus] = useState(false);
+    const [rankFocus, setRankFocus] = useState(false);
     const [loading, setLoading] = useState(false);
     const [modalOpen, setModalOpen] = useState(false)
     const [user, setUser] = useState<User | null>(null);
@@ -44,6 +50,7 @@ export default function UpdateAnimeModal({ anime }: {
             setStudio(anime.studio || '');
             setComments(anime.comments || '');
             setRank(anime.rank || '');
+            setGenres(anime.genres || []);
             setCoverImage(anime.image || show_placeholder);
         }
     }, [anime]);
@@ -67,6 +74,7 @@ export default function UpdateAnimeModal({ anime }: {
                 comments: comments,
                 imageFile,
                 rank: Number(rank),
+                genres
             };
             await updateAnime(anime.id, updatedFields);
         } catch (error) {
@@ -111,34 +119,65 @@ export default function UpdateAnimeModal({ anime }: {
                                 </label>
                             </div>
                             <div className='flex flex-col w-1/2 ml-2 gap-4'>
-                                <input
-                                    type="text"
-                                    className="w-full bg-transparent sm:text-sm xl:text-2xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
-                                    placeholder="Anime Name"
-                                    value={name}
-                                    onChange={(e) => setName(e.target.value)}
-                                />
-                                <input
-                                    type="text"
-                                    className="w-full bg-transparent sm:text-sm xl:text-2xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
-                                    placeholder="Studio"
-                                    value={studio}
-                                    onChange={(e) => setStudio(e.target.value)}
-                                />
-                                <textarea
-                                    className="w-full bg-transparent sm:text-sm xl:text-2xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
-                                    placeholder="Comments"
-                                    value={comments}
-                                    onChange={(e) => setComments(e.target.value)}
-                                    rows={3}
-                                />
-                                <input
-                                    type="number"
-                                    className="w-full bg-transparent sm:text-sm xl:text-2xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
-                                    placeholder="Rank"
-                                    value={rank}
-                                    onChange={(e) => setRank(e.target.value)}
-                                />
+                                <div className="relative group">
+                                    <input
+                                        type="text"
+                                        className="w-full bg-transparent text-xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
+                                        placeholder="Anime Name"
+                                        value={name}
+                                        onFocus={() => setNameFocus(true)}
+                                        onBlur={() => setNameFocus(false)}
+                                        onChange={(e) => setName(e.target.value)}
+                                    />
+                                    <span
+                                        className={`absolute -bottom-0.5 left-0 h-[2px] bg-white transition-all duration-300 ${nameFocus ? "w-full" : "w-0"
+                                            }`}
+                                    />
+                                </div>
+                                <div className="relative group">
+                                    <input
+                                        type="text"
+                                        className="w-full bg-transparent text-xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
+                                        placeholder="Studio"
+                                        value={studio}
+                                        onFocus={() => setStudioFocus(true)}
+                                        onBlur={() => setStudioFocus(false)}
+                                        onChange={(e) => setStudio(e.target.value)}
+                                    />
+                                    <span
+                                        className={`absolute -bottom-0.5 left-0 h-[2px] bg-white transition-all duration-300 ${studioFocus ? "w-full" : "w-0"
+                                            }`}
+                                    />
+                                </div>
+                                <div className="relative group">
+                                    <textarea
+                                        className="w-full bg-transparent text-xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
+                                        placeholder="Comments"
+                                        value={comments}
+                                        onFocus={() => setCommentFocus(true)}
+                                        onBlur={() => setCommentFocus(false)}
+                                        onChange={(e) => setComments(e.target.value)}
+                                        rows={2}
+                                    />
+                                    <span
+                                        className={`absolute bottom-1.5 left-0 h-[2px] bg-white transition-all duration-300 ${commentFocus ? "w-full" : "w-0"
+                                            }`}
+                                    />
+                                </div>
+                                <div className="relative group">
+                                    <input
+                                        type="number"
+                                        className="w-full bg-transparent text-xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
+                                        placeholder="Rank"
+                                        value={rank}
+                                        onFocus={() => setRankFocus(true)}
+                                        onBlur={() => setRankFocus(false)}
+                                        onChange={(e) => setRank(e.target.value)}
+                                    />
+                                    <span
+                                        className={`absolute -bottom-0.5 left-0 h-[2px] bg-white transition-all duration-300 ${rankFocus ? "w-full" : "w-0"}`}
+                                    />
+                                </div>
                             </div>
                         </div>
                         <div className='flex flex-col w-full items-center'>

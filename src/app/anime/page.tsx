@@ -18,6 +18,7 @@ export default function Anime() {
         comments: string;
         image: string;
         rank: number;
+        genres: string[];
         id: string;
     }[]>([]);
     const [filteredMedia, setFilteredMedia] = useState(animeList);
@@ -144,6 +145,7 @@ export default function Anime() {
                     comments: string;
                     image: string;
                     rank: number;
+                    genres: string[];
                     id: string;
                 }, index: number) => (
                     <FadeInSection key={anime.id || `${anime.name}-${anime.studio}-${index}`}

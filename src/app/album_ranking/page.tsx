@@ -241,7 +241,7 @@ export default function Albums() {
                                             </div>
                                         ))}
                                     </div>
-                                    <div className='flex flex-row flex-wrap items-center gap-2 mt-2'>
+                                    <div className='flex flex-col gap-2 mt-2'>
                                         <p className="xs:text-sm sm:text-lg xl:text-xl text-gray-400">If you like this album:</p>
                                         {album.Rank > (albums.length * 0.90) ?
                                             <p className='xs:text-sm sm:text-lg xl:text-xl text-red-500'>{badAlbumStatements[Math.floor(Math.random() * badAlbumStatements.length)]}.</p>
@@ -249,7 +249,7 @@ export default function Albums() {
                                             <div className="flex flex-row flex-wrap gap-2">
                                                 {recommendedAlbums.map(recAlbum => (
                                                     <div onClick={() => setSearchQuery(recAlbum.name)} key={recAlbum.id} className="transform transition-transform duration-200 hover:scale-105 cursor-pointer">
-                                                        <img src={recAlbum.image} alt={recAlbum.name} className="xs:w-6 xs:h-6 sm:w-16 sm:h-16 xl:w-16 xl:h-16 object-cover xs:rounded-sm sm:rounded-lg" />
+                                                        <img src={recAlbum.image} alt={recAlbum.name} className="xs:w-6 xs:h-6 sm:w-12 sm:h-12 2xl:w-16 2xl:h-16 object-cover xs:rounded-sm sm:rounded-lg" />
                                                     </div>
                                                 ))}
                                             </div>}
