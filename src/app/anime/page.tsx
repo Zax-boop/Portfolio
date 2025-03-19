@@ -10,6 +10,7 @@ import ImageTrack from '../components/ImageTrack';
 import DeleteAnime from '../components/deleteAnime';
 import SignInForm from '../components/signIn';
 import UpdateAnimeModal from '../components/updateAnime';
+import AnimeGenre from '../components/animeGenre';
 
 export default function Anime() {
     const [animeList, setAnimeList] = useState<{
@@ -70,6 +71,8 @@ export default function Anime() {
     }, [searchQuery, animeList]);
 
     const totalPages = Math.ceil(filteredMedia.length / mediaPerPage);
+    const topRankedAnime = animeList.slice(0, Math.ceil(animeList.length * 0.67));
+
 
     const scrollToAnime = (index: number) => {
         if (animeRefs.current[index]) {
@@ -82,6 +85,19 @@ export default function Anime() {
         }
     };
 
+    const getRecommendedAnime = (currentAnime: { genres: string[]; rank: number; id: string }) => {
+        return topRankedAnime
+            .filter(anime => anime.id !== currentAnime.id)
+            .map(anime => ({
+                ...anime,
+                genreMatchCount: anime.genres.filter(genre => currentAnime.genres.includes(genre)).length,
+            }))
+            .filter(anime => {
+                const requiredMatches = Math.min(4, currentAnime.genres.length);
+                return anime.genreMatchCount >= requiredMatches;
+            })
+            .sort((a, b) => b.genreMatchCount - a.genreMatchCount);
+    };
     if (loading) {
         return <div>Loading...</div>;
     }
@@ -147,7 +163,9 @@ export default function Anime() {
                     rank: number;
                     genres: string[];
                     id: string;
-                }, index: number) => (
+                }, index: number) => {
+                    const recommendedAnime = getRecommendedAnime(anime);
+                    return (
                     <FadeInSection key={anime.id || `${anime.name}-${anime.studio}-${index}`}
                         ref={animeRefs.current[index]}
                         className="flex flex-col xl:space-y-4 xs:mt-4 xl:mt-8">
@@ -172,11 +190,28 @@ export default function Anime() {
                                 </div>
                                 <p className="xs:text-base sm:text-lg xl:text-3xl text-gray-400">{anime.studio}</p>
                                 <p className="xs:text-[0.5rem] sm:text-sm xl:text-lg xs:mt-0.5 sm:mt-1 xl:mt-2">{anime.comments}</p>
+                                <div className="flex flex-wrap gap-2 mt-2">
+                                    {anime.genres?.slice().sort().map((genre, index) => (
+                                        <div onClick={() => setSearchQuery(genre)} key={index}>
+                                            <AnimeGenre genre={genre} />
+                                        </div>
+                                    ))}
+                                </div>
+                                <div className='flex flex-col gap-2 mt-2'>
+                                        <p className="xs:text-sm sm:text-lg xl:text-xl text-gray-400">If you like this anime:</p>
+                                            <div className="flex flex-row flex-wrap gap-2">
+                                                {recommendedAnime.map(recAnime => (
+                                                    <div onClick={() => setSearchQuery(recAnime.name)} key={recAnime.id} className="transform transition-transform duration-200 hover:scale-105 cursor-pointer">
+                                                        <img src={recAnime.image} alt={recAnime.name} className="xs:w-6 xs:h-6 sm:w-12 sm:h-12 2xl:w-16 2xl:h-16 object-cover xs:rounded-sm sm:rounded-lg" />
+                                                    </div>
+                                                ))}
+                                            </div>
+                                    </div>
                             </div>
                         </div>
                         {index < currentMedia.length - 1 && <hr className="border-t border-gray-300 xs:my-1 sm:my-2 xl:my-4" />}
                     </FadeInSection>
-                ))}
+                )})}
                 <div className="flex flex-row flex-wrap justify-start mt-1">
                     {Array.from({ length: totalPages }, (_, i) => (
                         <button

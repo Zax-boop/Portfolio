@@ -207,7 +207,6 @@ export default function Albums() {
                 }, index: number) => {
                     const recommendedAlbums = getRecommendedAlbums(album);
                     return (
-
                         <FadeInSection
                             key={album.id || `${album.name}-${album.artist}-${index}`}
                             ref={albumRefs.current[index]}

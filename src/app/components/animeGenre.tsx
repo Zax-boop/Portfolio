@@ -2,6 +2,7 @@ export default function AnimeGenre({ genre }: { genre: string }) {
     const genreColors: { [key: string]: string } = {
         action: "bg-red-600",
         adventure: "bg-orange-500",
+        bl: "bg-blue-300",
         comedy: "bg-yellow-400",
         crime: "bg-gray-700",
         cyberpunk: "bg-blue-900",
@@ -36,7 +37,7 @@ export default function AnimeGenre({ genre }: { genre: string }) {
         supernatural: "bg-purple-600",
         thriller: "bg-red-800",
         vampire: "bg-indigo-900",
-        western: "bg-brown-600",
+        western: "bg-amber-600",
     };
 
     const formattedGenre = genre.toLowerCase()

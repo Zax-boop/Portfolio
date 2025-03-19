@@ -86,6 +86,70 @@ export default function UpdateAnimeModal({ anime }: {
         }
     };
 
+    const genreColors: { [key: string]: string } = {
+        action: "bg-red-600",
+        adventure: "bg-orange-500",
+        bl: "bg-blue-300",
+        comedy: "bg-yellow-400",
+        crime: "bg-gray-700",
+        cyberpunk: "bg-blue-900",
+        cute: "bg-pink-300",
+        dark: "bg-gray-900",
+        drama: "bg-rose-700",
+        fantasy: "bg-purple-500",
+        ghibli: "bg-green-500",
+        historical: "bg-yellow-700",
+        horror: "bg-gray-800",
+        isekai: "bg-blue-500",
+        josei: "bg-pink-500",
+        magic: "bg-indigo-500",
+        mecha: "bg-gray-600",
+        military: "bg-green-700",
+        music: "bg-teal-400",
+        mystery: "bg-blue-700",
+        noir: "bg-gray-500",
+        philosophical: "bg-indigo-800",
+        psychological: "bg-indigo-700",
+        racing: "bg-red-800",
+        romance: "bg-red-400",
+        samurai: "bg-yellow-600",
+        school: "bg-yellow-500",
+        scifi: "bg-blue-400",
+        seinen: "bg-gray-500",
+        shoujo: "bg-pink-400",
+        shounen: "bg-red-500",
+        sliceoflife: "bg-green-400",
+        space: "bg-black",
+        sports: "bg-orange-600",
+        supernatural: "bg-purple-600",
+        thriller: "bg-red-800",
+        vampire: "bg-indigo-900",
+        western: "bg-amber-600",
+    };
+
+    const genre_list = [
+        "Action", "Adventure", "BL", "Comedy", "Crime", "Cyberpunk", "Cute", "Dark", "Drama", "Fantasy", "Ghibli", "Historical", 
+        "Horror", "Isekai", "Josei", "Magic", "Mecha", "Military", "Music", "Mystery", "Noir", "Philosophical", 
+        "Psychological", "Racing", "Romance", "Samurai", "School", "Sci-Fi", "Seinen", "Shoujo", "Shounen", 
+        "Slice of Life", "Space", "Sports", "Supernatural", "Thriller", "Vampire", "Western"
+    ];
+    const returnColor = (genre: string) => {
+        const formattedGenre = genre.toLowerCase()
+            .replace(/\s+/g, '')
+            .replace(/&/g, 'and')
+            .replace(/-/g, '');
+        const bgColor = genreColors[formattedGenre] || "bg-gray-300";
+        return bgColor;
+    }
+
+    const handleGenreSwitch = (genre: string) => {
+        if (genres.includes(genre)) {
+            setGenres(genres.filter((g) => g !== genre));
+        } else {
+            setGenres([...genres, genre]);
+        }
+    };
+
     return (
         <div className={`flex flex-col w-full items-center justify-center xs:hidden sm:block`}>
             <div onClick={() => setModalOpen(true)} className='hover:bg-blue-400 cursor-pointer transition duration-300 ease-in-out p-1 rounded-lg self-start'>
@@ -107,7 +171,7 @@ export default function UpdateAnimeModal({ anime }: {
                                     width={isTablet ? 130 : 300}
                                     height={isTablet ? 130 : 300}
                                     alt='anime cover'
-                                    className='transform transition-transform hover:scale-105 duration-300 sm:w-[8.125rem] sm:h-[8.125rem] xl:w-[18.75rem] xl:h-[18.75rem] object-cove'
+                                    className='transform transition-transform hover:scale-105 duration-300 sm:w-[8.125rem] sm:h-[8.125rem] xl:w-[18.75rem] xl:h-[18.75rem] object-cover'
                                 />
                                 <label className="flex flex-row justify-center items-center gap-2 sm:px-2 xl:px-3 sm:py-1 xl:py-2 bg-black border border-white text-white sm:text-xs xl:text-base rounded-full hover:bg-white hover:text-black transition duration-300 cursor-pointer">
                                     {coverImage === show_placeholder ? "Choose Cover" : "Change Cover"}
@@ -177,6 +241,14 @@ export default function UpdateAnimeModal({ anime }: {
                                     <span
                                         className={`absolute -bottom-0.5 left-0 h-[2px] bg-white transition-all duration-300 ${rankFocus ? "w-full" : "w-0"}`}
                                     />
+                                </div>
+                                <div className='flex flex-row flex-wrap gap-2 max-h-32 overflow-scroll'>
+                                    {genre_list.slice().sort().map((genre, index) => (
+                                        <div onClick={() => handleGenreSwitch(genre)} key={index} className={genres.includes(genre) ? `px-2 py-1 rounded-lg text-white font-bold ${returnColor(genre)} cursor-pointer opacity-100 transition-all duration-300 ease-in-out hover:opacity-30` :
+                                            `cursor-pointer px-2 py-1 rounded-lg bg-black text-white transition-all duration-300 ease-in-out ${returnColor(genre)} hover:opacity-100 opacity-30`}>
+                                            {genre}
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
                         </div>

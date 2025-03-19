@@ -54,6 +54,7 @@ export default function AnimeForm() {
     const genreColors: { [key: string]: string } = {
         action: "bg-red-600",
         adventure: "bg-orange-500",
+        bl: "bg-blue-300",
         comedy: "bg-yellow-400",
         crime: "bg-gray-700",
         cyberpunk: "bg-blue-900",
@@ -88,11 +89,11 @@ export default function AnimeForm() {
         supernatural: "bg-purple-600",
         thriller: "bg-red-800",
         vampire: "bg-indigo-900",
-        western: "bg-brown-600",
+        western: "bg-amber-600",
     };
 
     const genre_list = [
-        "Action", "Adventure", "Comedy", "Crime", "Cyberpunk", "Cute", "Dark", "Drama", "Fantasy", "Ghibli", "Historical", 
+        "Action", "Adventure", "BL", "Comedy", "Crime", "Cyberpunk", "Cute", "Dark", "Drama", "Fantasy", "Ghibli", "Historical", 
         "Horror", "Isekai", "Josei", "Magic", "Mecha", "Military", "Music", "Mystery", "Noir", "Philosophical", 
         "Psychological", "Racing", "Romance", "Samurai", "School", "Sci-Fi", "Seinen", "Shoujo", "Shounen", 
         "Slice of Life", "Space", "Sports", "Supernatural", "Thriller", "Vampire", "Western"
