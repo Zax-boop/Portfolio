@@ -11,6 +11,7 @@ import DeleteAlbum from '../components/deleteAlbum';
 import SignInForm from '../components/signIn';
 import UpdateAlbumModal from '../components/updateAlbum';
 import MusicGenre from '../components/musicGenre';
+import ReadMore from '../components/readMore';
 
 export default function Albums() {
     const [albums, setAlbums] = useState<{
@@ -232,7 +233,7 @@ export default function Albums() {
                                         </div>
                                     </div>
                                     <p className="xs:text-base sm:text-lg xl:text-3xl text-gray-400">{album.artist}</p>
-                                    <p className="xs:text-[0.5rem] sm:text-sm xl:text-lg xs:mt-0.5 sm:mt-1 xl:mt-2">{album.comment}</p>
+                                    <ReadMore text={album.comment} className="xs:text-[0.5rem] sm:text-sm xl:text-lg xs:mt-0.5 sm:mt-1 xl:mt-2"/>
                                     <div className="flex flex-wrap gap-2 mt-2">
                                         {album.genres?.slice().sort().map((genre, index) => (
                                             <div onClick={() => setSearchQuery(genre)} key={index}>
