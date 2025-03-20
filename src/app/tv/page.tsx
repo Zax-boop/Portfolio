@@ -10,6 +10,7 @@ import ImageTrack from '../components/ImageTrack';
 import SignInForm from '../components/signIn';
 import DeleteTV from '../components/deleteTV';
 import UpdateTVModal from '../components/updateTV';
+import ReadMore from '../components/readMore';
 
 export default function TVRanking() {
     const [tv, setTV] = useState<{
@@ -212,7 +213,7 @@ export default function TVRanking() {
                                     </div>
                                 </div>
                                 <p className="xs:text-base sm:text-lg xl:text-3xl text-gray-400">{show.director}</p>
-                                <p className="xs:text-[0.5rem] sm:text-sm xl:text-lg xs:mt-0.5 sm:mt-1 xl:mt-2">{show.comments}</p>
+                                <ReadMore text={show.comments} className="xs:text-[0.5rem] sm:text-sm xl:text-lg xs:mt-0.5 sm:mt-1 xl:mt-2"/>
                             </div>
                         </div>
                         {index < currentMedia.length - 1 && <hr className="border-t border-gray-300 xs:my-1 sm:my-2 xl:my-4" />}

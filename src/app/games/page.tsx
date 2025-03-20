@@ -10,6 +10,7 @@ import ImageTrack from '../components/ImageTrack';
 import SignInForm from '../components/signIn';
 import DeleteGames from '../components/deleteGames';
 import UpdateGamesModal from '../components/updateGames';
+import ReadMore from '../components/readMore';
 
 export default function GamesRanking() {
     const [games, setGames] = useState<{
@@ -240,7 +241,7 @@ export default function GamesRanking() {
                                     </div>
                                 </div>
                                 <p className="xs:text-base sm:text-lg xl:text-3xl text-gray-400">{game.studio}</p>
-                                <p className="xs:text-[0.5rem] sm:text-sm xl:text-lg xs:mt-0.5 sm:mt-1 xl:mt-2">{game.comments}</p>
+                                <ReadMore text={game.comments} className="xs:text-[0.5rem] sm:text-sm xl:text-lg xs:mt-0.5 sm:mt-1 xl:mt-2"/>
                             </div>
                         </div>
                         {index < currentMedia.length - 1 && <hr className="border-t border-gray-300 xs:my-1 sm:my-2 xl:my-4" />}

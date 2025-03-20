@@ -11,6 +11,7 @@ import DeleteAnime from '../components/deleteAnime';
 import SignInForm from '../components/signIn';
 import UpdateAnimeModal from '../components/updateAnime';
 import AnimeGenre from '../components/animeGenre';
+import ReadMore from '../components/readMore';
 
 export default function Anime() {
     const [animeList, setAnimeList] = useState<{
@@ -189,7 +190,7 @@ export default function Anime() {
                                     </div>
                                 </div>
                                 <p className="xs:text-base sm:text-lg xl:text-3xl text-gray-400">{anime.studio}</p>
-                                <p className="xs:text-[0.5rem] sm:text-sm xl:text-lg xs:mt-0.5 sm:mt-1 xl:mt-2">{anime.comments}</p>
+                                <ReadMore text={anime.comments} className="xs:text-[0.5rem] sm:text-sm xl:text-lg xs:mt-0.5 sm:mt-1 xl:mt-2"/>
                                 <div className="flex flex-wrap gap-2 mt-2">
                                     {anime.genres?.slice().sort().map((genre, index) => (
                                         <div onClick={() => setSearchQuery(genre)} key={index}>

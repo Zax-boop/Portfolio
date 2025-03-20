@@ -14,6 +14,7 @@ import ImageTrack from "../components/ImageTrack";
 import SignInForm from "../components/signIn";
 import DeleteBook from "../components/deleteBook";
 import UpdateBookModal from "../components/updateBook";
+import ReadMore from "../components/readMore";
 
 export default function Books() {
     const [books, setBooks] = useState<{
@@ -205,9 +206,7 @@ export default function Books() {
                                 <p className="xs:text-base sm:text-lg xl:text-3xl text-gray-400">
                                     {book.author}
                                 </p>
-                                <p className="xs:text-[0.5rem] sm:text-sm xl:text-lg xs:mt-0.5 sm:mt-1 xl:mt-2">
-                                    {book.comments}
-                                </p>
+                                <ReadMore text={book.comments} className="xs:text-[0.5rem] sm:text-sm xl:text-lg xs:mt-0.5 sm:mt-1 xl:mt-2"/>
                             </div>
                         </div>
                         {index < currentMedia.length - 1 && (
