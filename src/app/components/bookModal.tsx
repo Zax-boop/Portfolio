@@ -13,6 +13,7 @@ export default function BookForm() {
     const [name, setName] = useState('');
     const [author, setAuthor] = useState('');
     const [comments, setComments] = useState('');
+    const [genres, setGenres] = useState<string[]>([]);
     const [imageFile, setImageFile] = useState<File | null>(null);
     const [coverImage, setCoverImage] = useState<string | StaticImageData>(show_placeholder);
     const [nameFocus, setNameFocus] = useState(false);
@@ -40,12 +41,80 @@ export default function BookForm() {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setLoading(true)
-        await addBook(name, author, comments, imageFile);
+        await addBook(name, author, comments, genres, imageFile);
         setLoading(false)
         setIsModalOpen(false);
         window.location.reload();
     };
 
+    const genreColors: { [key: string]: string } = {
+        absurdist: "bg-purple-700",
+        adventure: "bg-orange-500",
+        afghanistan: "bg-red-600",
+        autobiography: "bg-teal-600",
+        biography: "bg-blue-500",
+        classic: "bg-gray-600",
+        crime: "bg-gray-800",
+        cyberpunk: "bg-blue-900",
+        dark: "bg-gray-900",
+        drama: "bg-red-300",
+        dystopian: "bg-red-700",
+        existentialist: "bg-indigo-700",
+        fantasy: "bg-purple-500",
+        firstperson: "bg-yellow-500",
+        fiction: "bg-green-600",
+        french: "bg-blue-300",
+        gothic: "bg-black",
+        historical: "bg-yellow-700",
+        horror: "bg-gray-800",
+        japanese: "bg-red-500",
+        memoir: "bg-teal-400",
+        mystery: "bg-blue-700",
+        mythology: "bg-yellow-600",
+        nonfiction: "bg-blue-400",
+        philosophical: "bg-indigo-800",
+        poetry: "bg-fuchsia-500",
+        political: "bg-red-800",
+        postmodern: "bg-gray-700",
+        psychological: "bg-indigo-600",
+        realist: "bg-green-600",
+        roman: "bg-amber-700",
+        romance: "bg-red-400",
+        sciencefiction: "bg-blue-600",
+        selfhelp: "bg-green-500",
+        shortstories: "bg-purple-600",
+        sliceoflife: "bg-green-400",
+        stoicism: "bg-gray-400",
+        surrealist: "bg-pink-700",
+        teenliterature: "bg-orange-600",
+        thirdperson: "bg-gray-500",
+        thriller: "bg-red-900",
+        western: "bg-amber-600"
+    };
+
+    const genre_list = [
+        "Absurdist", "Adventure", "Afghanistan", "Autobiography", "Biography", "Classic", "Crime", "Cyberpunk", "Dark", "Drama", "Dystopian", "Existentialist", "Fantasy", "First-Person", "Fiction", "French", "Gothic", "Historical", "Horror", "Japanese", 
+        "Memoir", "Mystery", "Mythology", "Non-Fiction", "Philosophical", "Poetry", 
+        "Political", "Postmodern", "Psychological", "Realist", "Roman", "Romance", "Science Fiction", "Self-Help", "Short Stories", 
+        "Slice of Life", "Stoicism", "Surrealist", "Teen Literature", "Third-Person", "Thriller", "Western"
+    ];
+    
+    const returnColor = (genre: string) => {
+        const formattedGenre = genre.toLowerCase()
+            .replace(/\s+/g, '')
+            .replace(/&/g, 'and')
+            .replace(/-/g, '');
+        const bgColor = genreColors[formattedGenre] || "bg-gray-300";
+        return bgColor;
+    }
+
+    const handleGenreSwitch = (genre: string) => {
+        if (genres.includes(genre)) {
+            setGenres(genres.filter((g) => g !== genre));
+        } else {
+            setGenres([...genres, genre]);
+        }
+    };
 
     return (
         <div className={`flex flex-col w-full items-center justify-center xs:hidden md:block`}>
@@ -124,6 +193,14 @@ export default function BookForm() {
                                             className={`absolute bottom-1.5 left-0 h-[2px] bg-white transition-all duration-300 ${commentFocus || comments ? "w-full" : "w-0"
                                                 }`}
                                         />
+                                    </div>
+                                    <div className='flex flex-row flex-wrap gap-2 max-h-32 overflow-scroll'>
+                                        {genre_list.slice().sort().map((genre, index) => (
+                                            <div onClick={() => handleGenreSwitch(genre)} key={index} className={genres.includes(genre) ? `px-2 py-1 rounded-lg text-white font-bold ${returnColor(genre)} cursor-pointer opacity-100 transition-all duration-300 ease-in-out hover:opacity-30` :
+                                                `cursor-pointer px-2 py-1 rounded-lg bg-black text-white transition-all duration-300 ease-in-out ${returnColor(genre)} hover:opacity-100 opacity-30`}>
+                                                {genre}
+                                            </div>
+                                        ))}
                                     </div>
                                 </div>
                             </div>

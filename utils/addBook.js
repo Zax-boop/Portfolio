@@ -1,6 +1,6 @@
 import supabase from "./supabaseclient";
 
-export default async function addBook(name, author, comments, imageFile) {
+export default async function addBook(name, author, comments, genres, imageFile) {
   let imageUrl = "";
 
   if (imageFile) {
@@ -19,7 +19,7 @@ export default async function addBook(name, author, comments, imageFile) {
   }
   const { data, error } = await supabase
     .from('books_list')
-    .insert([{ name, author, comments, image: imageUrl}]);
+    .insert([{ name, author, comments, genres, image: imageUrl}]);
   if (error) {
     console.error('Error inserting data:', error);
     return null;

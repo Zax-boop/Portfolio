@@ -15,6 +15,7 @@ import SignInForm from "../components/signIn";
 import DeleteBook from "../components/deleteBook";
 import UpdateBookModal from "../components/updateBook";
 import ReadMore from "../components/readMore";
+import BookGenre from "../components/bookGenre";
 
 export default function Books() {
     const [books, setBooks] = useState<{
@@ -22,6 +23,7 @@ export default function Books() {
         author: string;
         comments: string;
         image: string;
+        genres: string[];
         id: string;
     }[]
     >([]);
@@ -206,7 +208,14 @@ export default function Books() {
                                 <p className="xs:text-base sm:text-lg xl:text-3xl text-gray-400">
                                     {book.author}
                                 </p>
-                                <ReadMore text={book.comments} className="xs:text-[0.5rem] sm:text-sm xl:text-lg xs:mt-0.5 sm:mt-1 xl:mt-2"/>
+                                <ReadMore text={book.comments} className="xs:text-[0.5rem] sm:text-sm xl:text-lg xs:mt-0.5 sm:mt-1 xl:mt-2" />
+                                <div className="flex flex-wrap gap-2 mt-2">
+                                    {book.genres?.slice().sort().map((genre, index) => (
+                                        <div onClick={() => setSearchQuery(genre)} key={index}>
+                                            <BookGenre genre={genre} />
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
                         </div>
                         {index < currentMedia.length - 1 && (

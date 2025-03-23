@@ -14,6 +14,7 @@ export default function UpdateBookModal({ book }: {
         name: string;
         author: string;
         comments: string;
+        genres: string[];
         image: string;
         id: string;
     }
@@ -22,8 +23,12 @@ export default function UpdateBookModal({ book }: {
     const [name, setName] = useState(book?.name || '');
     const [author, setAuthor] = useState(book?.author || '');
     const [comments, setComments] = useState(book?.comments || '');
+    const [genres, setGenres] = useState(book?.genres || []);
     const [imageFile, setImageFile] = useState<File | null>(null);
     const [coverImage, setCoverImage] = useState<string | StaticImageData>(book?.image || show_placeholder);
+    const [nameFocus, setNameFocus] = useState(false);
+    const [authorFocus, setAuthorFocus] = useState(false);
+    const [commentFocus, setCommentFocus] = useState(false);
     const [loading, setLoading] = useState(false);
     const [modalOpen, setModalOpen] = useState(false)
     const [user, setUser] = useState<User | null>(null);
@@ -42,6 +47,7 @@ export default function UpdateBookModal({ book }: {
             setAuthor(book.author || '');
             setComments(book.comments || '');
             setCoverImage(book.image || show_placeholder);
+            setGenres(book.genres || []);
         }
     }, [book]);
 
@@ -63,6 +69,7 @@ export default function UpdateBookModal({ book }: {
                 author,
                 comments: comments,
                 imageFile,
+                genres,
             };
             await updateBook(book.id, updatedFields);
         } catch (error) {
@@ -71,6 +78,75 @@ export default function UpdateBookModal({ book }: {
             setLoading(false);
             setModalOpen(false)
             window.location.reload();
+        }
+    };
+
+    const genreColors: { [key: string]: string } = {
+        absurdist: "bg-purple-700",
+        adventure: "bg-orange-500",
+        afghanistan: "bg-red-600",
+        autobiography: "bg-teal-600",
+        biography: "bg-blue-500",
+        classic: "bg-gray-600",
+        crime: "bg-gray-800",
+        cyberpunk: "bg-blue-900",
+        dark: "bg-gray-900",
+        drama: "bg-red-300",
+        dystopian: "bg-red-700",
+        existentialist: "bg-indigo-700",
+        fantasy: "bg-purple-500",
+        firstperson: "bg-yellow-500",
+        fiction: "bg-green-600",
+        french: "bg-blue-300",
+        gothic: "bg-black",
+        historical: "bg-yellow-700",
+        horror: "bg-gray-800",
+        japanese: "bg-red-500",
+        memoir: "bg-teal-400",
+        mystery: "bg-blue-700",
+        mythology: "bg-yellow-600",
+        nonfiction: "bg-blue-400",
+        philosophical: "bg-indigo-800",
+        poetry: "bg-fuchsia-500",
+        political: "bg-red-800",
+        postmodern: "bg-gray-700",
+        psychological: "bg-indigo-600",
+        realist: "bg-green-600",
+        roman: "bg-amber-700",
+        romance: "bg-red-400",
+        sciencefiction: "bg-blue-600",
+        selfhelp: "bg-green-500",
+        shortstories: "bg-purple-600",
+        sliceoflife: "bg-green-400",
+        stoicism: "bg-gray-400",
+        surrealist: "bg-pink-700",
+        teenliterature: "bg-orange-600",
+        thirdperson: "bg-gray-500",
+        thriller: "bg-red-900",
+        western: "bg-amber-600"
+    };
+
+    const genre_list = [
+        "Absurdist", "Adventure", "Afghanistan", "Autobiography", "Biography", "Classic", "Crime", "Cyberpunk", "Dark", "Drama", "Dystopian", "Existentialist", "Fantasy", "First-Person", "French", "Gothic", "Historical", "Horror", "Japanese", 
+        "Fiction", "Memoir", "Mystery", "Mythology", "Non-Fiction", "Philosophical", "Poetry", 
+        "Political", "Postmodern", "Psychological", "Realist", "Roman", "Romance", "Science Fiction", "Self-Help", "Short Stories", 
+        "Slice of Life", "Stoicism", "Surrealist", "Teen Literature", "Third-Person", "Thriller", "Western"
+    ];
+
+    const returnColor = (genre: string) => {
+        const formattedGenre = genre.toLowerCase()
+            .replace(/\s+/g, '')
+            .replace(/&/g, 'and')
+            .replace(/-/g, '');
+        const bgColor = genreColors[formattedGenre] || "bg-gray-300";
+        return bgColor;
+    }
+
+    const handleGenreSwitch = (genre: string) => {
+        if (genres.includes(genre)) {
+            setGenres(genres.filter((g) => g !== genre));
+        } else {
+            setGenres([...genres, genre]);
         }
     };
 
@@ -107,27 +183,59 @@ export default function UpdateBookModal({ book }: {
                                 </label>
                             </div>
                             <div className='flex flex-col w-1/2 ml-2 gap-4'>
-                                <input
-                                    type="text"
-                                    className="w-full bg-transparent sm:text-sm xl:text-2xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
-                                    placeholder="Book Name"
-                                    value={name}
-                                    onChange={(e) => setName(e.target.value)}
-                                />
-                                <input
-                                    type="text"
-                                    className="w-full bg-transparent sm:text-sm xl:text-2xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
-                                    placeholder="Author"
-                                    value={author}
-                                    onChange={(e) => setAuthor(e.target.value)}
-                                />
-                                <textarea
-                                    className="w-full bg-transparent sm:text-sm xl:text-2xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
-                                    placeholder="Comments"
-                                    value={comments}
-                                    onChange={(e) => setComments(e.target.value)}
-                                    rows={3}
-                                />
+                            <div className="relative group">
+                                        <input
+                                            type="text"
+                                            className="w-full bg-transparent text-2xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
+                                            placeholder="Book Name"
+                                            value={name}
+                                            onFocus={() => setNameFocus(true)}
+                                            onBlur={() => setNameFocus(false)}
+                                            onChange={(e) => setName(e.target.value)}
+                                        />
+                                        <span
+                                            className={`absolute -bottom-0.5 left-0 h-[2px] bg-white transition-all duration-300 ${nameFocus ? "w-full" : "w-0"
+                                                }`}
+                                        />
+                                    </div>
+                                    <div className="relative group">
+                                        <input
+                                            type="text"
+                                            className="w-full bg-transparent text-2xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
+                                            placeholder="Author"
+                                            value={author}
+                                            onFocus={() => setAuthorFocus(true)}
+                                            onBlur={() => setAuthorFocus(false)}
+                                            onChange={(e) => setAuthor(e.target.value)}
+                                        />
+                                        <span
+                                            className={`absolute -bottom-0.5 left-0 h-[2px] bg-white transition-all duration-300 ${authorFocus ? "w-full" : "w-0"
+                                                }`}
+                                        />
+                                    </div>
+                                    <div className="relative group">
+                                        <textarea
+                                            className="w-full bg-transparent text-2xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
+                                            placeholder="Comments"
+                                            value={comments}
+                                            onFocus={() => setCommentFocus(true)}
+                                            onBlur={() => setCommentFocus(false)}
+                                            onChange={(e) => setComments(e.target.value)}
+                                            rows={3} 
+                                        />
+                                        <span
+                                            className={`absolute bottom-1.5 left-0 h-[2px] bg-white transition-all duration-300 ${commentFocus ? "w-full" : "w-0"
+                                                }`}
+                                        />
+                                    </div>
+                                 <div className='flex flex-row flex-wrap gap-2 max-h-32 overflow-scroll'>
+                                    {genre_list.slice().sort().map((genre, index) => (
+                                        <div onClick={() => handleGenreSwitch(genre)} key={index} className={genres.includes(genre) ? `px-2 py-1 rounded-lg text-white font-bold ${returnColor(genre)} cursor-pointer opacity-100 transition-all duration-300 ease-in-out hover:opacity-30` :
+                                            `cursor-pointer px-2 py-1 rounded-lg bg-black text-white transition-all duration-300 ease-in-out ${returnColor(genre)} hover:opacity-100 opacity-30`}>
+                                            {genre}
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
                         </div>
                         <div className='flex flex-col w-full items-center'>
