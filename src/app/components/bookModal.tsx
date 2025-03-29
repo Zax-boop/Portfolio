@@ -49,11 +49,13 @@ export default function BookForm() {
 
     const genreColors: { [key: string]: string } = {
         absurdist: "bg-purple-700",
+        action: "bg-orange-700",
         adventure: "bg-orange-500",
         afghanistan: "bg-red-600",
         autobiography: "bg-teal-600",
         biography: "bg-blue-500",
         classic: "bg-gray-600",
+        comic: "bg-orange-400",
         crime: "bg-gray-800",
         cyberpunk: "bg-blue-900",
         dark: "bg-gray-900",
@@ -68,6 +70,7 @@ export default function BookForm() {
         historical: "bg-yellow-700",
         horror: "bg-gray-800",
         japanese: "bg-red-500",
+        manga: "bg-fuchsia-600",
         memoir: "bg-teal-400",
         mystery: "bg-blue-700",
         mythology: "bg-yellow-600",
@@ -93,7 +96,7 @@ export default function BookForm() {
     };
 
     const genre_list = [
-        "Absurdist", "Adventure", "Afghanistan", "Autobiography", "Biography", "Classic", "Crime", "Cyberpunk", "Dark", "Drama", "Dystopian", "Existentialist", "Fantasy", "First-Person", "Fiction", "French", "Gothic", "Historical", "Horror", "Japanese", 
+        "Absurdist", "Action", "Adventure", "Afghanistan", "Autobiography", "Biography", "Classic", "Comic", "Crime", "Cyberpunk", "Dark", "Drama", "Dystopian", "Existentialist", "Fantasy", "First-Person", "Fiction", "French", "Gothic", "Historical", "Horror", "Japanese", "Manga",
         "Memoir", "Mystery", "Mythology", "Non-Fiction", "Philosophical", "Poetry", 
         "Political", "Postmodern", "Psychological", "Realist", "Roman", "Romance", "Science Fiction", "Self-Help", "Short Stories", 
         "Slice of Life", "Stoicism", "Surrealist", "Teen Literature", "Third-Person", "Thriller", "Western"

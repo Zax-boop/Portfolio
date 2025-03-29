@@ -1,11 +1,13 @@
 export default function BookGenre({ genre }: { genre: string }) {
     const genreColors: { [key: string]: string } = {
         absurdist: "bg-purple-700",
+        action: "bg-orange-700",
         adventure: "bg-orange-500",
         afghanistan: "bg-red-600",
         autobiography: "bg-teal-600",
         biography: "bg-blue-500",
         classic: "bg-gray-600",
+        comic: "bg-orange-400",
         crime: "bg-gray-800",
         cyberpunk: "bg-blue-900",
         dark: "bg-gray-900",
@@ -20,6 +22,7 @@ export default function BookGenre({ genre }: { genre: string }) {
         historical: "bg-yellow-700",
         horror: "bg-gray-800",
         japanese: "bg-red-500",
+        manga: "bg-fuchsia-600",
         memoir: "bg-teal-400",
         mystery: "bg-blue-700",
         mythology: "bg-yellow-600",
