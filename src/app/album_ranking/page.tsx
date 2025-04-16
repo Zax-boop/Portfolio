@@ -12,6 +12,8 @@ import SignInForm from '../components/signIn';
 import UpdateAlbumModal from '../components/updateAlbum';
 import MusicGenre from '../components/musicGenre';
 import ReadMore from '../components/readMore';
+import Spotify from '../../../public/spotify.png';
+import Link from 'next/link';
 
 export default function Albums() {
     const [albums, setAlbums] = useState<{
@@ -24,7 +26,7 @@ export default function Albums() {
         id: string;
     }[]>([]);
     const badAlbumStatements = ["Seek Help", "Consider Therapy", "You need to talk to someone", "This is a cry for help", "Please, seek help", "This is not okay", "You need to talk to someone about this", "This album is a tough listen...", "Not your best pick.",
-    "Maybe give this one a second thought.", "Are you sure about this one?"];
+        "Maybe give this one a second thought.", "Are you sure about this one?"];
     const [filteredMedia, setFilteredMedia] = useState(albums);
     const [loading, setLoading] = useState(true);
     const [isLoading, setIsLoading] = useState(true);
@@ -90,7 +92,7 @@ export default function Albums() {
 
     const getRecommendedAlbums = (currentAlbum: { genres: string[]; Rank: number; id: string }) => {
         return topRankedAlbums
-            .filter(album => album.id !== currentAlbum.id) 
+            .filter(album => album.id !== currentAlbum.id)
             .map(album => ({
                 ...album,
                 genreMatchCount: album.genres.filter(genre => currentAlbum.genres.includes(genre)).length,
@@ -100,7 +102,7 @@ export default function Albums() {
                 return album.genreMatchCount >= requiredMatches;
             })
             .sort((a, b) => b.genreMatchCount - a.genreMatchCount);
-    };    
+    };
     return (
         <div className='flex flex-col w-full h-full items-center'>
             <SignInForm />
@@ -170,7 +172,12 @@ export default function Albums() {
                 <ImageTrack data={currentMedia} onImageClick={scrollToAlbum} width={`${currentMedia.length == 5 ? `xs:w-[8rem]` : `xs:w-[6.67rem]`} ${currentMedia.length == 6 ? `sm:w-[8rem] 2xl:w-[15rem]` : `sm:w-[10rem] 2xl:w-[20rem]`} ${currentMedia.length == 5 ? `xl:w-[15rem]` : `xl:w-[20rem]`}`} />
             </div>
             <div className="flex flex-col xs:w-[95%] sm:w-4/5 xs:mt-2 sm:mt-8">
-                <AlbumForm />
+                <div className='flex flex-row items-center xs:justify-end sm:justify-start'>
+                    <AlbumForm />
+                    <Link href="https://open.spotify.com/playlist/1BjbHX9ACQUNCBt5zWZjtV?si=3d5ac7a5e3ae4f06" target="_blank" className=''>
+                        <img src={Spotify.src} alt="Spotify" className='xs:w-6 sm:w-10 xl:w-10 transform transition-transform duration-200 hover:scale-110' />
+                    </Link>
+                </div>
                 <p className='xs:text-xs sm:text-base sm:mt-2 xl:mt-0 xs:mb-1 sm:mb-0'>*Disclaimer: This is just my opinion and what I enjoyed listening to the most regardless of critical bias.</p>
                 <div className="flex flex-row flex-wrap justify-start mt-2">
                     {Array.from({ length: totalPages }, (_, i) => (
@@ -233,7 +240,7 @@ export default function Albums() {
                                         </div>
                                     </div>
                                     <p className="xs:text-base sm:text-lg xl:text-3xl text-gray-400">{album.artist}</p>
-                                    <ReadMore text={album.comment} className="xs:text-[0.5rem] sm:text-sm xl:text-lg xs:mt-0.5 sm:mt-1 xl:mt-2"/>
+                                    <ReadMore text={album.comment} className="xs:text-[0.5rem] sm:text-sm xl:text-lg xs:mt-0.5 sm:mt-1 xl:mt-2" />
                                     <div className="flex flex-wrap gap-2 mt-2">
                                         {album.genres?.slice().sort().map((genre, index) => (
                                             <div onClick={() => setSearchQuery(genre)} key={index}>

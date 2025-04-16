@@ -133,7 +133,7 @@ export default function AlbumForm() {
     return (
         <div className={`flex flex-col w-full items-center justify-center xs:hidden sm:block`}>
             <div className={`flex flex-row w-full justify-end`}>
-                <label onClick={() => setIsModalOpen(true)} className="flex items-center gap-2 self-start pl-3 mr-4 py-2 bg-black border border-white text-white rounded-full hover:bg-white hover:text-black transition duration-300 cursor-pointer">
+                <label onClick={() => setIsModalOpen(true)} className="flex items-center gap-2 self-start pl-3 mr-2 py-2 bg-black border border-white text-white rounded-full hover:bg-white hover:text-black transition duration-300 cursor-pointer">
                     Add Album
                     <PlusIcon className="w-5 h-5 mr-2" />
                 </label>

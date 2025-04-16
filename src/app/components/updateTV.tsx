@@ -16,6 +16,7 @@ export default function UpdateTVModal({ tv }: {
         comments: string;
         image: string;
         rank: number;
+        genres: string[];
         id: string;
     }
 }) {
@@ -25,6 +26,7 @@ export default function UpdateTVModal({ tv }: {
     const [comments, setComments] = useState(tv?.comments || '');
     const [imageFile, setImageFile] = useState<File | null>(null);
     const [rank, setRank] = useState(tv?.rank || '');
+    const [genres, setGenres] = useState(tv?.genres || []);
     const [coverImage, setCoverImage] = useState<string | StaticImageData>(tv?.image || show_placeholder);
     const [loading, setLoading] = useState(false);
     const [modalOpen, setModalOpen] = useState(false)
@@ -44,6 +46,7 @@ export default function UpdateTVModal({ tv }: {
             setDirector(tv.director || '');
             setComments(tv.comments || '');
             setRank(tv.rank || '');
+            setGenres(tv.genres || []);
             setCoverImage(tv.image || show_placeholder);
         }
     }, [tv]);
@@ -67,6 +70,7 @@ export default function UpdateTVModal({ tv }: {
                 comments: comments,
                 imageFile,
                 rank: Number(rank),
+                genres,
             };
             await updateTV(tv.id, updatedFields);
         } catch (error) {
@@ -75,6 +79,71 @@ export default function UpdateTVModal({ tv }: {
             setLoading(false);
             setModalOpen(false)
             window.location.reload();
+        }
+    };
+
+    const genreColors: { [key: string]: string } = {
+        action: "bg-orange-700",
+        adventure: "bg-orange-500",
+        animated: "bg-blue-400",
+        comedy: "bg-yellow-400",
+        crime: "bg-gray-800",
+        cyberpunk: "bg-blue-900",
+        dark: "bg-gray-900",
+        documentary: "bg-blue-300",
+        drama: "bg-red-300",
+        fantasy: "bg-purple-500",
+        historical: "bg-yellow-700",
+        horror: "bg-gray-800",
+        mystery: "bg-blue-700",
+        political: "bg-red-800",
+        psychological: "bg-indigo-600",
+        romance: "bg-red-400",
+        scifi: "bg-blue-600",
+        sitcom: "bg-yellow-500",
+        sliceoflife: "bg-green-400",
+        thriller: "bg-red-900",
+        western: "bg-amber-600"
+    };
+
+    const genre_list = [
+        "Action",
+        "Adventure",
+        "Animated",
+        "Comedy",
+        "Crime",
+        "Cyberpunk",
+        "Dark",
+        "Documentary",
+        "Drama",
+        "Fantasy",
+        "Historical",
+        "Horror",
+        "Mystery",
+        "Political",
+        "Psychological",
+        "Romance",
+        "Sci-fi",
+        "Sitcom",
+        "Slice of Life",
+        "Thriller",
+        "Western"
+    ];
+
+    const returnColor = (genre: string) => {
+        const formattedGenre = genre.toLowerCase()
+            .replace(/\s+/g, '')
+            .replace(/&/g, 'and')
+            .replace(/-/g, '');
+        const bgColor = genreColors[formattedGenre] || "bg-gray-300";
+        return bgColor;
+    }
+
+    const handleGenreSwitch = (genre: string) => {
+        if (genres.includes(genre)) {
+            setGenres(genres.filter((g) => g !== genre));
+        } else {
+            setGenres([...genres, genre]);
         }
     };
 
@@ -139,6 +208,14 @@ export default function UpdateTVModal({ tv }: {
                                     value={rank}
                                     onChange={(e) => setRank(e.target.value)}
                                 />
+                                <div className='flex flex-row flex-wrap gap-2 max-h-32 overflow-scroll'>
+                                    {genre_list.slice().sort().map((genre, index) => (
+                                        <div onClick={() => handleGenreSwitch(genre)} key={index} className={genres.includes(genre) ? `px-2 py-1 rounded-lg text-white font-bold ${returnColor(genre)} cursor-pointer opacity-100 transition-all duration-300 ease-in-out hover:opacity-30` :
+                                            `cursor-pointer px-2 py-1 rounded-lg bg-black text-white transition-all duration-300 ease-in-out ${returnColor(genre)} hover:opacity-100 opacity-30`}>
+                                            {genre}
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
                         </div>
                         <div className='flex flex-col w-full items-center'>

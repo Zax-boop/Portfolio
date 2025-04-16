@@ -1,6 +1,6 @@
 import supabase from "./supabaseclient";
 
-export default async function addTV(name, director, comments, imageFile, rank) {
+export default async function addTV(name, director, comments, imageFile, rank, genres) {
   let imageUrl = "";
   if (rank == "") {
     const { data: list, error: fetchError } = await supabase
@@ -50,7 +50,7 @@ export default async function addTV(name, director, comments, imageFile, rank) {
   }
   const { data, error } = await supabase
     .from('tv_rankings')
-    .insert([{ name, director, comments, image: imageUrl, rank }]);
+    .insert([{ name, director, comments, image: imageUrl, rank, genres }]);
   if (error) {
     console.error('Error inserting data:', error);
     return null;

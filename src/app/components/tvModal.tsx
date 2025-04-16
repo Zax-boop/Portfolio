@@ -15,6 +15,7 @@ export default function TVForm() {
     const [comments, setComments] = useState('');
     const [imageFile, setImageFile] = useState<File | null>(null);
     const [rank, setRank] = useState("")
+    const [genres, setGenres] = useState<string[]>([]);
     const [coverImage, setCoverImage] = useState<string | StaticImageData>(show_placeholder);
     const [nameFocus, setNameFocus] = useState(false);
     const [directorFocus, setDirectorFocus] = useState(false);
@@ -39,11 +40,77 @@ export default function TVForm() {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setLoading(true)
-        await addTV(name, director, comments, imageFile, Number(rank));
+        await addTV(name, director, comments, imageFile, Number(rank), genres);
         setLoading(false)
         setIsModalOpen(false);
         window.location.reload()
     };
+
+    const genreColors: { [key: string]: string } = {
+        action: "bg-orange-700",
+        adventure: "bg-orange-500",
+        animated: "bg-blue-400",
+        comedy: "bg-yellow-400",
+        crime: "bg-gray-800",
+        cyberpunk: "bg-blue-900",
+        dark: "bg-gray-900",
+        documentary: "bg-blue-300",
+        drama: "bg-red-300",
+        fantasy: "bg-purple-500",
+        historical: "bg-yellow-700",
+        horror: "bg-gray-800",
+        mystery: "bg-blue-700",
+        political: "bg-red-800",
+        psychological: "bg-indigo-600",
+        romance: "bg-red-400",
+        scifi: "bg-blue-600",
+        sitcom: "bg-yellow-500",
+        sliceoflife: "bg-green-400",
+        thriller: "bg-red-900",
+        western: "bg-amber-600"
+    };
+
+    const genre_list = [
+        "Action",
+        "Adventure",
+        "Animated",
+        "Comedy",
+        "Crime",
+        "Cyberpunk",
+        "Dark",
+        "Documentary",
+        "Drama",
+        "Fantasy",
+        "Historical",
+        "Horror",
+        "Mystery",
+        "Political",
+        "Psychological",
+        "Romance",
+        "Sci-fi",
+        "Sitcom",
+        "Slice of Life",
+        "Thriller",
+        "Western"
+    ];
+
+    const returnColor = (genre: string) => {
+        const formattedGenre = genre.toLowerCase()
+            .replace(/\s+/g, '')
+            .replace(/&/g, 'and')
+            .replace(/-/g, '');
+        const bgColor = genreColors[formattedGenre] || "bg-gray-300";
+        return bgColor;
+    }
+
+    const handleGenreSwitch = (genre: string) => {
+        if (genres.includes(genre)) {
+            setGenres(genres.filter((g) => g !== genre));
+        } else {
+            setGenres([...genres, genre]);
+        }
+    };
+
     return (
         <div className={`flex flex-col w-full items-center justify-center xs:hidden sm:block`}>
             <div className={`flex flex-row w-full justify-end`}>
@@ -135,6 +202,14 @@ export default function TVForm() {
                                         <span
                                             className={`absolute -bottom-0.5 left-0 h-[2px] bg-white transition-all duration-300 ${rankFocus || rank ? "w-full" : "w-0"}`}
                                         />
+                                    </div>
+                                    <div className='flex flex-row flex-wrap gap-2 max-h-32 overflow-scroll'>
+                                        {genre_list.slice().sort().map((genre, index) => (
+                                            <div onClick={() => handleGenreSwitch(genre)} key={index} className={genres.includes(genre) ? `px-2 py-1 rounded-lg text-white font-bold ${returnColor(genre)} cursor-pointer opacity-100 transition-all duration-300 ease-in-out hover:opacity-30` :
+                                                `cursor-pointer px-2 py-1 rounded-lg bg-black text-white transition-all duration-300 ease-in-out ${returnColor(genre)} hover:opacity-100 opacity-30`}>
+                                                {genre}
+                                            </div>
+                                        ))}
                                     </div>
                                 </div>
                             </div>

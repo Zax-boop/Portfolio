@@ -11,6 +11,7 @@ import SignInForm from '../components/signIn';
 import DeleteTV from '../components/deleteTV';
 import UpdateTVModal from '../components/updateTV';
 import ReadMore from '../components/readMore';
+import TVGenre from '../components/tvGenre';
 
 export default function TVRanking() {
     const [tv, setTV] = useState<{
@@ -19,6 +20,7 @@ export default function TVRanking() {
         comments: string;
         image: string;
         rank: number;
+        genres: string[];
         id: string;
     }[]>([]);
     const [filteredMedia, setFilteredMedia] = useState(tv);
@@ -62,7 +64,8 @@ export default function TVRanking() {
                 (show) =>
                     show.name.toLowerCase().includes(search) ||
                     show.director.toLowerCase().includes(search) ||
-                    show.comments.toLowerCase().includes(search)
+                    show.comments.toLowerCase().includes(search) ||
+                    show.genres.some((genre) => genre.toLowerCase().includes(search))
             )
         );
         setCurrentPage(1);
@@ -187,6 +190,7 @@ export default function TVRanking() {
                     comments: string;
                     image: string;
                     rank: number;
+                    genres: string[];
                     id: string;
                 }, index: number) => (
                     <FadeInSection
@@ -213,7 +217,14 @@ export default function TVRanking() {
                                     </div>
                                 </div>
                                 <p className="xs:text-base sm:text-lg xl:text-3xl text-gray-400">{show.director}</p>
-                                <ReadMore text={show.comments} className="xs:text-[0.5rem] sm:text-sm xl:text-lg xs:mt-0.5 sm:mt-1 xl:mt-2"/>
+                                <ReadMore text={show.comments} className="xs:text-[0.5rem] sm:text-sm xl:text-lg xs:mt-0.5 sm:mt-1 xl:mt-2" />
+                                <div className="flex flex-wrap gap-2 mt-2">
+                                    {show.genres?.slice().sort().map((genre, index) => (
+                                        <div onClick={() => setSearchQuery(genre)} key={index}>
+                                            <TVGenre genre={genre}/>
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
                         </div>
                         {index < currentMedia.length - 1 && <hr className="border-t border-gray-300 xs:my-1 sm:my-2 xl:my-4" />}
