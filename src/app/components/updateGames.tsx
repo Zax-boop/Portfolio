@@ -16,6 +16,7 @@ export default function UpdateGamesModal({ game }: {
         image: string;
         comments: string;
         rank: number;
+        genres: string[];
         id: string;
     }
 }) {
@@ -25,6 +26,7 @@ export default function UpdateGamesModal({ game }: {
     const [comments, setComments] = useState(game?.comments || '');
     const [imageFile, setImageFile] = useState<File | null>(null);
     const [rank, setRank] = useState(game?.rank || '');
+    const [genres, setGenres] = useState<string[]>(game?.genres || []);
     const [coverImage, setCoverImage] = useState<string | StaticImageData>(game?.image || game_placeholder);
     const [loading, setLoading] = useState(false);
     const [modalOpen, setModalOpen] = useState(false)
@@ -45,6 +47,7 @@ export default function UpdateGamesModal({ game }: {
             setComments(game.comments || '');
             setRank(game.rank || '');
             setCoverImage(game.image || game_placeholder);
+            setGenres(game.genres || []);
         }
     }, [game]);
 
@@ -67,6 +70,7 @@ export default function UpdateGamesModal({ game }: {
                 comments: comments,
                 imageFile,
                 rank: Number(rank),
+                genres,
             };
             await updateGames(game.id, updatedFields);
         } catch (error) {
@@ -75,6 +79,79 @@ export default function UpdateGamesModal({ game }: {
             setLoading(false);
             setModalOpen(false)
             window.location.reload();
+        }
+    };
+
+    const genreColors: { [key: string]: string } = {
+        action: "bg-red-700",
+        adventure: "bg-orange-500",
+        arcade: "bg-pink-600",
+        beatemup: "bg-yellow-700",
+        boomershooter: "bg-red-900",
+        card: "bg-amber-500",
+        citybuilder: "bg-green-600",
+        coop: "bg-blue-600",
+        crafting: "bg-lime-500",
+        detective: "bg-gray-700",
+        dungeoncrawler: "bg-purple-900",
+        educational: "bg-indigo-400",
+        farming: "bg-green-500",
+        fighting: "bg-red-600",
+        fps: "bg-gray-800",
+        horror: "bg-black",
+        jrpg: "bg-pink-700",
+        metroidvania: "bg-purple-700",
+        mmorpg: "bg-blue-900",
+        music: "bg-yellow-500",
+        openworld: "bg-green-700",
+        party: "bg-teal-500",
+        platformer: "bg-orange-600",
+        pointandclick: "bg-teal-400",
+        postapocalyptic: "bg-gray-900",
+        puzzle: "bg-blue-400",
+        racing: "bg-orange-400",
+        rhythm: "bg-pink-500",
+        roguelike: "bg-gray-600",
+        rpg: "bg-purple-500",
+        sandbox: "bg-yellow-600",
+        scifi: "bg-blue-600",
+        simulation: "bg-green-400",
+        soulsborne: "bg-gray-500",
+        soulslike: "bg-gray-700",
+        sports: "bg-emerald-600",
+        stealth: "bg-zinc-800",
+        strategy: "bg-indigo-700",
+        survival: "bg-amber-700",
+        tacshooter: "bg-cyan-700",
+        thirdpersonshooter: "bg-slate-800",
+        towerdefense: "bg-cyan-500",
+        turnbased: "bg-sky-600",
+        visualnovel: "bg-rose-500",
+    };
+
+    const genre_list = [
+        "Action", "Adventure", "Arcade", "Beat 'Em Up", "Boomer Shooter", "Card", "City Builder", "Co-Op",
+        "Crafting", "Detective", "Dungeon Crawler", "Educational", "Farming", "Fighting", "FPS", "Horror",
+        "JRPG", "Metroidvania", "MMORPG", "Music", "Open World", "Party", "Platformer", "Point and Click",
+        "Post-Apocalyptic", "Puzzle", "Racing", "Rhythm", "Roguelike", "RPG", "Sandbox", "Sci-Fi", "Simulation", "Soulsborne",
+        "Soulslike", "Sports", "Stealth", "Strategy", "Survival", "Tac Shooter", "Third Person Shooter",
+        "Tower Defense", "Turn-Based", "Visual Novel"
+    ];
+
+    const returnColor = (genre: string) => {
+        const formattedGenre = genre.toLowerCase()
+            .replace(/\s+/g, '')
+            .replace(/&/g, 'and')
+            .replace(/-/g, '');
+        const bgColor = genreColors[formattedGenre] || "bg-gray-300";
+        return bgColor;
+    }
+
+    const handleGenreSwitch = (genre: string) => {
+        if (genres.includes(genre)) {
+            setGenres(genres.filter((g) => g !== genre));
+        } else {
+            setGenres([...genres, genre]);
         }
     };
 
@@ -139,6 +216,14 @@ export default function UpdateGamesModal({ game }: {
                                     value={rank}
                                     onChange={(e) => setRank(e.target.value)}
                                 />
+                                <div className='flex flex-row flex-wrap gap-2 max-h-32 overflow-scroll'>
+                                    {genre_list.slice().sort().map((genre, index) => (
+                                        <div onClick={() => handleGenreSwitch(genre)} key={index} className={genres.includes(genre) ? `px-2 py-1 rounded-lg text-white font-bold ${returnColor(genre)} cursor-pointer opacity-100 transition-all duration-300 ease-in-out hover:opacity-30` :
+                                            `cursor-pointer px-2 py-1 rounded-lg bg-black text-white transition-all duration-300 ease-in-out ${returnColor(genre)} hover:opacity-100 opacity-30`}>
+                                            {genre}
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
                         </div>
                         <div className='flex flex-col w-full items-center'>

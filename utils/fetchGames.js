@@ -3,7 +3,7 @@ import supabase from "./supabaseclient";
 export default async function fetchGames() {
   const { data, error } = await supabase
     .from('video_game_rankings')
-    .select('name, studio, image, comments, rank, id') 
+    .select('name, studio, image, comments, rank, genres, id') 
     .order('rank', { ascending: true }); 
 
   if (error) {

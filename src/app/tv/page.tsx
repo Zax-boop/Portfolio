@@ -64,8 +64,8 @@ export default function TVRanking() {
                 (show) =>
                     show.name.toLowerCase().includes(search) ||
                     show.director.toLowerCase().includes(search) ||
-                    show.comments.toLowerCase().includes(search) 
-                    // show.genres.some((genre) => genre.toLowerCase().includes(search))
+                    show.comments.toLowerCase().includes(search) ||
+                    show.genres?.some((genre) => genre.toLowerCase().includes(search))
             )
         );
         setCurrentPage(1);

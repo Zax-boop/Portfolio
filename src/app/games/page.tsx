@@ -11,6 +11,7 @@ import SignInForm from '../components/signIn';
 import DeleteGames from '../components/deleteGames';
 import UpdateGamesModal from '../components/updateGames';
 import ReadMore from '../components/readMore';
+import GameGenre from '../components/gameGenre';
 
 export default function GamesRanking() {
     const [games, setGames] = useState<{
@@ -19,6 +20,7 @@ export default function GamesRanking() {
         image: string;
         comments: string;
         rank: number;
+        genres: string[];
         id: string;
     }[]>([]);
     const [filteredMedia, setFilteredMedia] = useState(games);
@@ -62,7 +64,8 @@ export default function GamesRanking() {
                 (game) =>
                     game.name.toLowerCase().includes(search) ||
                     game.studio.toLowerCase().includes(search) ||
-                    game.comments.toLowerCase().includes(search)
+                    game.comments.toLowerCase().includes(search) 
+                    // game.genres?.some((genre) => genre.toLowerCase().includes(search))
             )
         );
         setCurrentPage(1);
@@ -215,6 +218,7 @@ export default function GamesRanking() {
                     image: string;
                     comments: string;
                     rank: number;
+                    genres: string[];
                     id: string;
                 }, index: number) => (
                     <FadeInSection
@@ -241,7 +245,14 @@ export default function GamesRanking() {
                                     </div>
                                 </div>
                                 <p className="xs:text-base sm:text-lg xl:text-3xl text-gray-400">{game.studio}</p>
-                                <ReadMore text={game.comments} className="xs:text-[0.5rem] sm:text-sm xl:text-lg xs:mt-0.5 sm:mt-1 xl:mt-2"/>
+                                <ReadMore text={game.comments} className="xs:text-[0.5rem] sm:text-sm xl:text-lg xs:mt-0.5 sm:mt-1 xl:mt-2" />
+                                <div className="flex flex-wrap gap-2 mt-2">
+                                    {game.genres?.slice().sort().map((genre, index) => (
+                                        <div onClick={() => setSearchQuery(genre)} key={index}>
+                                            <GameGenre genre={genre} />
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
                         </div>
                         {index < currentMedia.length - 1 && <hr className="border-t border-gray-300 xs:my-1 sm:my-2 xl:my-4" />}

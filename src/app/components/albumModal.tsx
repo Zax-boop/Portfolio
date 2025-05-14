@@ -14,7 +14,7 @@ export default function AlbumForm() {
     const [artist, setArtist] = useState('');
     const [comments, setComments] = useState('');
     const [imageFile, setImageFile] = useState<File | null>(null);
-    const [rank, setRank] = useState("")
+    const [rank, setRank] = useState("");
     const [genres, setGenres] = useState<string[]>([]);
     const [coverImage, setCoverImage] = useState<string | StaticImageData>(album_placeholder);
     const [nameFocus, setNameFocus] = useState(false);

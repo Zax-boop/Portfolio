@@ -65,7 +65,8 @@ export default function Anime() {
                 (anime) =>
                     anime.name.toLowerCase().includes(search) ||
                     anime.studio.toLowerCase().includes(search) ||
-                    anime.comments.toLowerCase().includes(search)
+                    anime.comments.toLowerCase().includes(search) || 
+                    anime.genres?.some((genre) => genre.toLowerCase().includes(search))
             )
         );
         setCurrentPage(1);

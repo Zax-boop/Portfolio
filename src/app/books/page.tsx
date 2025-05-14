@@ -69,7 +69,8 @@ export default function Books() {
                 (book) =>
                     book.name.toLowerCase().includes(search) ||
                     book.author.toLowerCase().includes(search) ||
-                    book.comments.toLowerCase().includes(search)
+                    book.comments.toLowerCase().includes(search) || 
+                    book.genres?.some((genre) => genre.toLowerCase().includes(search))
             )
         );
         setCurrentPage(1);
