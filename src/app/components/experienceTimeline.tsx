@@ -43,9 +43,43 @@ export default function ExperienceTimeline() {
             <VerticalTimeline className='!mt-4'>
                 <VerticalTimelineElement
                     className="vertical-timeline-element--work"
+                    contentStyle={{ background: 'rgb(0, 39, 76)', color: '#fff', padding: '12px' }}
+                    contentArrowStyle={{ borderRight: '7px solid rgb(0, 39, 76)' }}
+                    date="February 2025 - Present"
+                    iconStyle={{ background: 'rgb(0, 39, 76)', color: '#fff' }}
+                    icon={<BriefcaseIcon />}
+                >
+                    <div className='flex flex-col'>
+                        <h1 className='vertical-timeline-element-title md:text-3xl xs:text-lg !mt-2 !font-bold'>IBM</h1>
+                        <p className='!xs:text-xs !xl:text-xl !mt-0 !font-semibold'>CO-OP Software Engineer Intern</p>
+                        <p className='!mt-0'>Developed a GenAI chat feature for a product using LangChain and Retrieval-Augmented Generation (RAG), enabling leadership to summarize release data and make decisions a week faster. Built a data analytics dashboard with Python, PostgreSQL, and React to visualize key metrics such as daily signups, active users, and user activity. Implemented SSO authentication and created REST APIs to support dynamic data access. Automated test release upgrade testing by writing robust Bash scripts, saving developers over 3 days of manual effort and increasing testing productivity by 200%. Additionally, developed and deployed a mock airline application using Python, Java, MongoDB, Docker, and Locust to demonstrate core features of a dependency management tool. Integrated React Tracking to surface usage analytics, enhancing product insights.</p>
+                        <div className='flex flex-row flex-wrap !mt-2 gap-2'>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>GenAI</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>LangChain</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>RAG</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Python</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>React</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>PostgreSQL</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Java</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>MongoDB</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Docker</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Locust</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Bash</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>SSO</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>REST APIs</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Data Visualization</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Analytics</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>React Tracking</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Automation</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Productivity Tools</p>
+                        </div>
+                    </div>
+                </VerticalTimelineElement>
+                <VerticalTimelineElement
+                    className="vertical-timeline-element--work"
                     contentStyle={{ background: 'rgb(254, 76, 0)', color: '#fff', padding: '12px' }}
                     contentArrowStyle={{ borderRight: '7px solid  rgb(254, 76, 0)' }}
-                    date="December 2024 - Present"
+                    date="December 2024 - February 2025"
                     iconStyle={{ background: 'rgb(254, 76, 0)', color: '#fff' }}
                     icon={<BriefcaseIcon />}
                 >
@@ -53,9 +87,9 @@ export default function ExperienceTimeline() {
                         <a target='_blank' href='https://colomboai.com/' className="rounded-lg overflow-hidden cursor-pointer">
                             <VideoWithPlaceholder className='w-full cursor-pointer' src='/prismera_demo.mp4' />
                         </a>
-                        <h1 className='vertical-timeline-element-title !text-3xl !mt-2'>Prismera</h1>
-                        <p className='!xs:text-xs !xl:text-xl !mt-0 font-medium'>Full Stack Developer</p>
-                        <p className='!mt-0'>Worked across the stack on real estate lease parser. Used Next.js, Typescript, and Tailwind CSS for the frontend. Wrote REST APIs in python. Utilized Java to create and consume RESTful services for seamless communication across the stack. Used Firebase for authentication.</p>
+                        <h1 className='vertical-timeline-element-title md:text-3xl xs:text-lg !mt-2 !font-bold'>Prismera</h1>
+                        <p className='!xs:text-xs !xl:text-xl !mt-0 !font-semibold'>Full Stack Developer Consultant</p>
+                        <p className='!mt-0'>Worked across the stack on real estate lease parser. Used Next.js, Typescript, and Tailwind CSS for the frontend. Wrote REST APIs in python. Utilized Java to create and consume RESTful services for seamless communication across the stack. Used Supabase for authentication and RLS policies.</p>
                         <div className="relative group self-start cursor-pointer my-2">
                             <a target='_blank' href="https://prismera.ai/" className='flex flex-row items-center gap-2'>
                                 <strong className='!font-bold'>Visit Website</strong>
@@ -64,14 +98,14 @@ export default function ExperienceTimeline() {
                             <span className="absolute xs:-bottom-[0.075rem] sm:-bottom-[0.3rem] left-0 w-0 xs:h-[0.1rem] sm:h-1 bg-white transition-all group-hover:w-full"></span>
                         </div>
                         <div className='flex flex-row flex-wrap !mt-2 gap-2'>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Next.js</p>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Typescript</p>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Tailwind CSS</p>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Firebase</p>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Java</p>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>REST</p>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Python</p>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>REST APIs</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Next.js</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Typescript</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Tailwind CSS</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Supabase</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>RLS</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Java</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Python</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>REST APIs</p>
 
                         </div>
                     </div>
@@ -88,8 +122,8 @@ export default function ExperienceTimeline() {
                         <a target='_blank' href='https://colomboai.com/' className="rounded-lg overflow-hidden cursor-pointer">
                             <VideoWithPlaceholder className='w-full cursor-pointer' src='/colombo_demo.mp4' />
                         </a>
-                        <h1 className='vertical-timeline-element-title !text-3xl !mt-2'>ColomboAI</h1>
-                        <p className='!xs:text-xs !xl:text-xl !mt-0 font-medium'>Full Stack Developer</p>
+                        <h1 className='vertical-timeline-element-title md:text-3xl xs:text-lg !mt-2 !font-bold'>ColomboAI</h1>
+                        <p className='!xs:text-xs !xl:text-xl !mt-0 !font-semibold'>Full Stack Developer</p>
                         <p className='!mt-0'>Developed social media application with Flutter and Dart for mobile development and Next.js and Tailwind CSS for desktop. Implemented secure authentication using Firebase Authentication. Designed SQL queries for managing large-scale data models and utilized Java to create and consume RESTful services for seamless communication across the stack.</p>
                         <div className="relative group self-start cursor-pointer my-2">
                             <a target='_blank' href="https://colomboai.com/" className='flex flex-row items-center gap-2'>
@@ -99,15 +133,15 @@ export default function ExperienceTimeline() {
                             <span className="absolute xs:-bottom-[0.075rem] sm:-bottom-[0.3rem] left-0 w-0 xs:h-[0.1rem] sm:h-1 bg-white transition-all group-hover:w-full"></span>
                         </div>
                         <div className='flex flex-row flex-wrap !mt-2 gap-2'>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Flutter</p>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Dart</p>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Next.js</p>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Typescript</p>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Tailwind CSS</p>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Firebase</p>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>SQL</p>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Java</p>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>REST</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Flutter</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Dart</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Next.js</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Typescript</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Tailwind CSS</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Firebase</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>SQL</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Java</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>REST</p>
 
                         </div>
                     </div>
@@ -123,8 +157,8 @@ export default function ExperienceTimeline() {
                 >
                     <div className='flex xs:flex-col sm:flex-row'>
                         <div className='flex flex-col'>
-                            <h1 className='vertical-timeline-element-title !text-3xl !mt-2'>Stealth Startup</h1>
-                            <p className='!text-xl !mt-0 font-medium'>Full Stack Developer</p>
+                            <h1 className='vertical-timeline-element-title md:text-3xl xs:text-lg !mt-2 !font-bold'>Stealth Startup</h1>
+                            <p className='!text-xl !mt-0 !font-semibold'>Full Stack Developer</p>
                             <p className='!mt-0 !text-md'>Developed mobile application using Flutter and Dart. Implemented payment infrastructure using Stripe API and authentication using Firebase. Integrated and managed Firestore database.</p>
                             <div className='flex flex-row flex-wrap !mt-2 gap-2'>
                                 <p className='!mt-0 py-1.5 px-3 rounded-xl bg-black text-white hover:opacity-70 transition duration-300 ease-in-out'>Flutter</p>
@@ -150,27 +184,20 @@ export default function ExperienceTimeline() {
                         <a target='_blank' href='https://dev.hatchrecruiting.com/' className="rounded-lg overflow-hidden cursor-pointer">
                             <VideoWithPlaceholder src='/hatch_demo.mp4' className='w-full cursor-pointer' />
                         </a>
-                        <h1 className='vertical-timeline-element-title !text-3xl !mt-2'>Hatch Recruiting</h1>
-                        <p className='!text-xl !mt-0 font-medium'>Full Stack Developer</p>
+                        <h1 className='vertical-timeline-element-title md:text-3xl xs:text-lg !mt-2 !font-bold'>Hatch Recruiting</h1>
+                        <p className='!text-xl !mt-0 !font-semibold'>Full Stack Developer</p>
                         <p className='!mt-0'>Implemented resume parsing algorithm in Python to extract and structure key information such
                             as skills, education, and work experience from diverse resume formats. Developed frontend with Next.js, React.js, Typescript, Tailwind, and CSS. Designed and built DB endpoints in Python and Next.js, with an ORM to ensure stateful user data storage. Deployed backend server within docker container in AWS EC2 instance to facilitate traffic between frontend and PostgreSQL. Wrote SQL queries for handling large scale data models. Utilized Java to create and consume RESTful services to communicate across the stack.</p>
-                        <div className="relative group self-start cursor-pointer my-2">
-                            <a target='_blank' href="https://dev.hatchrecruiting.com/" className='flex flex-row items-center gap-2'>
-                                <strong className='!font-bold'>Visit Website</strong>
-                                <SquareArrowUpRight />
-                            </a>
-                            <span className="absolute xs:-bottom-[0.075rem] sm:-bottom-[0.3rem] left-0 w-0 xs:h-[0.1rem] sm:h-1 bg-white transition-all group-hover:w-full"></span>
-                        </div>
                         <div className='flex flex-row flex-wrap !mt-2 gap-2'>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Python</p>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>React.js</p>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Next.js</p>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Typescript</p>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Tailwind CSS</p>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>AWS</p>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>PostgreSQL</p>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Java</p>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>REST</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Python</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>React.js</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Next.js</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Typescript</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Tailwind CSS</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>AWS</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>PostgreSQL</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Java</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>REST</p>
                         </div>
                     </div>
                 </VerticalTimelineElement>
@@ -183,14 +210,14 @@ export default function ExperienceTimeline() {
                     icon={<BriefcaseIcon />}
                 >
                     <div className='flex flex-col'>
-                        <h1 className='vertical-timeline-element-title !text-3xl !mt-2'>Activity and Recreation Center</h1>
-                        <p className='!text-xl !mt-0 font-medium'>Climbing Instructor</p>
+                        <h1 className='vertical-timeline-element-title md:text-3xl xs:text-lg !mt-2 !font-bold'>Activity and Recreation Center</h1>
+                        <p className='!text-xl !mt-0 !font-semibold'>Climbing Instructor</p>
                         <p className='!mt-0'>Taught students how to belay as well as rock climbing basics. Belayed climbers during shifts. Handled cash register.</p>
                         <div className='flex flex-row flex-wrap !mt-2 gap-2'>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Leadership</p>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Team Player</p>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Mentorship</p>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Responsibility</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Leadership</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Team Player</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Mentorship</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Responsibility</p>
                         </div>
                     </div>
                 </VerticalTimelineElement>
@@ -203,15 +230,15 @@ export default function ExperienceTimeline() {
                     icon={<BriefcaseIcon />}
                 >
                     <div className='flex flex-col'>
-                        <h1 className='vertical-timeline-element-title !text-3xl !mt-2'>DisplayRide</h1>
-                        <p className='!text-xl !mt-0 font-medium'>Software Engineer Intern</p>
+                        <h1 className='vertical-timeline-element-title md:text-3xl xs:text-lg !mt-2 !font-bold'>DisplayRide</h1>
+                        <p className='!text-xl !mt-0 !font-semibold'>Software Engineer Intern</p>
                         <p className='!mt-0'>Redesigned driver support page to have better UI/UX for user-friendliness using React.js and
                             Typescript. Designed driver support time lapse sections for customer devices on Firebase servers.</p>
                         <div className='flex flex-row flex-wrap !mt-2 gap-2'>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>React.js</p>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Typescript</p>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>CSS</p>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Firebase</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>React.js</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Typescript</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>CSS</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Firebase</p>
                         </div>
                     </div>
                 </VerticalTimelineElement>
@@ -224,15 +251,15 @@ export default function ExperienceTimeline() {
                     icon={<GraduationCap />}
                 >
                     <div className='flex flex-col'>
-                        <h1 className='vertical-timeline-element-title !text-3xl !mt-2'>University of Illinois Urbana-Champaign</h1>
-                        <p className='!text-xl !mt-0 font-medium'>B.S Computer Science and Statistics</p>
+                        <h1 className='vertical-timeline-element-title md:text-3xl xs:text-lg !mt-2 !font-bold'>University of Illinois Urbana-Champaign</h1>
+                        <p className='!text-xl !mt-0 !font-semibold'>B.S Computer Science and Statistics</p>
                         <p className='!mt-0'>Relevant Classes: Machine Learning Optimization, Algorithms, Computer Science II (Object
                             Oriented Programming and Design), Data Structures, Discrete Structures, Computer Science
                             I, Advanced Data Analysis</p>
                         <div className='flex flex-row flex-wrap !mt-2 gap-2'>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Python</p>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Java</p>
-                            <p className='!mt-0 py-1.5 px-3 rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>C++</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Python</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Java</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>C++</p>
                         </div>
                     </div>
                 </VerticalTimelineElement>
