@@ -295,7 +295,7 @@ export default function GamesRanking() {
                                         ))}
                                     </div>
                                     <div className='flex flex-col gap-2 mt-2'>
-                                        <p className="xs:text-sm sm:text-lg xl:text-xl text-gray-400">If you like this album:</p>
+                                        <p className="xs:text-sm sm:text-lg xl:text-xl text-gray-400">If you like this game:</p>
                                         <div className="flex flex-row flex-wrap gap-2">
                                             {recommendedGames.map(recGame => (
                                                 <div onClick={() => setSearchQuery(recGame.name)} key={recGame.id} className="transform transition-transform duration-200 hover:scale-105 cursor-pointer">
