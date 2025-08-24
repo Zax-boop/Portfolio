@@ -304,6 +304,32 @@ export default function GameRecommendations({ games, recSelect }: { games?: Game
             recs: ["Clair Obscur: Expedition 33", "Gris"],
         },
     ];
+    const shooters = [
+        {
+            name: "Neon White",
+            image: neon_white,
+            alt: "Neon White",
+            description:
+                "A fast-paced first-person shooter that combines parkour mechanics with card-based abilities. Its unique gameplay loop and stylish visuals make it a standout title in the genre. The dialogue is suspicious though...",
+            recs: ["BPM: Bullets Per Minute", "Cyber Hook"],
+        },
+        {
+            name: "Mullet Madjack",
+            image: mullet,
+            alt: "Mullet Madjack",
+            description:
+                "An anime-styled first-person shooter that combines roguelike elements with fast-paced action. One of the most exhilarating games I've ever played. Another game I can't recommend enough.",
+            recs: ["Call of Juarez: Slinger"],
+        },
+        {
+            name: "Doom Eternal",
+            image: doom,
+            alt: "Doom Eternal",
+            description:
+                "A fast-paced first-person shooter that emphasizes movement and combat. Probably the best fps game ever made. Its brutal gameplay and stunning visuals make it a must-play for fans of the genre.",
+            recs: ["Severed Steel", "Doom", "Titanfall 2"],
+        },
+    ];
 
     return (
         <div className='flex flex-col xs:w-[95%] sm:w-4/5 xs:mt-2 sm:mt-2'>
@@ -529,22 +555,62 @@ export default function GameRecommendations({ games, recSelect }: { games?: Game
                                 className={`${game.color} rounded-2xl shadow-md overflow-hidden flex flex-col md:flex-row`}
                             >
                                 <div className="relative w-1/3 aspect-[3/2]">
+                                    <Image
+                                        src={game.image}
+                                        alt={game.alt}
+                                        className="object-cover w-full h-full"
+                                        fill
+                                    />
+                                </div>
+                                <div className="p-6 flex flex-col justify-center md:w-2/3">
+                                    <h3 className="text-2xl font-bold mb-3 text-black/80">{game.name}</h3>
+                                    <p className="text-base text-gray-700">{game.description}</p>
+                                    <div className="flex flex-row flex-wrap gap-2 my-2">
+                                        {matchedGame?.genres.map((genre, i) => (
+                                            <GameGenre key={i} genre={genre} small />
+                                        ))}
+                                    </div>
+                                    <p className="text-xl text-black font-medium">If you like this game:</p>
+                                    <div className="flex flex-row gap-2 mt-2">
+                                        {game.recs.map((recGame) => (
+                                            <div key={recGame} onClick={() => recSelect(recGame)} className="transform transition-transform duration-200 hover:scale-105 cursor-pointer">
+                                                <img src={games?.find((g) => g.name === recGame)?.image} alt={recGame} className="xs:w-6 xs:h-6 sm:w-12 sm:h-12 2xl:w-16 2xl:h-16 object-cover xs:rounded-sm sm:rounded-lg" />
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        );
+                    })}
+                </div>
+                <h2 className='text-2xl font-bold'>Shooter:</h2>
+                <p className='text-lg'>A genre focused on ranged combat, often featuring fast-paced action and strategic gameplay. If you're looking for a game that offers adrenaline-pumping action and precise aiming, this is the genre for you.</p>
+                <div className="space-y-6 my-4">
+                    {shooters.map((game, idx) => {
+                        const matchedGame = games?.find((g) => g.name === game.name);
+                        return (
+                            <div
+                                key={idx}
+                                className="bg-white rounded-2xl shadow-md overflow-hidden relative aspect-[4/2] flex"
+                            >
+                                <div className="absolute inset-0">
                                 <Image
                                     src={game.image}
                                     alt={game.alt}
                                     className="object-cover w-full h-full"
                                     fill
                                 />
+                                <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent"></div>
                             </div>
-                            <div className="p-6 flex flex-col justify-center md:w-2/3">
-                                <h3 className="text-2xl font-bold mb-3 text-black/80">{game.name}</h3>
-                                <p className="text-base text-gray-700">{game.description}</p>
+                            <div className="relative z-10 flex flex-col justify-center p-8 text-white max-w-md">
+                                <h3 className="text-3xl font-bold mb-3">{game.name}</h3>
+                                <p className="text-base">{game.description}</p>
                                 <div className="flex flex-row flex-wrap gap-2 my-2">
                                     {matchedGame?.genres.map((genre, i) => (
                                         <GameGenre key={i} genre={genre} small />
                                     ))}
                                 </div>
-                                <p className="text-xl text-black font-medium">If you like this game:</p>
+                                <p className="text-xl text-white mt-2 font-medium">If you like this game:</p>
                                 <div className="flex flex-row gap-2 mt-2">
                                     {game.recs.map((recGame) => (
                                         <div key={recGame} onClick={() => recSelect(recGame)} className="transform transition-transform duration-200 hover:scale-105 cursor-pointer">
@@ -557,67 +623,8 @@ export default function GameRecommendations({ games, recSelect }: { games?: Game
                         );
                     })}
                 </div>
-
-                <h2 className='text-2xl font-bold'>Shooter:</h2>
-                <div className="space-y-6 my-4">
-                    <div className="bg-white rounded-2xl shadow-md overflow-hidden relative h-72 flex">
-                        <div className="absolute inset-0">
-                            <Image
-                                src={neon_white}
-                                alt="Neon White"
-                                className="object-cover w-full h-full"
-                                fill
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent"></div>
-                        </div>
-                        <div className="relative z-10 flex flex-col justify-center p-8 text-white max-w-md">
-                            <h3 className="text-3xl font-bold mb-3">Neon White</h3>
-                            <p className="text-base">
-                                A fast-paced first-person shooter that combines parkour mechanics with card-based abilities.
-                                Its unique gameplay loop and stylish visuals make it a standout title in the genre.
-                            </p>
-                        </div>
-                    </div>
-                    <div className="bg-white rounded-2xl shadow-md overflow-hidden relative h-72 flex">
-                        <div className="absolute inset-0">
-                            <Image
-                                src={mullet}
-                                alt="Mullet Madjack"
-                                className="object-cover w-full h-full"
-                                fill
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent"></div>
-                        </div>
-                        <div className="relative z-10 flex flex-col justify-center p-8 text-white max-w-md">
-                            <h3 className="text-3xl font-bold mb-3">Mullet Madjack</h3>
-                            <p className="text-base">
-                                A modern roguelike deck-building game that combines strategic card play with dungeon crawling.
-                                Its challenging gameplay and unique mechanics make it a favorite among strategy enthusiasts.
-                            </p>
-                        </div>
-                    </div>
-                    <div className="bg-white rounded-2xl shadow-md overflow-hidden relative h-72 flex">
-                        <div className="absolute inset-0">
-                            <Image
-                                src={doom}
-                                alt="Doom Eternal"
-                                className="object-cover w-full h-full"
-                                fill
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent"></div>
-                        </div>
-                        <div className="relative z-10 flex flex-col justify-center p-8 text-white max-w-md">
-                            <h3 className="text-3xl font-bold mb-3">Doom Eternal</h3>
-                            <p className="text-base">
-                                A fast-paced first-person shooter that emphasizes movement and combat.
-                                Its brutal gameplay and stunning visuals make it a must-play for fans of the genre.
-                            </p>
-                        </div>
-                    </div>
-                </div>
                 <h2 className='text-2xl font-bold'>Horror:</h2>
                 <div className="flex flex-col gap-8 my-8">
-                    {/* The Mimic */}
                     <div className="relative bg-white rounded-2xl shadow-lg overflow-hidden">
                         <div className="relative h-96 w-full">
                             <Image
