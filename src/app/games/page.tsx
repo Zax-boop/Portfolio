@@ -66,7 +66,7 @@ export default function GamesRanking() {
 
         if (isNameOnly) {
             setFilteredMedia(
-                games.filter((game) => game.name.toLowerCase().includes(search))
+                games.filter((game) => game.name.toLowerCase() === search)
             );
         } else {
             setFilteredMedia(
@@ -139,9 +139,8 @@ export default function GamesRanking() {
     };
 
     const recSelect = (name: string) => {
-        setSearchQuery(`%${name}`);
         setShowRecommendations(false);
-        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        setSearchQuery(`%${name}`);
     };
 
     return (

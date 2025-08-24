@@ -246,8 +246,64 @@ export default function GameRecommendations({ games, recSelect }: { games?: Game
             recs: ["Risk of Rain Returns", "Enter the Gungeon"],
         },
     ];
-
-
+    const rpgs = [
+        {
+            name: "Clair Obscur: Expedition 33",
+            color: "bg-gray-300",
+            image: exp33,
+            alt: "Clair Obscur: Expedition 33",
+            description:
+                "A story-driven RPG with painterly visuals and an atmospheric soundtrack. Taking place in a French-inspired world, the game follows a group of explorers as they uncover the mysteries of their world outside the island that they inhabit. Clair Obscur was created by a small studio comprised of a few people who used to work at Ubisoft. They were unsatisfied with the games they were creating and wanted to make something truly special. The game is truly a modern classic with its incredible story, production, and parry-focused, turn-based gameplay.",
+            recs: ["Paper Mario: The Thousand-Year Door", "Pokémon XD: Gale of Darkness", "Worldless"],
+        },
+        {
+            name: "Crosscode",
+            color: "bg-blue-200",
+            image: crosscode,
+            alt: "Crosscode",
+            description:
+                "A modern pixel-art RPG that mixes action combat with puzzle-filled exploration. Its world is vibrant, charming, and approachable, making it an easy pick for newcomers. You play as Lea, a mute girl who becomes embroiled in a mysterious adventure. The game features a unique combat system that combines real-time action with RPG elements, allowing for a dynamic and engaging experience. One of the most emotional games I've ever played.",
+            recs: ["Terraria", "Hades", "Hades II"],
+        },
+        {
+            name: "Final Fantasy VII",
+            color: "bg-green-200",
+            image: ff7,
+            alt: "Final Fantasy VII",
+            description:
+                "Considered one of the greatest games of all time, Final Fantasy VII set the standard for RPGs with its deep narrative, complex characters, and innovative gameplay mechanics. The game's world is vast and immersive, filled with memorable locations and a rich lore that has captivated players for decades. The gameplay is pretty traditional turned-based combat, but the story, message, and characters are what make this game a must-play.",
+            recs: ["Final Fantasy X"],
+        },
+    ];
+    const turns = [
+        {
+            name: "Paper Mario: The Thousand-Year Door",
+            color: "bg-red-200",
+            image: paper,
+            alt: "Paper Mario: The Thousand-Year Door",
+            description:
+                "A charming RPG that combines traditional turn-based combat with unique paper-themed mechanics. Its witty writing and memorable characters make it a beloved classic in the genre. One of the first games I ever played and still one of my favorites.",
+            recs: ["Clair Obscur: Expedition 33"],
+        },
+        {
+            name: "Slay the Spire",
+            color: "bg-orange-200",
+            image: slay,
+            alt: "Slay the Spire",
+            description:
+                "A modern roguelike deck-building game that combines strategic card play with dungeon crawling. Its challenging gameplay and unique mechanics make it a favorite among the roguelike and strategy communities. I am horrible at it though but still love it.",
+            recs: ["Balatro"],
+        },
+        {
+            name: "Worldless",
+            color: "bg-blue-200",
+            image: worldless,
+            alt: "Worldless",
+            description:
+                "A unique RPG that emphasizes exploration and environmental storytelling. Its hand-drawn art style and atmospheric world create a captivating experience for players. Honestly, I spent most of my time getting lost in the world's beauty even though the gameplay was amazing. The battle system is very unique in a sense that you have to string together combos to do more damage in your turn and parry enemy attacks during their turn.",
+            recs: ["Clair Obscur: Expedition 33", "Gris"],
+        },
+    ];
 
     return (
         <div className='flex flex-col xs:w-[95%] sm:w-4/5 xs:mt-2 sm:mt-2'>
@@ -397,20 +453,98 @@ export default function GameRecommendations({ games, recSelect }: { games?: Game
                                 className="relative rounded-2xl overflow-hidden shadow-lg group"
                             >
                                 <Image
-                                src={game.image}
-                                alt={game.name}
-                                className="w-full h-full object-cover group-hover:scale-105 transition-transform"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-black/10"></div>
-                            <div className="absolute bottom-0 p-4 text-white">
-                                <h2 className="text-lg font-bold">{game.name}</h2>
-                                <p className="text-sm mt-1 leading-relaxed">{game.description}</p>
+                                    src={game.image}
+                                    alt={game.name}
+                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-black/10"></div>
+                                <div className="absolute bottom-0 p-4 text-white">
+                                    <h2 className="text-lg font-bold">{game.name}</h2>
+                                    <p className="text-sm mt-1 leading-relaxed">{game.description}</p>
+                                    <div className="flex flex-row flex-wrap gap-2 my-2">
+                                        {matchedGame?.genres.map((genre, i) => (
+                                            <GameGenre key={i} genre={genre} small />
+                                        ))}
+                                    </div>
+                                    <p className="text-xl text-white mt-2 font-medium">If you like this game:</p>
+                                    <div className="flex flex-row gap-2 mt-2">
+                                        {game.recs.map((recGame) => (
+                                            <div key={recGame} onClick={() => recSelect(recGame)} className="transform transition-transform duration-200 hover:scale-105 cursor-pointer">
+                                                <img src={games?.find((g) => g.name === recGame)?.image} alt={recGame} className="xs:w-6 xs:h-6 sm:w-12 sm:h-12 2xl:w-16 2xl:h-16 object-cover xs:rounded-sm sm:rounded-lg" />
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        );
+                    })}
+                </div>
+
+                <h2 className='text-2xl font-bold'>RPG:</h2>
+                <p className='text-lg'>Role-Playing Games (RPGs) are a genre where players assume the roles of characters in a fictional setting. They often involve character development, narrative choices,  build-crafting, and exploration. If you're looking for a game that offers deep storytelling and character progression, this is the genre for you.</p>
+                <div className="grid md:grid-cols-3 gap-6 my-4">
+                    {rpgs.map((game, idx) => {
+                        const matchedGame = games?.find((g) => g.name === game.name);
+                        return (
+                            <div
+                                key={game.name}
+                                className={`${game.color} rounded-2xl shadow-md overflow-hidden flex flex-col`}
+                            >
+                                <Image
+                                    src={game.image}
+                                    alt={game.alt}
+                                    className="h-48 w-full object-cover"
+                                />
+                                <div className="p-4 flex flex-col flex-grow">
+                                    <h3 className="text-xl font-bold mb-2 text-black/80">
+                                        {game.name}
+                                    </h3>
+                                    <p className="text-sm text-gray-700">{game.description}</p>
+                                    <div className="flex flex-row flex-wrap gap-2 my-2">
+                                        {matchedGame?.genres.map((genre, i) => (
+                                            <GameGenre key={i} genre={genre} small />
+                                        ))}
+                                    </div>
+                                    <p className="text-xl text-black font-medium">If you like this game:</p>
+                                    <div className="flex flex-row gap-2 mt-2">
+                                        {game.recs.map((recGame) => (
+                                            <div key={recGame} onClick={() => recSelect(recGame)} className="transform transition-transform duration-200 hover:scale-105 cursor-pointer">
+                                                <img src={games?.find((g) => g.name === recGame)?.image} alt={recGame} className="xs:w-6 xs:h-6 sm:w-12 sm:h-12 2xl:w-16 2xl:h-16 object-cover xs:rounded-sm sm:rounded-lg" />
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        );
+                    })}
+                </div>
+                <h2 className='text-2xl font-bold'>Turn-Based:</h2>
+                <p className='text-lg'>A genre where players take turns making strategic decisions in combat. If you're looking for a game that emphasizes strategy and tactical thinking, this is the genre for you.</p>
+                <div className="space-y-6 my-4">
+                    {turns.map((game, idx) => {
+                        const matchedGame = games?.find((g) => g.name === game.name);
+                        return (
+                            <div
+                                key={idx}
+                                className={`${game.color} rounded-2xl shadow-md overflow-hidden flex flex-col md:flex-row`}
+                            >
+                                <div className="relative w-1/3 aspect-[3/2]">
+                                <Image
+                                    src={game.image}
+                                    alt={game.alt}
+                                    className="object-cover w-full h-full"
+                                    fill
+                                />
+                            </div>
+                            <div className="p-6 flex flex-col justify-center md:w-2/3">
+                                <h3 className="text-2xl font-bold mb-3 text-black/80">{game.name}</h3>
+                                <p className="text-base text-gray-700">{game.description}</p>
                                 <div className="flex flex-row flex-wrap gap-2 my-2">
                                     {matchedGame?.genres.map((genre, i) => (
                                         <GameGenre key={i} genre={genre} small />
                                     ))}
                                 </div>
-                                <p className="text-xl text-white mt-2 font-medium">If you like this game:</p>
+                                <p className="text-xl text-black font-medium">If you like this game:</p>
                                 <div className="flex flex-row gap-2 mt-2">
                                     {game.recs.map((recGame) => (
                                         <div key={recGame} onClick={() => recSelect(recGame)} className="transform transition-transform duration-200 hover:scale-105 cursor-pointer">
@@ -424,79 +558,6 @@ export default function GameRecommendations({ games, recSelect }: { games?: Game
                     })}
                 </div>
 
-                <h2 className='text-2xl font-bold'>RPG:</h2>
-                <div className="grid md:grid-cols-3 gap-6 my-4">
-                    <div className="bg-gray-300 rounded-2xl shadow-md overflow-hidden flex flex-col">
-                        <Image src={exp33} alt="Clair Obscur: Expedition 33" className="h-48 w-full object-cover" />
-                        <div className="p-4 flex flex-col justify-between flex-grow">
-                            <h3 className="text-xl font-bold mb-2 text-black/80">Clair Obscur: Expedition 33</h3>
-                            <p className="text-sm text-gray-700">
-                                A story-driven RPG with painterly visuals and an atmospheric soundtrack. Blends exploration,
-                                light combat, and narrative choices—perfect for players seeking a relaxed, immersive journey.
-                            </p>
-                        </div>
-                    </div>
-                    <div className="bg-blue-200 rounded-2xl shadow-md overflow-hidden flex flex-col">
-                        <Image src={crosscode} alt="Crosscode" className="h-48 w-full object-cover" />
-                        <div className="p-4 flex flex-col justify-between flex-grow">
-                            <h3 className="text-xl font-bold mb-2 text-black/80">Crosscode</h3>
-                            <p className="text-sm text-gray-700">
-                                A modern pixel-art RPG that mixes action combat with puzzle-filled exploration.
-                                Its world is vibrant, charming, and approachable, making it an easy pick for newcomers.
-                            </p>
-                        </div>
-                    </div>
-                    <div className="bg-green-200 rounded-2xl shadow-md overflow-hidden flex flex-col">
-                        <Image src={ff7} alt="Final Fantasy VII" className="h-48 w-full object-cover" />
-                        <div className="p-4 flex flex-col justify-between flex-grow">
-                            <h3 className="text-xl font-bold mb-2 text-black/80">Final Fantasy VII</h3>
-                            <p className="text-sm text-gray-700">
-                                A legendary RPG with iconic characters and cinematic storytelling. Its blend of
-                                adventure, light strategy, and memorable moments makes it an enduring classic for all players.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <h2 className='text-2xl font-bold'>Turn-Based:</h2>
-                <div className="space-y-6 my-4">
-                    <div className="bg-red-200 rounded-2xl shadow-md overflow-hidden flex flex-col md:flex-row h-72">
-                        <div className="relative md:w-1/3 h-48 md:h-full">
-                            <Image
-                                src={paper}
-                                alt="Paper Mario: The Thousand Year Door"
-                                className="object-cover w-full h-full"
-                                fill
-                            />
-                        </div>
-                        <div className="p-6 flex flex-col justify-center md:w-2/3">
-                            <h3 className="text-2xl font-bold mb-3 text-black/80">Paper Mario: The Thousand Year Door</h3>
-                            <p className="text-base text-gray-700">
-                                A charming RPG that combines traditional turn-based combat with unique paper-themed mechanics.
-                                Its humor, engaging story, and creative visuals make it a standout title for all ages.
-                            </p>
-                        </div>
-                    </div>
-                    <div className="bg-orange-200 rounded-2xl shadow-md overflow-hidden flex flex-col md:flex-row">
-                        <Image src={slay} alt="Slay the Spire" className="h-48 md:h-auto md:w-1/3 object-cover" />
-                        <div className="p-6 flex flex-col justify-center">
-                            <h3 className="text-2xl font-bold mb-3 text-black/80">Slay the Spire</h3>
-                            <p className="text-base text-gray-700">
-                                A modern roguelike deck-building game that combines strategic card play with dungeon crawling.
-                                Its challenging gameplay and unique mechanics make it a favorite among strategy enthusiasts.
-                            </p>
-                        </div>
-                    </div>
-                    <div className="bg-blue-200 rounded-2xl shadow-md overflow-hidden flex flex-col md:flex-row">
-                        <Image src={worldless} alt="Worldless" className="h-48 md:h-auto md:w-1/3 object-cover" />
-                        <div className="p-6 flex flex-col justify-center">
-                            <h3 className="text-2xl font-bold mb-3 text-black/80">Worldless</h3>
-                            <p className="text-base text-gray-700">
-                                A unique RPG that emphasizes exploration and environmental storytelling. Its hand-drawn art
-                                style and atmospheric world create a captivating experience for players.
-                            </p>
-                        </div>
-                    </div>
-                </div>
                 <h2 className='text-2xl font-bold'>Shooter:</h2>
                 <div className="space-y-6 my-4">
                     <div className="bg-white rounded-2xl shadow-md overflow-hidden relative h-72 flex">
