@@ -60,16 +60,26 @@ export default function GamesRanking() {
     }, []);
 
     useEffect(() => {
-        const search = searchQuery.toLowerCase();
-        setFilteredMedia(
-            games.filter(
-                (game) =>
-                    game.name.toLowerCase().includes(search) ||
-                    game.studio.toLowerCase().includes(search) ||
-                    game.comments.toLowerCase().includes(search) ||
-                    game.genres?.some((genre) => genre.toLowerCase().includes(search))
-            )
-        );
+        const raw = searchQuery.toLowerCase();
+        const isNameOnly = raw.startsWith("%");
+        const search = isNameOnly ? raw.slice(1) : raw; // remove "!" if present
+
+        if (isNameOnly) {
+            setFilteredMedia(
+                games.filter((game) => game.name.toLowerCase().includes(search))
+            );
+        } else {
+            setFilteredMedia(
+                games.filter(
+                    (game) =>
+                        game.name.toLowerCase().includes(search) ||
+                        game.studio.toLowerCase().includes(search) ||
+                        game.comments.toLowerCase().includes(search) ||
+                        game.genres?.some((genre) => genre.toLowerCase().includes(search))
+                )
+            );
+        }
+
         setCurrentPage(1);
     }, [searchQuery, games]);
 
@@ -128,6 +138,11 @@ export default function GamesRanking() {
             .sort((a, b) => b.genreMatchCount - a.genreMatchCount);
     };
 
+    const recSelect = (name: string) => {
+        setSearchQuery(`%${name}`);
+        setShowRecommendations(false);
+        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    };
 
     return (
         <div className='flex flex-col w-full h-full items-center'>
@@ -241,14 +256,14 @@ export default function GamesRanking() {
                     Rankings
                 </button>
                 <button
-                    onClick={() => setShowRecommendations(true)}
+                    onClick={() => (setShowRecommendations(true), setSearchQuery(""))}
                     className={`relative flex-1 py-2 text-center font-medium transition-colors duration-300 ${showRecommendations ? "text-black" : "text-white"
                         }`}
                 >
                     Recs
                 </button>
             </div>
-            {showRecommendations ? <GameRecommendations games={games}/> :
+            {showRecommendations ? <GameRecommendations games={games} recSelect={recSelect} /> :
                 <div className="flex flex-col xs:w-[95%] sm:w-4/5 xs:mt-2 sm:mt-2">
                     <GameForm />
                     <p className='xs:text-xs sm:text-base sm:mt-2 xl:mt-0 xs:mb-1 sm:mb-0'>*Disclaimer: This is just my opinion and what I enjoyed playing the most regardless of critical bias. </p>

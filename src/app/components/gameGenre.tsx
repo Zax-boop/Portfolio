@@ -1,4 +1,4 @@
-export default function GameGenre({ genre }: { genre: string }) {
+export default function GameGenre({ genre, small }: { genre: string, small?: boolean }) {
     const genreColors: { [key: string]: string } = {
         action: "bg-red-700",
         adventure: "bg-orange-500",
@@ -60,7 +60,7 @@ export default function GameGenre({ genre }: { genre: string }) {
     const bgColor = genreColors[formattedGenre] || "bg-gray-300";
 
     return (
-        <div className={`xs:px-1 sm:px-4 xs:py-1 sm:py-2 xs:rounded-md sm:rounded-lg text-white xs:font-medium sm:font-bold xs:text-[0.5rem] sm:text-base ${bgColor} transform transition-transform duration-200 hover:scale-105 cursor-pointer`}>
+        <div className={small ? `xs:px-1 sm:px-3 xs:py-2 sm:py-1 xs:rounded-md sm:rounded-md text-white xs:font-medium sm:font-bold xs:text-[0.5rem] sm:text-xs ${bgColor} transform transition-transform duration-200 hover:scale-105 cursor-pointer` : `xs:px-1 sm:px-4 xs:py-1 sm:py-2 xs:rounded-md sm:rounded-lg text-white xs:font-medium sm:font-bold xs:text-[0.5rem] sm:text-base ${bgColor} transform transition-transform duration-200 hover:scale-105 cursor-pointer`}>
             {genre}
         </div>
     );
