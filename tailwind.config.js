@@ -3,6 +3,31 @@ module.exports = {
   content: [
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+
+  safelist: [
+    "bg-green-900",
+    "bg-pink-900",
+    "bg-orange-900", 
+    "bg-blue-900",
+    "bg-red-900",
+    "bg-blue-950",
+    "bg-red-950",
+    "bg-blue-200",
+    "bg-green-200",
+    "bg-green-950",
+    "bg-pink-950",
+    "bg-amber-900",
+    "bg-indigo-950",
+    "text-green-400",
+    "text-pink-400",
+    "text-yellow-400",
+    "bg-red-200",
+    "bg-orange-200",
+    "text-yellow-300",
+    "text-orange-400",
+    "text-red-400",
+  ],
+
   theme: {
     extend: {
       animation: {
@@ -29,4 +54,3 @@ module.exports = {
   },
   plugins: [],
 }
-

@@ -37,7 +37,7 @@ const ImageTrack = ({ data, onImageClick, width = 'xs:w-[6.67rem] sm:w-[10rem] x
 
   useEffect(() => {
     let animationFrameId;
-    const scrollSpeed = (isMobile ? 1.5 : scroll); 
+    const scrollSpeed = (isMobile ? 0.5 : scroll); 
 
     const smoothScroll = () => {
       if (!isHovered && trackRef.current) {
