@@ -22,12 +22,10 @@ export default function GenrePieChart({
     games,
     excludedGenres,
     genreMap,
-    height,
 }: {
     games?: Game[];
     excludedGenres?: string[];
     genreMap?: Record<string, string>;
-    height?: string;
 }) {
     const genreCounts: Record<string, number> = {};
     if (!games || !Array.isArray(games)) {
@@ -65,7 +63,6 @@ export default function GenrePieChart({
         ],
     };
 
-
     const options = {
         plugins: {
             legend: {
@@ -75,8 +72,8 @@ export default function GenrePieChart({
     };
 
     return (
-        <div className={`${height ? height : "md:h-[35rem] xs:h-[20rem]"} rounded-2xl shadow-md flex flex-row items-center justify-center gap-4 xs:text-[0.4rem] md:text-base xs:w-full md:w-auto`}>
-            <div className="xs:w-1/5 md:w-1/3 xs:max-h-[13rem] md:max-h-[30rem] overflow-y-auto bg-gray-800 rounded-lg xs:p-1.5 md:p-4 text-gray-200">
+        <div className={`flex justify-center items-center w-full md:h-[35rem] xs:h-[16rem] gap-4 xs:text-[0.4rem] md:text-base`}>
+            <div className="xs:w-1/5 md:w-1/5 xs:max-h-[13rem] md:max-h-[30rem] overflow-y-auto bg-gray-800 rounded-lg xs:p-1.5 md:p-4 text-gray-200 ">
                 <ul className="space-y-2">
                     {data.labels.map((label, i) => (
                         <li key={label} className="flex items-center xs:gap-0.5 md:gap-2">
@@ -89,8 +86,8 @@ export default function GenrePieChart({
                     ))}
                 </ul>
             </div>
-            <div className="xs:w-3/5 xs:h-auto md:h-[30rem] md:w-2/3">
-                <Pie data={data} options={options} />
+            <div className="xs:w-3/5 xs:h-auto md:h-[30rem] md:w-1/2 flex justify-center">
+                <Pie data={data} options={options} key={JSON.stringify(data)} />
             </div>
         </div>
     );
