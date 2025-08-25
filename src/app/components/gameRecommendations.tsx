@@ -18,7 +18,7 @@ export default function GameRecommendations({ games, recSelect }: { games?: Game
         <div className='flex flex-col xs:w-[95%] sm:w-4/5 xs:mt-2 sm:mt-2'>
             <div className='flex flex-col'>
                 <h1 className='text-3xl font-bold'>New to Games?</h1>
-                <p className='text-lg'>Choosing a genre is an important first step. Here are some I've played:</p>
+                <p className='text-lg'>Choosing a genre is an important first step. Here are some I&apos;ve played:</p>
                 <GenrePieChart games={games} excludedGenres={["Top Down", "Sci-Fi", "Pixel Art", "Co-Op", "Boss Rush", "Rhythm", "Card", "Stealth", "Point and Click", "Tac Shooter", "Simulation", "Beat Em Up", "Dungeon Crawler", "Indie", "Sports", "Hack n Slash", "Sandbox", "Fighting", "Racing", "Open World", "Visual Novel", "Puzzle", "Platform Fighter"]} genreMap={{
                     "Action": "Action-Adventure",
                     "Adventure": "Action-Adventure",
@@ -34,7 +34,7 @@ export default function GameRecommendations({ games, recSelect }: { games?: Game
                     "Strategy": "Turn-Based"
                 }} />
                 <h2 className='text-2xl font-bold'>Action-Adventure:</h2>
-                <p className='text-lg'>A blend of action and adventure elements, often featuring exploration and puzzle-solving. Definitely the most common genre. If you're looking for a game that offers both excitement and narrative depth, this is the genre for you.</p>
+                <p className='text-lg'>A blend of action and adventure elements, often featuring exploration and puzzle-solving. Definitely the most common genre. If you&apos;re looking for a game that offers both excitement and narrative depth, this is the genre for you.</p>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-6">
                     {actionAdventure.map((game) => {
                         const matchedGame = games?.find((g) => g.name === game.name);
@@ -73,7 +73,7 @@ export default function GameRecommendations({ games, recSelect }: { games?: Game
                     })}
                 </div>
                 <h2 className='text-2xl font-bold'>Roguelike:</h2>
-                <p className='text-lg'>Video games characterized by randomly generated levels and permanent death of the player character. If you're looking for a game that offers high replayability and challenging gameplay, this is the genre for you.</p>
+                <p className='text-lg'>Video games characterized by randomly generated levels and permanent death of the player character. If you&apos;re looking for a game that offers high replayability and challenging gameplay, this is the genre for you.</p>
                 <div className="grid md:grid-cols-1 gap-6 my-6">
                     {roguelikes.map((game) => {
                         const matchedGame = games?.find((g) => g.name === game.name);
@@ -110,13 +110,13 @@ export default function GameRecommendations({ games, recSelect }: { games?: Game
                     })}
                 </div>
                 <h2 className='text-2xl font-bold'>RPG:</h2>
-                <p className='text-lg'>Role-Playing Games (RPGs) are a genre where players assume the roles of characters in a fictional setting. They often involve character development, narrative choices,  build-crafting, and exploration. If you're looking for a game that offers deep storytelling and character progression, this is the genre for you.</p>
+                <p className='text-lg'>Role-Playing Games (RPGs) are a genre where players assume the roles of characters in a fictional setting. They often involve character development, narrative choices,  build-crafting, and exploration. If you&apos;re looking for a game that offers deep storytelling and character progression, this is the genre for you.</p>
                 <div className="grid md:grid-cols-3 gap-6 my-4">
                     {rpgs.map((game, idx) => {
                         const matchedGame = games?.find((g) => g.name === game.name);
                         return (
                             <div
-                                key={game.name}
+                                key={idx}
                                 className={`${game.color} rounded-2xl shadow-md overflow-hidden flex flex-col`}
                             >
                                 <Image
@@ -128,7 +128,7 @@ export default function GameRecommendations({ games, recSelect }: { games?: Game
                                     <h3 className="text-xl font-bold mb-2 text-black/80">
                                         {game.name}
                                     </h3>
-                                    <p className="text-sm text-gray-700">{game.description}</p>
+                                    <p className="text-sm font-medium text-gray-700">{game.description}</p>
                                     <div className="flex flex-row flex-wrap gap-2 my-2">
                                         {matchedGame?.genres.map((genre, i) => (
                                             <GameGenre key={i} genre={genre} small />
@@ -148,7 +148,7 @@ export default function GameRecommendations({ games, recSelect }: { games?: Game
                     })}
                 </div>
                 <h2 className='text-2xl font-bold'>Soulsborne/Soulslikes:</h2>
-                <p className='text-lg'>Known for their challenging combat and intricate world design, these games offer a rewarding experience for those who enjoy overcoming tough obstacles. If you're looking for a game that tests your skills and patience while providing a deep sense of accomplishment, this is the genre for you.</p>
+                <p className='text-lg'>Known for their challenging combat and intricate world design, these games offer a rewarding experience for those who enjoy overcoming tough obstacles. If you&apos;re looking for a game that tests your skills and patience while providing a deep sense of accomplishment, this is the genre for you.</p>
                 <div className="flex flex-col space-y-8 my-6">
                     {soulsLikes.map((game) => {
                         const matchedGame = games?.find((g) => g.name === game.name);
@@ -187,7 +187,7 @@ export default function GameRecommendations({ games, recSelect }: { games?: Game
                     })}
                 </div>
                 <h2 className='text-2xl font-bold'>Metroidvania:</h2>
-                <p className='text-lg'>A subgenre of action-adventure games that emphasizes exploration and platforming, often featuring interconnected worlds and power-ups. If you're looking for a game that combines exploration with action and puzzle-solving, this is the genre for you.</p>
+                <p className='text-lg'>A subgenre of action-adventure games that emphasizes exploration and platforming, often featuring interconnected worlds and power-ups. If you&apos;re looking for a game that combines exploration with action and puzzle-solving, this is the genre for you.</p>
                 <div className="flex flex-col space-y-6 my-6">
                     {metroidvanias.map((game) => {
                         const matchedGame = games?.find((g) => g.name === game.name);
@@ -225,7 +225,7 @@ export default function GameRecommendations({ games, recSelect }: { games?: Game
                     })}
                 </div>
                 <h2 className='text-2xl font-bold'>Multiplayer:</h2>
-                <p className='text-lg'>A genre that emphasizes social interaction and cooperative or competitive gameplay. If you're looking for a game that offers fun and engaging experiences with friends or other players, this is the genre for you.</p>
+                <p className='text-lg'>A genre that emphasizes social interaction and cooperative or competitive gameplay. If you&apos;re looking for a game that offers fun and engaging experiences with friends or other players, this is the genre for you.</p>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 my-8">
                     {multiplayer.map((game) => {
                         const matchedGame = games?.find((g) => g.name === game.name);
@@ -265,47 +265,8 @@ export default function GameRecommendations({ games, recSelect }: { games?: Game
                         );
                     })}
                 </div>
-                <h2 className='text-2xl font-bold'>Turn-Based:</h2>
-                <p className='text-lg'>A genre where players take turns making strategic decisions in combat. If you're looking for a game that emphasizes strategy and tactical thinking, this is the genre for you.</p>
-                <div className="space-y-6 my-4">
-                    {turns.map((game, idx) => {
-                        const matchedGame = games?.find((g) => g.name === game.name);
-                        return (
-                            <div
-                                key={idx}
-                                className={`${game.color} rounded-2xl shadow-md overflow-hidden flex flex-col md:flex-row`}
-                            >
-                                <div className="relative w-1/3 aspect-[3/2]">
-                                    <Image
-                                        src={game.image}
-                                        alt={game.alt}
-                                        className="object-cover w-full h-full"
-                                        fill
-                                    />
-                                </div>
-                                <div className="p-6 flex flex-col justify-center md:w-2/3">
-                                    <h3 className="text-2xl font-bold mb-3 text-black/80">{game.name}</h3>
-                                    <p className="text-base text-gray-700">{game.description}</p>
-                                    <div className="flex flex-row flex-wrap gap-2 my-2">
-                                        {matchedGame?.genres.map((genre, i) => (
-                                            <GameGenre key={i} genre={genre} small />
-                                        ))}
-                                    </div>
-                                    <p className="text-xl text-black font-medium">If you like this game:</p>
-                                    <div className="flex flex-row flex-wrap gap-2 mt-2">
-                                        {game.recs.map((recGame) => (
-                                            <div key={recGame} onClick={() => recSelect(recGame)} className="transform transition-transform duration-200 hover:scale-105 cursor-pointer">
-                                                <img src={games?.find((g) => g.name === recGame)?.image} alt={recGame} className="xs:w-6 xs:h-6 sm:w-12 sm:h-12 2xl:w-16 2xl:h-16 object-cover xs:rounded-sm sm:rounded-lg" />
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
-                        );
-                    })}
-                </div>
                 <h2 className='text-2xl font-bold'>Shooter:</h2>
-                <p className='text-lg'>A genre focused on ranged combat, often featuring fast-paced action and strategic gameplay. If you're looking for a game that offers adrenaline-pumping action and precise aiming, this is the genre for you.</p>
+                <p className='text-lg'>A genre focused on ranged combat, often featuring fast-paced action and strategic gameplay. If you&apos;re looking for a game that offers adrenaline-pumping action and precise aiming, this is the genre for you.</p>
                 <div className="space-y-6 my-4">
                     {shooters.map((game, idx) => {
                         const matchedGame = games?.find((g) => g.name === game.name);
@@ -344,8 +305,47 @@ export default function GameRecommendations({ games, recSelect }: { games?: Game
                         );
                     })}
                 </div>
+                <h2 className='text-2xl font-bold'>Turn-Based:</h2>
+                <p className='text-lg'>A genre where players take turns making strategic decisions in combat. If you&apos;re looking for a game that emphasizes strategy and tactical thinking, this is the genre for you.</p>
+                <div className="space-y-6 my-4">
+                    {turns.map((game, idx) => {
+                        const matchedGame = games?.find((g) => g.name === game.name);
+                        return (
+                            <div
+                                key={idx}
+                                className={`${game.color} rounded-2xl shadow-md overflow-hidden flex flex-col md:flex-row`}
+                            >
+                                <div className="relative w-1/3 aspect-[3/2]">
+                                    <Image
+                                        src={game.image}
+                                        alt={game.alt}
+                                        className="object-cover w-full h-full"
+                                        fill
+                                    />
+                                </div>
+                                <div className="p-6 flex flex-col justify-center md:w-2/3">
+                                    <h3 className="text-2xl font-bold mb-3 text-black/80">{game.name}</h3>
+                                    <p className="text-base text-gray-700">{game.description}</p>
+                                    <div className="flex flex-row flex-wrap gap-2 my-2">
+                                        {matchedGame?.genres.map((genre, i) => (
+                                            <GameGenre key={i} genre={genre} small />
+                                        ))}
+                                    </div>
+                                    <p className="text-xl text-black font-medium">If you like this game:</p>
+                                    <div className="flex flex-row flex-wrap gap-2 mt-2">
+                                        {game.recs.map((recGame) => (
+                                            <div key={recGame} onClick={() => recSelect(recGame)} className="transform transition-transform duration-200 hover:scale-105 cursor-pointer">
+                                                <img src={games?.find((g) => g.name === recGame)?.image} alt={recGame} className="xs:w-6 xs:h-6 sm:w-12 sm:h-12 2xl:w-16 2xl:h-16 object-cover xs:rounded-sm sm:rounded-lg" />
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        );
+                    })}
+                </div>
                 <h2 className='text-2xl font-bold'>Horror:</h2>
-                <p className='text-lg'>A genre designed to evoke fear and suspense, often featuring dark atmospheres and psychological elements. If you're looking for a game that offers thrilling and immersive experiences, this is the genre for you.</p>
+                <p className='text-lg'>A genre designed to evoke fear and suspense, often featuring dark atmospheres and psychological elements. If you&apos;re looking for a game that offers thrilling and immersive experiences, this is the genre for you.</p>
                 <div className="flex flex-col gap-8 my-8">
                     {horrors.map((game, idx) => {
                         const matchedGame = games?.find((g) => g.name === game.name);
@@ -384,7 +384,7 @@ export default function GameRecommendations({ games, recSelect }: { games?: Game
                     })}
                 </div>
                 <h2 className='text-2xl font-bold'>Platformer:</h2>
-                <p className='text-lg'>A genre focused on jumping and climbing between platforms, often featuring precise controls and challenging levels. If you're looking for a game that offers fun and engaging gameplay with a focus on movement, this is the genre for you.</p>
+                <p className='text-lg'>A genre focused on jumping and climbing between platforms, often featuring precise controls and challenging levels. If you&apos;re looking for a game that offers fun and engaging gameplay with a focus on movement, this is the genre for you.</p>
                 <div className="flex flex-col space-y-8 my-6">
                     {platformers.map((game, idx) => {
                         const matchedGame = games?.find((g) => g.name === game.name);

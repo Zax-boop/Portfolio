@@ -65,7 +65,7 @@ export const actionAdventure = [
 export const soulsLikes = [
     {
         name: "Another Crab's Treasure",
-        color: "bg-gray-900",
+        color: "bg-blue-900",
         image: crab,
         reverse: false,
         description: (
@@ -127,7 +127,7 @@ export const soulsLikes = [
 export const metroidvanias = [
     {
         name: "Pseudoregalia",
-        color: "bg-white/5",
+        color: "bg-amber-900",
         image: pseudo,
         description: (
             <>
