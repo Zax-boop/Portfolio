@@ -60,7 +60,7 @@ export default function GameGenre({ genre, small }: { genre: string, small?: boo
     const bgColor = genreColors[formattedGenre] || "bg-gray-300";
 
     return (
-        <div className={small ? `xs:px-1 sm:px-3 xs:py-2 sm:py-1 xs:rounded-md sm:rounded-md text-white xs:font-medium sm:font-bold xs:text-[0.5rem] sm:text-xs ${bgColor} transform transition-transform duration-200 hover:scale-105 cursor-pointer` : `xs:px-1 sm:px-4 xs:py-1 sm:py-2 xs:rounded-md sm:rounded-lg text-white xs:font-medium sm:font-bold xs:text-[0.5rem] sm:text-base ${bgColor} transform transition-transform duration-200 hover:scale-105 cursor-pointer`}>
+        <div className={small ? `xs:px-1 sm:px-3 xs:py-0.5 md:py-1 xs:rounded-sm sm:rounded-md text-white xs:font-medium sm:font-bold xs:text-[0.3rem] sm:text-xs ${bgColor} transform transition-transform duration-200 hover:scale-105 cursor-pointer` : `xs:px-1 sm:px-4 xs:py-1 sm:py-2 xs:rounded-md sm:rounded-lg text-white xs:font-medium sm:font-bold xs:text-[0.5rem] sm:text-base ${bgColor} transform transition-transform duration-200 hover:scale-105 cursor-pointer`}>
             {genre}
         </div>
     );

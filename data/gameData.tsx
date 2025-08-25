@@ -38,7 +38,7 @@ export const actionAdventure = [
     <span class="font-bold">Uncharted 4: A Thief's End</span>. 
     A cinematic action-adventure that’s easy to pick up and incredibly engaging. 
     Explore stunning environments, solve light puzzles, and enjoy thrilling set pieces without steep difficulty.`,
-        recs: ["The Last of Us", "The Last of Us 2", "Jak II", "Jak III"]
+        recs: ["The Last of Us", "The Last of Us Part II", "Jak II", "Jak III"]
     },
     {
         name: "God of War",
@@ -185,9 +185,7 @@ export const roguelikes = [
             <>
                 For a casual experience, <span className="font-bold">Balatro</span>{" "}
                 offers a charming roguelike twist with accessible gameplay and a
-                lighthearted tone. Its a poker-themed roguelike where you play as a
-                jester navigating a whimsical world, making it a perfect entry point into
-                the genre. The art style is also fantastic, with a hand-drawn aesthetic
+                lighthearted tone. Its a poker-themed roguelike where you create poker hands to score points. The art style is also fantastic, with a hand-drawn aesthetic
                 that adds to the game's charm. Also, the soundtrack is incredible, with a
                 jazzy, carnival-inspired style that fits the game's theme perfectly.
             </>
