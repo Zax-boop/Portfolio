@@ -21,8 +21,8 @@ export default function AlbumRecommendations({ albums, recSelect }: { albums?: A
                 <div className='flex flex-row w-full justify-center'>
                     <GenrePieChart genresList={albums?.map((albums) => albums.genres)} />
                 </div>
-                <p className='xs:text-md md:text-2xl font-bold xs:mt-2 sm:mt-2'>Here's some songs from different genres. From these, depending on what you like I can recommend albums based on them:</p>
-                <p className='xs:text-xs md:text-sm xs:mt-2'>*As a disclaimer, if you're the kind of person who only listens to rap/hip-hop or hype 2000s hits then this probably won't help you...</p>
+                <p className='xs:text-md md:text-2xl font-bold xs:mt-2 sm:mt-2'>Here&apos;s some songs from different genres. From these, depending on what you like I can recommend albums based on them:</p>
+                <p className='xs:text-xs md:text-sm xs:mt-2'>*As a disclaimer, if you&apos;re the kind of person who only listens to rap/hip-hop or hype 2000s hits then this probably won&apos;t help you...</p>
                 <div className="flex flex-col gap-4 mt-8">
                     {songs.map((song, idx) => {
                         return (
