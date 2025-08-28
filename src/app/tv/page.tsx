@@ -94,62 +94,14 @@ export default function TVRanking() {
             <SignInForm />
             <div className="relative flex items-center justify-center w-full xs:h-[15rem] sm:h-[30rem] xl:h-[80vh] xs:mt-4 sm:mt-10  overflow-hidden">
                 <div className="absolute inset-0 flex w-full h-full overflow-hidden">
-                    <div className='w-1/2 h-full'>
-                        <video
-                            src={"/breaking_bad_mp4.mp4"}
-                            autoPlay
-                            loop
-                            muted
-                            controls={false}
-                            playsInline
-                            className={`w-full h-1/2 object-fill duration-700 ease-in-out group-hover:opacity-75 ${isLoading
-                                ? "scale-110 blur-2xl grayscale"
-                                : "scale-100 blur-0 grayscale-0"
-                                }`}
-                            onLoadedData={() => setIsLoading(false)}
-                        />
-                        <video
-                            src={"/bojack_mp4.mp4"}
-                            autoPlay
-                            loop
-                            muted
-                            controls={false}
-                            playsInline
-                            className={`w-full h-1/2 object-fill duration-700 ease-in-out group-hover:opacity-75 ${isLoading
-                                ? "scale-110 blur-2xl grayscale"
-                                : "scale-100 blur-0 grayscale-0"
-                                }`}
-                            onLoadedData={() => setIsLoading(false)}
-                        />
-                    </div>
-                    <div className='w-1/2 h-full'>
-                        <video
-                            src={"/sopranos_mp4.mp4"}
-                            autoPlay
-                            loop
-                            muted
-                            controls={false}
-                            playsInline
-                            className={`w-full h-1/2 object-fill duration-700 ease-in-out group-hover:opacity-75 ${isLoading
-                                ? "scale-110 blur-2xl grayscale"
-                                : "scale-100 blur-0 grayscale-0"
-                                }`}
-                            onLoadedData={() => setIsLoading(false)}
-                        />
-                        <video
-                            src={"/hill_house_mp4.mp4"}
-                            autoPlay
-                            loop
-                            muted
-                            controls={false}
-                            playsInline
-                            className={`w-full h-1/2 object-fill duration-700 ease-in-out group-hover:opacity-75 ${isLoading
-                                ? "scale-110 blur-2xl grayscale"
-                                : "scale-100 blur-0 grayscale-0"
-                                }`}
-                            onLoadedData={() => setIsLoading(false)}
-                        />
-                    </div>
+                     <video
+                        src="/output_tv_grid.mp4"
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className="w-full h-full object-cover"
+                    />
                 </div>
                 <PoppingLetters text="TV Shows" className="absolute text-white xs:text-2xl sm:text-6xl font-bold z-10 text-center" />
                 <div className="absolute inset-0 bg-black opacity-50"></div>

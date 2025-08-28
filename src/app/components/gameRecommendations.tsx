@@ -20,8 +20,7 @@ export default function GameRecommendations({ games, recSelect }: { games?: Game
                 <h1 className='xs:text-xl md:text-3xl font-bold xs:mt-2 sm:mt-0'>New to Games?</h1>
                 <p className='xs:text-md md:text-lg'>Choosing a genre is an important first step. Here are some I&apos;ve played:</p>
                 <div className='flex flex-row w-full justify-center'>
-
-                    <GenrePieChart games={games} excludedGenres={["Top Down", "Sci-Fi", "Pixel Art", "Co-Op", "Boss Rush", "Rhythm", "Card", "Stealth", "Point and Click", "Tac Shooter", "Simulation", "Beat Em Up", "Dungeon Crawler", "Indie", "Sports", "Hack n Slash", "Sandbox", "Fighting", "Racing", "Open World", "Visual Novel", "Puzzle", "Platform Fighter"]} genreMap={{
+                    <GenrePieChart genresList={games?.map((game) => game.genres)} excludedGenres={["Top Down", "Sci-Fi", "Pixel Art", "Co-Op", "Boss Rush", "Rhythm", "Card", "Stealth", "Point and Click", "Tac Shooter", "Simulation", "Beat Em Up", "Dungeon Crawler", "Indie", "Sports", "Hack n Slash", "Sandbox", "Fighting", "Racing", "Open World", "Visual Novel", "Puzzle", "Platform Fighter"]} genreMap={{
                         "Action": "Action-Adventure",
                         "Adventure": "Action-Adventure",
                         "Soulsborne": "Soulsborne/Soulslike",

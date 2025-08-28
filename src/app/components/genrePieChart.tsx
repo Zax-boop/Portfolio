@@ -8,32 +8,22 @@ import {
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-type Game = {
-    name: string;
-    studio: string;
-    image: string;
-    comments: string;
-    rank: number;
-    genres: string[];
-    id: string;
-};
-
 export default function GenrePieChart({
-    games,
+    genresList,
     excludedGenres,
     genreMap,
 }: {
-    games?: Game[];
+    genresList?: string[][];
     excludedGenres?: string[];
     genreMap?: Record<string, string>;
 }) {
     const genreCounts: Record<string, number> = {};
-    if (!games || !Array.isArray(games)) {
-        return <div className="text-center">No games data available</div>;
+    if (!genresList || !Array.isArray(genresList)) {
+        return <div className="text-center">No genres data available</div>;
     }
 
-    games.forEach((game) => {
-        game.genres.forEach((genre) => {
+    genresList.forEach((genres) => {
+        genres.forEach((genre) => {
             if (excludedGenres && excludedGenres.includes(genre)) return;
             const mappedGenre = genreMap?.[genre] || genre;
             genreCounts[mappedGenre] = (genreCounts[mappedGenre] || 0) + 1;
@@ -72,18 +62,25 @@ export default function GenrePieChart({
     };
 
     return (
-        <div className={`flex justify-center items-center w-full md:h-[35rem] xs:h-[16rem] gap-4 xs:text-[0.4rem] md:text-base`}>
-            <div className="xs:w-1/5 md:w-1/5 xs:max-h-[13rem] md:max-h-[30rem] overflow-y-auto bg-gray-800 rounded-lg xs:p-1.5 md:p-4 text-gray-200 ">
+        <div className="flex justify-center items-center w-full md:h-[35rem] xs:h-[16rem] gap-4 xs:text-[0.4rem] md:text-base">
+            <div className="xs:w-1/5 md:w-1/5 xs:max-h-[13rem] md:max-h-[30rem] overflow-y-auto bg-gray-800 rounded-lg xs:p-1.5 md:p-4 text-gray-200">
                 <ul className="space-y-2">
-                    {data.labels.map((label, i) => (
-                        <li key={label} className="flex items-center xs:gap-0.5 md:gap-2">
-                            <span
-                                className="inline-block xs:w-2 md:w-4 xs:h-2 md:h-4 xs:rounded-sm md:rounded"
-                                style={{ backgroundColor: data.datasets[0].backgroundColor[i] }}
-                            />
-                            {label} ({data.datasets[0].data[i]})
-                        </li>
-                    ))}
+                    {data.labels
+                        .map((label, i) => ({
+                            label,
+                            count: data.datasets[0].data[i],
+                            color: data.datasets[0].backgroundColor[i],
+                        }))
+                        .sort((a, b) => b.count - a.count) // sort descending
+                        .map((item) => (
+                            <li key={item.label} className="flex items-center xs:gap-0.5 md:gap-2">
+                                <span
+                                    className="inline-block xs:w-2 md:w-4 xs:h-2 md:h-4 xs:rounded-sm md:rounded"
+                                    style={{ backgroundColor: item.color }}
+                                />
+                                {item.label} ({item.count})
+                            </li>
+                        ))}
                 </ul>
             </div>
             <div className="xs:w-3/5 xs:h-auto md:h-[30rem] md:w-1/2 flex justify-center">
