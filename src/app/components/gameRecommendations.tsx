@@ -48,7 +48,7 @@ export default function GameRecommendations({ games, recSelect }: { games?: Game
                                 <Image
                                     src={game.image}
                                     alt={game.name}
-                                    className="w-full aspect-[16/9] object-cover"
+                                    className="w-full aspect-[16/9] object-cover transform transition-transform duration-300 hover:scale-105"
                                 />
                                 <div className="p-4">
                                     <h2 className="xs:text-xl md:text-2xl font-bold xs:mb-1 md:mb-3 text-gray-100">{game.name}</h2>
@@ -128,7 +128,7 @@ export default function GameRecommendations({ games, recSelect }: { games?: Game
                                 <Image
                                     src={game.image}
                                     alt={game.alt}
-                                    className="h-48 w-full object-cover"
+                                    className="h-48 w-full object-cover transform transition-transform duration-300 hover:scale-105"
                                 />
                                 <div className="p-4 flex flex-col flex-grow">
                                     <h3 className="xs:text-xl md:text-2xl font-bold xs:mb-1 md:mb-3 text-black/80">
@@ -169,7 +169,7 @@ export default function GameRecommendations({ games, recSelect }: { games?: Game
                                 <Image
                                     src={game.image}
                                     alt={game.name}
-                                    className="w-full md:w-1/2 aspect-[3/2] object-cover rounded-xl"
+                                    className="w-full md:w-1/2 aspect-[3/2] object-cover rounded-xl transform transition-transform duration-300 hover:scale-105"
                                 />
                                 <div className="md:w-1/2">
                                     <h2 className="xs:text-xl md:text-2xl font-bold xs:mb-1 md:mb-3 text-gray-100">{game.name}</h2>
@@ -209,7 +209,7 @@ export default function GameRecommendations({ games, recSelect }: { games?: Game
                                 <Image
                                     src={game.image}
                                     alt={game.name}
-                                    className="w-full md:w-1/3 object-cover aspect-[3/2]"
+                                    className="w-full md:w-1/3 object-cover aspect-[3/2] transform transition-transform duration-300 hover:scale-105"
                                 />
                                 <div className="p-4 flex flex-col justify-center md:w-2/3">
                                     <h2 className="text-xl font-bold mb-2 text-gray-100">{game.name}</h2>
@@ -250,7 +250,7 @@ export default function GameRecommendations({ games, recSelect }: { games?: Game
                                     <Image
                                         src={game.image}
                                         alt={game.alt}
-                                        className="object-cover w-full h-full"
+                                        className="object-cover w-full h-full transform transition-transform duration-300 hover:scale-105"
                                         fill
                                     />
                                 </div>
@@ -289,7 +289,7 @@ export default function GameRecommendations({ games, recSelect }: { games?: Game
                                 key={idx}
                                 className="bg-white rounded-2xl shadow-md overflow-hidden relative aspect-[4/2] flex"
                             >
-                                <div className="absolute inset-0">
+                                <div className="absolute inset-0 transform transition-transform duration-300 hover:scale-105">
                                     <Image
                                         src={game.image}
                                         alt={game.alt}
@@ -335,7 +335,7 @@ export default function GameRecommendations({ games, recSelect }: { games?: Game
                                     <Image
                                         src={game.image}
                                         alt={game.alt}
-                                        className="object-cover w-full h-full"
+                                        className="object-cover w-full h-full transform transition-transform duration-300 hover:scale-105"
                                         fill
                                     />
                                 </div>
@@ -376,7 +376,7 @@ export default function GameRecommendations({ games, recSelect }: { games?: Game
                                     <Image
                                         src={game.image}
                                         alt={game.alt}
-                                        className="object-cover w-full h-full"
+                                        className="object-cover w-full h-full transform transition-transform duration-300 hover:scale-105"
                                         fill
                                     />
                                 </div>
@@ -417,7 +417,7 @@ export default function GameRecommendations({ games, recSelect }: { games?: Game
                                 <Image
                                     src={game.image}
                                     alt={game.alt}
-                                    className="w-full md:w-1/2 aspect-[3/2] object-cover rounded-xl"
+                                    className="w-full md:w-1/2 aspect-[3/2] object-cover rounded-xl transform transition-transform duration-300 hover:scale-105"
                                 />
                                 <div className="md:w-1/2">
                                     <h2 className={`xs:text-xl md:text-2xl font-bold xs:mb-1 md:mb-3 ${game.color}`}>

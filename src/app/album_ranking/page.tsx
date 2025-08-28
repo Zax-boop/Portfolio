@@ -135,11 +135,15 @@ export default function Albums() {
                         loop
                         muted
                         playsInline
+                        disablePictureInPicture
                         className="w-full h-full object-cover"
                     />
                 </div>
-                <PoppingLetters text="Albums" className="absolute text-white xs:text-2xl sm:text-6xl font-bold z-10 text-center" />
-                <div className="absolute inset-0 bg-black opacity-50"></div>
+                <div className="absolute inset-0 bg-black opacity-50 z-10"></div>
+                <PoppingLetters
+                    text="Albums"
+                    className="absolute text-white xs:text-2xl sm:text-6xl font-bold z-20 text-center"
+                />
             </div>
             <div className='mt-4'>
                 <ImageTrack data={currentMedia} onImageClick={scrollToAlbum} width={`${currentMedia.length == 5 ? `xs:w-[8rem]` : `xs:w-[6.67rem]`} ${currentMedia.length == 6 ? `sm:w-[8rem] 2xl:w-[15rem]` : `sm:w-[10rem] 2xl:w-[20rem]`} ${currentMedia.length == 5 ? `xl:w-[15rem]` : `xl:w-[20rem]`}`} />
