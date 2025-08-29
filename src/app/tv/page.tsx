@@ -94,12 +94,13 @@ export default function TVRanking() {
             <SignInForm />
             <div className="relative flex items-center justify-center w-full xs:h-[15rem] sm:h-[30rem] xl:h-[80vh] xs:mt-4 sm:mt-10  overflow-hidden">
                 <div className="absolute inset-0 flex w-full h-full overflow-hidden">
-                     <video
-                        src="/output_tv_grid.mp4"
+                    <video
+                        src="/output_tv_grid_fixed.mp4"
                         autoPlay
                         loop
                         muted
                         playsInline
+                        disablePictureInPicture
                         className="w-full h-full object-cover"
                     />
                 </div>
@@ -173,7 +174,7 @@ export default function TVRanking() {
                                 <div className="flex flex-wrap gap-2 mt-2">
                                     {show.genres?.slice().sort().map((genre, index) => (
                                         <div onClick={() => setSearchQuery(genre)} key={index}>
-                                            <TVGenre genre={genre}/>
+                                            <TVGenre genre={genre} />
                                         </div>
                                     ))}
                                 </div>
