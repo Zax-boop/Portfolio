@@ -130,7 +130,7 @@ export default function Albums() {
             <div className="relative flex items-center justify-center w-full xs:h-[15rem] sm:h-[30rem] xl:h-[80vh] xs:mt-4 sm:mt-10 overflow-hidden">
                 <div className="absolute inset-0 flex w-full h-full overflow-hidden">
                     <video
-                        src="/album_ranking_splash.mp4"
+                        src="/album_ranking_splash_fixed.mp4"
                         autoPlay
                         loop
                         muted
