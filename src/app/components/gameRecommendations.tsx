@@ -23,8 +23,8 @@ export default function GameRecommendations({ games, recSelect }: { games?: Game
                     <GenrePieChart genresList={games?.map((game) => game.genres)} excludedGenres={["Top Down", "Sci-Fi", "Pixel Art", "Co-Op", "Boss Rush", "Rhythm", "Card", "Stealth", "Point and Click", "Tac Shooter", "Simulation", "Beat Em Up", "Dungeon Crawler", "Indie", "Sports", "Hack n Slash", "Sandbox", "Fighting", "Racing", "Open World", "Visual Novel", "Puzzle", "Platform Fighter"]} genreMap={{
                         "Action": "Action-Adventure",
                         "Adventure": "Action-Adventure",
-                        "Soulsborne": "Soulsborne/Soulslike",
-                        "Soulslike": "Soulsborne/Soulslike",
+                        "Soulsborne": "Soulsborne/Soulslikes",
+                        "Soulslike": "Soulsborne/Soulslikes",
                         "FPS": "Shooter",
                         "Tac Shooter": "Shooter",
                         "Third Person Shooter": "Shooter",
@@ -35,7 +35,7 @@ export default function GameRecommendations({ games, recSelect }: { games?: Game
                         "Strategy": "Turn-Based"
                     }} />
                 </div>
-                <h2 className='xs:text-lg md:text-2xl font-bold'>Action-Adventure:</h2>
+                <h2 id="Action-Adventure" className='xs:text-lg md:text-2xl font-bold'>Action-Adventure:</h2>
                 <p className='xs:text-md md:text-lg'>A blend of action and adventure elements, often featuring exploration and puzzle-solving. Definitely the most common genre. If you&apos;re looking for a game that offers both excitement and narrative depth, this is the genre for you.</p>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-6">
                     {actionAdventure.map((game) => {
@@ -76,7 +76,7 @@ export default function GameRecommendations({ games, recSelect }: { games?: Game
                         );
                     })}
                 </div>
-                <h2 className='xs:text-lg md:text-2xl font-bold'>Roguelike:</h2>
+                <h2 id='Roguelike' className='xs:text-lg md:text-2xl font-bold'>Roguelike:</h2>
                 <p className='xs:text-md md:text-lg'>Video games characterized by randomly generated levels and permanent death of the player character. If you&apos;re looking for a game that offers high replayability and challenging gameplay, this is the genre for you.</p>
                 <div className="grid md:grid-cols-1 gap-6 my-6">
                     {roguelikes.map((game) => {
@@ -115,7 +115,7 @@ export default function GameRecommendations({ games, recSelect }: { games?: Game
                         );
                     })}
                 </div>
-                <h2 className='xs:text-lg md:text-2xl font-bold'>RPG:</h2>
+                <h2 id='RPG' className='xs:text-lg md:text-2xl font-bold'>RPG:</h2>
                 <p className='xs:text-md md:text-lg'>Role-Playing Games (RPGs) are a genre where players assume the roles of characters in a fictional setting. They often involve character development, narrative choices,  build-crafting, and exploration. If you&apos;re looking for a game that offers deep storytelling and character progression, this is the genre for you.</p>
                 <div className="grid md:grid-cols-3 gap-6 my-4">
                     {rpgs.map((game, idx) => {
@@ -155,7 +155,7 @@ export default function GameRecommendations({ games, recSelect }: { games?: Game
                         );
                     })}
                 </div>
-                <h2 className='xs:text-lg md:text-2xl font-bold'>Soulsborne/Soulslikes:</h2>
+                <h2 id='Soulsborne/Soulslikes' className='xs:text-lg md:text-2xl font-bold'>Soulsborne/Soulslikes:</h2>
                 <p className='xs:text-md md:text-lg'>Known for their challenging combat and intricate world design, these games offer a rewarding experience for those who enjoy overcoming tough obstacles. If you&apos;re looking for a game that tests your skills and patience while providing a deep sense of accomplishment, this is the genre for you.</p>
                 <div className="flex flex-col space-y-8 my-6">
                     {soulsLikes.map((game) => {
@@ -196,7 +196,7 @@ export default function GameRecommendations({ games, recSelect }: { games?: Game
                         );
                     })}
                 </div>
-                <h2 className='xs:text-lg md:text-2xl font-bold'>Metroidvania:</h2>
+                <h2 id='Metroidvania' className='xs:text-lg md:text-2xl font-bold'>Metroidvania:</h2>
                 <p className='xs:text-md md:text-lg'>A subgenre of action-adventure games that emphasizes exploration and platforming, often featuring interconnected worlds and power-ups. If you&apos;re looking for a game that combines exploration with action and puzzle-solving, this is the genre for you.</p>
                 <div className="flex flex-col space-y-6 my-6">
                     {metroidvanias.map((game) => {
@@ -236,7 +236,7 @@ export default function GameRecommendations({ games, recSelect }: { games?: Game
                         );
                     })}
                 </div>
-                <h2 className='xs:text-lg md:text-2xl font-bold'>Multiplayer:</h2>
+                <h2 id='Multiplayer' className='xs:text-lg md:text-2xl font-bold'>Multiplayer:</h2>
                 <p className='xs:text-md md:text-lg'>A genre that emphasizes social interaction and cooperative or competitive gameplay. If you&apos;re looking for a game that offers fun and engaging experiences with friends or other players, this is the genre for you.</p>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 my-8">
                     {multiplayer.map((game) => {
@@ -279,7 +279,7 @@ export default function GameRecommendations({ games, recSelect }: { games?: Game
                         );
                     })}
                 </div>
-                <h2 className='xs:text-lg md:text-2xl font-bold'>Shooter:</h2>
+                <h2 id='Shooter' className='xs:text-lg md:text-2xl font-bold'>Shooter:</h2>
                 <p className='xs:text-md md:text-lg'>A genre focused on ranged combat, often featuring fast-paced action and strategic gameplay. If you&apos;re looking for a game that offers adrenaline-pumping action and precise aiming, this is the genre for you.</p>
                 <div className="space-y-6 my-4">
                     {shooters.map((game, idx) => {
@@ -321,7 +321,7 @@ export default function GameRecommendations({ games, recSelect }: { games?: Game
                         );
                     })}
                 </div>
-                <h2 className='xs:text-lg md:text-2xl font-bold'>Turn-Based:</h2>
+                <h2 id='Turn-Based' className='xs:text-lg md:text-2xl font-bold'>Turn-Based:</h2>
                 <p className='xs:text-md md:text-lg'>A genre where players take turns making strategic decisions in combat. If you&apos;re looking for a game that emphasizes strategy and tactical thinking, this is the genre for you.</p>
                 <div className="space-y-6 my-4">
                     {turns.map((game, idx) => {
@@ -362,7 +362,7 @@ export default function GameRecommendations({ games, recSelect }: { games?: Game
                         );
                     })}
                 </div>
-                <h2 className='xs:text-lg md:text-2xl font-bold'>Horror:</h2>
+                <h2 id='Horror' className='xs:text-lg md:text-2xl font-bold'>Horror:</h2>
                 <p className='xs:text-md md:text-lg'>A genre designed to evoke fear and suspense, often featuring dark atmospheres and psychological elements. If you&apos;re looking for a game that offers thrilling and immersive experiences, this is the genre for you.</p>
                 <div className="flex flex-col gap-8 my-8">
                     {horrors.map((game, idx) => {
@@ -403,7 +403,7 @@ export default function GameRecommendations({ games, recSelect }: { games?: Game
                         );
                     })}
                 </div>
-                <h2 className='xs:text-lg md:text-2xl font-bold'>Platformer:</h2>
+                <h2 id='Platformer' className='xs:text-lg md:text-2xl font-bold'>Platformer:</h2>
                 <p className='xs:text-md md:text-lg'>A genre focused on jumping and climbing between platforms, often featuring precise controls and challenging levels. If you&apos;re looking for a game that offers fun and engaging gameplay with a focus on movement, this is the genre for you.</p>
                 <div className="flex flex-col space-y-8 my-6">
                     {platformers.map((game, idx) => {

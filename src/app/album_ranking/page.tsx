@@ -16,6 +16,8 @@ import Spotify from '../../../public/spotify.png';
 import Link from 'next/link';
 import GenrePieChart from '../components/genrePieChart';
 import AlbumRecommendations from '../components/albumRecommendations';
+import getAlbumRankHistory from '../../../utils/getAlbumRankHistory';
+import { ChevronUp, ChevronsUp, ChevronDown, ChevronsDown } from 'lucide-react';
 
 export default function Albums() {
     const [albums, setAlbums] = useState<{
@@ -27,6 +29,7 @@ export default function Albums() {
         genres: string[];
         id: string;
     }[]>([]);
+    const [history, setHistory] = useState<Record<string, { week_ago_rank: number }>>({});
     const badAlbumStatements = ["Seek Help", "Consider Therapy", "You need to talk to someone", "This is a cry for help", "Please, seek help", "This is not okay", "You need to talk to someone about this", "This album is a tough listen...", "Not your best pick.",
         "Maybe give this one a second thought.", "Are you sure about this one?"];
     const [filteredMedia, setFilteredMedia] = useState(albums);
@@ -62,6 +65,17 @@ export default function Albums() {
         };
         getAlbums();
     }, []);
+
+    useEffect(() => {
+        const fetchRankHistory = async () => {
+            const rankHistory = await getAlbumRankHistory();
+            setHistory(rankHistory as Record<string, { week_ago_rank: number }>);
+        };
+        fetchRankHistory();
+    }, []);
+
+
+    console.log(history);
 
     useEffect(() => {
         const raw = searchQuery.toLowerCase();
@@ -226,7 +240,30 @@ export default function Albums() {
                                 className="flex flex-col xl:space-y-4 xs:mt-4 xl:mt-8"
                             >
                                 <div className="flex flex-row">
-                                    <h2 className="xs:text-base sm:text-lg xl:text-xl font-semibold xs:mr-1 sm:mr-2 xl:mr-4">{album.Rank}.</h2>
+                                    <div className="flex flex-col items-center xs:mr-1 sm:mr-2 xl:mr-4">
+                                        <h2 className="xs:text-base sm:text-lg xl:text-xl font-semibold">{album.Rank}.</h2>
+                                        {history[album.id] && album.Rank !== history[album.id].week_ago_rank && (() => {
+                                            const diff = Math.abs(album.Rank - history[album.id].week_ago_rank);
+                                            const isUp = album.Rank < history[album.id].week_ago_rank;
+
+                                            // Choose icon based on diff
+                                            const Icon = diff < 10
+                                                ? isUp
+                                                    ? ChevronUp
+                                                    : ChevronDown
+                                                : isUp
+                                                    ? ChevronsUp
+                                                    : ChevronsDown;
+
+                                            const color = isUp ? "text-green-500" : "text-red-500";
+
+                                            // Optional: scale the icon slightly based on diff (for extra emphasis)
+                                            const maxDiff = 50;
+                                            const scale = 1 + Math.min(diff, maxDiff) * 0.02;
+
+                                            return <Icon className={`mt-1 ${color}`} size={16 * scale} />;
+                                        })()}
+                                    </div>
                                     <img
                                         src={album.image}
                                         alt={`${album.name} album cover`}

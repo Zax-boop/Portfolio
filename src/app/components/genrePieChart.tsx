@@ -1,4 +1,6 @@
 import { Pie } from "react-chartjs-2";
+import { ChartOptions, ChartEvent, ActiveElement } from "chart.js";
+
 import {
     Chart as ChartJS,
     ArcElement,
@@ -53,13 +55,25 @@ export default function GenrePieChart({
         ],
     };
 
-    const options = {
+
+    const options: ChartOptions<"pie"> = {
         plugins: {
             legend: {
                 display: false,
             },
         },
+        onClick: (evt: ChartEvent, elements: ActiveElement[], chart) => {
+            if (elements.length > 0) {
+                const index = elements[0].index;
+                const label = chart.data.labels?.[index] as string;
+                const el = document.getElementById(label);
+                if (el) {
+                    el.scrollIntoView({ behavior: "smooth", block: "start" });
+                }
+            }
+        },
     };
+
 
     return (
         <div className="flex justify-center items-center w-full md:h-[35rem] xs:h-[16rem] gap-4 xs:text-[0.4rem] md:text-base">
@@ -71,15 +85,25 @@ export default function GenrePieChart({
                             count: data.datasets[0].data[i],
                             color: data.datasets[0].backgroundColor[i],
                         }))
-                        .sort((a, b) => b.count - a.count) // sort descending
+                        .sort((a, b) => b.count - a.count)
                         .map((item) => (
-                            <li key={item.label} className="flex items-center xs:gap-0.5 md:gap-2">
+                            <li
+                                key={item.label}
+                                className="flex items-center cursor-pointer xs:gap-0.5 md:gap-2 hover:text-white"
+                                onClick={() => {
+                                    const el = document.getElementById(item.label);
+                                    if (el) {
+                                        el.scrollIntoView({ behavior: "smooth", block: "start" });
+                                    }
+                                }}
+                            >
                                 <span
                                     className="inline-block xs:w-2 md:w-4 xs:h-2 md:h-4 xs:rounded-sm md:rounded"
                                     style={{ backgroundColor: item.color }}
                                 />
                                 {item.label} ({item.count})
                             </li>
+
                         ))}
                 </ul>
             </div>

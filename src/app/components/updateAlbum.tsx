@@ -192,7 +192,7 @@ export default function UpdateAlbumModal({ album }: {
                                     />
                                 </label>
                             </div>
-                            <div className='flex flex-col w-1/2 ml-2 gap-4'>
+                            <div className='flex flex-col w-1/2 ml-2 xs:gap-2 xl:gap-4'>
                                 {/* <input
                                     type="text"
                                     className="w-full bg-transparent sm:text-sm xl:text-xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
@@ -203,7 +203,7 @@ export default function UpdateAlbumModal({ album }: {
                                 <div className="relative group">
                                         <input
                                             type="text"
-                                            className="w-full bg-transparent text-xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
+                                            className="w-full bg-transparent xs:text-md xl:text-xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
                                             placeholder="Album Name"
                                             value={name}
                                             onFocus={() => setNameFocus(true)}
@@ -218,7 +218,7 @@ export default function UpdateAlbumModal({ album }: {
                                     <div className="relative group">
                                         <input
                                             type="text"
-                                            className="w-full bg-transparent text-xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
+                                            className="w-full bg-transparent xs:text-md xl:text-xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
                                             placeholder="Artist"
                                             value={artist}
                                             onFocus={() => setArtistFocus(true)}
@@ -232,7 +232,7 @@ export default function UpdateAlbumModal({ album }: {
                                     </div>
                                     <div className="relative group">
                                         <textarea
-                                            className="w-full bg-transparent text-xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
+                                            className="w-full bg-transparent xs:text-md xl:text-xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
                                             placeholder="Comments"
                                             value={comments}
                                             onFocus={() => setCommentFocus(true)}
@@ -248,7 +248,7 @@ export default function UpdateAlbumModal({ album }: {
                                     <div className="relative group">
                                         <input
                                             type="number"
-                                            className="w-full bg-transparent text-xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
+                                            className="w-full bg-transparent xs:text-md xl:text-xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
                                             placeholder="Rank"
                                             value={rank}
                                             onFocus={() => setRankFocus(true)}
@@ -259,10 +259,10 @@ export default function UpdateAlbumModal({ album }: {
                                             className={`absolute -bottom-0.5 left-0 h-[2px] bg-white transition-all duration-300 ${rankFocus ? "w-full" : "w-0"}`}
                                         />
                                     </div>
-                                <div className='flex flex-row flex-wrap gap-2 max-h-32 overflow-scroll'>
+                                <div className='flex flex-row flex-wrap gap-2 xs:max-h-16 xl:max-h-32 overflow-scroll'>
                                     {genre_list.slice().sort().map((genre, index) => (
-                                        <div onClick={() => handleGenreSwitch(genre)} key={index} className={genres.includes(genre) ? `px-2 py-1 rounded-lg text-white font-bold ${returnColor(genre)} cursor-pointer opacity-100 transition-all duration-300 ease-in-out hover:opacity-30` :
-                                            `cursor-pointer px-2 py-1 rounded-lg bg-black text-white transition-all duration-300 ease-in-out ${returnColor(genre)} hover:opacity-100 opacity-30`}>
+                                        <div onClick={() => handleGenreSwitch(genre)} key={index} className={genres.includes(genre) ? `px-2 py-1 rounded-lg text-white xs:text-xs xl:text-base font-bold ${returnColor(genre)} cursor-pointer opacity-100 transition-all duration-300 ease-in-out hover:opacity-30` :
+                                            `cursor-pointer px-2 py-1 rounded-lg bg-black text-white xs:text-xs xl:text-base transition-all duration-300 ease-in-out ${returnColor(genre)} hover:opacity-100 opacity-30`}>
                                             {genre}
                                         </div>
                                     ))}
