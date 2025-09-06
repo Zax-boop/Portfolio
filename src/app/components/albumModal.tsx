@@ -103,6 +103,7 @@ export default function AlbumForm() {
         spanish: "bg-red-400",
         synth: "bg-pink-800",
         triphop: "bg-indigo-600",
+        turkish: "bg-red-300",
         videogame: "bg-purple-600",
     };
 
@@ -110,7 +111,7 @@ export default function AlbumForm() {
         "Ambient", "Alternative", "Bossa Nova", "Brazilian Pop", "Breakcore", "Bubblegum", "Classical", "City Pop", "Club", "Country", "C-Pop", "Dance", "Dream Pop", "Electronic", "Experimental", "Flamenco", "Folk", "French", "Funk", "Grunge", "Hip-Hop",
         "House", "Indie Pop", "Indie Rock", "Italian", "Japanese", "Jazz", "J-Pop", "J-Rock", "Korean",
         "K-Pop", "Latin", "Lo-Fi", "Metal", "Polish", "Pop", "Psychedelic", "Punk", "Rap",
-        "R&B", "Rock", "Sailorwave", "Shoegaze", "Soul", "Spanish", "Synth", "Video Game", "Trip-Hop"
+        "R&B", "Rock", "Sailorwave", "Shoegaze", "Soul", "Spanish", "Synth", "Video Game", "Trip-Hop", "Turkish"
     ];
 
 

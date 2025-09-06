@@ -47,6 +47,7 @@ export default function MusicGenre({ genre, bad }: { genre: string, bad?: boolea
         spanish: "bg-red-400",
         synth: "bg-pink-800",
         triphop: "bg-indigo-600",
+        turkish: "bg-red-300",
         videogame: "bg-purple-600",
     };
 
