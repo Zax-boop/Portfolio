@@ -15,6 +15,7 @@ export default function TVGenre({ genre }: { genre: string }) {
         mystery: "bg-blue-700",
         political: "bg-red-800",
         psychological: "bg-indigo-600",
+        reality: "bg-green-700",
         romance: "bg-red-400",
         scifi: "bg-blue-600",
         sitcom: "bg-yellow-500",

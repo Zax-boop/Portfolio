@@ -12,6 +12,7 @@ import DeleteTV from '../components/deleteTV';
 import UpdateTVModal from '../components/updateTV';
 import ReadMore from '../components/readMore';
 import TVGenre from '../components/tvGenre';
+import GenrePieChart from '../components/genrePieChart';
 
 export default function TVRanking() {
     const [tv, setTV] = useState<{
@@ -113,6 +114,9 @@ export default function TVRanking() {
             <div className="flex flex-col xs:w-[95%] sm:w-4/5 xs:mt-2 sm:mt-8">
                 <TVForm />
                 <p className='xs:text-xs sm:text-base sm:mt-2 xl:mt-0 xs:mb-1 sm:mb-0'>*Disclaimer: This is just my opinion and what I enjoyed watching the most regardless of critical bias. </p>
+                <div className='flex flex-row w-full justify-center'>
+                    <GenrePieChart genresList={tv?.map((show) => show.genres)} />
+                </div>
                 <div className="flex flex-row flex-wrap justify-start mt-2">
                     {Array.from({ length: totalPages }, (_, i) => (
                         <button

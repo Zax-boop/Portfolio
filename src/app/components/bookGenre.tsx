@@ -44,6 +44,7 @@ export default function BookGenre({ genre }: { genre: string }) {
         teenliterature: "bg-orange-600",
         thirdperson: "bg-gray-500",
         thriller: "bg-red-900",
+        war: "bg-red-800",
         western: "bg-amber-600"
     };
 

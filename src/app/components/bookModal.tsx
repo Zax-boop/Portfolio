@@ -92,6 +92,7 @@ export default function BookForm() {
         teenliterature: "bg-orange-600",
         thirdperson: "bg-gray-500",
         thriller: "bg-red-900",
+        war: "bg-red-800",
         western: "bg-amber-600"
     };
 
@@ -99,7 +100,7 @@ export default function BookForm() {
         "Absurdist", "Action", "Adventure", "Afghanistan", "Autobiography", "Biography", "Classic", "Comic", "Crime", "Cyberpunk", "Dark", "Drama", "Dystopian", "Existentialist", "Fantasy", "First-Person", "Fiction", "French", "Gothic", "Historical", "Horror", "Japanese", "Manga",
         "Memoir", "Mystery", "Mythology", "Non-Fiction", "Philosophical", "Poetry", 
         "Political", "Postmodern", "Psychological", "Realist", "Roman", "Romance", "Science Fiction", "Self-Help", "Short Stories", 
-        "Slice of Life", "Stoicism", "Surrealist", "Teen Literature", "Third-Person", "Thriller", "Western"
+        "Slice of Life", "Stoicism", "Surrealist", "Teen Literature", "Third-Person", "Thriller", "War", "Western"
     ];
     
     const returnColor = (genre: string) => {
