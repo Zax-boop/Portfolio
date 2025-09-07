@@ -13,6 +13,7 @@ import UpdateAnimeModal from '../components/anime/updateAnime';
 import AnimeGenre from '../components/anime/animeGenre';
 import ReadMore from '../components/general/readMore';
 import GenrePieChart from '../components/general/genrePieChart';
+import Loading from '../components/general/loading';
 
 export default function Anime() {
     const [animeList, setAnimeList] = useState<{
@@ -102,7 +103,7 @@ export default function Anime() {
             .sort((a, b) => b.genreMatchCount - a.genreMatchCount);
     };
     if (loading) {
-        return <div>Loading...</div>;
+        return <Loading />;
     }
     return (
         <div className='flex flex-col w-full h-full items-center'>

@@ -14,6 +14,7 @@ import ReadMore from '../components/general/readMore';
 import GameGenre from '../components/games/gameGenre';
 import GameRecommendations from '../components/games/gameRecommendations';
 import GenrePieChart from '../components/general/genrePieChart';
+import Loading from '../components/general/loading';
 
 export default function GamesRanking() {
     const [games, setGames] = useState<{
@@ -96,7 +97,7 @@ export default function GamesRanking() {
     };
 
     if (loading) {
-        return <div>Loading...</div>;
+        return <Loading />;
     }
 
     const totalPages = Math.ceil(filteredMedia.length / mediaPerPage);

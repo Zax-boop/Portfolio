@@ -13,6 +13,7 @@ import UpdateTVModal from '../components/tv/updateTV';
 import ReadMore from '../components/general/readMore';
 import TVGenre from '../components/tv/tvGenre';
 import GenrePieChart from '../components/general/genrePieChart';
+import Loading from '../components/general/loading';
 
 export default function TVRanking() {
     const [tv, setTV] = useState<{
@@ -84,7 +85,7 @@ export default function TVRanking() {
     };
 
     if (loading) {
-        return <div>Loading...</div>;
+        return <Loading />;
     }
 
     const totalPages = Math.ceil(filteredMedia.length / mediaPerPage);

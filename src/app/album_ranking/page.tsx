@@ -18,6 +18,7 @@ import GenrePieChart from '../components/general/genrePieChart';
 import AlbumRecommendations from '../components/album_ranking/albumRecommendations';
 import getAlbumRankHistory from '../../../utils/album_ranking/getAlbumRankHistory';
 import { ChevronUp, ChevronsUp, ChevronDown, ChevronsDown } from 'lucide-react';
+import Loading from '../components/general/loading';
 
 export default function Albums() {
     const [albums, setAlbums] = useState<{
@@ -111,7 +112,7 @@ export default function Albums() {
         }
     };
     if (loading) {
-        return <div>Loading...</div>;
+        return <Loading />;
     }
 
     const totalPages = Math.ceil(filteredMedia.length / mediaPerPage);

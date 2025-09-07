@@ -17,6 +17,7 @@ import UpdateBookModal from "../components/books/updateBook";
 import ReadMore from "../components/general/readMore";
 import BookGenre from "../components/books/bookGenre";
 import GenrePieChart from "../components/general/genrePieChart";
+import Loading from "../components/general/loading";
 
 export default function Books() {
     const [books, setBooks] = useState<{
@@ -89,7 +90,7 @@ export default function Books() {
     };
 
     if (loading) {
-        return <div>Loading...</div>;
+        return <Loading />;
     }
 
     const totalPages = Math.ceil(filteredMedia.length / mediaPerPage);

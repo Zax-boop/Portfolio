@@ -13,6 +13,7 @@ import { User } from "@supabase/supabase-js";
 import supabase from "../../../utils/general/supabaseclient";
 import { useMediaQuery } from "react-responsive";
 import VideoWithPlaceholder from "../components/general/placeholderVideo";
+import Loading from "../components/general/loading";
 
 export default function Climbing() {
     const isMobile = useMediaQuery({ query: '(max-width: 650px)' })
@@ -24,6 +25,7 @@ export default function Climbing() {
             };
         };
     }[]>([]);
+    const [pageLoading, setPageLoading] = useState(true);
     const [loading, setLoading] = useState(true);
     const [showWarning, setShowWarning] = useState(false)
     const [user, setUser] = useState<User | null>(null);
@@ -39,8 +41,10 @@ export default function Climbing() {
         const fetchMedia = async () => {
             const media = await fetchClimbingMedia();
             setMediaFiles(media);
+            if (media.length != 0) {
+                setPageLoading(false);
+            }
         };
-
         fetchMedia();
     }, []);
 
@@ -54,11 +58,16 @@ export default function Climbing() {
         }
     };
 
+    if (pageLoading) {
+        return <Loading />;
+    }
+
     const backgroundVideos = mediaFiles
         .filter((file) => file.name.endsWith(".mp4"))
         .filter((_, index) => (index >= 4 && index < 6) || index === 1);
 
     const shuffledMediaFiles = [...mediaFiles].sort(() => Math.random() - 0.5);
+    
 
     return (
         <div className="flex flex-col w-full h-full items-center">
