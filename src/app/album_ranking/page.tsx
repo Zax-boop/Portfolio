@@ -75,9 +75,6 @@ export default function Albums() {
         fetchRankHistory();
     }, []);
 
-
-    console.log(history);
-
     useEffect(() => {
         const raw = searchQuery.toLowerCase();
         const isNameOnly = raw.startsWith("%");
