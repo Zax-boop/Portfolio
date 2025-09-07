@@ -154,7 +154,18 @@ export default function TVRanking() {
                         key={show.id || `${show.name}-${show.director}-${index}`}
                         ref={showRefs.current[index]}
                         className="flex flex-col xl:space-y-4 xs:mt-4 xl:mt-8">
-                        <div className="flex flex-row">
+                        <div className="relative flex flex-row rounded-2xl p-2">
+                            {show.rank <= 3 && (
+                                <div
+                                    className={`
+                                                        absolute inset-0 rounded-2xl blur-xl opacity-5 animate-softGlow
+                                                        ${show.rank === 1 ? "bg-yellow-400" : ""}
+                                                        ${show.rank === 2 ? "bg-gray-300" : ""}
+                                                        ${show.rank === 3 ? "bg-amber-600" : ""}
+                                                    `}
+                                    style={{ zIndex: -1 }}
+                                />
+                            )}
                             <h2 className="xs:text-base sm:text-lg xl:text-xl font-semibold xs:mr-1 sm:mr-2 xl:mr-4">{show.rank}.</h2>
                             <img
                                 src={show.image}

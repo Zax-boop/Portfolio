@@ -175,8 +175,18 @@ export default function Anime() {
                         <FadeInSection key={anime.id || `${anime.name}-${anime.studio}-${index}`}
                             ref={animeRefs.current[index]}
                             className="flex flex-col xl:space-y-4 xs:mt-4 xl:mt-8">
-                            <div className="flex flex-row">
-                                <h2 className="xs:text-base sm:text-lg xl:text-xl font-semibold xs:mr-1 sm:mr-2 xl:mr-4">{anime.rank}.</h2>
+                            <div className="relative flex flex-row rounded-2xl p-2">
+                                {anime.rank <= 3 && (
+                                    <div
+                                        className={`
+                                                        absolute inset-0 rounded-2xl blur-xl opacity-5 animate-softGlow
+                                                        ${anime.rank === 1 ? "bg-yellow-400" : ""}
+                                                        ${anime.rank === 2 ? "bg-gray-300" : ""}
+                                                        ${anime.rank === 3 ? "bg-amber-600" : ""}
+                                                    `}
+                                        style={{ zIndex: -1 }}
+                                    />
+                                )}                                <h2 className="xs:text-base sm:text-lg xl:text-xl font-semibold xs:mr-1 sm:mr-2 xl:mr-4">{anime.rank}.</h2>
                                 <img
                                     src={anime.image}
                                     alt={`${anime.name} cover`}

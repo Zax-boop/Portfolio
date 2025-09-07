@@ -239,14 +239,23 @@ export default function Albums() {
                                 ref={albumRefs.current[index]}
                                 className="flex flex-col xl:space-y-4 xs:mt-4 xl:mt-8"
                             >
-                                <div className="flex flex-row">
+                                <div className="relative flex flex-row rounded-2xl p-2">
+                                    {album.Rank <= 3 && (
+                                        <div
+                                            className={`
+                                                        absolute inset-0 rounded-2xl blur-xl opacity-5 animate-softGlow
+                                                        ${album.Rank === 1 ? "bg-yellow-400" : ""}
+                                                        ${album.Rank === 2 ? "bg-gray-300" : ""}
+                                                        ${album.Rank === 3 ? "bg-amber-600" : ""}
+                                                    `}
+                                            style={{ zIndex: -1 }}
+                                        />
+                                    )}
                                     <div className="flex flex-col items-center xs:mr-1 sm:mr-2 xl:mr-4">
                                         <h2 className="xs:text-base sm:text-lg xl:text-xl font-semibold">{album.Rank}.</h2>
                                         {history[album.id] && album.Rank !== history[album.id].week_ago_rank && (() => {
                                             const diff = Math.abs(album.Rank - history[album.id].week_ago_rank);
                                             const isUp = album.Rank < history[album.id].week_ago_rank;
-
-                                            // Choose icon based on diff
                                             const Icon = diff < 10
                                                 ? isUp
                                                     ? ChevronUp
@@ -256,8 +265,6 @@ export default function Albums() {
                                                     : ChevronsDown;
 
                                             const color = isUp ? "text-green-500" : "text-red-500";
-
-                                            // Optional: scale the icon slightly based on diff (for extra emphasis)
                                             const maxDiff = 50;
                                             const scale = 1 + Math.min(diff, maxDiff) * 0.02;
 
