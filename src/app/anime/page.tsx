@@ -1,18 +1,18 @@
 "use client"
 
 import React, { useState, useEffect, useRef } from 'react';
-import Header from '../components/header';
-import fetchAnime from "../../../utils/fetchAnime";
-import PoppingLetters from '../components/poppingLetters';
-import AnimeForm from '../components/animeModal';
-import FadeInSection from '../components/fadeIn';
-import ImageTrack from '../components/ImageTrack';
-import DeleteAnime from '../components/deleteAnime';
-import SignInForm from '../components/signIn';
-import UpdateAnimeModal from '../components/updateAnime';
-import AnimeGenre from '../components/animeGenre';
-import ReadMore from '../components/readMore';
-import GenrePieChart from '../components/genrePieChart';
+import Header from '../components/general/header';
+import fetchAnime from "../../../utils/anime/fetchAnime";
+import PoppingLetters from '../components/general/poppingLetters';
+import AnimeForm from '../components/anime/animeModal';
+import FadeInSection from '../components/general/fadeIn';
+import ImageTrack from '../components/general/ImageTrack';
+import DeleteAnime from '../components/anime/deleteAnime';
+import SignInForm from '../components/general/signIn';
+import UpdateAnimeModal from '../components/anime/updateAnime';
+import AnimeGenre from '../components/anime/animeGenre';
+import ReadMore from '../components/general/readMore';
+import GenrePieChart from '../components/general/genrePieChart';
 
 export default function Anime() {
     const [animeList, setAnimeList] = useState<{

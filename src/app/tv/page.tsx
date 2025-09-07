@@ -1,18 +1,18 @@
 "use client"
 
 import React, { useState, useEffect, useRef } from 'react';
-import Header from '../components/header';
-import PoppingLetters from '../components/poppingLetters';
-import fetchTV from "../../../utils/fetchTV"
-import TVForm from '../components/tvModal';
-import FadeInSection from '../components/fadeIn';
-import ImageTrack from '../components/ImageTrack';
-import SignInForm from '../components/signIn';
-import DeleteTV from '../components/deleteTV';
-import UpdateTVModal from '../components/updateTV';
-import ReadMore from '../components/readMore';
-import TVGenre from '../components/tvGenre';
-import GenrePieChart from '../components/genrePieChart';
+import Header from '../components/general/header';
+import PoppingLetters from '../components/general/poppingLetters';
+import fetchTV from "../../../utils/tv/fetchTV"
+import TVForm from '../components/tv/tvModal';
+import FadeInSection from '../components/general/fadeIn';
+import ImageTrack from '../components/general/ImageTrack';
+import SignInForm from '../components/general/signIn';
+import DeleteTV from '../components/tv/deleteTV';
+import UpdateTVModal from '../components/tv/updateTV';
+import ReadMore from '../components/general/readMore';
+import TVGenre from '../components/tv/tvGenre';
+import GenrePieChart from '../components/general/genrePieChart';
 
 export default function TVRanking() {
     const [tv, setTV] = useState<{

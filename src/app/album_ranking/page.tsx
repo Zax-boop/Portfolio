@@ -1,22 +1,22 @@
 "use client"
 
 import React, { useState, useEffect, useRef } from 'react';
-import Header from '../components/header';
-import fetchAlbums from "../../../utils/fetchAlbums";
-import PoppingLetters from '../components/poppingLetters';
-import AlbumForm from '../components/albumModal';
-import FadeInSection from '../components/fadeIn';
-import ImageTrack from '../components/ImageTrack';
-import DeleteAlbum from '../components/deleteAlbum';
-import SignInForm from '../components/signIn';
-import UpdateAlbumModal from '../components/updateAlbum';
-import MusicGenre from '../components/musicGenre';
-import ReadMore from '../components/readMore';
+import Header from '../components/general/header';
+import fetchAlbums from "../../../utils/album_ranking/fetchAlbums";
+import PoppingLetters from '../components/general/poppingLetters';
+import AlbumForm from '../components/album_ranking/albumModal';
+import FadeInSection from '../components/general/fadeIn';
+import ImageTrack from '../components/general/ImageTrack';
+import DeleteAlbum from '../components/album_ranking/deleteAlbum';
+import SignInForm from '../components/general/signIn';
+import UpdateAlbumModal from '../components/album_ranking/updateAlbum';
+import MusicGenre from '../components/album_ranking/musicGenre';
+import ReadMore from '../components/general/readMore';
 import Spotify from '../../../public/spotify.png';
 import Link from 'next/link';
-import GenrePieChart from '../components/genrePieChart';
-import AlbumRecommendations from '../components/albumRecommendations';
-import getAlbumRankHistory from '../../../utils/getAlbumRankHistory';
+import GenrePieChart from '../components/general/genrePieChart';
+import AlbumRecommendations from '../components/album_ranking/albumRecommendations';
+import getAlbumRankHistory from '../../../utils/album_ranking/getAlbumRankHistory';
 import { ChevronUp, ChevronsUp, ChevronDown, ChevronsDown } from 'lucide-react';
 
 export default function Albums() {

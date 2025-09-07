@@ -1,18 +1,18 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import Header from "../components/header";
-import fetchClimbingMedia from "../../../utils/fetchClimbingMedia";
+import Header from "../components/general/header";
+import fetchClimbingMedia from "../../../utils/climbing/fetchClimbingMedia";
 import Image from "next/image";
-import PoppingLetters from "../components/poppingLetters";
+import PoppingLetters from "../components/general/poppingLetters";
 import { PlusIcon } from "lucide-react";
-import addClimbingMedia from "../../../utils/addClimbingMedia";
-import FadeInSection from "../components/fadeIn";
-import SignInForm from "../components/signIn";
+import addClimbingMedia from "../../../utils/climbing/addClimbingMedia";
+import FadeInSection from "../components/general/fadeIn";
+import SignInForm from "../components/general/signIn";
 import { User } from "@supabase/supabase-js";
-import supabase from "../../../utils/supabaseclient";
+import supabase from "../../../utils/general/supabaseclient";
 import { useMediaQuery } from "react-responsive";
-import VideoWithPlaceholder from "../components/placeholderVideo";
+import VideoWithPlaceholder from "../components/general/placeholderVideo";
 
 export default function Climbing() {
     const isMobile = useMediaQuery({ query: '(max-width: 650px)' })

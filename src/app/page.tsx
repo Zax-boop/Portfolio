@@ -1,19 +1,19 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import PoppingLetters from "./components/poppingLetters";
+import PoppingLetters from "./components/general/poppingLetters";
 import linkedin_logo from "../../public/linkedinLogo.png";
 import github_logo from "../../public/github_logo.png";
 import Image from "next/image";
-import VideoSlider from "./components/videoSlider";
-import ExperienceTimeline from "./components/experienceTimeline";
-import AboutSection from "./components/aboutSection";
-import ProjectSection from "./components/projectSection";
-import ContactSection from "./components/contactSection";
-import SignInForm from "../app/components/signIn"
-import LazyLoader from "./components/lazyLoader";
+import VideoSlider from "./components/general/videoSlider";
+import ExperienceTimeline from "./components/landing/experienceTimeline";
+import AboutSection from "./components/landing/aboutSection";
+import ProjectSection from "./components/landing/projectSection";
+import ContactSection from "./components/landing/contactSection";
+import SignInForm from "./components/general/signIn"
+import LazyLoader from "./components/general/lazyLoader";
 import { useMediaQuery } from "react-responsive";
-import HomeHeader from "./components/homeHeader";
+import HomeHeader from "./components/landing/homeHeader";
 
 const videos = ["/hatch_demo.mp4", "prismera_demo.mp4", "/addAlbum.mp4", "/colombo_demo.mp4"];
 

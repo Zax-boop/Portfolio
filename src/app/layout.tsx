@@ -3,7 +3,7 @@
 import "./globals.css";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
-import SplashScreen from "../app/components/SplashScreen"
+import SplashScreen from "./components/general/SplashScreen"
 import { Montserrat } from 'next/font/google';
 
 const montserrat = Montserrat({
