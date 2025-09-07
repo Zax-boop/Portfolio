@@ -12,6 +12,7 @@ import SignInForm from '../components/signIn';
 import UpdateAnimeModal from '../components/updateAnime';
 import AnimeGenre from '../components/animeGenre';
 import ReadMore from '../components/readMore';
+import GenrePieChart from '../components/genrePieChart';
 
 export default function Anime() {
     const [animeList, setAnimeList] = useState<{
@@ -65,7 +66,7 @@ export default function Anime() {
                 (anime) =>
                     anime.name.toLowerCase().includes(search) ||
                     anime.studio.toLowerCase().includes(search) ||
-                    anime.comments.toLowerCase().includes(search) || 
+                    anime.comments.toLowerCase().includes(search) ||
                     anime.genres?.some((genre) => genre.toLowerCase().includes(search))
             )
         );
@@ -133,6 +134,9 @@ export default function Anime() {
             <div className="flex flex-col xs:w-[95%] sm:w-4/5 xs:mt-2 sm:mt-8">
                 <AnimeForm />
                 <p className='xs:text-xs sm:text-base sm:mt-2 xl:mt-0 xs:mb-1 sm:mb-0'>*Disclaimer: This is just my opinion and what I enjoyed watching the most regardless of critical bias.</p>
+                <div className='flex flex-row w-full justify-center'>
+                    <GenrePieChart genresList={animeList?.map((anime) => anime.genres)} />
+                </div>
                 <div className="flex flex-row flex-wrap justify-start mt-2">
                     {Array.from({ length: totalPages }, (_, i) => (
                         <button
@@ -168,52 +172,53 @@ export default function Anime() {
                 }, index: number) => {
                     const recommendedAnime = getRecommendedAnime(anime);
                     return (
-                    <FadeInSection key={anime.id || `${anime.name}-${anime.studio}-${index}`}
-                        ref={animeRefs.current[index]}
-                        className="flex flex-col xl:space-y-4 xs:mt-4 xl:mt-8">
-                        <div className="flex flex-row">
-                            <h2 className="xs:text-base sm:text-lg xl:text-xl font-semibold xs:mr-1 sm:mr-2 xl:mr-4">{anime.rank}.</h2>
-                            <img
-                                src={anime.image}
-                                alt={`${anime.name} cover`}
-                                className={`xs:w-[10rem] xs:h-[10rem] sm:w-[15rem] sm:h-[15rem] xl:w-[30rem] xl:h-[30rem] xs:min-w-[10rem] xs:min-h-[10rem] sm:min-w-[15rem] sm:min-h-[15rem] xl:min-w-[30rem] xl:min-h-[30rem] object-cover mb-4 transform transition-transform hover:scale-105 duration-300 ${isLoading
-                                    ? "scale-110 blur-2xl grayscale"
-                                    : "scale-100 blur-0 grayscale-0"
-                                    }`}
-                                onLoadedData={() => setIsLoading(false)}
-                            />
-                            <div className='xs:ml-2 sm:ml-4 w-full'>
-                                <div className='flex flex-row w-full justify-between'>
-                                    <p className="xs:text-xl sm:text-4xl xl:text-6xl text-white">{anime.name}</p>
-                                    <div className='flex flex-row items-center gap-2'>
-                                        <DeleteAnime id={anime.id} rank={anime.rank} />
-                                        <UpdateAnimeModal anime={anime} />
-                                    </div>
-                                </div>
-                                <p className="xs:text-base sm:text-lg xl:text-3xl text-gray-400">{anime.studio}</p>
-                                <ReadMore text={anime.comments} className="xs:text-[0.5rem] sm:text-sm xl:text-lg xs:mt-0.5 sm:mt-1 xl:mt-2"/>
-                                <div className="flex flex-wrap gap-2 mt-2">
-                                    {anime.genres?.slice().sort().map((genre, index) => (
-                                        <div onClick={() => setSearchQuery(genre)} key={index}>
-                                            <AnimeGenre genre={genre} />
+                        <FadeInSection key={anime.id || `${anime.name}-${anime.studio}-${index}`}
+                            ref={animeRefs.current[index]}
+                            className="flex flex-col xl:space-y-4 xs:mt-4 xl:mt-8">
+                            <div className="flex flex-row">
+                                <h2 className="xs:text-base sm:text-lg xl:text-xl font-semibold xs:mr-1 sm:mr-2 xl:mr-4">{anime.rank}.</h2>
+                                <img
+                                    src={anime.image}
+                                    alt={`${anime.name} cover`}
+                                    className={`xs:w-[10rem] xs:h-[10rem] sm:w-[15rem] sm:h-[15rem] xl:w-[30rem] xl:h-[30rem] xs:min-w-[10rem] xs:min-h-[10rem] sm:min-w-[15rem] sm:min-h-[15rem] xl:min-w-[30rem] xl:min-h-[30rem] object-cover mb-4 transform transition-transform hover:scale-105 duration-300 ${isLoading
+                                        ? "scale-110 blur-2xl grayscale"
+                                        : "scale-100 blur-0 grayscale-0"
+                                        }`}
+                                    onLoadedData={() => setIsLoading(false)}
+                                />
+                                <div className='xs:ml-2 sm:ml-4 w-full'>
+                                    <div className='flex flex-row w-full justify-between'>
+                                        <p className="xs:text-xl sm:text-4xl xl:text-6xl text-white">{anime.name}</p>
+                                        <div className='flex flex-row items-center gap-2'>
+                                            <DeleteAnime id={anime.id} rank={anime.rank} />
+                                            <UpdateAnimeModal anime={anime} />
                                         </div>
-                                    ))}
-                                </div>
-                                <div className='flex flex-col gap-2 mt-2'>
-                                        <p className="xs:text-sm sm:text-lg xl:text-xl text-gray-400">If you like this anime:</p>
-                                            <div className="flex flex-row flex-wrap gap-2">
-                                                {recommendedAnime.map(recAnime => (
-                                                    <div onClick={() => setSearchQuery(recAnime.name)} key={recAnime.id} className="transform transition-transform duration-200 hover:scale-105 cursor-pointer">
-                                                        <img src={recAnime.image} alt={recAnime.name} className="xs:w-6 xs:h-6 sm:w-12 sm:h-12 2xl:w-16 2xl:h-16 object-cover xs:rounded-sm sm:rounded-lg" />
-                                                    </div>
-                                                ))}
-                                            </div>
                                     </div>
+                                    <p className="xs:text-base sm:text-lg xl:text-3xl text-gray-400">{anime.studio}</p>
+                                    <ReadMore text={anime.comments} className="xs:text-[0.5rem] sm:text-sm xl:text-lg xs:mt-0.5 sm:mt-1 xl:mt-2" />
+                                    <div className="flex flex-wrap gap-2 mt-2">
+                                        {anime.genres?.slice().sort().map((genre, index) => (
+                                            <div onClick={() => setSearchQuery(genre)} key={index}>
+                                                <AnimeGenre genre={genre} />
+                                            </div>
+                                        ))}
+                                    </div>
+                                    <div className='flex flex-col gap-2 mt-2'>
+                                        <p className="xs:text-sm sm:text-lg xl:text-xl text-gray-400">If you like this anime:</p>
+                                        <div className="flex flex-row flex-wrap gap-2">
+                                            {recommendedAnime.map(recAnime => (
+                                                <div onClick={() => setSearchQuery(recAnime.name)} key={recAnime.id} className="transform transition-transform duration-200 hover:scale-105 cursor-pointer">
+                                                    <img src={recAnime.image} alt={recAnime.name} className="xs:w-6 xs:h-6 sm:w-12 sm:h-12 2xl:w-16 2xl:h-16 object-cover xs:rounded-sm sm:rounded-lg" />
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        {index < currentMedia.length - 1 && <hr className="border-t border-gray-300 xs:my-1 sm:my-2 xl:my-4" />}
-                    </FadeInSection>
-                )})}
+                            {index < currentMedia.length - 1 && <hr className="border-t border-gray-300 xs:my-1 sm:my-2 xl:my-4" />}
+                        </FadeInSection>
+                    )
+                })}
                 <div className="flex flex-row flex-wrap justify-start mt-1">
                     {Array.from({ length: totalPages }, (_, i) => (
                         <button

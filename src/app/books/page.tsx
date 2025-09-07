@@ -16,6 +16,7 @@ import DeleteBook from "../components/deleteBook";
 import UpdateBookModal from "../components/updateBook";
 import ReadMore from "../components/readMore";
 import BookGenre from "../components/bookGenre";
+import GenrePieChart from "../components/genrePieChart";
 
 export default function Books() {
     const [books, setBooks] = useState<{
@@ -69,7 +70,7 @@ export default function Books() {
                 (book) =>
                     book.name.toLowerCase().includes(search) ||
                     book.author.toLowerCase().includes(search) ||
-                    book.comments.toLowerCase().includes(search) || 
+                    book.comments.toLowerCase().includes(search) ||
                     book.genres?.some((genre) => genre.toLowerCase().includes(search))
             )
         );
@@ -155,6 +156,9 @@ export default function Books() {
                     rank the books I read just because each book feels too unique to
                     compare to one another.
                 </p>
+                <div className='flex flex-row w-full justify-center'>
+                    <GenrePieChart genresList={books?.map((book) => book.genres)} />
+                </div>
                 <div className="flex flex-row flex-wrap justify-start mt-2">
                     {Array.from({ length: totalPages }, (_, i) => (
                         <button
