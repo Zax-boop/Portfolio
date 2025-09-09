@@ -10,6 +10,7 @@ import hades from "../../../../public/hades_ex.webp"
 import sopranos from "../../../../public/sopranos_ex.jpg"
 import cb from "../../../../public/cb.jpg"
 import camus from "../../../../public/camus.webp"
+import pulp from "../../../../public/pulp.jpg"
 import { useRef, useState, useEffect } from 'react'
 
 export default function AboutSection() {
@@ -79,6 +80,12 @@ export default function AboutSection() {
           <Link href='/books' className='self-start flex flex-col items-center xs:gap-0.5 sm:gap-1'>
             <Image src={camus} alt='climbing_ex' className='xs:w-[5rem] xs:h-[5rem] sm:h-[15rem] sm:w-[15rem] xl:w-[17rem] xl:h-[17rem] 2xl:w-[20.5rem] 2xl:h-[20.5rem] self-start object-cover xs:rounded-lg sm:rounded-[40px] xl:transform xl:transition-transform xl:duration-200 xl:hover:scale-105' />
             <p className='xs:text-sm sm:text-3xl cursor-pointer'>Books</p>
+          </Link>
+        </FadeInSection>
+        <FadeInSection className='self-start'>
+          <Link href='/movies' className='self-start flex flex-col items-center xs:gap-0.5 sm:gap-1'>
+            <Image src={pulp} alt='Pulp Fiction' className='xs:w-[5rem] xs:h-[5rem] sm:h-[15rem] sm:w-[15rem] xl:w-[17rem] xl:h-[17rem] 2xl:w-[20.5rem] 2xl:h-[20.5rem] self-start object-cover xs:rounded-lg sm:rounded-[40px] xl:transform xl:transition-transform xl:duration-200 xl:hover:scale-105' />
+            <p className='xs:text-sm sm:text-3xl cursor-pointer'>Movies</p>
           </Link>
         </FadeInSection>
         <FadeInSection className='self-start'>

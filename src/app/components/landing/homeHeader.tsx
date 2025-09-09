@@ -74,6 +74,14 @@ export default function HomeHeader() {
                             </li>
                             <li>
                                 <Link
+                                    href="/movies"
+                                    className="block xs:px-2 sm:px-4 xs:py-1 sm:py-2 text-black hover:bg-gray-100"
+                                >
+                                    Movies
+                                </Link>
+                            </li>
+                            <li>
+                                <Link
                                     href="/climbing"
                                     className="block xs:px-2 sm:px-4 xs:py-1 sm:py-2 text-black hover:bg-gray-100"
                                 >

@@ -92,6 +92,7 @@ module.exports = {
     "bg-amber-400",
     "bg-orange-300",
     "bg-yellow-300",
+    "bg-amber-600",
   ],
 
   theme: {
