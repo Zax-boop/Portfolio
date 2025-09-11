@@ -76,6 +76,12 @@ export default function AboutSection() {
             <p className='xs:text-sm sm:text-3xl cursor-pointer'>Anime</p>
           </Link>
         </FadeInSection>
+          <FadeInSection className='self-start'>
+          <Link href='/art' className='self-start flex flex-col items-center xs:gap-0.5 sm:gap-1'>
+            <img src={"./shroom.gif"} alt='gif' className='xs:w-[5rem] xs:h-[5rem] sm:h-[15rem] sm:w-[15rem] xl:w-[17rem] xl:h-[17rem] 2xl:w-[20.5rem] 2xl:h-[20.5rem] self-start object-cover xs:rounded-lg sm:rounded-[40px] xl:transform xl:transition-transform xl:duration-200 xl:hover:scale-105 border border-purple-200' />
+            <p className='xs:text-sm sm:text-3xl cursor-pointer'>Art</p>
+          </Link>
+        </FadeInSection>
         <FadeInSection className='self-start'>
           <Link href='/books' className='self-start flex flex-col items-center xs:gap-0.5 sm:gap-1'>
             <Image src={camus} alt='climbing_ex' className='xs:w-[5rem] xs:h-[5rem] sm:h-[15rem] sm:w-[15rem] xl:w-[17rem] xl:h-[17rem] 2xl:w-[20.5rem] 2xl:h-[20.5rem] self-start object-cover xs:rounded-lg sm:rounded-[40px] xl:transform xl:transition-transform xl:duration-200 xl:hover:scale-105' />

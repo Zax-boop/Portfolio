@@ -66,6 +66,15 @@ export default function HomeHeader() {
                             </li>
                             <li>
                                 <Link
+                                    href="/art"
+                                    className="xs:px-2 sm:px-4 xs:py-1 sm:py-2 text-black hover:bg-gray-100 flex flex-row gap-1 items-center"
+                                >
+                                    Art
+                                    <img src={"./shroom.gif"} className="w-4" alt="gif"/>
+                                </Link>
+                            </li>
+                            <li>
+                                <Link
                                     href="/books"
                                     className="block xs:px-2 sm:px-4 xs:py-1 sm:py-2 text-black hover:bg-gray-100"
                                 >
