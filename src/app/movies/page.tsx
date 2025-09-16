@@ -14,6 +14,7 @@ import MovieGenre from "../components/movies/movieGenre";
 import GenrePieChart from "../components/general/genrePieChart";
 import Loading from "../components/general/loading";
 import fetchMovie from "../../../utils/movies/fetchMovie";
+import { movieGenreColors } from "../../../data/genreColors";
 
 export default function Movies() {
     const [movies, setMovies] = useState<{
@@ -120,7 +121,7 @@ export default function Movies() {
                     compare to one another. However, the first page is my top 10. These are also not all the movies I have watched, just the ones I remember and have an opinion on.
                 </p>
                 <div className='flex flex-row w-full justify-center'>
-                    <GenrePieChart genresList={movies?.map((movie) => movie.genres)} />
+                    <GenrePieChart genresList={movies?.map((movie) => movie.genres)} setSearchQuery={setSearchQuery} genreColors={movieGenreColors}/>
                 </div>
                 <div className="flex flex-row flex-wrap justify-start mt-2">
                     {Array.from({ length: totalPages }, (_, i) => (

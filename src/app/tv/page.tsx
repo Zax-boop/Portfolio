@@ -14,6 +14,7 @@ import ReadMore from '../components/general/readMore';
 import TVGenre from '../components/tv/tvGenre';
 import GenrePieChart from '../components/general/genrePieChart';
 import Loading from '../components/general/loading';
+import { showGenreColors } from '../../../data/genreColors';
 
 export default function TVRanking() {
     const [tv, setTV] = useState<{
@@ -116,7 +117,7 @@ export default function TVRanking() {
                 <TVForm />
                 <p className='xs:text-xs sm:text-base sm:mt-2 xl:mt-0 xs:mb-1 sm:mb-0'>*Disclaimer: This is just my opinion and what I enjoyed watching the most regardless of critical bias. </p>
                 <div className='flex flex-row w-full justify-center'>
-                    <GenrePieChart genresList={tv?.map((show) => show.genres)} />
+                    <GenrePieChart genresList={tv?.map((show) => show.genres)} setSearchQuery={setSearchQuery} genreColors={showGenreColors}/>
                 </div>
                 <div className="flex flex-row flex-wrap justify-start mt-2">
                     {Array.from({ length: totalPages }, (_, i) => (

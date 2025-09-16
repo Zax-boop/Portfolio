@@ -14,6 +14,7 @@ import AnimeGenre from '../components/anime/animeGenre';
 import ReadMore from '../components/general/readMore';
 import GenrePieChart from '../components/general/genrePieChart';
 import Loading from '../components/general/loading';
+import { animeGenreColors } from '../../../data/genreColors';
 
 export default function Anime() {
     const [animeList, setAnimeList] = useState<{
@@ -136,7 +137,7 @@ export default function Anime() {
                 <AnimeForm />
                 <p className='xs:text-xs sm:text-base sm:mt-2 xl:mt-0 xs:mb-1 sm:mb-0'>*Disclaimer: This is just my opinion and what I enjoyed watching the most regardless of critical bias.</p>
                 <div className='flex flex-row w-full justify-center'>
-                    <GenrePieChart genresList={animeList?.map((anime) => anime.genres)} />
+                    <GenrePieChart genresList={animeList?.map((anime) => anime.genres)} setSearchQuery={setSearchQuery} genreColors={animeGenreColors}/>
                 </div>
                 <div className="flex flex-row flex-wrap justify-start mt-2">
                     {Array.from({ length: totalPages }, (_, i) => (

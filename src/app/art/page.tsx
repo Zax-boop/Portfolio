@@ -9,6 +9,8 @@ import { PlusIcon } from "lucide-react"
 import { useMediaQuery } from "react-responsive";
 import Loading from "../components/general/loading"
 import { User } from "@supabase/supabase-js"
+import PoppingLetters from "../components/general/poppingLetters"
+import ImageTrack from "../components/general/ImageTrack"
 
 export default function Page() {
   type Art = {
@@ -24,6 +26,8 @@ export default function Page() {
   const [showAddArtModal, setShowAddArtModal] = useState(false)
   const [loading, setLoading] = useState(true)
   const [user, setUser] = useState<User | null>(null);
+  const [activeImage, setActiveImage] = useState<string | undefined>(undefined);
+
   useEffect(() => {
     const getSession = async () => {
       const { data } = await supabase.auth.getSession();
@@ -54,13 +58,59 @@ export default function Page() {
   if (loading) {
     return <Loading />;
   }
+
+  const media = [
+    { image: "/eren_hand.jpeg", alt: "eren" },
+    { image: "/banana_fish.jpeg", alt: "Omen" },
+    { image: "/mermaid.jpeg", alt: "Slow Dancing" },
+    { image: "/jett.jpeg", alt: "jett" },
+    { image: "/dash_face.jpeg", alt: "dash" },
+    { image: "/viper.jpeg", alt: "viper" },
+    { image: "/dude.jpeg", alt: "Dude" },
+    { image: "/pocky.jpeg", alt: "pocky" },
+    { image: "/dante.jpeg", alt: "dante" },
+    { image: "/collage.jpeg", alt: "collage" },
+  ]
+
   return (
     <div className="flex flex-col w-full min-h-screen items-center">
       <Header />
       <SignInForm />
+      <div className="relative flex items-center justify-center w-full xs:h-[15rem] sm:h-[30rem] xl:h-[80vh] xs:mt-4 sm:mt-10 overflow-hidden">
+        <div className="absolute inset-0 flex w-full h-full overflow-hidden">
+          <div className="w-1/3 h-full">
+            <div className="w-full flex flex-row h-1/2">
+              <img src="/alucard.jpeg" alt="alucard" className="w-1/2 h-full object-cover" />
+              <img src="/hk.gif" alt="hk" className="w-1/2 h-full object-cover" />
+            </div>
+            <div className="w-full h-1/2">
+              <img src="/omen.jpeg" alt="omen" className="w-full h-full object-cover" />
+            </div>
+          </div>
+          <div className="w-1/3 h-full">
+            <img src="/collage.jpeg" alt="Collage" className="w-full h-full object-cover" />
+          </div>
+          <div className="w-1/3 h-full">
+            <div className="w-full h-1/2">
+              <img src="/slow_dancing.jpeg" alt="Slow Dancing" className="w-full h-full object-cover" />
+            </div>
+            <div className="w-full flex flex-row h-1/2">
+              <img src="/dash_face.jpeg" alt="Dash Face" className="w-1/2 h-full object-cover" />
+              <img src="/fuu.jpeg" alt="Fuu" className="w-1/2 h-full object-cover" />
+            </div>
+          </div>
+        </div>
+        <div className="absolute inset-0 bg-black opacity-50 z-10"></div>
+        <PoppingLetters
+          text="Art Gallery"
+          className="absolute text-white xs:text-2xl sm:text-6xl font-bold z-20 text-center"
+        />
+      </div>
+      <div className='mt-4'>
+        <ImageTrack data={media} onImageClick={() => { }} />
+      </div>
       <div className="xs:mt-6 md:mt-12 flex flex-col items-center text-center xs:w-11/12 md:w-4/5">
-        <h1 className="xs:text-2xl md:text-4xl font-bold xs:mb-2 md:mb-4">Art Gallery</h1>
-        <p className="text-gray-400 xs:mb-2 md:mb-6 md:w-[32rem] xs:text-sm md:text-base">
+        <p className="text-gray-400 xs:mb-2 md:mb-6 md:w-[40rem] xs:text-sm md:text-xl">
           Welcome to my art gallery! I love looking at art and creating my own amateur drawings and pixel art. Here&apos;s a collection of some of my best (and some suspicious) pieces that I&apos;ve created over the years.
         </p>
         {(!isMobile && user) && (
@@ -118,22 +168,21 @@ export default function Page() {
                     return `${monthNames[monthIndex]} ${year}`
                   })()}
                 </h2>
-                <div className="xs:p-2 xs:gap-2 xs:space-y-2 sm:p-4 xs:columns-3 sm:columns-4 sm:gap-4 sm:space-y-4">
+                <div className="xs:p-2 xs:gap-2 xs:space-y-3 sm:p-4 xs:columns-3 sm:columns-4 sm:gap-4 sm:space-y-4">
                   {pieces.map((piece) => (
-                    <div key={piece.id} className="break-inside-avoid flex flex-col items-center mb-4 hover:scale-[1.02] transition-transform duration-300">
+                    <div
+                      key={piece.id}
+                      className="break-inside-avoid flex flex-col items-center mb-4 hover:scale-[1.02] transition-transform duration-300 cursor-pointer"
+                      onClick={() => setActiveImage(piece.image)}
+                    >
                       <img
                         src={piece.image}
                         alt={piece.description || "Art"}
                         className={`w-full h-auto object-cover rounded-xl shadow-md ${piece.gif ? "border border-purple-200" : ""}`}
                       />
                       {piece.date_drawn && (
-                        <p className="text-gray-400 text-sm mt-1">
-                          {piece.date_drawn.slice(0, 10)}
-                        </p>
+                        <p className="text-gray-400 text-sm mt-1">{piece.date_drawn.slice(0, 10)}</p>
                       )}
-                      {/* {piece.description && (
-                        <p className="text-white mt-1 text-center">{piece.description}</p>
-                      )} */}
                     </div>
                   ))}
                 </div>
@@ -143,8 +192,22 @@ export default function Page() {
         ) : (
           <p>Loading art...</p>
         )}
-
       </div>
+      {activeImage && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90 p-4">
+          <button
+            onClick={() => setActiveImage(undefined)}
+            className="absolute top-4 right-4 text-white text-3xl md:text-4xl z-50"
+          >
+            ✕
+          </button>
+          <img
+            src={activeImage}
+            alt="Full screen art"
+            className="max-h-full max-w-full object-contain rounded-lg shadow-lg"
+          />
+        </div>
+      )}
     </div>
   )
 }

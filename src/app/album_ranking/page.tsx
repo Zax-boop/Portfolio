@@ -19,6 +19,7 @@ import AlbumRecommendations from '../components/album_ranking/albumRecommendatio
 import getAlbumRankHistory from '../../../utils/album_ranking/getAlbumRankHistory';
 import { ChevronUp, ChevronsUp, ChevronDown, ChevronsDown } from 'lucide-react';
 import Loading from '../components/general/loading';
+import { albumGenreColors } from '../../../data/genreColors';
 
 export default function Albums() {
     const [albums, setAlbums] = useState<{
@@ -194,7 +195,7 @@ export default function Albums() {
                     </div>
                     <p className='xs:text-xs sm:text-base sm:mt-2 xl:mt-0 xs:mb-1 sm:mb-0'>*Disclaimer: This is just my opinion and what I enjoyed listening to the most regardless of critical bias.</p>
                     <div className='flex flex-row w-full justify-center'>
-                        <GenrePieChart genresList={albums?.map((album) => album.genres)} />
+                        <GenrePieChart genresList={albums?.map((album) => album.genres)} setSearchQuery={setSearchQuery} genreColors={albumGenreColors}/>
                     </div>
                     <div className="flex flex-row flex-wrap justify-start mt-2">
                         {Array.from({ length: totalPages }, (_, i) => (

@@ -14,15 +14,29 @@ export default function GenrePieChart({
     genresList,
     excludedGenres,
     genreMap,
+    setSearchQuery,
+    genreColors = {},
 }: {
     genresList?: string[][];
     excludedGenres?: string[];
     genreMap?: Record<string, string>;
+    setSearchQuery?: React.Dispatch<React.SetStateAction<string>>;
+    genreColors?: Record<string, string>;
 }) {
     const genreCounts: Record<string, number> = {};
+
     if (!genresList || !Array.isArray(genresList)) {
         return <div className="text-center">No genres data available</div>;
     }
+
+    const returnColor = (genre: string) => {
+        const formattedGenre = genre.toLowerCase()
+            .replace(/\s+/g, '')
+            .replace(/&/g, 'and')
+            .replace(/-/g, '');
+        return genreColors[formattedGenre] || "#D1D5DB";
+    };
+
 
     genresList.forEach((genres) => {
         genres.forEach((genre) => {
@@ -32,18 +46,7 @@ export default function GenrePieChart({
         });
     });
 
-    const colors = Object.keys(genreCounts).map(
-        (_, i) =>
-            [
-                "#6366F1",
-                "#EC4899",
-                "#10B981",
-                "#F59E0B",
-                "#3B82F6",
-                "#EF4444",
-                "#8B5CF6",
-            ][i % 7]
-    );
+    const colors = Object.keys(genreCounts).map((genre) => returnColor(genre));
 
     const data = {
         labels: Object.keys(genreCounts),
@@ -54,7 +57,6 @@ export default function GenrePieChart({
             },
         ],
     };
-
 
     const options: ChartOptions<"pie"> = {
         plugins: {
@@ -70,10 +72,12 @@ export default function GenrePieChart({
                 if (el) {
                     el.scrollIntoView({ behavior: "smooth", block: "start" });
                 }
+                if (setSearchQuery) {
+                    setSearchQuery(label);
+                }
             }
         },
     };
-
 
     return (
         <div className="flex justify-center items-center w-full md:h-[35rem] xs:h-[16rem] gap-4 xs:text-[0.4rem] md:text-base">
@@ -83,7 +87,7 @@ export default function GenrePieChart({
                         .map((label, i) => ({
                             label,
                             count: data.datasets[0].data[i],
-                            color: data.datasets[0].backgroundColor[i],
+                            color: returnColor(label), 
                         }))
                         .sort((a, b) => b.count - a.count)
                         .map((item) => (
@@ -95,6 +99,9 @@ export default function GenrePieChart({
                                     if (el) {
                                         el.scrollIntoView({ behavior: "smooth", block: "start" });
                                     }
+                                    if (setSearchQuery) {
+                                        setSearchQuery(item.label);
+                                    }
                                 }}
                             >
                                 <span
@@ -103,7 +110,6 @@ export default function GenrePieChart({
                                 />
                                 {item.label} ({item.count})
                             </li>
-
                         ))}
                 </ul>
             </div>

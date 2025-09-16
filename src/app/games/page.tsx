@@ -15,6 +15,7 @@ import GameGenre from '../components/games/gameGenre';
 import GameRecommendations from '../components/games/gameRecommendations';
 import GenrePieChart from '../components/general/genrePieChart';
 import Loading from '../components/general/loading';
+import { gameGenreColors } from '../../../data/genreColors';
 
 export default function GamesRanking() {
     const [games, setGames] = useState<{
@@ -271,7 +272,7 @@ export default function GamesRanking() {
                     <GameForm />
                     <p className='xs:text-xs sm:text-base sm:mt-2 xl:mt-0 xs:mb-1 sm:mb-0'>*Disclaimer: This is just my opinion and what I enjoyed playing the most regardless of critical bias. </p>
                     <div className='flex flex-row w-full justify-center'>
-                        <GenrePieChart genresList={games?.map((game) => game.genres)} />
+                        <GenrePieChart genresList={games?.map((game) => game.genres)} setSearchQuery={setSearchQuery} genreColors={gameGenreColors}/>
                     </div>
                     <div className="flex flex-row flex-wrap justify-start mt-2">
                         {Array.from({ length: totalPages }, (_, i) => (

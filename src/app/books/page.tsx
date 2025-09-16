@@ -18,6 +18,7 @@ import ReadMore from "../components/general/readMore";
 import BookGenre from "../components/books/bookGenre";
 import GenrePieChart from "../components/general/genrePieChart";
 import Loading from "../components/general/loading";
+import { bookGenreColors } from "../../../data/genreColors";
 
 export default function Books() {
     const [books, setBooks] = useState<{
@@ -158,7 +159,7 @@ export default function Books() {
                     compare to one another.
                 </p>
                 <div className='flex flex-row w-full justify-center'>
-                    <GenrePieChart genresList={books?.map((book) => book.genres)} />
+                    <GenrePieChart genresList={books?.map((book) => book.genres)} setSearchQuery={setSearchQuery} genreColors={bookGenreColors}/>
                 </div>
                 <div className="flex flex-row flex-wrap justify-start mt-2">
                     {Array.from({ length: totalPages }, (_, i) => (

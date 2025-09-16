@@ -208,7 +208,7 @@ export const roguelikes = [
                 this game you must play the sequel Hades 2 after.
             </>
         ),
-        recs: ["Hades II", "Astral Ascent", "Wizard of Legend", "BlazBlue Entropy Effect", "Kill Knight", "Sworn", "Ravenswatch", "Oblivion Override", "Dead Cells"],
+        recs: ["Hades II", "Astral Ascent", "Wizard of Legend", "BlazBlue Entropy Effect", "Kill Knight", "Sworn", "Ravenswatch", "Oblivion Override", "Dead Cells", "Spiritfall"],
     },
     {
         name: "Risk of Rain 2",
@@ -267,7 +267,7 @@ export const turns = [
         alt: "Paper Mario: The Thousand-Year Door",
         description:
             "A charming RPG that combines traditional turn-based combat with unique paper-themed mechanics. Its witty writing and memorable characters make it a beloved classic in the genre. One of the first games I ever played and still one of my favorites.",
-        recs: ["Clair Obscur: Expedition 33"],
+        recs: ["Clair Obscur: Expedition 33", "Darkest Dungeon"],
     },
     {
         name: "Slay the Spire",
@@ -276,7 +276,7 @@ export const turns = [
         alt: "Slay the Spire",
         description:
             "A modern roguelike deck-building game that combines strategic card play with dungeon crawling. Its challenging gameplay and unique mechanics make it a favorite among the roguelike and strategy communities. I am horrible at it though but still love it.",
-        recs: ["Balatro"],
+        recs: ["Balatro", "Darkest Dungeon"],
     },
     {
         name: "Worldless",
