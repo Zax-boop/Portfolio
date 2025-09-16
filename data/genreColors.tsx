@@ -222,6 +222,7 @@ export const gameGenreColors: { [key: string]: string } = {
   jrpg: "#BE185D",                 // bg-pink-700
   metroidvania: "#6B21A8",         // bg-purple-700
   mmorpg: "#1E3A8A",               // bg-blue-900
+  multiplayer: "#14B8A6",          // bg-teal-500
   music: "#EAB308",                // bg-yellow-500
   openworld: "#15803D",            // bg-green-700
   party: "#14B8A6",                // bg-teal-500
@@ -236,6 +237,7 @@ export const gameGenreColors: { [key: string]: string } = {
   rpg: "#A855F7",                  // bg-purple-500
   sandbox: "#CA8A04",              // bg-yellow-600
   scifi: "#2563EB",                // bg-blue-600
+  shooter: "#1F2937",              // bg-gray-800
   simulation: "#4ADE80",           // bg-green-400
   soulsborne: "#6B7280",           // bg-gray-500
   soulslike: "#374151",            // bg-gray-700

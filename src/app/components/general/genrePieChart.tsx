@@ -30,6 +30,8 @@ export default function GenrePieChart({
     }
 
     const returnColor = (genre: string) => {
+        if (genre == "Action-Adventure") genre = "action";
+        if (genre == "Soulsborne/Soulslikes") genre = "soulsborne";
         const formattedGenre = genre.toLowerCase()
             .replace(/\s+/g, '')
             .replace(/&/g, 'and')

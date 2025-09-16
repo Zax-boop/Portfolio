@@ -3,6 +3,7 @@ import GenrePieChart from '../general/genrePieChart';
 import Image from 'next/image';
 import GameGenre from './gameGenre'
 import { actionAdventure, soulsLikes, metroidvanias, roguelikes, rpgs, turns, shooters, horrors, platformers, multiplayer } from '../../../../data/gameData';
+import { gameGenreColors } from '../../../../data/genreColors';
 
 type Game = {
     name: string;
@@ -33,7 +34,7 @@ export default function GameRecommendations({ games, recSelect }: { games?: Game
                         "Party": "Multiplayer",
                         "JRPG": "RPG",
                         "Strategy": "Turn-Based"
-                    }} />
+                    }} genreColors={gameGenreColors}/>
                 </div>
                 <h2 id="Action-Adventure" className='xs:text-lg md:text-2xl font-bold'>Action-Adventure:</h2>
                 <p className='xs:text-md md:text-lg'>A blend of action and adventure elements, often featuring exploration and puzzle-solving. Definitely the most common genre. If you&apos;re looking for a game that offers both excitement and narrative depth, this is the genre for you.</p>

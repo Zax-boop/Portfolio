@@ -2,6 +2,7 @@ import React from 'react'
 import GenrePieChart from '../general/genrePieChart';
 import { songs } from '../../../../data/songData';
 import Image from 'next/image';
+import { albumGenreColors } from '../../../../data/genreColors';
 
 type Album = {
     name: string;
@@ -19,7 +20,7 @@ export default function AlbumRecommendations({ albums, recSelect }: { albums?: A
                 <h1 className='xs:text-xl md:text-3xl font-bold xs:mt-2 sm:mt-0'>Trying to expand your music taste?</h1>
                 <p className='xs:text-md md:text-lg'>Here&apos;s some genres I&apos;ve listened to across my album ranking:</p>
                 <div className='flex flex-row w-full justify-center'>
-                    <GenrePieChart genresList={albums?.map((albums) => albums.genres)} />
+                    <GenrePieChart genresList={albums?.map((albums) => albums.genres)} genreColors={albumGenreColors}/>
                 </div>
                 <p className='xs:text-md md:text-2xl font-bold xs:mt-2 sm:mt-2'>Here&apos;s some songs from different genres. From these, depending on what you like I can recommend albums based on them:</p>
                 <p className='xs:text-xs md:text-sm xs:mt-2'>*As a disclaimer, if you&apos;re the kind of person who only listens to rap/hip-hop or hype 2000s hits then this probably won&apos;t help you...</p>

@@ -168,11 +168,21 @@ export default function Page() {
                     return `${monthNames[monthIndex]} ${year}`
                   })()}
                 </h2>
-                <div className="xs:p-2 xs:gap-2 xs:space-y-3 sm:p-4 xs:columns-3 sm:columns-4 sm:gap-4 sm:space-y-4">
+                <div
+                  className={
+                    pieces.length <= 2
+                      ? "xs:flex xs:flex-row xs:gap-2 xs:justify-start sm:grid sm:grid-cols-4 sm:gap-4"
+                      : "xs:columns-2 sm:columns-4 xs:gap-2 sm:gap-4"
+                  }
+                >
                   {pieces.map((piece) => (
                     <div
                       key={piece.id}
-                      className="break-inside-avoid flex flex-col items-center mb-4 hover:scale-[1.02] transition-transform duration-300 cursor-pointer"
+                      className={
+                        pieces.length <= 2
+                          ? "xs:w-1/2 sm:w-auto flex flex-col items-center mb-4 hover:scale-[1.02] transition-transform duration-300 cursor-pointer"
+                          : "break-inside-avoid flex flex-col items-center mb-4 hover:scale-[1.02] transition-transform duration-300 cursor-pointer"
+                      }
                       onClick={() => setActiveImage(piece.image)}
                     >
                       <img
