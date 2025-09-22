@@ -41,7 +41,7 @@ export default function GenrePieChart({
 
 
     genresList.forEach((genres) => {
-        genres.forEach((genre) => {
+        genres?.forEach((genre) => {
             if (excludedGenres && excludedGenres.includes(genre)) return;
             const mappedGenre = genreMap?.[genre] || genre;
             genreCounts[mappedGenre] = (genreCounts[mappedGenre] || 0) + 1;

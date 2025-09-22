@@ -35,6 +35,5 @@ export default async function fetchMovies(): Promise<MovieType[]> {
     .filter(movie => !top10Ids.includes(movie.id))
     .sort((a, b) => b.comments.length - a.comments.length);
 
-  // return [...first10, ...remaining];
   return [...first10];
 }

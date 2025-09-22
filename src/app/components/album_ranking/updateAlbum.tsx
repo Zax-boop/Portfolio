@@ -193,13 +193,6 @@ export default function UpdateAlbumModal({ album }: {
                                 </label>
                             </div>
                             <div className='flex flex-col w-1/2 ml-2 xs:gap-2 xl:gap-4'>
-                                {/* <input
-                                    type="text"
-                                    className="w-full bg-transparent sm:text-sm xl:text-xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
-                                    placeholder="Album Name"
-                                    value={name}
-                                    onChange={(e) => setName(e.target.value)}
-                                /> */}
                                 <div className="relative group">
                                         <input
                                             type="text"

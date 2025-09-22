@@ -39,12 +39,6 @@ export default function Movies() {
     const movieRefs = useRef<React.RefObject<HTMLDivElement>[]>([]);
 
     const searchSectionRef = useRef<HTMLDivElement>(null);
-    // const switchPage = (pageIndex: number) => {
-    //     if (searchSectionRef.current != null) {
-    //         searchSectionRef.current.scrollIntoView({ behavior: "smooth" });
-    //     }
-    //     setCurrentPage(pageIndex + 1);
-    // };
 
     useEffect(() => {
         const getMovies = async () => {
@@ -87,8 +81,6 @@ export default function Movies() {
     if (loading) {
         return <Loading />;
     }
-
-    // const totalPages = Math.ceil(filteredMedia.length / mediaPerPage);
 
     return (
         <div className="flex flex-col w-full h-full items-center">

@@ -22,7 +22,7 @@ export default function ProjectSection() {
                     setIsVisible(true);
                 }
             },
-            { threshold: 0.1 } // Trigger when 10% of the line is visible
+            { threshold: 0.1 } 
         );
 
         if (lineRef.current) {

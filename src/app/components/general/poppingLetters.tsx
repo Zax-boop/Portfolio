@@ -19,7 +19,7 @@ const PoppingLetters = ({
   useEffect(() => {
     if (initialDelay > 0) {
       const delayTimeout = setTimeout(() => {
-        setInitialDelayDone(true); // Set initial delay as done
+        setInitialDelayDone(true);
       }, initialDelay);
 
       return () => clearTimeout(delayTimeout);
@@ -31,7 +31,7 @@ const PoppingLetters = ({
       const timeoutId = setTimeout(() => {
         setDisplayedText((prevText) => prevText + text.charAt(currentIndex));
         setCurrentIndex((prevIndex) => prevIndex + 1);
-      }, speed); // Adjust the delay between each letter as needed
+      }, speed);
 
       return () => clearTimeout(timeoutId);
     }

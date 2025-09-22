@@ -77,6 +77,41 @@ export default function ExperienceTimeline() {
                 </VerticalTimelineElement>
                 <VerticalTimelineElement
                     className="vertical-timeline-element--work"
+                    contentStyle={{ background: 'rgb(102, 205, 102)', color: '#fff', padding: '12px' }}
+                    contentArrowStyle={{ borderRight: '7px solid  rgb(102, 205, 102)' }}
+                    date="December 2024 - February 2025"
+                    iconStyle={{ background: 'rgb(102, 205, 102)', color: '#fff' }}
+                    icon={<BriefcaseIcon />}
+                >
+                    <div className='flex flex-col'>
+                        <a target='_blank' href='https://art-portfolio-eta-swart.vercel.app/' className="rounded-lg overflow-hidden cursor-pointer">
+                            <VideoWithPlaceholder className='w-full cursor-pointer' src='/imagination_ex.mp4' />
+                        </a>
+                        <h1 className='vertical-timeline-element-title md:text-3xl xs:text-lg !mt-2 !font-bold'>Imagination Art</h1>
+                        <p className='!xs:text-xs !xl:text-xl !mt-0 !font-semibold'>Full Stack Developer Consultant</p>
+                        <p className='!mt-0'>Freelance work I did for an art tutoring company where I created their website. Used Next.js, Typescript, and Tailwind CSS for the frontend. Wrote REST APIs in python. Utilized Java to create and consume RESTful services for seamless communication across the stack. Used Supabase for authentication, data storage, and RLS policies.</p>
+                        <div className="relative group self-start cursor-pointer my-2">
+                            <a target='_blank' href="https://art-portfolio-eta-swart.vercel.app/" className='flex flex-row items-center gap-2'>
+                                <strong className='!font-bold'>Visit Website</strong>
+                                <SquareArrowUpRight />
+                            </a>
+                            <span className="absolute xs:-bottom-[0.075rem] sm:-bottom-[0.3rem] left-0 w-0 xs:h-[0.1rem] sm:h-1 bg-white transition-all group-hover:w-full"></span>
+                        </div>
+                        <div className='flex flex-row flex-wrap !mt-2 gap-2'>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Next.js</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Typescript</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Tailwind CSS</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Supabase</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>RLS</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Java</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Python</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>REST APIs</p>
+
+                        </div>
+                    </div>
+                </VerticalTimelineElement>
+                <VerticalTimelineElement
+                    className="vertical-timeline-element--work"
                     contentStyle={{ background: 'rgb(254, 76, 0)', color: '#fff', padding: '12px' }}
                     contentArrowStyle={{ borderRight: '7px solid  rgb(254, 76, 0)' }}
                     date="December 2024 - February 2025"
@@ -84,7 +119,7 @@ export default function ExperienceTimeline() {
                     icon={<BriefcaseIcon />}
                 >
                     <div className='flex flex-col'>
-                        <a target='_blank' href='https://colomboai.com/' className="rounded-lg overflow-hidden cursor-pointer">
+                        <a target='_blank' href='https://prismera.ai/' className="rounded-lg overflow-hidden cursor-pointer">
                             <VideoWithPlaceholder className='w-full cursor-pointer' src='/prismera_demo.mp4' />
                         </a>
                         <h1 className='vertical-timeline-element-title md:text-3xl xs:text-lg !mt-2 !font-bold'>Prismera</h1>

@@ -19,7 +19,6 @@ export default async function updateAlbum(id, updatedFields) {
   }
 
   if (Rank !== undefined) {
-    // Fetch current album
     const { data: currentAlbum, error: fetchError } = await supabase
       .from('album_rankings')
       .select('*')

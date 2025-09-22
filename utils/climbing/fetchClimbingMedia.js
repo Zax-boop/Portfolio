@@ -4,8 +4,8 @@ const fetchClimbingMedia = async () => {
     try {
         const { data, error } = await supabase
             .storage
-            .from('climbing')  // Specify the bucket name
-            .list('', { recursive: true });  // List all files
+            .from('climbing')
+            .list('', { recursive: true });
 
         if (error) {
             throw error;
