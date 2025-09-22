@@ -12,7 +12,7 @@ import supabase from "../general/supabaseclient";
 export default async function fetchMovies(): Promise<MovieType[]> {
   const top10Ids = [
     5, 6, 7, 8, 9,
-    10, 11, 12, 13, 22
+    10, 25, 12, 13, 22
   ];
   const { data, error } = await supabase
     .from('movies_list')
@@ -35,5 +35,6 @@ export default async function fetchMovies(): Promise<MovieType[]> {
     .filter(movie => !top10Ids.includes(movie.id))
     .sort((a, b) => b.comments.length - a.comments.length);
 
-  return [...first10, ...remaining];
+  // return [...first10, ...remaining];
+  return [...first10];
 }

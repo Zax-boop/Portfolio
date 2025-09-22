@@ -39,12 +39,12 @@ export default function Movies() {
     const movieRefs = useRef<React.RefObject<HTMLDivElement>[]>([]);
 
     const searchSectionRef = useRef<HTMLDivElement>(null);
-    const switchPage = (pageIndex: number) => {
-        if (searchSectionRef.current != null) {
-            searchSectionRef.current.scrollIntoView({ behavior: "smooth" });
-        }
-        setCurrentPage(pageIndex + 1);
-    };
+    // const switchPage = (pageIndex: number) => {
+    //     if (searchSectionRef.current != null) {
+    //         searchSectionRef.current.scrollIntoView({ behavior: "smooth" });
+    //     }
+    //     setCurrentPage(pageIndex + 1);
+    // };
 
     useEffect(() => {
         const getMovies = async () => {
@@ -88,7 +88,7 @@ export default function Movies() {
         return <Loading />;
     }
 
-    const totalPages = Math.ceil(filteredMedia.length / mediaPerPage);
+    // const totalPages = Math.ceil(filteredMedia.length / mediaPerPage);
 
     return (
         <div className="flex flex-col w-full h-full items-center">
@@ -114,16 +114,20 @@ export default function Movies() {
             </div>
             <div className="flex flex-col xs:w-[95%] sm:w-4/5 xs:mt-2 sm:mt-8">
                 <MovieForm />
-                <p className="xs:text-xs sm:text-base sm:mt-2 xl:mt-2 xs:mb-1 sm:mb-0">
+                {/* <p className="xs:text-xs sm:text-base sm:mt-2 xl:mt-2 xs:mb-1 sm:mb-0">
                     *Disclaimer: This is just my opinion and what I enjoyed watching
                     the most regardless of critical bias. Moreover, I chose not to
                     rank the movies I watch just because each movie feels too unique to
                     compare to one another. However, the first page is my top 10. These are also not all the movies I have watched, just the ones I remember and have an opinion on.
+                </p> */}
+                <p className="xs:text-xs sm:text-base sm:mt-2 xl:mt-2 xs:mb-1 sm:mb-0">
+                    *Disclaimer: This is just my opinion and what I enjoyed watching
+                    the most regardless of critical bias. Moreover, this is only my top 10 movies in no specific order.
                 </p>
                 <div className='flex flex-row w-full justify-center'>
-                    <GenrePieChart genresList={movies?.map((movie) => movie.genres)} setSearchQuery={setSearchQuery} genreColors={movieGenreColors}/>
+                    <GenrePieChart genresList={movies?.map((movie) => movie.genres)} setSearchQuery={setSearchQuery} genreColors={movieGenreColors} />
                 </div>
-                <div className="flex flex-row flex-wrap justify-start mt-2">
+                {/* <div className="flex flex-row flex-wrap justify-start mt-2">
                     {Array.from({ length: totalPages }, (_, i) => (
                         <button
                             key={i}
@@ -136,7 +140,7 @@ export default function Movies() {
                             {i + 1}
                         </button>
                     ))}
-                </div>
+                </div> */}
                 <div className="my-4" ref={searchSectionRef}>
                     <input
                         type="text"
@@ -191,7 +195,7 @@ export default function Movies() {
                         )}
                     </FadeInSection>
                 ))}
-                <div className="flex flex-row flex-wrap justify-start mt-1">
+                {/* <div className="flex flex-row flex-wrap justify-start mt-1">
                     {Array.from({ length: totalPages }, (_, i) => (
                         <button
                             key={i}
@@ -204,7 +208,7 @@ export default function Movies() {
                             {i + 1}
                         </button>
                     ))}
-                </div>
+                </div> */}
             </div>
         </div>
     );
