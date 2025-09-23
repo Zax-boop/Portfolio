@@ -52,7 +52,7 @@ export default function ExperienceTimeline() {
                     <div className='flex flex-col'>
                         <h1 className='vertical-timeline-element-title md:text-3xl xs:text-lg !mt-2 !font-bold'>IBM</h1>
                         <p className='!xs:text-xs !xl:text-xl !mt-0 !font-semibold'>CO-OP Software Engineer Intern</p>
-                        <p className='!mt-0'>Developed a GenAI chat feature for a product using LangChain and Retrieval-Augmented Generation (RAG), enabling leadership to summarize release data and make decisions a week faster. Built a data analytics dashboard with Python, PostgreSQL, and React to visualize key metrics such as daily signups, active users, and user activity. Implemented SSO authentication and created REST APIs to support dynamic data access. Automated test release upgrade testing by writing robust Bash scripts, saving developers over 3 days of manual effort and increasing testing productivity by 200%. Additionally, developed and deployed a mock airline application using Python, Java, MongoDB, Docker, and Locust to demonstrate core features of a dependency management tool. Integrated React Tracking to surface usage analytics, enhancing product insights.</p>
+                        <p className='!mt-0'>Developed a GenAI chat feature for a product using LangChain and Retrieval-Augmented Generation (RAG), enabling leadership to summarize release data and make decisions a week faster. Built a data analytics dashboard with Python, PostgreSQL, and React to visualize key metrics such as daily signups, active users, and user activity. Implemented SSO authentication and created REST APIs to support dynamic data access. Automated test release upgrade testing by writing robust Bash scripts, saving developers over 3 days of manual effort and increasing testing productivity by 200%. Additionally, developed and deployed a mock airline application using Python, Javascript, MongoDB, Docker, and Locust to demonstrate core features of a dependency management tool. Integrated React Tracking to surface usage analytics, enhancing product insights.</p>
                         <div className='flex flex-row flex-wrap !mt-2 gap-2'>
                             <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>GenAI</p>
                             <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>LangChain</p>
@@ -60,7 +60,7 @@ export default function ExperienceTimeline() {
                             <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Python</p>
                             <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>React</p>
                             <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>PostgreSQL</p>
-                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Java</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Javascript</p>
                             <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>MongoDB</p>
                             <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Docker</p>
                             <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Locust</p>
@@ -89,7 +89,7 @@ export default function ExperienceTimeline() {
                         </a>
                         <h1 className='vertical-timeline-element-title md:text-3xl xs:text-lg !mt-2 !font-bold'>Imagination Art</h1>
                         <p className='!xs:text-xs !xl:text-xl !mt-0 !font-semibold'>Full Stack Developer Consultant</p>
-                        <p className='!mt-0'>Freelance work I did for an art tutoring company where I created their website. Used Next.js, Typescript, and Tailwind CSS for the frontend. Wrote REST APIs in python. Utilized Java to create and consume RESTful services for seamless communication across the stack. Used Supabase for authentication, data storage, and RLS policies.</p>
+                        <p className='!mt-0'>Freelance work I did for an art tutoring company where I created their website. Used Next.js, Typescript, and Tailwind CSS for the frontend. Utilized Javascript to create and consume RESTful services for seamless communication across the stack. Used Supabase for authentication, data storage, and RLS policies.</p>
                         <div className="relative group self-start cursor-pointer my-2">
                             <a target='_blank' href="https://art-portfolio-eta-swart.vercel.app/" className='flex flex-row items-center gap-2'>
                                 <strong className='!font-bold'>Visit Website</strong>
@@ -103,7 +103,7 @@ export default function ExperienceTimeline() {
                             <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Tailwind CSS</p>
                             <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Supabase</p>
                             <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>RLS</p>
-                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Java</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Javascript</p>
                             <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Python</p>
                             <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>REST APIs</p>
 
@@ -124,7 +124,7 @@ export default function ExperienceTimeline() {
                         </a>
                         <h1 className='vertical-timeline-element-title md:text-3xl xs:text-lg !mt-2 !font-bold'>Prismera</h1>
                         <p className='!xs:text-xs !xl:text-xl !mt-0 !font-semibold'>Full Stack Developer Consultant</p>
-                        <p className='!mt-0'>Worked across the stack on real estate lease parser. Used Next.js, Typescript, and Tailwind CSS for the frontend. Wrote REST APIs in python. Utilized Java to create and consume RESTful services for seamless communication across the stack. Used Supabase for authentication and RLS policies.</p>
+                        <p className='!mt-0'>Worked across the stack on real estate lease parser. Used Next.js, Typescript, and Tailwind CSS for the frontend. Wrote REST APIs in python. Utilized Javascript to create and consume RESTful services for seamless communication across the stack. Used Supabase for authentication and RLS policies.</p>
                         <div className="relative group self-start cursor-pointer my-2">
                             <a target='_blank' href="https://prismera.ai/" className='flex flex-row items-center gap-2'>
                                 <strong className='!font-bold'>Visit Website</strong>
@@ -138,7 +138,7 @@ export default function ExperienceTimeline() {
                             <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Tailwind CSS</p>
                             <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Supabase</p>
                             <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>RLS</p>
-                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Java</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Javascript</p>
                             <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Python</p>
                             <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>REST APIs</p>
 
@@ -159,7 +159,7 @@ export default function ExperienceTimeline() {
                         </a>
                         <h1 className='vertical-timeline-element-title md:text-3xl xs:text-lg !mt-2 !font-bold'>ColomboAI</h1>
                         <p className='!xs:text-xs !xl:text-xl !mt-0 !font-semibold'>Full Stack Developer</p>
-                        <p className='!mt-0'>Developed social media application with Flutter and Dart for mobile development and Next.js and Tailwind CSS for desktop. Implemented secure authentication using Firebase Authentication. Designed SQL queries for managing large-scale data models and utilized Java to create and consume RESTful services for seamless communication across the stack.</p>
+                        <p className='!mt-0'>Developed social media application with Flutter and Dart for mobile development and Next.js and Tailwind CSS for desktop. Implemented secure authentication using Firebase Authentication. Designed SQL queries for managing large-scale data models and utilized Javascript to create and consume RESTful services for seamless communication across the stack.</p>
                         <div className="relative group self-start cursor-pointer my-2">
                             <a target='_blank' href="https://colomboai.com/" className='flex flex-row items-center gap-2'>
                                 <strong className='!font-bold'>Visit Website</strong>
@@ -175,7 +175,7 @@ export default function ExperienceTimeline() {
                             <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Tailwind CSS</p>
                             <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Firebase</p>
                             <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>SQL</p>
-                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Java</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Javascript</p>
                             <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>REST</p>
 
                         </div>
@@ -222,7 +222,7 @@ export default function ExperienceTimeline() {
                         <h1 className='vertical-timeline-element-title md:text-3xl xs:text-lg !mt-2 !font-bold'>Hatch Recruiting</h1>
                         <p className='!text-xl !mt-0 !font-semibold'>Full Stack Developer</p>
                         <p className='!mt-0'>Implemented resume parsing algorithm in Python to extract and structure key information such
-                            as skills, education, and work experience from diverse resume formats. Developed frontend with Next.js, React.js, Typescript, Tailwind, and CSS. Designed and built DB endpoints in Python and Next.js, with an ORM to ensure stateful user data storage. Deployed backend server within docker container in AWS EC2 instance to facilitate traffic between frontend and PostgreSQL. Wrote SQL queries for handling large scale data models. Utilized Java to create and consume RESTful services to communicate across the stack.</p>
+                            as skills, education, and work experience from diverse resume formats. Developed frontend with Next.js, React.js, Typescript, Tailwind, and CSS. Designed and built DB endpoints in Python and Next.js, with an ORM to ensure stateful user data storage. Deployed backend server within docker container in AWS EC2 instance to facilitate traffic between frontend and PostgreSQL. Wrote SQL queries for handling large scale data models. Utilized Javascript to create and consume RESTful services to communicate across the stack.</p>
                         <div className='flex flex-row flex-wrap !mt-2 gap-2'>
                             <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Python</p>
                             <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>React.js</p>
@@ -231,7 +231,7 @@ export default function ExperienceTimeline() {
                             <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Tailwind CSS</p>
                             <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>AWS</p>
                             <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>PostgreSQL</p>
-                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Java</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Javascript</p>
                             <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>REST</p>
                         </div>
                     </div>
@@ -293,7 +293,7 @@ export default function ExperienceTimeline() {
                             I, Advanced Data Analysis</p>
                         <div className='flex flex-row flex-wrap !mt-2 gap-2'>
                             <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Python</p>
-                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Java</p>
+                            <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>Javascript</p>
                             <p className='!mt-0 xs:py-1.5 md:py-1.5 xs:px-1.5 md:px-3 xs:self-start md:items-stretch xs:rounded-lg md:rounded-xl bg-white text-black hover:opacity-70 transition duration-300 ease-in-out'>C++</p>
                         </div>
                     </div>
