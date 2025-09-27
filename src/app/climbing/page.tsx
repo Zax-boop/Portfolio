@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import Header from "../components/general/header";
 import fetchClimbingMedia from "../../../utils/climbing/fetchClimbingMedia";
 import Image from "next/image";
@@ -29,6 +29,11 @@ export default function Climbing() {
     const [loading, setLoading] = useState(true);
     const [showWarning, setShowWarning] = useState(false)
     const [user, setUser] = useState<User | null>(null);
+    const [activeIndex, setActiveIndex] = useState<number | null>(null);
+    const [direction, setDirection] = useState<"left" | "right" | null>(null);
+    const [isAnimating, setIsAnimating] = useState(false);
+    const [firstOpen, setFirstOpen] = useState(true);
+    const touchStartX = useRef<number | null>(null);
     useEffect(() => {
         const getSession = async () => {
             const { data } = await supabase.auth.getSession();
@@ -58,16 +63,52 @@ export default function Climbing() {
         }
     };
 
-    if (pageLoading) {
-        return <Loading />;
-    }
-
     const backgroundVideos = mediaFiles
         .filter((file) => file.name.endsWith(".mp4"))
         .filter((_, index) => (index >= 4 && index < 6) || index === 1);
 
-    const shuffledMediaFiles = [...mediaFiles].sort(() => Math.random() - 0.5);
-    
+    const shuffledMediaFiles = useMemo(
+        () => [...mediaFiles].sort(() => Math.random() - 0.5),
+        [mediaFiles]
+    );
+    const shuffledLength = useMemo(() => shuffledMediaFiles.length, [shuffledMediaFiles]);
+
+    useEffect(() => {
+        const handleKey = (e: KeyboardEvent) => {
+            if (activeIndex === null) return;
+            if (e.key === "ArrowLeft" && activeIndex > 0) setActiveIndex(activeIndex - 1);
+            if (e.key === "ArrowRight" && activeIndex < shuffledLength - 1) setActiveIndex(activeIndex + 1);
+            if (e.key === "Escape") setActiveIndex(null);
+        };
+        window.addEventListener("keydown", handleKey);
+        return () => window.removeEventListener("keydown", handleKey);
+    }, [activeIndex, shuffledLength]);
+
+    const handleTouchStart = (e: React.TouchEvent) => {
+        touchStartX.current = e.touches[0].clientX;
+    };
+
+    const handleTouchEnd = (e: React.TouchEvent) => {
+        if (touchStartX.current === null || activeIndex === null) return;
+        const diff = touchStartX.current - e.changedTouches[0].clientX;
+        if (diff > 50 && activeIndex < shuffledLength - 1) setActiveIndex(activeIndex + 1);
+        else if (diff < -50 && activeIndex > 0) setActiveIndex(activeIndex - 1);
+        touchStartX.current = null;
+    };
+
+    const handleChange = (newIndex: number) => {
+        if (newIndex === activeIndex) return;
+        setDirection(newIndex > activeIndex! ? "right" : "left");
+        setIsAnimating(true);
+        setTimeout(() => {
+            setActiveIndex(newIndex);
+            setIsAnimating(false);
+        }, 200);
+    };
+
+    if (pageLoading) {
+        return <Loading />;
+    }
 
     return (
         <div className="flex flex-col w-full h-full items-center">
@@ -124,16 +165,78 @@ export default function Climbing() {
                                         height={500}
                                         layout="responsive"
                                         objectFit="cover"
-                                        className={`rounded-lg transform transition-transform hover:scale-105 duration-700 ease-in-out group-hover:opacity-75`}
+                                        onClick={() => {
+                                            setActiveIndex(index);
+                                            setFirstOpen(true);
+                                        }}
+                                        className="rounded-lg transform transition-transform hover:scale-105 duration-700 ease-in-out group-hover:opacity-75 cursor-pointer"
                                     />
                                 ) : ["mp4"].includes(fileExt || "") ? (
-                                    <VideoWithPlaceholder aspect="aspect-[9/19.5]" src={file.url?.data?.publicUrl} className="rounded-lg w-full h-full transform transition-transform hover:scale-105 object-cover duration-700 ease-in-out group-hover:opacity-75" />
-
+                                    <button
+                                        onClick={() => {
+                                            setActiveIndex(index);
+                                            setFirstOpen(true);
+                                        }}
+                                        className="w-full h-full p-0 border-0 bg-transparent"
+                                    >
+                                        <VideoWithPlaceholder
+                                            aspect="aspect-[9/19.5]"
+                                            src={file.url?.data?.publicUrl}
+                                            className="rounded-lg w-full h-full transform transition-transform hover:scale-105 object-cover duration-700 ease-in-out group-hover:opacity-75 pointer-events-none cursor-pointer"
+                                        />
+                                    </button>
                                 ) : null}
                             </FadeInSection>
                         );
                     })}
                 </div>
+                {activeIndex !== null && (
+                    <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-200 bg-opacity-90 p-4" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
+                        <button
+                            onClick={() => (setActiveIndex(null), setFirstOpen(true))}
+                            className="absolute top-4 right-4 text-black text-3xl md:text-4xl z-50 cursor-pointer transition-transform duration-200 ease-out hover:scale-110 hover:text-red-600"
+                        >
+                            ✕
+                        </button>
+                        {activeIndex > 0 && (
+                            <button
+                                onClick={() => handleChange(activeIndex - 1)}
+                                className="hidden md:block absolute left-4 top-1/2 transform -translate-y-1/2 text-3xl md:text-4xl z-50 px-2 py-1 rounded-full text-black transition-transform duration-200 ease-out hover:scale-110"
+                            >
+                                ‹
+                            </button>
+                        )}
+                        {activeIndex < shuffledLength - 1 && (
+                            <button
+                                onClick={() => handleChange(activeIndex + 1)}
+                                className="hidden md:block absolute right-4 top-1/2 transform -translate-y-1/2 text-3xl md:text-4xl z-50 px-2 py-1 rounded-full text-black transition-transform duration-200 ease-out hover:scale-110"
+                            >
+                                ›
+                            </button>
+                        )}
+                        {shuffledMediaFiles[activeIndex].name.endsWith(".mp4") ? (
+                            <video
+                                src={shuffledMediaFiles[activeIndex].url.data.publicUrl}
+                                controls={false}
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                                className={`max-h-[40rem] md:max-h-[48rem] md:max-w-[70rem] object-contain rounded-lg shadow-lg transition-transform duration-200 ease-out ${firstOpen ? "opacity-0 animate-fadeIn" : ""} 
+                                ${isAnimating ? (direction === "left" ? "-translate-x-20 opacity-0" : "translate-x-20 opacity-0") : "translate-x-0 opacity-100"}`}
+                                onAnimationEnd={() => setFirstOpen(false)}
+                            />
+                        ) : (
+                            <img
+                                src={shuffledMediaFiles[activeIndex].url.data.publicUrl}
+                                alt="Full screen art"
+                                className={`max-h-[30rem] md:max-h-[48rem] md:max-w-[70rem] object-contain rounded-lg shadow-lg transition-transform duration-200 ease-out ${firstOpen ? "opacity-0 animate-fadeIn" : ""} 
+                                ${isAnimating ? (direction === "left" ? "-translate-x-20 opacity-0" : "translate-x-20 opacity-0") : "translate-x-0 opacity-100"}`}
+                                onAnimationEnd={() => setFirstOpen(false)}
+                            />
+                        )}
+                    </div>
+                )}
             </div>
         </div>
     );
