@@ -8,20 +8,30 @@ type VideoWithPlaceholderProps = {
 
 const VideoWithPlaceholder = forwardRef<HTMLVideoElement, VideoWithPlaceholderProps>(
     ({ src, className, aspect = "aspect-video" }, ref) => {
-        console.log(ref)
         const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+        const [dynamicAspect, setDynamicAspect] = useState(aspect);
 
         return (
-            <div className={`relative w-full ${aspect}`}>
+            <div className={`relative w-full ${dynamicAspect}`}>
                 <video
+                    ref={ref}
                     src={src}
-                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${className ?? ""} ${isVideoLoaded ? "opacity-100" : "opacity-0"
-                        }`}
+                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 
+                        ${className ?? ""} ${isVideoLoaded ? "opacity-100" : "opacity-0"}`}
                     autoPlay
                     loop
                     muted
                     controls={false}
                     playsInline
+                    onLoadedMetadata={(e) => {
+                        const v = e.currentTarget;
+                        const ratio = v.videoWidth / v.videoHeight;
+                        if (ratio > 1) {
+                            setDynamicAspect("aspect-video");
+                        } else {
+                            setDynamicAspect("aspect-[9/19.5]");
+                        }
+                    }}
                     onLoadedData={() => setIsVideoLoaded(true)}
                 />
 
@@ -33,7 +43,7 @@ const VideoWithPlaceholder = forwardRef<HTMLVideoElement, VideoWithPlaceholderPr
             </div>
         );
     }
-)
+);
 
 VideoWithPlaceholder.displayName = "VideoWithPlaceholder";
 export default VideoWithPlaceholder;

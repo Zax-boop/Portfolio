@@ -222,7 +222,7 @@ export default function Climbing() {
                                 loop
                                 muted
                                 playsInline
-                                className={`max-h-[40rem] md:max-h-[48rem] md:max-w-[70rem] object-contain rounded-lg shadow-lg transition-transform duration-200 ease-out ${firstOpen ? "opacity-0 animate-fadeIn" : ""} 
+                                className={`max-h-[40rem] md:max-h-[48rem] md:min-h-[48rem] md:max-w-[70rem] object-contain rounded-lg shadow-lg transition-transform duration-200 ease-out ${firstOpen ? "opacity-0 animate-fadeIn" : ""} 
                                 ${isAnimating ? (direction === "left" ? "-translate-x-20 opacity-0" : "translate-x-20 opacity-0") : "translate-x-0 opacity-100"}`}
                                 onAnimationEnd={() => setFirstOpen(false)}
                             />
@@ -230,7 +230,7 @@ export default function Climbing() {
                             <img
                                 src={shuffledMediaFiles[activeIndex].url.data.publicUrl}
                                 alt="Full screen art"
-                                className={`max-h-[30rem] md:max-h-[48rem] md:max-w-[70rem] object-contain rounded-lg shadow-lg transition-transform duration-200 ease-out ${firstOpen ? "opacity-0 animate-fadeIn" : ""} 
+                                className={`max-h-[30rem] md:max-h-[48rem] md:min-h-[48rem] md:max-w-[70rem] object-contain rounded-lg shadow-lg transition-transform duration-200 ease-out ${firstOpen ? "opacity-0 animate-fadeIn" : ""} 
                                 ${isAnimating ? (direction === "left" ? "-translate-x-20 opacity-0" : "translate-x-20 opacity-0") : "translate-x-0 opacity-100"}`}
                                 onAnimationEnd={() => setFirstOpen(false)}
                             />
