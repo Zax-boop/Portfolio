@@ -107,6 +107,7 @@ export default function UpdateAlbumModal({ album }: {
         grunge: "bg-gray-600",
         hiphop: "bg-indigo-500",
         house: "bg-pink-600",
+        hyperpop: "bg-pink-400",
         indierock: "bg-red-500",
         indiepop: "bg-red-400",
         italian: "bg-green-500",
@@ -138,7 +139,7 @@ export default function UpdateAlbumModal({ album }: {
 
     const genre_list = [
         "Ambient", "Alternative", "Bossa Nova", "Brazilian Pop", "Breakcore", "Bubblegum", "Classical", "City Pop", "Club", "Country", "C-Pop", "Dance", "Dream Pop", "Electronic", "Experimental", "Flamenco", "Folk", "French", "Funk", "Grunge", "Hip-Hop",
-        "House", "Indie Pop", "Indie Rock", "Italian", "Japanese", "Jazz", "J-Pop", "J-Rock", "Korean",
+        "House", "Hyperpop", "Indie Pop", "Indie Rock", "Italian", "Japanese", "Jazz", "J-Pop", "J-Rock", "Korean",
         "K-Pop", "Latin", "Lo-Fi", "Metal", "Polish", "Pop", "Psychedelic", "Punk", "Rap",
         "R&B", "Rock", "Sailorwave", "Shoegaze", "Soul", "Spanish", "Synth", "Video Game", "Trip-Hop", "Turkish"
     ];
@@ -194,64 +195,64 @@ export default function UpdateAlbumModal({ album }: {
                             </div>
                             <div className='flex flex-col w-1/2 ml-2 xs:gap-2 xl:gap-4'>
                                 <div className="relative group">
-                                        <input
-                                            type="text"
-                                            className="w-full bg-transparent xs:text-md xl:text-xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
-                                            placeholder="Album Name"
-                                            value={name}
-                                            onFocus={() => setNameFocus(true)}
-                                            onBlur={() => setNameFocus(false)}
-                                            onChange={(e) => setName(e.target.value)}
-                                        />
-                                        <span
-                                            className={`absolute -bottom-0.5 left-0 h-[2px] bg-white transition-all duration-300 ${nameFocus ? "w-full" : "w-0"
-                                                }`}
-                                        />
-                                    </div>
-                                    <div className="relative group">
-                                        <input
-                                            type="text"
-                                            className="w-full bg-transparent xs:text-md xl:text-xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
-                                            placeholder="Artist"
-                                            value={artist}
-                                            onFocus={() => setArtistFocus(true)}
-                                            onBlur={() => setArtistFocus(false)}
-                                            onChange={(e) => setArtist(e.target.value)}
-                                        />
-                                        <span
-                                            className={`absolute -bottom-0.5 left-0 h-[2px] bg-white transition-all duration-300 ${artistFocus ? "w-full" : "w-0"
-                                                }`}
-                                        />
-                                    </div>
-                                    <div className="relative group">
-                                        <textarea
-                                            className="w-full bg-transparent xs:text-md xl:text-xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
-                                            placeholder="Comments"
-                                            value={comments}
-                                            onFocus={() => setCommentFocus(true)}
-                                            onBlur={() => setCommentFocus(false)}
-                                            onChange={(e) => setComments(e.target.value)}
-                                            rows={3}
-                                        />
-                                        <span
-                                            className={`absolute bottom-1.5 left-0 h-[2px] bg-white transition-all duration-300 ${commentFocus ? "w-full" : "w-0"
-                                                }`}
-                                        />
-                                    </div>
-                                    <div className="relative group">
-                                        <input
-                                            type="number"
-                                            className="w-full bg-transparent xs:text-md xl:text-xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
-                                            placeholder="Rank"
-                                            value={rank}
-                                            onFocus={() => setRankFocus(true)}
-                                            onBlur={() => setRankFocus(false)}
-                                            onChange={(e) => setRank(e.target.value)}
-                                        />
-                                        <span
-                                            className={`absolute -bottom-0.5 left-0 h-[2px] bg-white transition-all duration-300 ${rankFocus ? "w-full" : "w-0"}`}
-                                        />
-                                    </div>
+                                    <input
+                                        type="text"
+                                        className="w-full bg-transparent xs:text-md xl:text-xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
+                                        placeholder="Album Name"
+                                        value={name}
+                                        onFocus={() => setNameFocus(true)}
+                                        onBlur={() => setNameFocus(false)}
+                                        onChange={(e) => setName(e.target.value)}
+                                    />
+                                    <span
+                                        className={`absolute -bottom-0.5 left-0 h-[2px] bg-white transition-all duration-300 ${nameFocus ? "w-full" : "w-0"
+                                            }`}
+                                    />
+                                </div>
+                                <div className="relative group">
+                                    <input
+                                        type="text"
+                                        className="w-full bg-transparent xs:text-md xl:text-xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
+                                        placeholder="Artist"
+                                        value={artist}
+                                        onFocus={() => setArtistFocus(true)}
+                                        onBlur={() => setArtistFocus(false)}
+                                        onChange={(e) => setArtist(e.target.value)}
+                                    />
+                                    <span
+                                        className={`absolute -bottom-0.5 left-0 h-[2px] bg-white transition-all duration-300 ${artistFocus ? "w-full" : "w-0"
+                                            }`}
+                                    />
+                                </div>
+                                <div className="relative group">
+                                    <textarea
+                                        className="w-full bg-transparent xs:text-md xl:text-xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
+                                        placeholder="Comments"
+                                        value={comments}
+                                        onFocus={() => setCommentFocus(true)}
+                                        onBlur={() => setCommentFocus(false)}
+                                        onChange={(e) => setComments(e.target.value)}
+                                        rows={3}
+                                    />
+                                    <span
+                                        className={`absolute bottom-1.5 left-0 h-[2px] bg-white transition-all duration-300 ${commentFocus ? "w-full" : "w-0"
+                                            }`}
+                                    />
+                                </div>
+                                <div className="relative group">
+                                    <input
+                                        type="number"
+                                        className="w-full bg-transparent xs:text-md xl:text-xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
+                                        placeholder="Rank"
+                                        value={rank}
+                                        onFocus={() => setRankFocus(true)}
+                                        onBlur={() => setRankFocus(false)}
+                                        onChange={(e) => setRank(e.target.value)}
+                                    />
+                                    <span
+                                        className={`absolute -bottom-0.5 left-0 h-[2px] bg-white transition-all duration-300 ${rankFocus ? "w-full" : "w-0"}`}
+                                    />
+                                </div>
                                 <div className='flex flex-row flex-wrap gap-2 xs:max-h-16 xl:max-h-32 overflow-scroll'>
                                     {genre_list.slice().sort().map((genre, index) => (
                                         <div onClick={() => handleGenreSwitch(genre)} key={index} className={genres.includes(genre) ? `px-2 py-1 rounded-lg text-white xs:text-xs xl:text-base font-bold ${returnColor(genre)} cursor-pointer opacity-100 transition-all duration-300 ease-in-out hover:opacity-30` :

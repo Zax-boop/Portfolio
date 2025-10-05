@@ -21,6 +21,7 @@ export const albumGenreColors: { [key: string]: string } = {
   grunge: "#4B5563",        // bg-gray-600
   hiphop: "#6366F1",        // bg-indigo-500
   house: "#DB2777",         // bg-pink-600
+  hyperpop: "#F472B6",     // bg-pink-400
   indierock: "#EF4444",     // bg-red-500
   indiepop: "#F87171",      // bg-red-400
   italian: "#22C55E",       // bg-green-500

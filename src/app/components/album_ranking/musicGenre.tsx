@@ -22,6 +22,7 @@ export default function MusicGenre({ genre, bad }: { genre: string, bad?: boolea
         grunge: "bg-gray-600",
         hiphop: "bg-indigo-500",
         house: "bg-pink-600",
+        hyperpop: "bg-pink-400",
         indierock: "bg-red-500",
         indiepop: "bg-red-400",
         italian: "bg-green-500",

@@ -78,6 +78,7 @@ export default function AlbumForm() {
         grunge: "bg-gray-600",
         hiphop: "bg-indigo-500",
         house: "bg-pink-600",
+        hyperpop: "bg-pink-400",
         indierock: "bg-red-500",
         indiepop: "bg-red-400",
         italian: "bg-green-500",
@@ -109,7 +110,7 @@ export default function AlbumForm() {
 
     const genre_list = [
         "Ambient", "Alternative", "Bossa Nova", "Brazilian Pop", "Breakcore", "Bubblegum", "Classical", "City Pop", "Club", "Country", "C-Pop", "Dance", "Dream Pop", "Electronic", "Experimental", "Flamenco", "Folk", "French", "Funk", "Grunge", "Hip-Hop",
-        "House", "Indie Pop", "Indie Rock", "Italian", "Japanese", "Jazz", "J-Pop", "J-Rock", "Korean",
+        "House", "Hyperpop", "Indie Pop", "Indie Rock", "Italian", "Japanese", "Jazz", "J-Pop", "J-Rock", "Korean",
         "K-Pop", "Latin", "Lo-Fi", "Metal", "Polish", "Pop", "Psychedelic", "Punk", "Rap",
         "R&B", "Rock", "Sailorwave", "Shoegaze", "Soul", "Spanish", "Synth", "Video Game", "Trip-Hop", "Turkish"
     ];
