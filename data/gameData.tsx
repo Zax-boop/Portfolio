@@ -141,7 +141,7 @@ export const metroidvanias = [
                 platforming.
             </>
         ),
-        recs: ["Gris", "Celeste", "Katana Zero", "Ghostrunner", "Worldless"],
+        recs: ["Gris", "Celeste", "Katana Zero", "Ghostrunner", "Worldless", "Neva"],
     },
     {
         name: "Hollow Knight",
@@ -190,7 +190,7 @@ export const roguelikes = [
                 jazzy, carnival-inspired style that fits the game's theme perfectly.
             </>
         ),
-        recs: ["Slay the Spire"],
+        recs: ["Slay the Spire", "Monster Train"],
     },
     {
         name: "Hades",
@@ -276,7 +276,7 @@ export const turns = [
         alt: "Slay the Spire",
         description:
             "A modern roguelike deck-building game that combines strategic card play with dungeon crawling. Its challenging gameplay and unique mechanics make it a favorite among the roguelike and strategy communities. I am horrible at it though but still love it.",
-        recs: ["Balatro", "Darkest Dungeon"],
+        recs: ["Balatro", "Darkest Dungeon", "Monster Train"],
     },
     {
         name: "Worldless",

@@ -21,7 +21,7 @@ export const songs = [
             </>
         ),
         genres: [{ "Dream Pop": "bg-pink-500" }, { "Indie Pop": "bg-red-400" }, { "Jazz": "bg-blue-700" }, { "Latin": "bg-yellow-400" }, { "Psychedelic": "bg-green-600" }, { "R&B": "bg-orange-500" }],
-        recs: ["CINEMA", "Submarine", "Superclean, Vol. II", "Superclean, Vol. 1", "Flower of the Soul (Full Bloom)", "I think we should just move in together", "Tamale", "Ice Melt", "assisted memories", "Heaven Knows", "Fancy That", "to hell with it", "All the Same All Ok", "MADRA", "Duality", "When a Thought Grows Wings", "INTUITION"]
+        recs: ["CINEMA", "Submarine", "Superclean, Vol. II", "Superclean, Vol. 1", "Melt", "Flower of the Soul (Full Bloom)", "I think we should just move in together", "Tamale", "Ice Melt", "assisted memories", "Heaven Knows", "Fancy That", "to hell with it", "All the Same All Ok", "MADRA", "Duality", "When a Thought Grows Wings", "INTUITION", "A Matter of Time (Standard Edition)", "Charm", "Altar"]
     },
     {
         name: "Glory Box",
@@ -266,6 +266,7 @@ export const songs = [
             "Animaru",
             "For Lovers",
             "Soyokaze Apartment Room 201",
+            "A Matter of Time (Standard Edition)",
             "ランプ幻想",
             "Windswept Adan",
             "Flower of the Soul (Full Bloom)",
