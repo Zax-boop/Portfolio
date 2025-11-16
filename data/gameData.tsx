@@ -121,7 +121,7 @@ export const soulsLikes = [
                 game.
             </>
         ),
-        recs: ["Nine Sols", "Lies of P", "Kannagi Usagi"]
+        recs: ["Nine Sols", "NanoApostle", "Lies of P", "Kannagi Usagi"]
     },
 ];
 export const metroidvanias = [
@@ -173,7 +173,7 @@ export const metroidvanias = [
                 often.
             </>
         ),
-        recs: ["Sekiro: Shadows Die Twice", "Worldless"],
+        recs: ["Sekiro: Shadows Die Twice", "Worldless", "NanoApostle"],
     },
 ];
 
@@ -190,7 +190,7 @@ export const roguelikes = [
                 jazzy, carnival-inspired style that fits the game's theme perfectly.
             </>
         ),
-        recs: ["Slay the Spire", "Monster Train"],
+        recs: ["Slay the Spire", "Monster Train", "Monster Train 2", "Barrel Roll"],
     },
     {
         name: "Hades",
@@ -276,7 +276,7 @@ export const turns = [
         alt: "Slay the Spire",
         description:
             "A modern roguelike deck-building game that combines strategic card play with dungeon crawling. Its challenging gameplay and unique mechanics make it a favorite among the roguelike and strategy communities. I am horrible at it though but still love it.",
-        recs: ["Balatro", "Darkest Dungeon", "Monster Train"],
+        recs: ["Balatro", "Darkest Dungeon", "Monster Train", "Monster Train 2", "Barrel Roll"],
     },
     {
         name: "Worldless",
@@ -295,7 +295,7 @@ export const shooters = [
         alt: "Neon White",
         description:
             "A fast-paced first-person shooter that combines parkour mechanics with card-based abilities. Its unique gameplay loop and stylish visuals make it a standout title in the genre. The dialogue is suspicious though...",
-        recs: ["BPM: Bullets Per Minute", "Cyber Hook"],
+        recs: ["BPM: Bullets Per Minute", "Cyber Hook", "I Am Your Beast"],
     },
     {
         name: "Mullet Madjack",
@@ -303,7 +303,7 @@ export const shooters = [
         alt: "Mullet Madjack",
         description:
             "An anime-styled first-person shooter that combines roguelike elements with fast-paced action. One of the most exhilarating games I've ever played. Another game I can't recommend enough.",
-        recs: ["Call of Juarez: Slinger"],
+        recs: ["Call of Juarez: Slinger", "I Am Your Beast"],
     },
     {
         name: "Doom Eternal",
@@ -311,7 +311,7 @@ export const shooters = [
         alt: "Doom Eternal",
         description:
             "A fast-paced first-person shooter that emphasizes movement and combat. Probably the best fps game ever made. Its brutal gameplay and stunning visuals make it a must-play for fans of the genre.",
-        recs: ["Severed Steel", "Doom", "Titanfall 2"],
+        recs: ["Severed Steel", "Doom", "Titanfall 2", "I Am Your Beast"],
     },
 ];
 export const horrors = [
