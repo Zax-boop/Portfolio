@@ -30,7 +30,7 @@ const Header = () => {
         <p className="font-semibold xs:text-[0.45rem] sm:text-base">Movies</p>
         <span className="absolute xs:-bottom-[0.1rem] sm:-bottom-1 left-0 w-0 xs:h-[0.1rem] sm:h-1 bg-white transition-all group-hover:w-full"></span>
       </Link>
-      <Link href={"/climbing"} className="relative group">
+      <Link href={"/sports"} className="relative group">
         <p className="font-semibold xs:text-[0.45rem] sm:text-base">Sports</p>
         <span className="absolute xs:-bottom-[0.1rem] sm:-bottom-1 left-0 w-0 xs:h-[0.1rem] sm:h-1 bg-white transition-all group-hover:w-full"></span>
       </Link>

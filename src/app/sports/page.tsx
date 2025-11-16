@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useMemo } from "react";
 import Header from "../components/general/header";
-import fetchSportsMedia from "../../../utils/climbing/fetchSportsMedia";
+import fetchSportsMedia from "../../../utils/sports/fetchSportsMedia";
 import Image from "next/image";
 import PoppingLetters from "../components/general/poppingLetters";
 import { PlusIcon } from "lucide-react";
@@ -12,9 +12,9 @@ import supabase from "../../../utils/general/supabaseclient";
 import { useMediaQuery } from "react-responsive";
 import VideoWithPlaceholder from "../components/general/placeholderVideo";
 import Loading from "../components/general/loading";
-import AddMediaModal from "../components/climbing/addMediaModal";
+import AddMediaModal from "../components/sports/addMediaModal";
 
-export default function Climbing() {
+export default function Sports() {
     const isMobile = useMediaQuery({ query: '(max-width: 650px)' })
     const [mediaFiles, setMediaFiles] = useState<{
         name: string;

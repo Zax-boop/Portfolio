@@ -66,13 +66,13 @@ export default function AboutSection() {
       <div className='flex flex-row flex-wrap self-start gap-5 mt-5'>
         <FadeInSection className='self-start'>
           <Link href='/album_ranking' className='self-start flex flex-col items-center xs:gap-0.5 sm:gap-1'>
-            <Image src={cinema} alt='climbing_ex' className='xs:w-[5rem] xs:h-[5rem] sm:h-[15rem] sm:w-[15rem] xl:w-[17rem] xl:h-[17rem] 2xl:w-[20.5rem] 2xl:h-[20.5rem] self-start object-cover xs:rounded-lg sm:rounded-[40px] xl:transform xl:transition-transform xl:duration-200 xl:hover:scale-105' />
+            <Image src={cinema} alt='album_ex' className='xs:w-[5rem] xs:h-[5rem] sm:h-[15rem] sm:w-[15rem] xl:w-[17rem] xl:h-[17rem] 2xl:w-[20.5rem] 2xl:h-[20.5rem] self-start object-cover xs:rounded-lg sm:rounded-[40px] xl:transform xl:transition-transform xl:duration-200 xl:hover:scale-105' />
             <p className='xs:text-sm sm:text-3xl cursor-pointer'>Albums</p>
           </Link>
         </FadeInSection>
         <FadeInSection className='self-start'>
           <Link href='/anime' className='self-start flex flex-col items-center xs:gap-0.5 sm:gap-1'>
-            <Image src={cb} alt='climbing_ex' className='xs:w-[5rem] xs:h-[5rem] sm:h-[15rem] sm:w-[15rem] xl:w-[17rem] xl:h-[17rem] 2xl:w-[20.5rem] 2xl:h-[20.5rem] self-start object-cover xs:rounded-lg sm:rounded-[40px] xl:transform xl:transition-transform xl:duration-200 xl:hover:scale-105' />
+            <Image src={cb} alt='anime_ex' className='xs:w-[5rem] xs:h-[5rem] sm:h-[15rem] sm:w-[15rem] xl:w-[17rem] xl:h-[17rem] 2xl:w-[20.5rem] 2xl:h-[20.5rem] self-start object-cover xs:rounded-lg sm:rounded-[40px] xl:transform xl:transition-transform xl:duration-200 xl:hover:scale-105' />
             <p className='xs:text-sm sm:text-3xl cursor-pointer'>Anime</p>
           </Link>
         </FadeInSection>
@@ -84,7 +84,7 @@ export default function AboutSection() {
         </FadeInSection>
         <FadeInSection className='self-start'>
           <Link href='/books' className='self-start flex flex-col items-center xs:gap-0.5 sm:gap-1'>
-            <Image src={camus} alt='climbing_ex' className='xs:w-[5rem] xs:h-[5rem] sm:h-[15rem] sm:w-[15rem] xl:w-[17rem] xl:h-[17rem] 2xl:w-[20.5rem] 2xl:h-[20.5rem] self-start object-cover xs:rounded-lg sm:rounded-[40px] xl:transform xl:transition-transform xl:duration-200 xl:hover:scale-105' />
+            <Image src={camus} alt='book_ex' className='xs:w-[5rem] xs:h-[5rem] sm:h-[15rem] sm:w-[15rem] xl:w-[17rem] xl:h-[17rem] 2xl:w-[20.5rem] 2xl:h-[20.5rem] self-start object-cover xs:rounded-lg sm:rounded-[40px] xl:transform xl:transition-transform xl:duration-200 xl:hover:scale-105' />
             <p className='xs:text-sm sm:text-3xl cursor-pointer'>Books</p>
           </Link>
         </FadeInSection>
