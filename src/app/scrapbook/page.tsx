@@ -240,11 +240,17 @@ export default function Scrapbook() {
                 <div className="absolute inset-0 flex w-full h-full overflow-hidden">
                     <div className="w-1/3 h-full">
                         <div className="w-full flex flex-row h-1/2">
-                            <img src="/alucard.jpeg" alt="alucard" className="w-1/2 h-full object-cover" />
+                            <img src="/climbing_ex.jpg" alt="alucard" className="w-1/2 h-full object-cover" />
                             <img src="/hk.gif" alt="hk" className="w-1/2 h-full object-cover" />
                         </div>
                         <div className="w-full h-1/2">
-                            <img src="/omen.jpeg" alt="omen" className="w-full h-full object-cover" />
+                            <video src="/cb.mp4"
+                                autoPlay
+                                loop
+                                muted
+                                controls={false}
+                                playsInline
+                                className="w-full h-full object-cover" />
                         </div>
                     </div>
                     <div className="w-1/3 h-full">
@@ -252,11 +258,17 @@ export default function Scrapbook() {
                     </div>
                     <div className="w-1/3 h-full">
                         <div className="w-full h-1/2">
-                            <img src="/slow_dancing.jpeg" alt="Slow Dancing" className="w-full h-full object-cover" />
+                            <video src="/cloud_mp4.mp4"
+                                autoPlay
+                                loop
+                                muted
+                                controls={false}
+                                playsInline
+                                className="w-full h-full object-cover" />
                         </div>
                         <div className="w-full flex flex-row h-1/2">
-                            <img src="/dash_face.jpeg" alt="Dash Face" className="w-1/2 h-full object-cover" />
-                            <img src="/fuu.jpeg" alt="Fuu" className="w-1/2 h-full object-cover" />
+                            <img src="/climbing_alt.jpg" alt="Dash Face" className="w-1/2 h-full object-cover" />
+                            <img src="/sos_event.jpg" alt="Fuu" className="w-1/2 h-full object-cover" />
                         </div>
                     </div>
                 </div>
@@ -314,7 +326,7 @@ export default function Scrapbook() {
 
                         const isVideo = filePath.toLowerCase().endsWith(".mp4");
 
-                        const key = `${row.source}-${row.id}`; 
+                        const key = `${row.source}-${row.id}`;
 
                         return (
                             <div
