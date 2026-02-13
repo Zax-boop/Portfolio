@@ -3,7 +3,7 @@ import Image from "next/image";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { useMediaQuery } from "react-responsive";
 
-const ImageTrack = ({ data, onImageClick, width = 'xs:w-[6.67rem] sm:w-[10rem] xl:w-[20rem]', scroll = 1.75 }) => {
+const ImageTrack = ({ data, onImageClick, width = 'xs:w-[6.67rem] sm:w-[10rem] xl:w-[20rem]', scroll = 1 }) => { //scroll was 1.75
   const isMobile = useMediaQuery({ query: '(max-width: 650px)' })
   const isBungus = useMediaQuery({ query: '(min-width: 1700px)' })
   const trackRef = useRef(null);
@@ -65,7 +65,7 @@ const ImageTrack = ({ data, onImageClick, width = 'xs:w-[6.67rem] sm:w-[10rem] x
       style={{ scrollbarWidth: "none" }}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="flex gap-[2vmin] select-none">
+      <div className="flex gap-[0.75vmin] select-none">
         {data.map((src, index) => (
           <Image
             key={index}

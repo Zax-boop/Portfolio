@@ -15,6 +15,7 @@ export default function AlbumForm() {
     const [comments, setComments] = useState('');
     const [imageFile, setImageFile] = useState<File | null>(null);
     const [rank, setRank] = useState("");
+    const [date, setDate] = useState("");
     const [genres, setGenres] = useState<string[]>([]);
     const [coverImage, setCoverImage] = useState<string | StaticImageData>(album_placeholder);
     const [nameFocus, setNameFocus] = useState(false);
@@ -45,7 +46,7 @@ export default function AlbumForm() {
         e.preventDefault();
         setLoading(true);
         try {
-            await addAlbum(name, artist, comments, imageFile, Number(rank), genres);
+            await addAlbum(name, artist, comments, imageFile, Number(rank), date, genres);
         } catch (error) {
             console.error("Error adding album:", error);
         } finally {
@@ -224,6 +225,12 @@ export default function AlbumForm() {
                                             className={`absolute -bottom-0.5 left-0 h-[2px] bg-white transition-all duration-300 ${rankFocus || rank ? "w-full" : "w-0"}`}
                                         />
                                     </div>
+                                    <input
+                                        type="date"
+                                        value={date}
+                                        onChange={(e) => setDate(e.target.value)}
+                                        className="p-2 border border-gray-700 rounded bg-gray-800 text-white"
+                                    />
                                     <div className='flex flex-row flex-wrap gap-2 max-h-32 overflow-scroll'>
                                         {genre_list.slice().sort().map((genre, index) => (
                                             <div onClick={() => handleGenreSwitch(genre)} key={index} className={genres.includes(genre) ? `px-2 py-1 rounded-lg text-white font-bold ${returnColor(genre)} cursor-pointer opacity-100 transition-all duration-300 ease-in-out hover:opacity-30` :
