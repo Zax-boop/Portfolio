@@ -21,7 +21,11 @@ export const songs = [
             </>
         ),
         genres: [{ "Dream Pop": "bg-pink-500" }, { "Indie Pop": "bg-red-400" }, { "Jazz": "bg-blue-700" }, { "Latin": "bg-yellow-400" }, { "Psychedelic": "bg-green-600" }, { "R&B": "bg-orange-500" }],
-        recs: ["CINEMA", "Submarine", "Superclean, Vol. II", "Superclean, Vol. 1", "Melt", "Flower of the Soul (Full Bloom)", "I think we should just move in together", "Tamale", "Ice Melt", "assisted memories", "Heaven Knows", "Fancy That", "to hell with it", "All the Same All Ok", "MADRA", "Duality", "When a Thought Grows Wings", "INTUITION", "A Matter of Time (Standard Edition)", "Bewitched: The Goddess Edition", "Everything I Know About Love", "Charm", "Altar"]
+        recs: ["CINEMA", "Submarine", "Superclean, Vol. II", "Superclean, Vol. 1", "Melt", "Flower of the Soul (Full Bloom)", 
+            "I think we should just move in together", "Tamale", "Ice Melt", "assisted memories", "Heaven Knows", "Fancy That", 
+            "to hell with it", "All the Same All Ok", "MADRA", "Duality", "When a Thought Grows Wings", "INTUITION", 
+            "A Matter of Time (Standard Edition)", "Bewitched: The Goddess Edition", "Charm", 
+            "Altar", "In Rainbows", "Croak Dream", "Speak in the Dark"]
     },
     {
         name: "Glory Box",
@@ -60,7 +64,8 @@ export const songs = [
             "Debut",
             "The Break Up",
             "Who Can You Trust?",
-            "Becoming X"
+            "Becoming X",
+            "OK Computer"
         ]
     },
     {
@@ -189,7 +194,11 @@ export const songs = [
             "BPM: Bullets Per Minute (Original Game Soundtrack)",
             "Robocream (Original Roboquest Soundtrack), Pt. 1",
             "Robocream (Original Roboquest Soundtrack), Pt. 2",
-            "Robocream (Original Roboquest Soundtrack), Pt. 3"
+            "Robocream (Original Roboquest Soundtrack), Pt. 3",
+            "Pablo Honey",
+            "The Bends",
+            "Paranoid (Remaster)",
+            "Back in Black"
         ]
     },
     {
@@ -235,6 +244,7 @@ export const songs = [
             "Tamale",
             "Nothing much has changed, I don't feel the same",
             "Freudian",
+            "Suavemente"
         ]
     },
     {

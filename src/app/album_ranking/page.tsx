@@ -32,8 +32,6 @@ export default function Albums() {
         id: string;
     }[]>([]);
     const [history, setHistory] = useState<Record<string, { week_ago_rank: number }>>({});
-    const badAlbumStatements = ["Seek Help", "Consider Therapy", "You need to talk to someone", "This is a cry for help", "Please, seek help", "This is not okay", "You need to talk to someone about this", "This album is a tough listen...", "Not your best pick.",
-        "Maybe give this one a second thought.", "Are you sure about this one?"];
     const [filteredMedia, setFilteredMedia] = useState(albums);
     const [loading, setLoading] = useState(true);
     const [isLoading, setIsLoading] = useState(true);
@@ -292,22 +290,19 @@ export default function Albums() {
                                         <div className="flex flex-wrap gap-2 mt-2">
                                             {album.genres?.slice().sort().map((genre, index) => (
                                                 <div onClick={() => setSearchQuery(genre)} key={index}>
-                                                    <MusicGenre genre={genre} bad={album.Rank > (albums.length * 0.90)} />
+                                                    <MusicGenre genre={genre}/>
                                                 </div>
                                             ))}
                                         </div>
                                         <div className='flex flex-col gap-2 mt-2'>
                                             <p className="xs:text-sm sm:text-lg xl:text-xl text-gray-400">If you like this album:</p>
-                                            {album.Rank > (albums.length * 0.90) ?
-                                                <p className='xs:text-sm sm:text-lg xl:text-xl text-red-500'>{badAlbumStatements[Math.floor(Math.random() * badAlbumStatements.length)]}.</p>
-                                                :
                                                 <div className="flex flex-row flex-wrap gap-2">
                                                     {recommendedAlbums.map(recAlbum => (
                                                         <div onClick={() => setSearchQuery(recAlbum.name)} key={recAlbum.id} className="transform transition-transform duration-200 hover:scale-105 cursor-pointer">
                                                             <img src={recAlbum.image} alt={recAlbum.name} className="xs:w-6 xs:h-6 sm:w-12 sm:h-12 2xl:w-16 2xl:h-16 object-cover xs:rounded-sm sm:rounded-lg" />
                                                         </div>
                                                     ))}
-                                                </div>}
+                                                </div>
                                         </div>
                                     </div>
                                 </div>

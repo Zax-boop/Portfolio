@@ -121,7 +121,7 @@ export const soulsLikes = [
                 game.
             </>
         ),
-        recs: ["Nine Sols", "NanoApostle", "Lies of P", "Kannagi Usagi"]
+        recs: ["Nine Sols", "NanoApostle", "Lies of P", "Kannagi Usagi", "Thymesia"]
     },
 ];
 export const metroidvanias = [
@@ -173,7 +173,7 @@ export const metroidvanias = [
                 often.
             </>
         ),
-        recs: ["Sekiro: Shadows Die Twice", "Worldless", "NanoApostle"],
+        recs: ["Sekiro: Shadows Die Twice", "Worldless", "NanoApostle", "Thymesia"],
     },
 ];
 
@@ -190,7 +190,7 @@ export const roguelikes = [
                 jazzy, carnival-inspired style that fits the game's theme perfectly.
             </>
         ),
-        recs: ["Slay the Spire", "Monster Train", "Monster Train 2", "Barrel Roll"],
+        recs: ["Slay the Spire", "Monster Train", "Monster Train 2", "Barrel Roll", "Diceomancer"],
     },
     {
         name: "Hades",
@@ -276,7 +276,7 @@ export const turns = [
         alt: "Slay the Spire",
         description:
             "A modern roguelike deck-building game that combines strategic card play with dungeon crawling. Its challenging gameplay and unique mechanics make it a favorite among the roguelike and strategy communities. I am horrible at it though but still love it.",
-        recs: ["Balatro", "Darkest Dungeon", "Monster Train", "Monster Train 2", "Barrel Roll"],
+        recs: ["Balatro", "Darkest Dungeon", "Monster Train", "Monster Train 2", "Barrel Roll", "Diceomancer", "Shogun Showdown"],
     },
     {
         name: "Worldless",
@@ -337,7 +337,7 @@ export const horrors = [
         alt: "Bloodborne",
         description:
             "A very special game to me. It was my intro into FromSoftware's games and I fell in love with it. The gothic horror setting is incredibly atmospheric, and the fast-paced combat is both challenging and rewarding. It taught me how rewarding it is to overcome overwhelming odds, a high I export constantly chase.",
-        recs: ["Blasphemous", "Blasphemous 2", "Nightmare Kart", "Hollow Knight", "Lies of P", "Another Crab's Treasure", "Dark Souls 3", "Sekiro: Shadows Die Twice", "Elden Ring", "Elden Ring Nightreign"]
+        recs: ["Blasphemous", "Blasphemous 2", "Nightmare Kart", "Hollow Knight", "Lies of P", "Another Crab's Treasure", "Dark Souls 3", "Sekiro: Shadows Die Twice", "Elden Ring", "Elden Ring Nightreign", "Thymesia"]
     }
 ];
 export const platformers = [
