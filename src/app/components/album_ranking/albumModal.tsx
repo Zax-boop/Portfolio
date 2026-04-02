@@ -7,18 +7,18 @@ import album_placeholder from "../../../../public/album_placeholder.png"
 import Image, { StaticImageData } from 'next/image';
 import supabase from "../../../../utils/general/supabaseclient"
 import { User } from '@supabase/supabase-js';
+import AlbumSearchInput from './albumSearchInput';
 
 export default function AlbumForm() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [name, setName] = useState('');
     const [artist, setArtist] = useState('');
     const [comments, setComments] = useState('');
-    const [imageFile, setImageFile] = useState<File | null>(null);
+    const [imageFile, setImageFile] = useState<File | string | null>(null);
     const [rank, setRank] = useState("");
     const [date, setDate] = useState("");
     const [genres, setGenres] = useState<string[]>([]);
     const [coverImage, setCoverImage] = useState<string | StaticImageData>(album_placeholder);
-    const [nameFocus, setNameFocus] = useState(false);
     const [artistFocus, setArtistFocus] = useState(false);
     const [commentFocus, setCommentFocus] = useState(false);
     const [rankFocus, setRankFocus] = useState(false);
@@ -167,18 +167,15 @@ export default function AlbumForm() {
                                 </div>
                                 <div className='flex flex-col w-1/2 ml-2 gap-4'>
                                     <div className="relative group">
-                                        <input
-                                            type="text"
-                                            className="w-full bg-transparent text-xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
-                                            placeholder="Album Name"
-                                            value={name}
-                                            onFocus={() => setNameFocus(true)}
-                                            onBlur={() => setNameFocus(false)}
-                                            onChange={(e) => setName(e.target.value)}
-                                        />
-                                        <span
-                                            className={`absolute -bottom-0.5 left-0 h-[2px] bg-white transition-all duration-300 ${nameFocus || name ? "w-full" : "w-0"
-                                                }`}
+                                        <AlbumSearchInput
+                                            name={name}             // pass parent state
+                                            setName={setName}       // allow input to update parent
+                                            onSelect={(album) => {
+                                                setCoverImage(album.image);
+                                                setImageFile(album.image);
+                                                setName(album.name);       // already handled by parent
+                                                setArtist(album.artists);
+                                            }}
                                         />
                                     </div>
                                     <div className="relative group">

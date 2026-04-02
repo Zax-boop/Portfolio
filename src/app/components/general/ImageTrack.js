@@ -60,12 +60,12 @@ const ImageTrack = ({ data, onImageClick, width = 'xs:w-[6.67rem] sm:w-[10rem] x
 
   return (
     <div
-      className="relative xs:h-[10rem] sm:h-[15rem] xl:h-[30rem] w-full overflow-x-scroll"
+      className="relative xs:h-[10rem] sm:h-[15rem] xl:h-[30rem] 2xl:h-[45rem] w-full overflow-x-scroll"
       ref={trackRef}
       style={{ scrollbarWidth: "none" }}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="flex gap-[0.75vmin] select-none">
+      <div className="flex xs:gap-[0.75vmin] 2xl:gap-[1vmin] select-none">
         {data.map((src, index) => (
           <Image
             key={index}
@@ -73,7 +73,7 @@ const ImageTrack = ({ data, onImageClick, width = 'xs:w-[6.67rem] sm:w-[10rem] x
             alt={`Media ${index}`}
             width={400}
             height={400}
-            className={`image ${width} xs:h-[10rem] sm:h-[15rem] xl:h-[30rem] object-cover object-[100%_center] cursor-pointer`}
+            className={`image ${width} xs:h-[10rem] sm:h-[15rem] xl:h-[30rem] 2xl:h-[45rem] object-cover object-[100%_center] cursor-pointer`}
             draggable="false"
             onClick={() => onImageClick(index)}
           />

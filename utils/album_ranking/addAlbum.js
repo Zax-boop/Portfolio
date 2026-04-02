@@ -1,36 +1,32 @@
 import supabase from "../general/supabaseclient";
 
 export default async function addAlbum(name, artist, comment, imageFile, Rank, date, genres) {
+  // imageFile is either File (user upload) OR undefined (Spotify)
   let imageUrl = "";
-  if (Rank == "") {
-    const { data: list, error: fetchError } = await supabase
-      .from('album_rankings')
-      .select('*');
-    if (fetchError) {
-      console.error('Error fetching tv to update:', fetchError);
-      return null;
-    }
-    Rank = list.length + 1;
-  }
-  if (imageFile) {
+
+  if (imageFile instanceof File) {
     const fileName = `${Date.now()}_${imageFile.name}`;
 
     const { data: storageData, error: storageError } = await supabase.storage
-      .from('album-images') 
+      .from('album-images')
       .upload(fileName, imageFile);
 
     if (storageError) {
-      console.error('Error uploading image:', storageError);
+      console.error("Error uploading image:", storageError);
       return null;
     }
-    
-    imageUrl = supabase.storage.from('album-images').getPublicUrl(fileName).data.publicUrl;
+
+    imageUrl = supabase.storage
+      .from("album-images")
+      .getPublicUrl(fileName).data.publicUrl;
+  } else if (typeof imageFile === "string") {
+    imageUrl = imageFile;
   }
 
   const { data: albumsToUpdate, error: fetchError } = await supabase
     .from('album_rankings')
     .select('*')
-    .gte('Rank', Rank); 
+    .gte('Rank', Rank);
 
   if (fetchError) {
     console.error('Error fetching albums to update:', fetchError);
@@ -40,7 +36,7 @@ export default async function addAlbum(name, artist, comment, imageFile, Rank, d
   for (const album of albumsToUpdate) {
     const { error: updateError } = await supabase
       .from('album_rankings')
-      .update({ Rank: album.Rank + 1 }) 
+      .update({ Rank: album.Rank + 1 })
       .eq('id', album.id);
 
     if (updateError) {
