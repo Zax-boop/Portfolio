@@ -81,7 +81,10 @@ export default function Scrapbook() {
         }
 
         const normalizedAlbums: Scrap[] = (albumData || []).map((album) => {
-            const dateOnly = album.created_at?.split("T")[0] ?? null;
+            const dateOnly =
+                album.date ??
+                album.created_at?.split(" ")[0] ??
+                null;
             return {
                 id: album.id,
                 created_at: dateOnly,
