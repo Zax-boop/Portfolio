@@ -50,6 +50,12 @@ export default function Sports() {
         fetchMedia();
     }, []);
 
+    const sports = useMemo(() => {
+        return Array.from(
+            new Set(mediaFiles.map((file) => file.sport).filter(Boolean))
+        );
+    }, [mediaFiles]);
+
     const handleUploadSuccess = () => {
         window.location.reload();
     };
@@ -118,13 +124,16 @@ export default function Sports() {
             <div className="flex flex-col w-full xs:mt-2 sm:mt-4 xl:mt-10 self-start">
                 <div className="flex flex-row w-full pl-4">
                     <div className="flex flex-row gap-2">
-                        {["climbing", "racquetball", "hiking", "skating", "table tennis"].map((sport) => (
+                        {sports.map((sport) => (
                             <button
                                 key={sport}
-                                onClick={() => setSelectedSport(selectedSport === sport ? null : sport)}
+                                onClick={() =>
+                                    setSelectedSport(selectedSport === sport ? null : sport)
+                                }
                                 className={`self-start xs:text-xs xs:px-2 xs:py-1 sm:text-base sm:px-3 sm:py-2 rounded-full border transition duration-300 ${selectedSport === sport
-                                    ? "bg-white text-black border-white"
-                                    : "bg-black text-white border-white hover:bg-white hover:text-black"}`}
+                                        ? "bg-white text-black border-white"
+                                        : "bg-black text-white border-white hover:bg-white hover:text-black"
+                                    }`}
                             >
                                 {sport.charAt(0).toUpperCase() + sport.slice(1)}
                             </button>
