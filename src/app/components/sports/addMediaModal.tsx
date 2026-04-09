@@ -5,7 +5,7 @@ import { PlusIcon } from "lucide-react";
 interface AddMediaModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onUploadSuccess: () => void; 
+  onUploadSuccess: () => void;
 }
 
 const AddMediaModal = ({ isOpen, onClose, onUploadSuccess }: AddMediaModalProps) => {
@@ -13,6 +13,8 @@ const AddMediaModal = ({ isOpen, onClose, onUploadSuccess }: AddMediaModalProps)
   const [sportInput, setSportInput] = useState("");
   const [isFavorite, setIsFavorite] = useState(false);
   const [uploading, setUploading] = useState(false);
+  const [date, setDate] = useState("");
+  const [description, setDescription] = useState("");
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -37,6 +39,8 @@ const AddMediaModal = ({ isOpen, onClose, onUploadSuccess }: AddMediaModalProps)
           file_path: selectedFile.name,
           sport: sportInput,
           favorite: isFavorite,
+          date: date || null,
+          description: description || null,
         });
 
       if (insertError) throw insertError;
@@ -73,7 +77,6 @@ const AddMediaModal = ({ isOpen, onClose, onUploadSuccess }: AddMediaModalProps)
 
         <div className="flex flex-col gap-4">
           <input type="file" onChange={handleFileChange} />
-
           <input
             type="text"
             placeholder="Sport (e.g. climbing, skating)"
@@ -81,7 +84,19 @@ const AddMediaModal = ({ isOpen, onClose, onUploadSuccess }: AddMediaModalProps)
             onChange={(e) => setSportInput(e.target.value)}
             className="border border-gray-300 rounded px-3 py-2"
           />
-
+          <input
+            type="text"
+            className="border border-gray-300 rounded px-3 py-2"
+            placeholder="Description (optional)"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+          <input
+            type="date"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+            className="p-2 border border-gray-700 rounded bg-gray-800 text-white"
+          />
           <label className="flex items-center gap-2">
             <input
               type="checkbox"
@@ -90,7 +105,6 @@ const AddMediaModal = ({ isOpen, onClose, onUploadSuccess }: AddMediaModalProps)
             />
             Favorite
           </label>
-
           <button
             onClick={handleUpload}
             disabled={uploading}

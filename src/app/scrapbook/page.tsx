@@ -17,6 +17,7 @@ type Scrap = {
     file_path: string | undefined
     source: string | null
     date: string | null
+    name?: string
 }
 
 export default function Scrapbook() {
@@ -56,12 +57,11 @@ export default function Scrapbook() {
             .gte("created_at", "2025-02-01")
             .order("created_at", { ascending: false });
 
-        const { data: climbingFiles, error: climbingError } = await supabase
-            .storage
-            .from("climbing")
-            .list("", {
-                sortBy: { column: "created_at", order: "desc" },
-            });
+        const { data: sportsData, error: sportsError } = await supabase
+            .from("sports")
+            .select("*")
+            .gte("created_at", "2025-02-01")
+            .order("created_at", { ascending: false });
 
         const { data: tvFiles, error: tvError } = await supabase
             .from("tv_rankings")
@@ -75,8 +75,8 @@ export default function Scrapbook() {
             .gte("created_at", "2025-02-01")
             .order("created_at", { ascending: false });
 
-        if (scrapError || albumError || animeError || artError || bookError || climbingError || tvError || gameError) {
-            console.error("Fetch error:", scrapError || albumError || animeError || artError || bookError || climbingError || tvError || gameError);
+        if (scrapError || albumError || animeError || artError || bookError || sportsError || tvError || gameError) {
+            console.error("Fetch error:", scrapError || albumError || animeError || artError || bookError || sportsError || tvError || gameError);
             return;
         }
 
@@ -92,6 +92,21 @@ export default function Scrapbook() {
                 file_path: album.image,
                 date: dateOnly,
                 source: "album"
+            };
+        });
+
+        const normalizedSports: Scrap[] = (sportsData || []).map((sport) => {
+            const dateOnly =
+                sport.date ??
+                sport.created_at?.split("T")[0] ??
+                null;
+            return {
+                id: sport.id,
+                created_at: sport.created_at,
+                description: sport.description || "",
+                file_path: supabase.storage.from("climbing").getPublicUrl(sport.file_path).data.publicUrl,
+                date: dateOnly,
+                source: "sports"
             };
         });
 
@@ -131,22 +146,6 @@ export default function Scrapbook() {
             };
         });
 
-        const filteredFiles = (climbingFiles || []).filter((file) => {
-            if (!file.created_at) return false;
-            const fileDate = new Date(file.created_at);
-            const cutoff = new Date("2025-02-01");
-            return fileDate >= cutoff;
-        });
-
-        const climbingMedia: Scrap[] = (filteredFiles || []).map((file) => ({
-            id: file.id || file.name,
-            created_at: file.created_at || null,
-            date: file.created_at ? file.created_at.split("T")[0] : null,
-            file_path: supabase.storage.from("climbing").getPublicUrl(file.name).data.publicUrl,
-            description: ``,
-            source: "sports"
-        }));
-
         const normalizedTv: Scrap[] = (tvFiles || []).map((tv) => {
             const dateOnly = tv.created_at?.split("T")[0] ?? null;
             return {
@@ -171,7 +170,7 @@ export default function Scrapbook() {
             };
         });
 
-        const combined = [...(scrapData ?? []), ...normalizedAlbums, ...normalizedAnime, ...normalizedArt, ...normalizedBooks, ...climbingMedia, ...normalizedTv, ...normalizedGames];
+        const combined = [...(scrapData ?? []), ...normalizedAlbums, ...normalizedAnime, ...normalizedArt, ...normalizedBooks, ...normalizedSports, ...normalizedTv, ...normalizedGames];
 
         combined.sort((a, b) => {
             const da = a.date ? new Date(a.date).getTime() : 0;
