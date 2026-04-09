@@ -8,6 +8,7 @@ import Image, { StaticImageData } from 'next/image';
 import supabase from "../../../../utils/general/supabaseclient"
 import { User } from '@supabase/supabase-js';
 import AlbumSearchInput from './albumSearchInput';
+import { getAlbumGenres } from '../../../../utils/album_ranking/getAlbumGenres';
 
 export default function AlbumForm() {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -133,6 +134,15 @@ export default function AlbumForm() {
             setGenres([...genres, genre]);
         }
     };
+
+    const normalizeGenre = (g: string): string => {
+        return g
+            .toLowerCase()
+            .replace(/&/g, "and")
+            .replace(/[^a-z]/g, "");
+    }
+
+
     return (
         <div className={`flex flex-col w-full items-center justify-center xs:hidden sm:block`}>
             <div className={`flex flex-row w-full justify-end`}>
@@ -170,11 +180,26 @@ export default function AlbumForm() {
                                         <AlbumSearchInput
                                             name={name}             // pass parent state
                                             setName={setName}       // allow input to update parent
-                                            onSelect={(album) => {
+                                            onSelect={async (album) => {
                                                 setCoverImage(album.image);
                                                 setImageFile(album.image);
                                                 setName(album.name);       // already handled by parent
                                                 setArtist(album.artists);
+
+                                                // 🔥 NEW: fetch genres
+                                                const rawGenres = await getAlbumGenres(album.artists, album.name);
+
+                                                // normalize + match your system
+                                                const formatted = rawGenres.map(normalizeGenre);
+
+                                                // filter only ones you support
+                                                const validGenres = genre_list.filter((g) =>
+                                                    formatted.includes(
+                                                        g.toLowerCase().replace(/\s+/g, "").replace(/&/g, "and").replace(/-/g, "")
+                                                    )
+                                                );
+
+                                                setGenres(validGenres);
                                             }}
                                         />
                                     </div>
