@@ -14,12 +14,15 @@ import MusicGenre from '../components/album_ranking/musicGenre';
 import ReadMore from '../components/general/readMore';
 import Spotify from '../../../public/spotify.png';
 import Link from 'next/link';
-import GenrePieChart from '../components/general/genrePieChart';
+// import GenrePieChart from '../components/general/genrePieChart';
 import AlbumRecommendations from '../components/album_ranking/albumRecommendations';
 import getAlbumRankHistory from '../../../utils/album_ranking/getAlbumRankHistory';
 import { ChevronUp, ChevronsUp, ChevronDown, ChevronsDown } from 'lucide-react';
 import Loading from '../components/general/loading';
-import { albumGenreColors } from '../../../data/genreColors';
+// import { albumGenreColors } from '../../../data/genreColors';
+import RecommenderDashboard from '../components/album_ranking/recommenderDashboard';
+import supabase from "../../../utils/general/supabaseclient";
+import { User } from '@supabase/supabase-js';
 
 export default function Albums() {
     const [albums, setAlbums] = useState<{
@@ -29,8 +32,18 @@ export default function Albums() {
         image: string;
         Rank: number;
         genres: string[];
+        recommender: string;
         id: string;
     }[]>([]);
+    const [user, setUser] = useState<User | null>(null);
+    useEffect(() => {
+        const getSession = async () => {
+            const { data } = await supabase.auth.getSession();
+            setUser(data.session?.user || null);
+        };
+
+        getSession();
+    }, []);
     const [history, setHistory] = useState<Record<string, { week_ago_rank: number }>>({});
     const [filteredMedia, setFilteredMedia] = useState(albums);
     const [loading, setLoading] = useState(true);
@@ -192,9 +205,11 @@ export default function Albums() {
                         </Link>
                     </div>
                     <p className='xs:text-xs sm:text-base sm:mt-2 xl:mt-0 xs:mb-1 sm:mb-0'>*Disclaimer: This is just my opinion and what I enjoyed listening to the most regardless of critical bias.</p>
-                    <div className='flex flex-row w-full justify-center'>
-                        <GenrePieChart genresList={albums?.map((album) => album.genres)} setSearchQuery={setSearchQuery} genreColors={albumGenreColors}/>
-                    </div>
+                    {user && (
+                        <div className='flex flex-row w-full justify-center'>
+                            <RecommenderDashboard albums={albums} />
+                        </div>
+                    )}
                     <div className="flex flex-row flex-wrap justify-start mt-2">
                         {Array.from({ length: totalPages }, (_, i) => (
                             <button
@@ -290,19 +305,19 @@ export default function Albums() {
                                         <div className="flex flex-wrap gap-2 mt-2">
                                             {album.genres?.slice().sort().map((genre, index) => (
                                                 <div onClick={() => setSearchQuery(genre)} key={index}>
-                                                    <MusicGenre genre={genre}/>
+                                                    <MusicGenre genre={genre} />
                                                 </div>
                                             ))}
                                         </div>
                                         <div className='flex flex-col gap-2 mt-2'>
                                             <p className="xs:text-sm sm:text-lg xl:text-xl text-gray-400">If you like this album:</p>
-                                                <div className="flex flex-row flex-wrap gap-2">
-                                                    {recommendedAlbums.map(recAlbum => (
-                                                        <div onClick={() => setSearchQuery(recAlbum.name)} key={recAlbum.id} className="transform transition-transform duration-200 hover:scale-105 cursor-pointer">
-                                                            <img src={recAlbum.image} alt={recAlbum.name} className="xs:w-6 xs:h-6 sm:w-12 sm:h-12 2xl:w-16 2xl:h-16 object-cover xs:rounded-sm sm:rounded-lg" />
-                                                        </div>
-                                                    ))}
-                                                </div>
+                                            <div className="flex flex-row flex-wrap gap-2">
+                                                {recommendedAlbums.map(recAlbum => (
+                                                    <div onClick={() => setSearchQuery(recAlbum.name)} key={recAlbum.id} className="transform transition-transform duration-200 hover:scale-105 cursor-pointer">
+                                                        <img src={recAlbum.image} alt={recAlbum.name} className="xs:w-6 xs:h-6 sm:w-12 sm:h-12 2xl:w-16 2xl:h-16 object-cover xs:rounded-sm sm:rounded-lg" />
+                                                    </div>
+                                                ))}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

@@ -10,9 +10,11 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.6.0",
+    "@nivo/scatterplot": "^0.99.0",
     "@supabase/supabase-js": "^2.46.1",
     "animejs": "^3.2.2",
     "chart.js": "^4.5.0",
+    "clsx": "^2.1.1",
     "framer-motion": "^12.23.12",
     "lucide-react": "^0.456.0",
     "matter-js": "^0.20.0",
@@ -22,8 +24,8 @@
     "react-dom": "^18.2.0",
     "react-responsive": "^10.0.0",
     "react-vertical-timeline-component": "^3.6.0",
-    "recharts": "^3.1.2",
-    "swiper": "^11.1.14"
+    "swiper": "^11.1.14",
+    "tailwind-merge": "^3.5.0"
   },
   "devDependencies": {
     "@types/matter-js": "^0.20.2",

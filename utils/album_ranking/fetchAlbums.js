@@ -3,7 +3,7 @@ import supabase from "../general/supabaseclient";
 export default async function fetchAlbums() {
   const { data, error } = await supabase
     .from('album_rankings')
-    .select('name, artist, comment, image, Rank, genres, id') 
+    .select('name, artist, comment, image, Rank, genres, recommender, id') 
     .order('Rank', { ascending: true }); 
 
   if (error) {
