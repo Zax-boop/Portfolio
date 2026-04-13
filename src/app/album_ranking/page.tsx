@@ -14,15 +14,11 @@ import MusicGenre from '../components/album_ranking/musicGenre';
 import ReadMore from '../components/general/readMore';
 import Spotify from '../../../public/spotify.png';
 import Link from 'next/link';
-// import GenrePieChart from '../components/general/genrePieChart';
 import AlbumRecommendations from '../components/album_ranking/albumRecommendations';
 import getAlbumRankHistory from '../../../utils/album_ranking/getAlbumRankHistory';
 import { ChevronUp, ChevronsUp, ChevronDown, ChevronsDown } from 'lucide-react';
 import Loading from '../components/general/loading';
-// import { albumGenreColors } from '../../../data/genreColors';
 import RecommenderDashboard from '../components/album_ranking/recommenderDashboard';
-import supabase from "../../../utils/general/supabaseclient";
-import { User } from '@supabase/supabase-js';
 
 export default function Albums() {
     const [albums, setAlbums] = useState<{
@@ -35,15 +31,6 @@ export default function Albums() {
         recommender: string;
         id: string;
     }[]>([]);
-    const [user, setUser] = useState<User | null>(null);
-    useEffect(() => {
-        const getSession = async () => {
-            const { data } = await supabase.auth.getSession();
-            setUser(data.session?.user || null);
-        };
-
-        getSession();
-    }, []);
     const [history, setHistory] = useState<Record<string, { week_ago_rank: number }>>({});
     const [filteredMedia, setFilteredMedia] = useState(albums);
     const [loading, setLoading] = useState(true);
@@ -57,6 +44,7 @@ export default function Albums() {
     const currentMedia = filteredMedia.slice(indexOfFirstMedia, indexOfLastMedia);
     const albumRefs = useRef<React.RefObject<HTMLDivElement>[]>([]);
     const [showRecommendations, setShowRecommendations] = useState(false);
+    const [showELOs, setShowELOs] = useState(false);
 
     const searchSectionRef = useRef<HTMLDivElement>(null);
     const switchPage = (pageIndex: number) => {
@@ -144,6 +132,7 @@ export default function Albums() {
 
     const recSelect = (name: string) => {
         setShowRecommendations(false);
+        setShowELOs(false);
         setSearchQuery(`%${name}`);
     };
 
@@ -174,172 +163,180 @@ export default function Albums() {
             </div>
             <div className="relative flex xs:w-40 md:w-80 border border-white xs:text-xs md:text-base rounded-full overflow-hidden xs:mt-2 sm:mt-8">
                 <div
-                    className={`absolute top-0 bottom-0 w-1/2 bg-white rounded-full transition-transform duration-300`}
+                    className={`absolute top-0 bottom-0 w-1/3 bg-white rounded-full transition-transform duration-300`}
                     style={{
-                        transform: showRecommendations ? "translateX(100%)" : "translateX(0%)",
+                        transform: showRecommendations ? "translateX(100%)" : showELOs ? "translateX(200%)" : "translateX(0%)",
                     }}
                 />
                 <button
-                    onClick={() => setShowRecommendations(false)}
+                    onClick={() => (setShowRecommendations(false), setShowELOs(false), setSearchQuery(""))}
                     className={`relative flex-1 xs:py-1 md:py-2 text-center font-medium transition-colors duration-300
-      ${!showRecommendations ? "text-black" : "text-white hover:text-gray-300 hover:scale-105"}
+      ${!showRecommendations && !showELOs ? "text-black" : "text-white hover:text-gray-300 hover:scale-105"}
     `}
                 >
                     Rankings
                 </button>
                 <button
-                    onClick={() => (setShowRecommendations(true), setSearchQuery(""))}
+                    onClick={() => (setShowRecommendations(true), setShowELOs(false), setSearchQuery(""))}
                     className={`relative flex-1 xs:py-1 md:py-2 text-center font-medium transition-colors duration-300
       ${showRecommendations ? "text-black" : "text-white hover:text-gray-300 hover:scale-105"}
     `}
                 >
                     Recs
                 </button>
+                <button
+                    onClick={() => (setShowELOs(true), setShowRecommendations(false), setSearchQuery(""))}
+                    className={`relative flex-1 xs:py-1 md:py-2 text-center font-medium transition-colors duration-300
+      ${showELOs ? "text-black" : "text-white hover:text-gray-300 hover:scale-105"}
+    `}
+                >
+                    ELOs
+                </button>
             </div>
-            {showRecommendations ? <AlbumRecommendations albums={albums} recSelect={recSelect} /> :
-                <div className="flex flex-col xs:w-[95%] sm:w-4/5 xs:mt-2 sm:mt-8">
-                    <div className='flex flex-row items-center xs:justify-end sm:justify-start'>
-                        <AlbumForm />
-                        <Link href="https://open.spotify.com/playlist/1BjbHX9ACQUNCBt5zWZjtV?si=3d5ac7a5e3ae4f06" target="_blank" className=''>
-                            <img src={Spotify.src} alt="Spotify" className='xs:w-6 sm:w-10 xl:w-10 transform transition-transform duration-200 hover:scale-110' />
-                        </Link>
-                    </div>
-                    <p className='xs:text-xs sm:text-base sm:mt-2 xl:mt-0 xs:mb-1 sm:mb-0'>*Disclaimer: This is just my opinion and what I enjoyed listening to the most regardless of critical bias.</p>
-                    {user && (
-                        <div className='flex flex-row w-full justify-center'>
-                            <RecommenderDashboard albums={albums} />
+            {showELOs ?
+                <div className='flex flex-row w-full justify-center'>
+                    <RecommenderDashboard albums={albums} recSelect={recSelect}/>
+                </div>
+                : showRecommendations ? <AlbumRecommendations albums={albums} recSelect={recSelect} /> :
+                    <div className="flex flex-col xs:w-[95%] sm:w-4/5 xs:mt-2 sm:mt-8">
+                        <div className='flex flex-row items-center xs:justify-end sm:justify-start'>
+                            <AlbumForm />
+                            <Link href="https://open.spotify.com/playlist/1BjbHX9ACQUNCBt5zWZjtV?si=3d5ac7a5e3ae4f06" target="_blank" className=''>
+                                <img src={Spotify.src} alt="Spotify" className='xs:w-6 sm:w-10 xl:w-10 transform transition-transform duration-200 hover:scale-110' />
+                            </Link>
                         </div>
-                    )}
-                    <div className="flex flex-row flex-wrap justify-start mt-2">
-                        {Array.from({ length: totalPages }, (_, i) => (
-                            <button
-                                key={i}
-                                className={`px-3 py-1 mx-1 my-1 ${currentPage === i + 1
-                                    ? "bg-white text-black border-[1px] border-white"
-                                    : "bg-black border-[1px] border-white text-white hover:bg-white hover:text-black transition-all duration-300 ease-in-out"
-                                    }`}
-                                onClick={() => setCurrentPage(i + 1)}
-                            >
-                                {i + 1}
-                            </button>
-                        ))}
-                    </div>
-                    <div className="my-4" ref={searchSectionRef}
-                    >
-                        <input
-                            type="text"
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                            placeholder="Search albums..."
-                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-0 text-black"
-                        />
-                    </div>
-                    <hr className="border-t border-gray-300" />
-                    {currentMedia.map((album: {
-                        name: string;
-                        artist: string;
-                        comment: string;
-                        image: string;
-                        Rank: number;
-                        genres: string[];
-                        id: string;
-                    }, index: number) => {
-                        const recommendedAlbums = getRecommendedAlbums(album);
-                        return (
-                            <FadeInSection
-                                key={album.id || `${album.name}-${album.artist}-${index}`}
-                                ref={albumRefs.current[index]}
-                                className="flex flex-col xl:space-y-4 xs:mt-4 xl:mt-8"
-                            >
-                                <div className="relative flex flex-row rounded-2xl p-2">
-                                    {album.Rank <= 3 && (
-                                        <div
-                                            className={`
+                        <p className='xs:text-xs sm:text-base sm:mt-2 xl:mt-0 xs:mb-1 sm:mb-0'>*Disclaimer: This is just my opinion and what I enjoyed listening to the most regardless of critical bias.</p>
+                        <div className="flex flex-row flex-wrap justify-start mt-2">
+                            {Array.from({ length: totalPages }, (_, i) => (
+                                <button
+                                    key={i}
+                                    className={`px-3 py-1 mx-1 my-1 ${currentPage === i + 1
+                                        ? "bg-white text-black border-[1px] border-white"
+                                        : "bg-black border-[1px] border-white text-white hover:bg-white hover:text-black transition-all duration-300 ease-in-out"
+                                        }`}
+                                    onClick={() => setCurrentPage(i + 1)}
+                                >
+                                    {i + 1}
+                                </button>
+                            ))}
+                        </div>
+                        <div className="my-4" ref={searchSectionRef}
+                        >
+                            <input
+                                type="text"
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                                placeholder="Search albums..."
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-0 text-black"
+                            />
+                        </div>
+                        <hr className="border-t border-gray-300" />
+                        {currentMedia.map((album: {
+                            name: string;
+                            artist: string;
+                            comment: string;
+                            image: string;
+                            Rank: number;
+                            genres: string[];
+                            recommender: string;
+                            id: string;
+                        }, index: number) => {
+                            const recommendedAlbums = getRecommendedAlbums(album);
+                            return (
+                                <FadeInSection
+                                    key={album.id || `${album.name}-${album.artist}-${index}`}
+                                    ref={albumRefs.current[index]}
+                                    className="flex flex-col xl:space-y-4 xs:mt-4 xl:mt-8"
+                                >
+                                    <div className="relative flex flex-row rounded-2xl p-2">
+                                        {album.Rank <= 3 && (
+                                            <div
+                                                className={`
                                                         absolute inset-0 rounded-2xl blur-xl opacity-5 animate-softGlow
                                                         ${album.Rank === 1 ? "bg-yellow-400" : ""}
                                                         ${album.Rank === 2 ? "bg-gray-300" : ""}
                                                         ${album.Rank === 3 ? "bg-amber-600" : ""}
                                                     `}
-                                            style={{ zIndex: -1 }}
+                                                style={{ zIndex: -1 }}
+                                            />
+                                        )}
+                                        <div className="flex flex-col items-center xs:mr-1 sm:mr-2 xl:mr-4">
+                                            <h2 className="xs:text-base sm:text-lg xl:text-xl font-semibold">{album.Rank}.</h2>
+                                            {history[album.id] && album.Rank !== history[album.id].week_ago_rank && (() => {
+                                                const diff = Math.abs(album.Rank - history[album.id].week_ago_rank);
+                                                const isUp = album.Rank < history[album.id].week_ago_rank;
+                                                const Icon = diff < 10
+                                                    ? isUp
+                                                        ? ChevronUp
+                                                        : ChevronDown
+                                                    : isUp
+                                                        ? ChevronsUp
+                                                        : ChevronsDown;
+
+                                                const color = isUp ? "text-green-500" : "text-red-500";
+                                                const maxDiff = 50;
+                                                const scale = 1 + Math.min(diff, maxDiff) * 0.02;
+
+                                                return <Icon className={`mt-1 ${color}`} size={16 * scale} />;
+                                            })()}
+                                        </div>
+                                        <img
+                                            src={album.image}
+                                            alt={`${album.name} album cover`}
+                                            className={`xs:w-[10rem] xs:h-[10rem] sm:w-[15rem] sm:h-[15rem] xl:w-[30rem] xl:h-[30rem] xs:min-w-[10rem] xs:min-h-[10rem] sm:min-w-[15rem] sm:min-h-[15rem] xl:min-w-[30rem] xl:min-h-[30rem] object-cover mb-4 transform transition-transform hover:scale-105 duration-300 ${isLoading
+                                                ? "scale-110 blur-2xl grayscale"
+                                                : "scale-100 blur-0 grayscale-0"
+                                                }`}
+                                            onLoad={() => setIsLoading(false)}
                                         />
-                                    )}
-                                    <div className="flex flex-col items-center xs:mr-1 sm:mr-2 xl:mr-4">
-                                        <h2 className="xs:text-base sm:text-lg xl:text-xl font-semibold">{album.Rank}.</h2>
-                                        {history[album.id] && album.Rank !== history[album.id].week_ago_rank && (() => {
-                                            const diff = Math.abs(album.Rank - history[album.id].week_ago_rank);
-                                            const isUp = album.Rank < history[album.id].week_ago_rank;
-                                            const Icon = diff < 10
-                                                ? isUp
-                                                    ? ChevronUp
-                                                    : ChevronDown
-                                                : isUp
-                                                    ? ChevronsUp
-                                                    : ChevronsDown;
-
-                                            const color = isUp ? "text-green-500" : "text-red-500";
-                                            const maxDiff = 50;
-                                            const scale = 1 + Math.min(diff, maxDiff) * 0.02;
-
-                                            return <Icon className={`mt-1 ${color}`} size={16 * scale} />;
-                                        })()}
-                                    </div>
-                                    <img
-                                        src={album.image}
-                                        alt={`${album.name} album cover`}
-                                        className={`xs:w-[10rem] xs:h-[10rem] sm:w-[15rem] sm:h-[15rem] xl:w-[30rem] xl:h-[30rem] xs:min-w-[10rem] xs:min-h-[10rem] sm:min-w-[15rem] sm:min-h-[15rem] xl:min-w-[30rem] xl:min-h-[30rem] object-cover mb-4 transform transition-transform hover:scale-105 duration-300 ${isLoading
-                                            ? "scale-110 blur-2xl grayscale"
-                                            : "scale-100 blur-0 grayscale-0"
-                                            }`}
-                                        onLoad={() => setIsLoading(false)}
-                                    />
-                                    <div className='xs:ml-2 sm:ml-4 w-full'>
-                                        <div className='w-full flex flex-row justify-between'>
-                                            <p className={`xs:text-xl sm:text-4xl ${album.name == "D>E>A>T>H>M>E>T>A>L" ? `xl:text-4xl` : `xl:text-6xl`} text-white text-wrap`}>{album.name}</p>
-                                            <div className='flex flex-row items-center gap-2'>
-                                                <DeleteAlbum id={album.id} Rank={album.Rank} />
-                                                <UpdateAlbumModal album={album} />
-                                            </div>
-                                        </div>
-                                        <p className="xs:text-base sm:text-lg xl:text-3xl text-gray-400">{album.artist}</p>
-                                        <ReadMore text={album.comment} className="xs:text-[0.5rem] sm:text-sm xl:text-lg xs:mt-0.5 sm:mt-1 xl:mt-2" />
-                                        <div className="flex flex-wrap gap-2 mt-2">
-                                            {album.genres?.slice().sort().map((genre, index) => (
-                                                <div onClick={() => setSearchQuery(genre)} key={index}>
-                                                    <MusicGenre genre={genre} />
+                                        <div className='xs:ml-2 sm:ml-4 w-full'>
+                                            <div className='w-full flex flex-row justify-between'>
+                                                <p className={`xs:text-xl sm:text-4xl ${album.name == "D>E>A>T>H>M>E>T>A>L" ? `xl:text-4xl` : `xl:text-6xl`} text-white text-wrap`}>{album.name}</p>
+                                                <div className='flex flex-row items-center gap-2'>
+                                                    <DeleteAlbum id={album.id} Rank={album.Rank} />
+                                                    <UpdateAlbumModal album={album} />
                                                 </div>
-                                            ))}
-                                        </div>
-                                        <div className='flex flex-col gap-2 mt-2'>
-                                            <p className="xs:text-sm sm:text-lg xl:text-xl text-gray-400">If you like this album:</p>
-                                            <div className="flex flex-row flex-wrap gap-2">
-                                                {recommendedAlbums.map(recAlbum => (
-                                                    <div onClick={() => setSearchQuery(recAlbum.name)} key={recAlbum.id} className="transform transition-transform duration-200 hover:scale-105 cursor-pointer">
-                                                        <img src={recAlbum.image} alt={recAlbum.name} className="xs:w-6 xs:h-6 sm:w-12 sm:h-12 2xl:w-16 2xl:h-16 object-cover xs:rounded-sm sm:rounded-lg" />
+                                            </div>
+                                            <p className="xs:text-base sm:text-lg xl:text-3xl text-gray-400">{album.artist}</p>
+                                            <ReadMore text={album.comment} className="xs:text-[0.5rem] sm:text-sm xl:text-lg xs:mt-0.5 sm:mt-1 xl:mt-2" />
+                                            <div className="flex flex-wrap gap-2 mt-2">
+                                                {album.genres?.slice().sort().map((genre, index) => (
+                                                    <div onClick={() => setSearchQuery(genre)} key={index}>
+                                                        <MusicGenre genre={genre} />
                                                     </div>
                                                 ))}
                                             </div>
+                                            <div className='flex flex-col gap-2 mt-2'>
+                                                <p className="xs:text-sm sm:text-lg xl:text-xl text-gray-400">If you like this album:</p>
+                                                <div className="flex flex-row flex-wrap gap-2">
+                                                    {recommendedAlbums.map(recAlbum => (
+                                                        <div onClick={() => setSearchQuery(recAlbum.name)} key={recAlbum.id} className="transform transition-transform duration-200 hover:scale-105 cursor-pointer">
+                                                            <img src={recAlbum.image} alt={recAlbum.name} className="xs:w-6 xs:h-6 sm:w-12 sm:h-12 2xl:w-16 2xl:h-16 object-cover xs:rounded-sm sm:rounded-lg" />
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                {index < currentMedia.length - 1 && <hr className="border-t border-gray-300 xs:my-1 sm:my-2 xl:my-4" />}
-                            </FadeInSection>
-                        )
-                    })}
-                    <div className="flex flex-row flex-wrap justify-start mt-1">
-                        {Array.from({ length: totalPages }, (_, i) => (
-                            <button
-                                key={i}
-                                className={`px-3 py-1 xs:mx-1 sm:mx-1.5 xs:my-1 sm:my-1.5 ${currentPage === i + 1
-                                    ? "bg-white text-black border-[1px] border-white"
-                                    : "bg-black border-[1px] border-white text-white hover:bg-white hover:text-black transition-all duration-300 ease-in-out"
-                                    }`}
-                                onClick={() => switchPage(i)}
-                            >
-                                {i + 1}
-                            </button>
-                        ))}
+                                    {index < currentMedia.length - 1 && <hr className="border-t border-gray-300 xs:my-1 sm:my-2 xl:my-4" />}
+                                </FadeInSection>
+                            )
+                        })}
+                        <div className="flex flex-row flex-wrap justify-start mt-1">
+                            {Array.from({ length: totalPages }, (_, i) => (
+                                <button
+                                    key={i}
+                                    className={`px-3 py-1 xs:mx-1 sm:mx-1.5 xs:my-1 sm:my-1.5 ${currentPage === i + 1
+                                        ? "bg-white text-black border-[1px] border-white"
+                                        : "bg-black border-[1px] border-white text-white hover:bg-white hover:text-black transition-all duration-300 ease-in-out"
+                                        }`}
+                                    onClick={() => switchPage(i)}
+                                >
+                                    {i + 1}
+                                </button>
+                            ))}
+                        </div>
                     </div>
-                </div>
             }
         </div>
     );

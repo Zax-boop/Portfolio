@@ -17,6 +17,7 @@ export default function UpdateAlbumModal({ album }: {
         image: string;
         Rank: number;
         genres: string[];
+        recommender: string;
         id: string;
     }
 }) {
@@ -32,6 +33,8 @@ export default function UpdateAlbumModal({ album }: {
     const [artistFocus, setArtistFocus] = useState(false);
     const [commentFocus, setCommentFocus] = useState(false);
     const [rankFocus, setRankFocus] = useState(false);
+    const [recommender, setRecommender] = useState(album?.recommender || '');
+    const [recommenderFocus, setRecommenderFocus] = useState(false);
     const [loading, setLoading] = useState(false);
     const [modalOpen, setModalOpen] = useState(false)
     const [user, setUser] = useState<User | null>(null);
@@ -51,6 +54,7 @@ export default function UpdateAlbumModal({ album }: {
             setComments(album.comment || '');
             setRank(album.Rank || '');
             setCoverImage(album.image || album_placeholder);
+            setRecommender(album.recommender || '');
         }
     }, [album]);
 
@@ -73,7 +77,8 @@ export default function UpdateAlbumModal({ album }: {
                 comment: comments,
                 imageFile,
                 Rank: Number(rank),
-                genres
+                genres,
+                recommender
             };
             await updateAlbum(album.id, updatedFields);
         } catch (error) {
@@ -236,6 +241,21 @@ export default function UpdateAlbumModal({ album }: {
                                     />
                                     <span
                                         className={`absolute bottom-1.5 left-0 h-[2px] bg-white transition-all duration-300 ${commentFocus ? "w-full" : "w-0"
+                                            }`}
+                                    />
+                                </div>
+                                <div className="relative group">
+                                    <input
+                                        type="text"
+                                        className="w-full bg-transparent xs:text-md xl:text-xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
+                                        placeholder="Recommender"
+                                        value={recommender}
+                                        onFocus={() => setRecommenderFocus(true)}
+                                        onBlur={() => setRecommenderFocus(false)}
+                                        onChange={(e) => setRecommender(e.target.value)}
+                                    />
+                                    <span
+                                        className={`absolute -bottom-0.5 left-0 h-[2px] bg-white transition-all duration-300 ${recommenderFocus ? "w-full" : "w-0"
                                             }`}
                                     />
                                 </div>

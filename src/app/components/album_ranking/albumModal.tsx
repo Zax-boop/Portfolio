@@ -23,6 +23,8 @@ export default function AlbumForm() {
     const [artistFocus, setArtistFocus] = useState(false);
     const [commentFocus, setCommentFocus] = useState(false);
     const [rankFocus, setRankFocus] = useState(false);
+    const [recommender, setRecommender] = useState("");
+    const [recommenderFocus, setRecommenderFocus] = useState(false);
     const [loading, setLoading] = useState(false);
     const [user, setUser] = useState<User | null>(null);
     useEffect(() => {
@@ -47,7 +49,7 @@ export default function AlbumForm() {
         e.preventDefault();
         setLoading(true);
         try {
-            await addAlbum(name, artist, comments, imageFile, Number(rank), date, genres);
+            await addAlbum(name, artist, comments, imageFile, Number(rank), date, genres, recommender);
         } catch (error) {
             console.error("Error adding album:", error);
         } finally {
@@ -178,21 +180,16 @@ export default function AlbumForm() {
                                 <div className='flex flex-col w-1/2 ml-2 gap-4'>
                                     <div className="relative group">
                                         <AlbumSearchInput
-                                            name={name}             // pass parent state
-                                            setName={setName}       // allow input to update parent
+                                            name={name}
+                                            setName={setName}
                                             onSelect={async (album) => {
                                                 setCoverImage(album.image);
                                                 setImageFile(album.image);
-                                                setName(album.name);       // already handled by parent
+                                                setName(album.name);
                                                 setArtist(album.artists);
 
-                                                // 🔥 NEW: fetch genres
                                                 const rawGenres = await getAlbumGenres(album.artists, album.name);
-
-                                                // normalize + match your system
                                                 const formatted = rawGenres.map(normalizeGenre);
-
-                                                // filter only ones you support
                                                 const validGenres = genre_list.filter((g) =>
                                                     formatted.includes(
                                                         g.toLowerCase().replace(/\s+/g, "").replace(/&/g, "and").replace(/-/g, "")
@@ -230,6 +227,21 @@ export default function AlbumForm() {
                                         />
                                         <span
                                             className={`absolute bottom-1.5 left-0 h-[2px] bg-white transition-all duration-300 ${commentFocus || comments ? "w-full" : "w-0"
+                                                }`}
+                                        />
+                                    </div>
+                                     <div className="relative group">
+                                        <input
+                                            type="text"
+                                            className="w-full bg-transparent text-xl outline-none text-white border-b-[1px] border-white/[0.2] focus:border-white"
+                                            placeholder="Recommender"
+                                            value={recommender}
+                                            onFocus={() => setRecommenderFocus(true)}
+                                            onBlur={() => setRecommenderFocus(false)}
+                                            onChange={(e) => setRecommender(e.target.value)}
+                                        />
+                                        <span
+                                            className={`absolute -bottom-0.5 left-0 h-[2px] bg-white transition-all duration-300 ${recommenderFocus || recommender ? "w-full" : "w-0"
                                                 }`}
                                         />
                                     </div>
