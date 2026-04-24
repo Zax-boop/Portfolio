@@ -29,8 +29,11 @@ export default function AlbumRecommendations({ albums, recSelect }: { albums?: A
                         return (
                             <div
                                 key={idx}
-                                className={`bg-gradient-to-br ${song.bg} rounded-2xl p-6 md:p-8 flex flex-col md:flex-row ${idx % 2 === 1 ? "md:flex-row-reverse" : ""} items-start md:gap-6 text-white transition-transform duration-300 hover:scale-[1.01]`}
+                                style={{ backgroundImage: song.bg }}
+                                className={`relative overflow-hidden rounded-2xl p-6 md:p-8 flex flex-col md:flex-row ${idx % 2 === 1 ? "md:flex-row-reverse" : ""
+                                    } items-start md:gap-6 text-white transition-transform duration-300 hover:scale-[1.01]`}
                             >
+                                <div className={`absolute inset-0 ${song.overlay ? song.overlay : 'bg-purple-500'} pointer-events-none`} />
                                 <div className="flex-shrink-0 md:w-[40%] w-full transform transition-transform duration-300 hover:scale-105">
                                     <Image
                                         src={song.image}
@@ -41,7 +44,14 @@ export default function AlbumRecommendations({ albums, recSelect }: { albums?: A
 
                                 <div className="flex flex-col flex-1">
                                     <h2
-                                        className={`xs:text-lg md:text-3xl font-bold bg-gradient-to-r ${song.text_color} bg-clip-text text-transparent drop-shadow-lg xs:mt-2 md:mt-0`}
+                                        className="xs:text-lg md:text-3xl font-bold xs:mt-2 md:mt-0"
+                                        style={{
+                                            backgroundImage:
+                                                song.text_color,
+                                            WebkitBackgroundClip: "text",
+                                            WebkitTextFillColor: "transparent",
+                                            display: "inline-block",
+                                        }}
                                     >
                                         {song.name} <span className="opacity-100">– {song.artist}</span>
                                     </h2>

@@ -11,8 +11,9 @@ export const songs = [
         name: "Care for You",
         artist: "The Marías",
         image: care,
-        bg: "from-red-950  via-pink-900/80 to-fuchsia-900/50",
-        text_color: "from-pink-400 via-yellow-300 to-red-400",
+        bg: "linear-gradient(to bottom right, rgba(185,28,28,0.55), rgba(159,18,57,0.65), rgba(15,23,42,1))",
+        text_color: "linear-gradient(to right, rgb(251,113,133), rgb(253,164,175), rgb(254,205,211))",
+        overlay: "bg-rose-500/10",
         mini_text_color: "text-pink-300",
         hover: "shadow-pink-500/30 hover:shadow-pink-500/50",
         description: (
@@ -21,18 +22,19 @@ export const songs = [
             </>
         ),
         genres: [{ "Dream Pop": "bg-pink-500" }, { "Indie Pop": "bg-red-400" }, { "Jazz": "bg-blue-700" }, { "Latin": "bg-yellow-400" }, { "Psychedelic": "bg-green-600" }, { "R&B": "bg-orange-500" }],
-        recs: ["CINEMA", "Submarine", "Superclean, Vol. II", "Superclean, Vol. 1", "Melt", "Flower of the Soul (Full Bloom)", 
-            "I think we should just move in together", "Tamale", "Ice Melt", "assisted memories", "Heaven Knows", "Fancy That", 
-            "to hell with it", "All the Same All Ok", "MADRA", "Duality", "When a Thought Grows Wings", "INTUITION", 
-            "A Matter of Time (Standard Edition)", "Bewitched: The Goddess Edition", "Charm", 
+        recs: ["CINEMA", "Submarine", "Superclean, Vol. II", "Superclean, Vol. 1", "Melt", "Flower of the Soul (Full Bloom)",
+            "I think we should just move in together", "Tamale", "Ice Melt", "assisted memories", "Heaven Knows", "Fancy That",
+            "to hell with it", "All the Same All Ok", "MADRA", "Duality", "When a Thought Grows Wings", "INTUITION",
+            "A Matter of Time (Standard Edition)", "Bewitched: The Goddess Edition", "Charm",
             "Altar", "In Rainbows", "Croak Dream", "Speak in the Dark"]
     },
     {
         name: "Glory Box",
         artist: "Portishead",
         image: dummy,
-        bg: "from-purple-900/60 via-slate-900/80 to-gray-950",
-        text_color: "from-purple-300 via-gray-200 to-pink-200",
+        bg: "linear-gradient(to bottom right, rgb(15,23,42), rgb(15,23,42), rgb(3,7,18))",
+        text_color: "linear-gradient(to right, rgb(196,181,253), rgb(229,231,235), rgb(251,207,232))",
+        overlay: "bg-purple-500/10",
         mini_text_color: "text-purple-300",
         hover: "shadow-purple-900/40 hover:shadow-amber-600/40",
         description: (
@@ -72,9 +74,10 @@ export const songs = [
         name: "Air Supply",
         artist: "Sweet Trip",
         image: sweet,
-        bg: "from-sky-900/60 via-cyan-800/70 to-indigo-950",
-        text_color: "from-cyan-300 via-sky-200 to-indigo-300",
-        mini_text_color: "text-cyan-300",
+        bg: "linear-gradient(to bottom right, rgba(22,101,52,0.65), rgba(20,83,45,0.75), rgba(15,23,42,1))",
+        text_color: "linear-gradient(to right, rgb(134,239,172), rgb(74,222,128), rgb(34,197,94))",
+        overlay: "bg-green-500/10",
+        mini_text_color: "text-green-400",
         hover: "shadow-cyan-700/40 hover:shadow-indigo-500/50",
         description: (
             <>
@@ -110,9 +113,10 @@ export const songs = [
         name: "The Rain Formerly Known as Purple",
         artist: "Chris Christodoulou",
         image: ror2,
-        bg: "from-indigo-200/70 via-violet-300/60 to-purple-400/70",
-        text_color: "from-violet-900 via-purple-950 to-indigo-950",
-        mini_text_color: "text-violet-700",
+        bg: "linear-gradient(to bottom right, rgb(30,58,138), rgb(49,46,129), rgb(17,24,39))",
+        text_color: "linear-gradient(to right, rgb(165,180,252), rgb(129,140,248), rgb(67,56,202))",
+        overlay: "bg-indigo-500/10",
+        mini_text_color: "text-purple-300",
         hover: "shadow-violet-400/40 hover:shadow-indigo-500/60",
         description: (
             <>
@@ -155,10 +159,11 @@ export const songs = [
         name: "Life's Coming in Slow",
         artist: "Nothing But Thieves",
         image: nbt,
-        bg: "from-gray-900/80 via-slate-900/90 to-black",
-        text_color: "from-red-600 via-rose-700 to-amber-700",
+        bg: "linear-gradient(to bottom right, rgb(17,24,39), rgb(15,23,42), rgb(0,0,0))",
+        text_color: "linear-gradient(to right, rgb(248,113,113), rgb(225,29,72), rgb(251,146,60))",
+        overlay: "bg-red-500/10",
         mini_text_color: "text-red-500",
-        hover: "shadow-red-800/40 hover:shadow-rose-600/50",
+        hover: "shadow-fuchsia-700/30 hover:shadow-indigo-600/50",
         description: (
             <>
                 <em>"Life's Coming in Slow"</em> is a driving alt-rock anthem with pulsing riffs,
@@ -205,10 +210,11 @@ export const songs = [
         name: "Witchy",
         artist: "Kaytranada",
         image: kay,
-        bg: "from-indigo-950 via-purple-900/80 to-fuchsia-900/50",
-        text_color: "to-violet-300 via-fuchsia-200 from-indigo-200",
-        mini_text_color: "text-fuchsia-300",
-        hover: "shadow-fuchsia-700/30 hover:shadow-indigo-600/50",
+        bg: "linear-gradient(to bottom right, rgba(251,146,60,0.65), rgba(249,115,22,0.7), rgba(15,23,42,1))",
+        text_color: "linear-gradient(to right, rgb(254,215,170), rgb(251,146,60), rgb(234,88,12))",
+        overlay: "bg-orange-500/10",
+        mini_text_color: "text-white",
+        hover: "shadow-pink-500/30 hover:shadow-pink-500/50",
         description: (
             <>
                 Kaytranada’s <em>"Witchy"</em> embodies his signature blend of lush electronic
@@ -251,9 +257,10 @@ export const songs = [
         name: "Hfoas",
         artist: "Mei Semones",
         image: hfoas,
-        bg: "from-rose-200 via-orange-100 to-amber-100",
-        text_color: "from-rose-700 via-amber-700 to-orange-800",
-        mini_text_color: "text-rose-500",
+        bg: "linear-gradient(to bottom right, rgb(252,182,193), rgb(255,228,196), rgb(253,230,138))",
+        text_color: "linear-gradient(to right, rgb(190,18,60), rgb(217,119,6), rgb(234,88,12))",
+        overlay: "bg-rose-400/10",
+        mini_text_color: 'text-black',
         hover: "shadow-rose-300/40 hover:shadow-amber-400/50",
         description: (
             <>
@@ -277,8 +284,8 @@ export const songs = [
             "Animaru",
             "For Lovers",
             "Soyokaze Apartment Room 201",
-            "A Matter of Time (Standard Edition)", 
-            "Bewitched: The Goddess Edition", 
+            "A Matter of Time (Standard Edition)",
+            "Bewitched: The Goddess Edition",
             "Everything I Know About Love",
             "ランプ幻想",
             "Windswept Adan",
