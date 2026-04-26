@@ -316,6 +316,9 @@ export default function Albums() {
                                                     ))}
                                                 </div>
                                             </div>
+                                              {(album.recommender?.length > 0) && <div className='mt-2'>
+                                                <p className='xs:text-xs sm:text-md xl:text-lg text-gray-400'>{`Recommended By: ${album.recommender}`}</p>
+                                            </div>}
                                         </div>
                                     </div>
                                     {index < currentMedia.length - 1 && <hr className="border-t border-gray-300 xs:my-1 sm:my-2 xl:my-4" />}
