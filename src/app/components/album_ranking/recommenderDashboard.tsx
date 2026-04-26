@@ -80,14 +80,14 @@ export default function RecommenderDashboard({
       }
     }
 
-    // 🔹 Median count (50th percentile)
-    const counts = Object.values(recommenderScores).map(
-      (r) => r.scores.length
+    // 🔹 Global average (baseline)
+    const allScores = Object.values(recommenderScores).flatMap(
+      (r) => r.scores
     );
+    const globalAvg =
+      allScores.reduce((sum, s) => sum + s, 0) / allScores.length;
 
-    const sortedCounts = [...counts].sort((a, b) => a - b);
-    const median =
-      sortedCounts[Math.floor(sortedCounts.length / 2)] || 1;
+    const C = 5; // smoothing strength (tune this)
 
     const result: Record<string, RecommenderStats> = {};
 
@@ -95,32 +95,22 @@ export default function RecommenderDashboard({
       const n = data.scores.length;
 
       const sum = data.scores.reduce((a, b) => a + b, 0);
-      const avg = sum / n;
 
       // -----------------------------
-      // 1. QUALITY (core signal)
+      // 1. SHRUNKEN AVERAGE (fixes 1-hit wonders)
       // -----------------------------
-      const quality = avg;
+      const adjusted =
+        (sum + C * globalAvg) / (n + C);
 
       // -----------------------------
-      // 2. VOLUME BONUS (only if above median)
+      // 2. CONTROLLED VOLUME SCALING
       // -----------------------------
-      let volumeBonus = 0;
-
-      if (n > median) {
-        const excessRatio = (n - median) / median; // how far above median
-
-        // tie volume bonus to quality so spam doesn't win
-        const qualityWeight = avg;
-
-        volumeBonus =
-          Math.log(1 + excessRatio * 2) * qualityWeight;
-      }
+      const volumeFactor = 1 + 0.25 * Math.log(n + 1);
 
       // -----------------------------
       // FINAL SCORE
       // -----------------------------
-      const finalScore = quality + volumeBonus;
+      const finalScore = adjusted * volumeFactor;
 
       result[name] = {
         name,
@@ -139,6 +129,7 @@ export default function RecommenderDashboard({
           })),
       };
     }
+
     return Object.values(result).sort((a, b) => b.score - a.score);
   };
 
