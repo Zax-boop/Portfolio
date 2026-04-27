@@ -19,6 +19,7 @@ import getAlbumRankHistory from '../../../utils/album_ranking/getAlbumRankHistor
 import { ChevronUp, ChevronsUp, ChevronDown, ChevronsDown } from 'lucide-react';
 import Loading from '../components/general/loading';
 import RecommenderDashboard from '../components/album_ranking/recommenderDashboard';
+import supabase from '../../../utils/general/supabaseclient';
 
 export default function Albums() {
     const [albums, setAlbums] = useState<{
@@ -45,6 +46,33 @@ export default function Albums() {
     const albumRefs = useRef<React.RefObject<HTMLDivElement>[]>([]);
     const [showRecommendations, setShowRecommendations] = useState(false);
     const [showELOs, setShowELOs] = useState(false);
+    interface GenreRow {
+        title: string;
+        alias: string;
+        color: string;
+    }
+
+    const [genreMap, setGenreMap] = useState<Record<string, GenreRow>>({});
+
+    useEffect(() => {
+        const fetchGenres = async () => {
+            const { data, error } = await supabase.from("genres").select("*");
+
+            if (error) {
+                console.error("Error fetching genres:", error);
+                return;
+            }
+
+            const map: Record<string, GenreRow> = {};
+            data.forEach((g: GenreRow) => {
+                map[g.alias] = g;
+            });
+
+            setGenreMap(map);
+        };
+
+        fetchGenres();
+    }, []);
 
     const searchSectionRef = useRef<HTMLDivElement>(null);
     const switchPage = (pageIndex: number) => {
@@ -195,7 +223,7 @@ export default function Albums() {
             </div>
             {showELOs ?
                 <div className='flex flex-row w-full justify-center'>
-                    <RecommenderDashboard albums={albums} recSelect={recSelect}/>
+                    <RecommenderDashboard albums={albums} recSelect={recSelect} />
                 </div>
                 : showRecommendations ? <AlbumRecommendations albums={albums} recSelect={recSelect} /> :
                     <div className="flex flex-col xs:w-[95%] sm:w-4/5 xs:mt-2 sm:mt-8">
@@ -302,7 +330,7 @@ export default function Albums() {
                                             <div className="flex flex-wrap gap-2 mt-2">
                                                 {album.genres?.slice().sort().map((genre, index) => (
                                                     <div onClick={() => setSearchQuery(genre)} key={index}>
-                                                        <MusicGenre genre={genre} />
+                                                        <MusicGenre key={genre} genre={genre} genreMap={genreMap} />
                                                     </div>
                                                 ))}
                                             </div>
@@ -316,7 +344,7 @@ export default function Albums() {
                                                     ))}
                                                 </div>
                                             </div>
-                                              {(album.recommender?.length > 0) && <div className='mt-2'>
+                                            {(album.recommender?.length > 0) && <div className='mt-2'>
                                                 <p className='xs:text-xs sm:text-md xl:text-lg text-gray-400'>{`Recommended By: ${album.recommender}`}</p>
                                             </div>}
                                         </div>

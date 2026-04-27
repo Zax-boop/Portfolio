@@ -9,6 +9,13 @@ import { User } from '@supabase/supabase-js';
 import { Pencil } from 'lucide-react';
 import { useMediaQuery } from 'react-responsive';
 
+interface Genre {
+    id: string;
+    title: string;
+    alias: string;
+    color: string;
+}
+
 export default function UpdateAlbumModal({ album }: {
     album: {
         name: string;
@@ -28,6 +35,7 @@ export default function UpdateAlbumModal({ album }: {
     const [imageFile, setImageFile] = useState<File | null>(null);
     const [rank, setRank] = useState(album?.Rank || '');
     const [genres, setGenres] = useState(album?.genres || []);
+    const [allGenres, setAllGenres] = useState<Genre[]>([]);
     const [coverImage, setCoverImage] = useState<string | StaticImageData>(album?.image || album_placeholder);
     const [nameFocus, setNameFocus] = useState(false);
     const [artistFocus, setArtistFocus] = useState(false);
@@ -48,6 +56,19 @@ export default function UpdateAlbumModal({ album }: {
     }, []);
 
     useEffect(() => {
+        const fetchGenres = async () => {
+            const { data, error } = await supabase
+                .from("genres")
+                .select("*")
+                .order("title");
+
+            if (!error && data) setAllGenres(data);
+        };
+
+        fetchGenres();
+    }, []);
+
+    useEffect(() => {
         if (album) {
             setName(album.name || '');
             setArtist(album.artist || '');
@@ -61,8 +82,7 @@ export default function UpdateAlbumModal({ album }: {
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files) {
             setImageFile(e.target.files[0]);
-            const url = URL.createObjectURL(e.target.files[0]);
-            setCoverImage(url);
+            setCoverImage(URL.createObjectURL(e.target.files[0]));
         }
     };
 
@@ -89,83 +109,15 @@ export default function UpdateAlbumModal({ album }: {
             window.location.reload();
         }
     };
-    const genreColors: { [key: string]: string } = {
-        ambient: "bg-blue-300",
-        alternative: "bg-teal-600",
-        bossanova: "bg-emerald-500",
-        brazilianpop: "bg-emerald-400",
-        breakcore: "bg-rose-600",
-        bubblegum: "bg-pink-300",
-        classical: "bg-purple-700",
-        citypop: "bg-purple-400",
-        club: "bg-fuchsia-600",
-        country: "bg-yellow-600",
-        cpop: "bg-red-600",
-        dance: "bg-rose-500",
-        dreampop: "bg-pink-500",
-        electronic: "bg-purple-500",
-        experimental: "bg-amber-500",
-        flamenco: "bg-red-500",
-        folk: "bg-green-700",
-        french: "bg-blue-600",
-        funk: "bg-yellow-700",
-        grunge: "bg-gray-600",
-        hiphop: "bg-indigo-500",
-        house: "bg-pink-600",
-        hyperpop: "bg-pink-400",
-        indierock: "bg-red-500",
-        indiepop: "bg-red-400",
-        italian: "bg-green-500",
-        japanese: "bg-blue-400",
-        jazz: "bg-blue-700",
-        jpop: "bg-blue-400",
-        jrock: "bg-gray-700",
-        korean: "bg-green-400",
-        kpop: "bg-rose-500",
-        latin: "bg-yellow-400",
-        lofi: "bg-sky-400",
-        metal: "bg-black",
-        polish: "bg-yellow-500",
-        pop: "bg-blue-500",
-        psychedelic: "bg-green-600",
-        punk: "bg-red-700",
-        rap: "bg-gray-800",
-        randb: "bg-orange-500",
-        rock: "bg-gray-500",
-        sailorwave: "bg-pink-200",
-        shoegaze: "bg-indigo-400",
-        soul: "bg-orange-700",
-        spanish: "bg-red-400",
-        synth: "bg-pink-800",
-        triphop: "bg-indigo-600",
-        turkish: "bg-red-300",
-        videogame: "bg-purple-600",
-    };
-
-    const genre_list = [
-        "Ambient", "Alternative", "Bossa Nova", "Brazilian Pop", "Breakcore", "Bubblegum", "Classical", "City Pop", "Club", "Country", "C-Pop", "Dance", "Dream Pop", "Electronic", "Experimental", "Flamenco", "Folk", "French", "Funk", "Grunge", "Hip-Hop",
-        "House", "Hyperpop", "Indie Pop", "Indie Rock", "Italian", "Japanese", "Jazz", "J-Pop", "J-Rock", "Korean",
-        "K-Pop", "Latin", "Lo-Fi", "Metal", "Polish", "Pop", "Psychedelic", "Punk", "Rap",
-        "R&B", "Rock", "Sailorwave", "Shoegaze", "Soul", "Spanish", "Synth", "Video Game", "Trip-Hop", "Turkish"
-    ];
-
-
-    const returnColor = (genre: string) => {
-        const formattedGenre = genre.toLowerCase()
-            .replace(/\s+/g, '')
-            .replace(/&/g, 'and')
-            .replace(/-/g, '');
-        const bgColor = genreColors[formattedGenre] || "bg-gray-300";
-        return bgColor;
-    }
-
-    const handleGenreSwitch = (genre: string) => {
-        if (genres.includes(genre)) {
-            setGenres(genres.filter((g) => g !== genre));
+    
+    const handleGenreSwitch = (alias: string) => {
+        if (genres.includes(alias)) {
+            setGenres(genres.filter((g) => g !== alias));
         } else {
-            setGenres([...genres, genre]);
+            setGenres([...genres, alias]);
         }
     };
+
     return (
         <div className={`flex flex-col w-full items-center justify-center xs:hidden sm:block`}>
             <div onClick={() => setModalOpen(true)} className='hover:bg-blue-400 cursor-pointer transition duration-300 ease-in-out p-1 rounded-lg self-start'>
@@ -274,12 +226,21 @@ export default function UpdateAlbumModal({ album }: {
                                     />
                                 </div>
                                 <div className='flex flex-row flex-wrap gap-2 xs:max-h-16 xl:max-h-32 overflow-scroll'>
-                                    {genre_list.slice().sort().map((genre, index) => (
-                                        <div onClick={() => handleGenreSwitch(genre)} key={index} className={genres.includes(genre) ? `px-2 py-1 rounded-lg text-white xs:text-xs xl:text-base font-bold ${returnColor(genre)} cursor-pointer opacity-100 transition-all duration-300 ease-in-out hover:opacity-30` :
-                                            `cursor-pointer px-2 py-1 rounded-lg bg-black text-white xs:text-xs xl:text-base transition-all duration-300 ease-in-out ${returnColor(genre)} hover:opacity-100 opacity-30`}>
-                                            {genre}
-                                        </div>
-                                    ))}
+                                    {Object.values(allGenres)
+                                        .sort((a, b) => a.title.localeCompare(b.title))
+                                        .map((genre) => (
+                                            <div
+                                                key={genre.alias}
+                                                onClick={() => handleGenreSwitch(genre.title)}
+                                                className={
+                                                    genres.includes(genre.title)
+                                                        ? `px-2 py-1 rounded-lg text-white font-bold ${genre.color} cursor-pointer opacity-100 transition-all duration-300 ease-in-out hover:opacity-30`
+                                                        : `cursor-pointer px-2 py-1 rounded-lg text-white transition-all duration-300 ease-in-out ${genre.color} hover:opacity-100 opacity-30`
+                                                }
+                                            >
+                                                {genre.title}
+                                            </div>
+                                        ))}
                                 </div>
                             </div>
                         </div>
