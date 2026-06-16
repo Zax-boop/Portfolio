@@ -23,6 +23,7 @@ import supabase from '../../../utils/general/supabaseclient';
 
 export default function Albums() {
     const [albums, setAlbums] = useState<{
+        created_at: string;
         name: string;
         artist: string;
         comment: string;
@@ -260,6 +261,7 @@ export default function Albums() {
                         </div>
                         <hr className="border-t border-gray-300" />
                         {currentMedia.map((album: {
+                            created_at: string;
                             name: string;
                             artist: string;
                             comment: string;

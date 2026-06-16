@@ -1,12 +1,15 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { ResponsiveScatterPlot } from "@nivo/scatterplot";
 import { useEffect, useState } from "react";
+import RecommenderTimeline from "./recommenderTimeline";
 
 type Album = {
+  created_at: string;
   name: string;
   image: string;
   Rank: number;
   artist: string;
+  recommender: string;
 };
 
 type RecommenderStats = {
@@ -21,6 +24,7 @@ export default function RecommenderDashboard({
   albums, recSelect
 }: {
   albums: Array<{
+    created_at: string;
     name: string;
     artist: string;
     comment: string;
@@ -36,6 +40,7 @@ export default function RecommenderDashboard({
 
   const computeRecommenderElo = (
     albums: {
+      created_at: string;
       name: string;
       artist: string;
       comment: string;
@@ -54,10 +59,13 @@ export default function RecommenderDashboard({
 
     const recommenderScores: Record<
       string,
-      { scores: number[]; bestRank: number }
+      {
+        scores: number[];
+        bestRank: number;
+      }
     > = {};
 
-    // 🔹 Build base scores
+    // Build recommendation quality scores
     for (const album of albums) {
       if (!album.recommender) continue;
 
@@ -80,38 +88,36 @@ export default function RecommenderDashboard({
       }
     }
 
-    // 🔹 Global average (baseline)
-    const allScores = Object.values(recommenderScores).flatMap(
-      (r) => r.scores
-    );
-    const globalAvg =
-      allScores.reduce((sum, s) => sum + s, 0) / allScores.length;
-
-    const C = 5; // smoothing strength (tune this)
-
     const result: Record<string, RecommenderStats> = {};
 
     for (const [name, data] of Object.entries(recommenderScores)) {
       const n = data.scores.length;
 
       const sum = data.scores.reduce((a, b) => a + b, 0);
+      const avg = sum / n;
 
-      // -----------------------------
-      // 1. SHRUNKEN AVERAGE (fixes 1-hit wonders)
-      // -----------------------------
-      const adjusted =
-        (sum + C * globalAvg) / (n + C);
+      // Stronger sample-size adjustment
+      const confidence = n / (n + 5);
 
-      // -----------------------------
-      // 2. CONTROLLED VOLUME SCALING
-      // -----------------------------
-      const volumeFactor = 1 + 0.25 * Math.log(n + 1);
+      const qualityScore =
+        avg * (0.4 + 0.6 * confidence);
 
-      // -----------------------------
-      // FINAL SCORE
-      // -----------------------------
-      const finalScore = adjusted * volumeFactor;
+      // Count only albums in the top half of the rankings
+      const topHalfAlbums = albums.filter(
+        (a) =>
+          a.recommender === name &&
+          a.Rank <= maxRank / 2
+      );
 
+      const topHalfCount = topHalfAlbums.length;
+
+      // Larger but controlled reward for consistency
+      const volumeBonus =
+        0.03 * Math.log(topHalfCount + 1);
+
+      const finalScore =
+        qualityScore + volumeBonus;
+      
       result[name] = {
         name,
         score: finalScore,
@@ -122,15 +128,19 @@ export default function RecommenderDashboard({
           .filter((a) => a.recommender === name)
           .sort((a, b) => a.Rank - b.Rank)
           .map((a) => ({
+            created_at: a.created_at,
             name: a.name,
             image: a.image,
             Rank: a.Rank,
             artist: a.artist,
+            recommender: a.recommender
           })),
       };
     }
 
-    return Object.values(result).sort((a, b) => b.score - a.score);
+    return Object.values(result).sort(
+      (a, b) => b.score - a.score
+    );
   };
 
   useEffect(() => {
@@ -215,41 +225,63 @@ export default function RecommenderDashboard({
       {/* LEADERBOARD */}
       <div className="grid gap-4">
         {sortedData.map((r, i) => (
-          <Card key={r.name} className="p-4 rounded-2xl border border-white/30 overflow-visible">
-            <CardContent className="flex justify-between items-center">
-              <div>
-                <div className="text-lg font-medium">
-                  {i + 1}. {r.name}
-                </div>
-                <div className="flex gap-2 mt-2 flex-wrap">
-                  {r.recommendedAlbums.map((a) => (
-                    <div key={a.name} className="relative group">
-                      <img
-                        onClick={() => recSelect(a?.name || "")}
-                        src={a.image}
-                        className="w-10 h-10 rounded-md object-cover cursor-pointer transition-transform duration-300 hover:scale-110 hover:rotate-2"
-                      />
+   <Card key={r.name} className="p-4 rounded-2xl border border-white/30">
+  <CardContent className="flex flex-col gap-3">
 
-                      {/* TOOLTIP */}
-                      <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2
-                      opacity-0 group-hover:opacity-100 transition-opacity duration-200
-                      pointer-events-none">
-                        <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-black text-white text-xs rounded px-3 py-2
-                          z-[9999] pointer-events-none shadow-lg w-max max-w-[150px] whitespace-normal break-words text-left">
-                          <div className="font-semibold">{a.name}</div>
-                          <div className="text-gray-300">{a.artist}</div>
-                          <div className="text-gray-400">Rank #{a.Rank}</div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                <div className="text-sm opacity-70 mt-1">
-                  {r.count} recommendation{r.count > 1 && "s"} | Best Rank: #{r.bestRank} | Score: {r.score.toFixed(2)}
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+    {/* HEADER */}
+    <div className="flex justify-between items-start">
+      <div>
+        <div className="text-lg font-medium">
+          {i + 1}. {r.name}
+        </div>
+
+        <div className="text-sm opacity-70 mt-1">
+          {r.count} recommendation{r.count > 1 && "s"} · Best #{r.bestRank} · Score {r.score.toFixed(2)}
+        </div>
+      </div>
+    </div>
+
+    {/* ALBUM STRIP */}
+    <div className="flex gap-2 flex-wrap">
+      {r.recommendedAlbums.map((a) => (
+        <div key={a.name} className="relative group">
+
+          <img
+            onClick={() => recSelect(a?.name || "")}
+            src={a.image}
+            className="w-10 h-10 rounded-md object-cover cursor-pointer transition-transform duration-200 hover:scale-110"
+          />
+
+          {/* TOOLTIP */}
+          <div
+            className="
+              absolute bottom-full left-1/2 -translate-x-1/2 mb-2
+              opacity-0 group-hover:opacity-100 transition-opacity duration-200
+              pointer-events-none z-50
+            "
+          >
+            <div className="bg-black text-white text-xs rounded px-3 py-2 shadow-lg max-w-[200px] whitespace-normal break-words">
+              <div className="font-semibold">{a.name}</div>
+              <div className="text-gray-300">{a.artist}</div>
+              <div className="text-gray-400">Rank #{a.Rank}</div>
+            </div>
+          </div>
+
+        </div>
+      ))}
+    </div>
+
+    {/* CHART (FULL WIDTH VISUAL EMPHASIS) */}
+    <div className="mt-2">
+      <RecommenderTimeline
+        albums={r.recommendedAlbums}
+        recommender={r.name}
+        maxRank={Math.max(...albums.map((a) => a.Rank))}
+      />
+    </div>
+
+  </CardContent>
+</Card>
         ))}
       </div>
     </div>

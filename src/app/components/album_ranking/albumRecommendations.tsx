@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { albumGenreColors } from '../../../../data/genreColors';
 
 type Album = {
+    created_at: string;
     name: string;
     artist: string;
     comment: string;
