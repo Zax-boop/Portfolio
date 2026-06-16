@@ -129,7 +129,7 @@ export default function RecommenderTrendChart({
           const isUp = delta >= 0;
 
           return (
-            <div className="bg-white text-black p-3 rounded shadow-lg max-w-[240px]">
+            <div className="bg-white text-black p-3 rounded shadow-lg w-[150px]">
               <div className="font-semibold break-words">
                 {d.album.name}
               </div>
