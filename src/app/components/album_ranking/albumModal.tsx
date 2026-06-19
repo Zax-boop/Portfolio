@@ -35,6 +35,9 @@ export default function AlbumForm() {
     const [recommenderFocus, setRecommenderFocus] = useState(false);
     const [loading, setLoading] = useState(false);
     const [user, setUser] = useState<User | null>(null);
+    const [showAddGenre, setShowAddGenre] = useState(false);
+    const [newGenreTitle, setNewGenreTitle] = useState("");
+    const [newGenreColor, setNewGenreColor] = useState("#3b82f6");
     useEffect(() => {
         const getSession = async () => {
             const { data } = await supabase.auth.getSession();
@@ -88,6 +91,66 @@ export default function AlbumForm() {
         } else {
             setGenres([...genres, alias]);
         }
+    };
+
+    const createGenre = async () => {
+        if (!newGenreTitle.trim()) return;
+
+        const alias = newGenreTitle
+            .toLowerCase()
+            .replace(/&/g, "and")
+            .replace(/[^a-z]/g, "");
+
+        const { error } = await supabase
+            .from("genres")
+            .insert([
+                {
+                    title: newGenreTitle.trim(),
+                    alias,
+                    color: newGenreColor,
+                },
+            ]);
+
+        if (error) {
+            console.error("Error creating genre:", error);
+            return;
+        }
+
+        // Add locally so user sees it immediately
+        setAllGenres((prev) => ({
+            ...prev,
+            [alias]: {
+                title: newGenreTitle.trim(),
+                alias,
+                color: newGenreColor,
+            },
+        }));
+
+        setNewGenreTitle("");
+        setNewGenreColor("#3b82f6");
+        setShowAddGenre(false);
+    };
+
+    const deleteGenre = async (id: string) => {
+        const confirmed = window.confirm(
+            "Delete this genre?"
+        );
+
+        if (!confirmed) return;
+
+        const { error } = await supabase
+            .from("genres")
+            .delete()
+            .eq("id", id);
+
+        if (error) {
+            console.error(error);
+            return;
+        }
+
+        setAllGenres((prev) =>
+            prev.filter((g) => g.id !== id)
+        );
     };
 
     return (
@@ -208,23 +271,101 @@ export default function AlbumForm() {
                                         onChange={(e) => setDate(e.target.value)}
                                         className="p-2 border border-gray-700 rounded bg-gray-800 text-white"
                                     />
-                                    <div className='flex flex-row flex-wrap gap-2 max-h-32 overflow-scroll'>
+                                    <div className="flex flex-row flex-wrap gap-2 max-h-32 overflow-scroll">
                                         {Object.values(allGenres)
                                             .sort((a, b) => a.title.localeCompare(b.title))
-                                            .map((genre) => (
-                                                <div
-                                                    key={genre.alias}
-                                                    onClick={() => handleGenreSwitch(genre.title)}
-                                                    className={
-                                                        genres.includes(genre.title)
-                                                            ? `px-2 py-1 rounded-lg text-white font-bold ${genre.color} cursor-pointer opacity-100 transition-all duration-300 ease-in-out hover:opacity-30`
-                                                            : `cursor-pointer px-2 py-1 rounded-lg text-white transition-all duration-300 ease-in-out ${genre.color} hover:opacity-100 opacity-30`
-                                                    }
-                                                >
-                                                    {genre.title}
-                                                </div>
-                                            ))}
+                                            .map((genre) => {
+                                                const selected = genres.includes(genre.title);
+
+                                                return (
+                                                    <div
+                                                        key={genre.alias}
+                                                        className="relative group"
+                                                    >
+                                                        <div
+                                                            onClick={() => handleGenreSwitch(genre.title)}
+                                                            style={{ backgroundColor: genre.color }}
+                                                            className={`px-2 py-1 rounded-lg text-white cursor-pointer transition-all duration-300 ease-in-out ${selected
+                                                                ? "font-bold opacity-100 hover:opacity-30"
+                                                                : "opacity-30 hover:opacity-100"
+                                                                }`}
+                                                        >
+                                                            {genre.title}
+                                                        </div>
+                                                        {user && <button
+                                                            type="button"
+                                                            onClick={(e) => {
+                                                                e.stopPropagation();
+                                                                deleteGenre(genre.id);
+                                                            }}
+                                                            className="absolute -top-2 -right-2 hidden group-hover:flex items-center justify-center w-6 h-6 rounded-full bg-red-600 text-white text-sm font-bold"
+                                                        >
+                                                            ×
+                                                        </button>}
+                                                    </div>
+                                                );
+                                            })}
+
+                                        {user && <div
+                                            onClick={() => setShowAddGenre(true)}
+                                            className="px-2 py-1 rounded-lg border border-white text-white cursor-pointer hover:bg-white hover:text-black transition-all"
+                                        >
+                                            + Add Genre
+                                        </div>}
                                     </div>
+                                    {showAddGenre && (
+                                        <>
+                                            <div
+                                                className="absolute inset-0 bg-black/60 z-[9998]"
+                                                onClick={() => setShowAddGenre(false)}
+                                            />
+                                            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[9999] bg-black border border-gray-700 rounded-lg p-4 w-80 flex flex-col gap-3">
+                                                <input
+                                                    type="text"
+                                                    placeholder="Genre Name"
+                                                    value={newGenreTitle}
+                                                    onChange={(e) => setNewGenreTitle(e.target.value)}
+                                                    className="bg-black border border-gray-700 rounded p-2 text-white"
+                                                />
+
+                                                <div className="flex items-center gap-3">
+                                                    <span>Color:</span>
+
+                                                    <input
+                                                        type="color"
+                                                        value={newGenreColor}
+                                                        onChange={(e) => setNewGenreColor(e.target.value)}
+                                                        className="w-12 h-12 cursor-pointer"
+                                                    />
+
+                                                    <div
+                                                        className="px-3 py-1 rounded-lg text-white"
+                                                        style={{ backgroundColor: newGenreColor }}
+                                                    >
+                                                        Preview
+                                                    </div>
+                                                </div>
+
+                                                <div className="flex gap-2">
+                                                    <button
+                                                        type="button"
+                                                        onClick={createGenre}
+                                                        className="px-3 py-2 bg-green-600 rounded text-white"
+                                                    >
+                                                        Save Genre
+                                                    </button>
+
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => setShowAddGenre(false)}
+                                                        className="px-3 py-2 bg-gray-700 rounded text-white"
+                                                    >
+                                                        Cancel
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </>
+                                    )}
                                 </div>
                             </div>
                             <div className='flex flex-col w-full items-center'>
