@@ -123,7 +123,7 @@ export default function Sports() {
             </div>
             <div className="flex flex-col w-full xs:mt-2 sm:mt-4 xl:mt-10 self-start">
                 <div className="flex flex-row w-full pl-4">
-                    <div className="flex flex-row gap-2">
+                    <div className="flex flex-row xs:gap-1 md:gap-2 flex-wrap">
                         {sports.map((sport) => (
                             <button
                                 key={sport}
