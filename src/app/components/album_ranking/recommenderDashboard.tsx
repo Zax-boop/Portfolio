@@ -255,7 +255,7 @@ export default function RecommenderDashboard({
           {/* TOOLTIP */}
           <div
             className="
-              absolute bottom-full left-1/2 -translate-x-1/2 mb-2
+              absolute top-full left-1/2 -translate-x-1/2 mb-2
               opacity-0 group-hover:opacity-100 transition-opacity duration-200
               pointer-events-none z-50
             "
