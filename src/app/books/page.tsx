@@ -10,15 +10,15 @@ import circe from "../../../public/circe.jpg";
 import atss from "../../../public/atss.jpg";
 import sisyphus from "../../../public/sisyphus.jpg";
 import fetchBooks from "../../../utils/books/fetchBooks.js";
-import ImageTrack from "../components/general/ImageTrack";
+// import ImageTrack from "../components/general/ImageTrack";
 import SignInForm from "../components/general/signIn";
 import DeleteBook from "../components/books/deleteBook";
 import UpdateBookModal from "../components/books/updateBook";
 import ReadMore from "../components/general/readMore";
 import BookGenre from "../components/books/bookGenre";
-import GenrePieChart from "../components/general/genrePieChart";
+// import GenrePieChart from "../components/general/genrePieChart";
 import Loading from "../components/general/loading";
-import { bookGenreColors } from "../../../data/genreColors";
+// import { bookGenreColors } from "../../../data/genreColors";
 
 export default function Books() {
     const [books, setBooks] = useState<{
@@ -79,16 +79,16 @@ export default function Books() {
         setCurrentPage(1);
     }, [searchQuery, books]);
 
-    const scrollToBook = (index: number) => {
-        if (bookRefs.current[index]) {
-            if (bookRefs.current[index].current) {
-                bookRefs.current[index].current.scrollIntoView({
-                    behavior: "smooth",
-                    block: "center",
-                });
-            }
-        }
-    };
+    // const scrollToBook = (index: number) => {
+    //     if (bookRefs.current[index]) {
+    //         if (bookRefs.current[index].current) {
+    //             bookRefs.current[index].current.scrollIntoView({
+    //                 behavior: "smooth",
+    //                 block: "center",
+    //             });
+    //         }
+    //     }
+    // };
 
     if (loading) {
         return <Loading />;
@@ -143,13 +143,13 @@ export default function Books() {
                 />
                 <div className="absolute inset-0 bg-black opacity-50"></div>
             </div>
-            <div className="mt-4">
+            {/* <div className="mt-4">
                 <ImageTrack
                     data={currentMedia}
                     onImageClick={scrollToBook}
                     width={`${currentMedia.length == 5 ? `xs:w-[6rem]` : `xs:w-[5.336rem]`} sm:w-[8rem] ${currentMedia.length == 7 ? `xl:w-[11rem] 2xl:w-[14rem]` : `xl:w-[12rem] 2xl:w-[20rem]`}`}
                 />
-            </div>
+            </div> */}
             <div className="flex flex-col xs:w-[95%] sm:w-4/5 xs:mt-2 sm:mt-8">
                 <BookForm />
                 <p className="xs:text-xs sm:text-base sm:mt-2 xl:mt-2 xs:mb-1 sm:mb-0">
@@ -158,9 +158,9 @@ export default function Books() {
                     rank the books I read just because each book feels too unique to
                     compare to one another.
                 </p>
-                <div className='flex flex-row w-full justify-center'>
+                {/* <div className='flex flex-row w-full justify-center'>
                     <GenrePieChart genresList={books?.map((book) => book.genres)} setSearchQuery={setSearchQuery} genreColors={bookGenreColors}/>
-                </div>
+                </div> */}
                 <div className="flex flex-row flex-wrap justify-start mt-2">
                     {Array.from({ length: totalPages }, (_, i) => (
                         <button

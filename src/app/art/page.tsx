@@ -10,7 +10,7 @@ import { useMediaQuery } from "react-responsive";
 import Loading from "../components/general/loading"
 import { User } from "@supabase/supabase-js"
 import PoppingLetters from "../components/general/poppingLetters"
-import ImageTrack from "../components/general/ImageTrack"
+// import ImageTrack from "../components/general/ImageTrack"
 
 export default function Page() {
   type Art = {
@@ -59,18 +59,18 @@ export default function Page() {
     return <Loading />;
   }
 
-  const media = [
-    { image: "/eren_hand.jpeg", alt: "eren" },
-    { image: "/banana_fish.jpeg", alt: "Omen" },
-    { image: "/mermaid.jpeg", alt: "Slow Dancing" },
-    { image: "/jett.jpeg", alt: "jett" },
-    { image: "/dash_face.jpeg", alt: "dash" },
-    { image: "/viper.jpeg", alt: "viper" },
-    { image: "/dude.jpeg", alt: "Dude" },
-    { image: "/pocky.jpeg", alt: "pocky" },
-    { image: "/dante.jpeg", alt: "dante" },
-    { image: "/collage.jpeg", alt: "collage" },
-  ]
+  // const media = [
+  //   { image: "/eren_hand.jpeg", alt: "eren" },
+  //   { image: "/banana_fish.jpeg", alt: "Omen" },
+  //   { image: "/mermaid.jpeg", alt: "Slow Dancing" },
+  //   { image: "/jett.jpeg", alt: "jett" },
+  //   { image: "/dash_face.jpeg", alt: "dash" },
+  //   { image: "/viper.jpeg", alt: "viper" },
+  //   { image: "/dude.jpeg", alt: "Dude" },
+  //   { image: "/pocky.jpeg", alt: "pocky" },
+  //   { image: "/dante.jpeg", alt: "dante" },
+  //   { image: "/collage.jpeg", alt: "collage" },
+  // ]
 
   return (
     <div className="flex flex-col w-full min-h-screen items-center">
@@ -106,9 +106,9 @@ export default function Page() {
           className="absolute text-white xs:text-2xl sm:text-6xl font-bold z-20 text-center"
         />
       </div>
-      <div className='mt-4'>
+      {/* <div className='mt-4'>
         <ImageTrack data={media} onImageClick={() => { }} />
-      </div>
+      </div> */}
       <div className="xs:mt-6 md:mt-12 flex flex-col items-center text-center xs:w-11/12 md:w-4/5">
         <p className="text-gray-400 xs:mb-2 md:mb-6 md:w-[40rem] xs:text-sm md:text-xl">
           Welcome to my art gallery! I love looking at art and creating my own amateur drawings and pixel art. Here&apos;s a collection of some of my best (and some suspicious) pieces that I&apos;ve created over the years.

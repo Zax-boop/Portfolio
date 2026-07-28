@@ -6,15 +6,15 @@ import PoppingLetters from '../components/general/poppingLetters';
 import fetchTV from "../../../utils/tv/fetchTV"
 import TVForm from '../components/tv/tvModal';
 import FadeInSection from '../components/general/fadeIn';
-import ImageTrack from '../components/general/ImageTrack';
+// import ImageTrack from '../components/general/ImageTrack';
 import SignInForm from '../components/general/signIn';
 import DeleteTV from '../components/tv/deleteTV';
 import UpdateTVModal from '../components/tv/updateTV';
 import ReadMore from '../components/general/readMore';
 import TVGenre from '../components/tv/tvGenre';
-import GenrePieChart from '../components/general/genrePieChart';
+// import GenrePieChart from '../components/general/genrePieChart';
 import Loading from '../components/general/loading';
-import { showGenreColors } from '../../../data/genreColors';
+// import { showGenreColors } from '../../../data/genreColors';
 
 export default function TVRanking() {
     const [tv, setTV] = useState<{
@@ -74,16 +74,16 @@ export default function TVRanking() {
         setCurrentPage(1);
     }, [searchQuery, tv]);
 
-    const scrollToShows = (index: number) => {
-        if (showRefs.current[index]) {
-            if (showRefs.current[index].current) {
-                showRefs.current[index].current.scrollIntoView({
-                    behavior: "smooth",
-                    block: "center",
-                });
-            }
-        }
-    };
+    // const scrollToShows = (index: number) => {
+    //     if (showRefs.current[index]) {
+    //         if (showRefs.current[index].current) {
+    //             showRefs.current[index].current.scrollIntoView({
+    //                 behavior: "smooth",
+    //                 block: "center",
+    //             });
+    //         }
+    //     }
+    // };
 
     if (loading) {
         return <Loading />;
@@ -110,15 +110,15 @@ export default function TVRanking() {
                 <PoppingLetters text="TV Shows" className="absolute text-white xs:text-2xl sm:text-6xl font-bold z-10 text-center" />
                 <div className="absolute inset-0 bg-black opacity-50"></div>
             </div>
-            <div className='mt-4'>
+            {/* <div className='mt-4'>
                 <ImageTrack data={currentMedia} onImageClick={scrollToShows} width={`${currentMedia.length == 5 ? `xs:w-[8rem]` : `xs:w-[6.67rem]`} ${currentMedia.length == 6 ? `sm:w-[8rem] 2xl:w-[15rem]` : `sm:w-[10rem] 2xl:w-[30rem]`} ${currentMedia.length == 5 ? `xl:w-[15rem]` : `xl:w-[20rem]`}`} />
-            </div>
+            </div> */}
             <div className="flex flex-col xs:w-[95%] sm:w-4/5 xs:mt-2 sm:mt-8">
                 <TVForm />
                 <p className='xs:text-xs sm:text-base sm:mt-2 xl:mt-0 xs:mb-1 sm:mb-0'>*Disclaimer: This is just my opinion and what I enjoyed watching the most regardless of critical bias. </p>
-                <div className='flex flex-row w-full justify-center'>
+                {/* <div className='flex flex-row w-full justify-center'>
                     <GenrePieChart genresList={tv?.map((show) => show.genres)} setSearchQuery={setSearchQuery} genreColors={showGenreColors}/>
-                </div>
+                </div> */}
                 <div className="flex flex-row flex-wrap justify-start mt-2">
                     {Array.from({ length: totalPages }, (_, i) => (
                         <button

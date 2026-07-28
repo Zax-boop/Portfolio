@@ -1,9 +1,9 @@
 import React from 'react'
-import GenrePieChart from '../general/genrePieChart';
+// import GenrePieChart from '../general/genrePieChart';
 import Image from 'next/image';
 import GameGenre from './gameGenre'
 import { actionAdventure, soulsLikes, metroidvanias, roguelikes, rpgs, turns, shooters, horrors, platformers, multiplayer } from '../../../../data/gameData';
-import { gameGenreColors } from '../../../../data/genreColors';
+// import { gameGenreColors } from '../../../../data/genreColors';
 
 type Game = {
     name: string;
@@ -20,7 +20,7 @@ export default function GameRecommendations({ games, recSelect }: { games?: Game
             <div className='flex flex-col'>
                 <h1 className='xs:text-xl md:text-3xl font-bold xs:mt-2 sm:mt-0'>New to Games?</h1>
                 <p className='xs:text-md md:text-lg'>Choosing a genre is an important first step. Here are some I&apos;ve played:</p>
-                <div className='flex flex-row w-full justify-center'>
+                {/* <div className='flex flex-row w-full justify-center'>
                     <GenrePieChart genresList={games?.map((game) => game.genres)} excludedGenres={["Top Down", "Sci-Fi", "Pixel Art", "Co-Op", "Boss Rush", "Rhythm", "Card", "Stealth", "Point and Click", "Tac Shooter", "Simulation", "Beat Em Up", "Dungeon Crawler", "Indie", "Sports", "Hack n Slash", "Sandbox", "Fighting", "Racing", "Open World", "Visual Novel", "Puzzle", "Platform Fighter"]} genreMap={{
                         "Action": "Action-Adventure",
                         "Adventure": "Action-Adventure",
@@ -35,7 +35,7 @@ export default function GameRecommendations({ games, recSelect }: { games?: Game
                         "JRPG": "RPG",
                         "Strategy": "Turn-Based"
                     }} genreColors={gameGenreColors}/>
-                </div>
+                </div> */}
                 <h2 id="Action-Adventure" className='xs:text-lg md:text-2xl font-bold'>Action-Adventure:</h2>
                 <p className='xs:text-md md:text-lg'>A blend of action and adventure elements, often featuring exploration and puzzle-solving. Definitely the most common genre. If you&apos;re looking for a game that offers both excitement and narrative depth, this is the genre for you.</p>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-6">

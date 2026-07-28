@@ -6,15 +6,15 @@ import fetchAnime from "../../../utils/anime/fetchAnime";
 import PoppingLetters from '../components/general/poppingLetters';
 import AnimeForm from '../components/anime/animeModal';
 import FadeInSection from '../components/general/fadeIn';
-import ImageTrack from '../components/general/ImageTrack';
+// import ImageTrack from '../components/general/ImageTrack';
 import DeleteAnime from '../components/anime/deleteAnime';
 import SignInForm from '../components/general/signIn';
 import UpdateAnimeModal from '../components/anime/updateAnime';
 import AnimeGenre from '../components/anime/animeGenre';
 import ReadMore from '../components/general/readMore';
-import GenrePieChart from '../components/general/genrePieChart';
+// import GenrePieChart from '../components/general/genrePieChart';
 import Loading from '../components/general/loading';
-import { animeGenreColors } from '../../../data/genreColors';
+// import { animeGenreColors } from '../../../data/genreColors';
 
 export default function Anime() {
     const [animeList, setAnimeList] = useState<{
@@ -79,16 +79,16 @@ export default function Anime() {
     const topRankedAnime = animeList.slice(0, Math.ceil(animeList.length * 0.67));
 
 
-    const scrollToAnime = (index: number) => {
-        if (animeRefs.current[index]) {
-            if (animeRefs.current[index].current) {
-                animeRefs.current[index].current.scrollIntoView({
-                    behavior: "smooth",
-                    block: "center",
-                });
-            }
-        }
-    };
+    // const scrollToAnime = (index: number) => {
+    //     if (animeRefs.current[index]) {
+    //         if (animeRefs.current[index].current) {
+    //             animeRefs.current[index].current.scrollIntoView({
+    //                 behavior: "smooth",
+    //                 block: "center",
+    //             });
+    //         }
+    //     }
+    // };
 
     const getRecommendedAnime = (currentAnime: { genres: string[]; rank: number; id: string }) => {
         return topRankedAnime
@@ -130,15 +130,15 @@ export default function Anime() {
                 <PoppingLetters text="Anime" className="absolute text-white xs:text-2xl sm:text-6xl font-bold z-10 text-center" />
                 <div className="absolute inset-0 bg-black opacity-50"></div>
             </div>
-            <div className='mt-4'>
+            {/* <div className='mt-4'>
                 <ImageTrack data={currentMedia} onImageClick={scrollToAnime} width={`${currentMedia.length == 5 ? `xs:w-[8rem]` : `xs:w-[6.67rem]`} ${currentMedia.length == 6 ? `sm:w-[8rem] 2xl:w-[15rem]` : `sm:w-[10rem] 2xl:w-[30rem]`} ${currentMedia.length == 5 ? `xl:w-[15rem]` : `xl:w-[20rem]`}`} />
-            </div>
+            </div> */}
             <div className="flex flex-col xs:w-[95%] sm:w-4/5 xs:mt-2 sm:mt-8">
                 <AnimeForm />
                 <p className='xs:text-xs sm:text-base sm:mt-2 xl:mt-0 xs:mb-1 sm:mb-0'>*Disclaimer: This is just my opinion and what I enjoyed watching the most regardless of critical bias.</p>
-                <div className='flex flex-row w-full justify-center'>
+                {/* <div className='flex flex-row w-full justify-center'>
                     <GenrePieChart genresList={animeList?.map((anime) => anime.genres)} setSearchQuery={setSearchQuery} genreColors={animeGenreColors}/>
-                </div>
+                </div> */}
                 <div className="flex flex-row flex-wrap justify-start mt-2">
                     {Array.from({ length: totalPages }, (_, i) => (
                         <button

@@ -5,16 +5,16 @@ import Header from "../components/general/header";
 import PoppingLetters from "../components/general/poppingLetters";
 import MovieForm from "../components/movies/movieModal";
 import FadeInSection from "../components/general/fadeIn";
-import ImageTrack from "../components/general/ImageTrack";
+// import ImageTrack from "../components/general/ImageTrack";
 import SignInForm from "../components/general/signIn";
 import DeleteMovie from "../components/movies/deleteMovie";
 import UpdateMovieModal from "../components/movies/updateMovie";
 import ReadMore from "../components/general/readMore";
 import MovieGenre from "../components/movies/movieGenre";
-import GenrePieChart from "../components/general/genrePieChart";
+// import GenrePieChart from "../components/general/genrePieChart";
 import Loading from "../components/general/loading";
 import fetchMovie from "../../../utils/movies/fetchMovie";
-import { movieGenreColors } from "../../../data/genreColors";
+// import { movieGenreColors } from "../../../data/genreColors";
 
 export default function Movies() {
     const [movies, setMovies] = useState<{
@@ -67,16 +67,16 @@ export default function Movies() {
         setCurrentPage(1);
     }, [searchQuery, movies]);
 
-    const scrollToMovie = (index: number) => {
-        if (movieRefs.current[index]) {
-            if (movieRefs.current[index].current) {
-                movieRefs.current[index].current.scrollIntoView({
-                    behavior: "smooth",
-                    block: "center",
-                });
-            }
-        }
-    };
+    // const scrollToMovie = (index: number) => {
+    //     if (movieRefs.current[index]) {
+    //         if (movieRefs.current[index].current) {
+    //             movieRefs.current[index].current.scrollIntoView({
+    //                 behavior: "smooth",
+    //                 block: "center",
+    //             });
+    //         }
+    //     }
+    // };
 
     if (loading) {
         return <Loading />;
@@ -101,9 +101,9 @@ export default function Movies() {
                 <PoppingLetters text="Movies" className="absolute text-white xs:text-2xl sm:text-6xl font-bold z-10 text-center" />
                 <div className="absolute inset-0 bg-black opacity-50"></div>
             </div>
-            <div className='mt-4'>
+            {/* <div className='mt-4'>
                 <ImageTrack data={currentMedia} onImageClick={scrollToMovie} width={`${currentMedia.length == 5 ? `xs:w-[8rem]` : `xs:w-[6.67rem]`} ${currentMedia.length == 6 ? `sm:w-[8rem] 2xl:w-[15rem]` : `sm:w-[10rem] 2xl:w-[30rem]`} ${currentMedia.length == 5 ? `xl:w-[15rem]` : `xl:w-[20rem]`}`} />
-            </div>
+            </div> */}
             <div className="flex flex-col xs:w-[95%] sm:w-4/5 xs:mt-2 sm:mt-8">
                 <MovieForm />
                 {/* <p className="xs:text-xs sm:text-base sm:mt-2 xl:mt-2 xs:mb-1 sm:mb-0">
@@ -116,9 +116,9 @@ export default function Movies() {
                     *Disclaimer: This is just my opinion and what I enjoyed watching
                     the most regardless of critical bias. Moreover, this is only my top 10 movies in no specific order.
                 </p>
-                <div className='flex flex-row w-full justify-center'>
+                {/* <div className='flex flex-row w-full justify-center'>
                     <GenrePieChart genresList={movies?.map((movie) => movie.genres)} setSearchQuery={setSearchQuery} genreColors={movieGenreColors} />
-                </div>
+                </div> */}
                 {/* <div className="flex flex-row flex-wrap justify-start mt-2">
                     {Array.from({ length: totalPages }, (_, i) => (
                         <button
