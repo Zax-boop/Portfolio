@@ -13,6 +13,7 @@ export default function BookForm() {
     const [name, setName] = useState('');
     const [author, setAuthor] = useState('');
     const [comments, setComments] = useState('');
+    const [date, setDate] = useState('');
     const [genres, setGenres] = useState<string[]>([]);
     const [imageFile, setImageFile] = useState<File | null>(null);
     const [coverImage, setCoverImage] = useState<string | StaticImageData>(show_placeholder);
@@ -41,7 +42,7 @@ export default function BookForm() {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setLoading(true)
-        await addBook(name, author, comments, genres, imageFile);
+        await addBook(name, author, comments, genres, imageFile, date);
         setLoading(false)
         setIsModalOpen(false);
         window.location.reload();
@@ -198,6 +199,12 @@ export default function BookForm() {
                                                 }`}
                                         />
                                     </div>
+                                    <input
+                                        type="date"
+                                        value={date}
+                                        onChange={(e) => setDate(e.target.value)}
+                                        className="p-2 border border-gray-700 rounded bg-gray-800 text-white"
+                                    />
                                     <div className='flex flex-row flex-wrap gap-2 max-h-32 overflow-scroll'>
                                         {genre_list.slice().sort().map((genre, index) => (
                                             <div onClick={() => handleGenreSwitch(genre)} key={index} className={genres.includes(genre) ? `px-2 py-1 rounded-lg text-white font-bold ${returnColor(genre)} cursor-pointer opacity-100 transition-all duration-300 ease-in-out hover:opacity-30` :

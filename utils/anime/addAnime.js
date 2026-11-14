@@ -1,6 +1,6 @@
 import supabase from "../general/supabaseclient";
 
-export default async function addAnime(name, studio, comments, imageFile, rank, genres) {
+export default async function addAnime(name, studio, comments, imageFile, rank, genres, date) {
   let imageUrl = "";
   if (rank == "") {
     const { data: list, error: fetchError } = await supabase
@@ -49,7 +49,7 @@ export default async function addAnime(name, studio, comments, imageFile, rank, 
   }
   const { data, error } = await supabase
     .from('anime_rankings')
-    .insert([{ name, studio, comments, image: imageUrl, rank, genres }]);
+    .insert([{ name, studio, comments, image: imageUrl, rank, genres, date: date || null }]);
   if (error) {
     console.error('Error inserting data:', error);
     return null;
