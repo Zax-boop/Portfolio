@@ -18,7 +18,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Spotify recently played
 
-The home page can display your five most recently played Spotify tracks. Create a Spotify app and add the callback URL below to its Redirect URIs. Set these server-only variables in `.env.local` (never use a `NEXT_PUBLIC_` prefix for the secret):
+The home page displays your five most recently played Spotify tracks and can show your top tracks and artists. Create a Spotify app and add the callback URL below to its Redirect URIs. Set these server-only variables in `.env.local` (never use a `NEXT_PUBLIC_` prefix for the secret):
 
 ```env
 SPOTIFY_CLIENT_ID=your_client_id
@@ -33,6 +33,8 @@ SPOTIFY_REFRESH_TOKEN=your_refresh_token
 ```
 
 Restart the app. For production, configure the same variables in your hosting provider and use the production callback URL in both `SPOTIFY_REDIRECT_URI` and your Spotify app's Redirect URIs. The album search and recent-track features use these server-side credentials.
+
+Top artists and tracks require the `user-top-read` permission. After enabling this feature, visit `/api/spotify/auth` again, authorize access, then replace `SPOTIFY_REFRESH_TOKEN` with the newly issued refresh token in `.env.local` and your hosting provider. Spotify's time ranges are approximate: about 4 weeks, 6 months, and 1 year.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 

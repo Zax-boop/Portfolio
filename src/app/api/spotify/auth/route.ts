@@ -27,7 +27,7 @@ export async function GET() {
   authorizationUrl.searchParams.set("client_id", clientId);
   authorizationUrl.searchParams.set("response_type", "code");
   authorizationUrl.searchParams.set("redirect_uri", redirectUri);
-  authorizationUrl.searchParams.set("scope", "user-read-recently-played");
+  authorizationUrl.searchParams.set("scope", "user-read-recently-played user-top-read");
   authorizationUrl.searchParams.set("state", state);
 
   return NextResponse.redirect(authorizationUrl);

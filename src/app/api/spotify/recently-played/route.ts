@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { getSpotifyAccessToken, isSpotifyConfigured } from "@/lib/spotifyAuth";
 
 interface SpotifyRecentlyPlayedResponse {
   items?: Array<{
@@ -19,38 +20,14 @@ interface SpotifyRecentlyPlayedResponse {
 }
 
 export async function GET() {
-  const clientId = process.env.SPOTIFY_CLIENT_ID;
-  const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
-  const refreshToken = process.env.SPOTIFY_REFRESH_TOKEN;
-
-  if (!clientId || !clientSecret || !refreshToken) {
+  if (!isSpotifyConfigured()) {
     return NextResponse.json({ error: "not_configured" }, { status: 503 });
   }
 
-  let tokenResponse: Response;
+  let accessToken: string;
   try {
-    tokenResponse = await fetch("https://accounts.spotify.com/api/token", {
-      method: "POST",
-      headers: {
-        Authorization: `Basic ${Buffer.from(`${clientId}:${clientSecret}`).toString("base64")}`,
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body: new URLSearchParams({
-        grant_type: "refresh_token",
-        refresh_token: refreshToken,
-      }),
-      cache: "no-store",
-    });
+    accessToken = await getSpotifyAccessToken();
   } catch {
-    return NextResponse.json({ error: "spotify_unavailable" }, { status: 502 });
-  }
-
-  if (!tokenResponse.ok) {
-    return NextResponse.json({ error: "spotify_auth_failed" }, { status: 502 });
-  }
-
-  const tokenData = await tokenResponse.json();
-  if (typeof tokenData.access_token !== "string") {
     return NextResponse.json({ error: "spotify_auth_failed" }, { status: 502 });
   }
 
@@ -59,7 +36,7 @@ export async function GET() {
     historyResponse = await fetch(
       "https://api.spotify.com/v1/me/player/recently-played?limit=5",
       {
-        headers: { Authorization: `Bearer ${tokenData.access_token}` },
+        headers: { Authorization: `Bearer ${accessToken}` },
         cache: "no-store",
       }
     );
