@@ -1,6 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { ResponsiveScatterPlot } from "@nivo/scatterplot";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import RecommenderTimeline from "./recommenderTimeline";
 
 type Album = {
@@ -147,6 +147,9 @@ export default function RecommenderDashboard({
     setSortedData(computeRecommenderElo(albums));
   }, [albums]);
 
+  const rankedData = sortedData.filter((recommender) => recommender.count >= 3);
+  const unrankedData = sortedData.filter((recommender) => recommender.count < 3);
+
   const scatterData = [
     {
       id: "recommenders",
@@ -224,15 +227,19 @@ export default function RecommenderDashboard({
 
       {/* LEADERBOARD */}
       <div className="grid gap-4">
-        {sortedData.map((r, i) => (
-   <Card key={r.name} className="p-4 rounded-2xl border border-white/30">
+        {[...rankedData, ...unrankedData].map((r, i) => (
+          <Fragment key={r.name}>
+            {i === rankedData.length && unrankedData.length > 0 && (
+              <h2 className="text-xl font-semibold">Unranked</h2>
+            )}
+            <Card className="p-4 rounded-2xl border border-white/30">
   <CardContent className="flex flex-col gap-3">
 
     {/* HEADER */}
     <div className="flex justify-between items-start">
       <div>
         <div className="text-lg font-medium">
-          {i + 1}. {r.name}
+          {i < rankedData.length ? `${i + 1}. ` : ""}{r.name}
         </div>
 
         <div className="text-sm opacity-70 mt-1">
@@ -282,6 +289,7 @@ export default function RecommenderDashboard({
 
   </CardContent>
 </Card>
+          </Fragment>
         ))}
       </div>
     </div>
