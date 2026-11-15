@@ -14,6 +14,7 @@ import SignInForm from "./components/general/signIn"
 import LazyLoader from "./components/general/lazyLoader";
 import { useMediaQuery } from "react-responsive";
 import HomeHeader from "./components/landing/homeHeader";
+import RecentlyPlayed from "./components/landing/recentlyPlayed";
 
 const videos = ["/hatch_demo.mp4", "prismera_demo.mp4", "/addAlbum.mp4", "/colombo_demo.mp4"];
 
@@ -139,6 +140,7 @@ export default function Home() {
         </div>
       </div>
       <div className="w-4/5 flex flex-col mt-2 xl:mt-[1rem] z-10">
+        <RecentlyPlayed />
         <LazyLoader id="experience">
           <ExperienceTimeline />
         </LazyLoader>

@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef, ChangeEvent } from "react";
-import { getAccessToken } from "../../../../utils/album_ranking/getAccessToken";
 
 interface Album {
     id: string;
@@ -33,54 +32,61 @@ interface SpotifyAlbum {
     images: SpotifyImage[];
 }
 
-interface SpotifySearchResponse {
-    albums?: {
-        items: SpotifyAlbum[];
-    };
-}
-
 export default function AlbumSearchInput({ onSelect, name, setName }: AlbumSearchInputProps) {
     const [nameFocus, setNameFocus] = useState<boolean>(false);
     const [dropdown, setDropdown] = useState<Album[]>([]);
-    const [token, setToken] = useState<string>("");
+    const [searchError, setSearchError] = useState(false);
     const debounceRef = useRef<NodeJS.Timeout | null>(null);
-
-    // Get token once
-    useEffect(() => {
-        getAccessToken().then(setToken);
-    }, []);
 
     // Search albums function
     const searchAlbums = async (query: string): Promise<SpotifyAlbum[]> => {
-        if (!token || !query) return [];
+        if (!query) return [];
 
-        const res = await fetch(
-            `https://api.spotify.com/v1/search?q=${encodeURIComponent(query)}&type=album&limit=5`,
-            { headers: { Authorization: `Bearer ${token}` } }
-        );
-        const data: SpotifySearchResponse = await res.json();
-        return data.albums?.items || [];
+        const response = await fetch(`/api/spotify/search?q=${encodeURIComponent(query)}`);
+        if (!response.ok) {
+            throw new Error("Spotify album search failed.");
+        }
+        return response.json();
     };
 
     // Handle input changes with debounce
     useEffect(() => {
-        if (!name) return setDropdown([]);
+        if (!name) {
+            setDropdown([]);
+            setSearchError(false);
+            return;
+        }
 
+        let active = true;
+        setSearchError(false);
         if (debounceRef.current) clearTimeout(debounceRef.current);
         debounceRef.current = setTimeout(async () => {
-            const results = await searchAlbums(name);
+            try {
+                const results = await searchAlbums(name);
+                if (!active) return;
 
-            const detailed: Album[] = results.map((album: SpotifyAlbum) => ({
-                id: album.id,
-                name: album.name,
-                artists: album.artists.map((a: SpotifyArtist) => a.name).join(", "),
-                image: album.images[0]?.url || "",
-                genres: [],
-            }));
+                const detailed: Album[] = results.map((album: SpotifyAlbum) => ({
+                    id: album.id,
+                    name: album.name,
+                    artists: album.artists.map((a: SpotifyArtist) => a.name).join(", "),
+                    image: album.images[0]?.url || "",
+                    genres: [],
+                }));
 
-            setDropdown(detailed);
+                setDropdown(detailed);
+            } catch {
+                if (active) {
+                    setDropdown([]);
+                    setSearchError(true);
+                }
+            }
         }, 300);
-    }, [name, token]);
+
+        return () => {
+            active = false;
+            if (debounceRef.current) clearTimeout(debounceRef.current);
+        };
+    }, [name]);
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => setName(e.target.value);
 
@@ -102,6 +108,12 @@ export default function AlbumSearchInput({ onSelect, name, setName }: AlbumSearc
                     }`}
                 />
             </div>
+
+            {searchError && (
+                <p className="mt-1 text-sm text-red-300" role="status">
+                    Spotify album search is unavailable.
+                </p>
+            )}
 
             {/* Dropdown */}
             {dropdown.length > 0 && nameFocus && (
