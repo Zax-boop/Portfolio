@@ -16,6 +16,7 @@ export default function UpdateBookModal({ book }: {
         comments: string;
         genres: string[];
         image: string;
+        date?: string | null;
         id: string;
     }
 }) {
@@ -23,6 +24,7 @@ export default function UpdateBookModal({ book }: {
     const [name, setName] = useState(book?.name || '');
     const [author, setAuthor] = useState(book?.author || '');
     const [comments, setComments] = useState(book?.comments || '');
+    const [date, setDate] = useState(book?.date?.split('T')[0] || '');
     const [genres, setGenres] = useState(book?.genres || []);
     const [imageFile, setImageFile] = useState<File | null>(null);
     const [coverImage, setCoverImage] = useState<string | StaticImageData>(book?.image || show_placeholder);
@@ -46,6 +48,7 @@ export default function UpdateBookModal({ book }: {
             setName(book.name || '');
             setAuthor(book.author || '');
             setComments(book.comments || '');
+            setDate(book.date?.split('T')[0] || '');
             setCoverImage(book.image || show_placeholder);
             setGenres(book.genres || []);
         }
@@ -70,6 +73,7 @@ export default function UpdateBookModal({ book }: {
                 comments: comments,
                 imageFile,
                 genres,
+                date,
             };
             await updateBook(book.id, updatedFields);
         } catch (error) {
@@ -232,6 +236,12 @@ export default function UpdateBookModal({ book }: {
                                                 }`}
                                         />
                                     </div>
+                                    <input
+                                        type="date"
+                                        value={date}
+                                        onChange={(e) => setDate(e.target.value)}
+                                        className="p-2 border border-gray-700 rounded bg-gray-800 text-white"
+                                    />
                                  <div className='flex flex-row flex-wrap gap-2 max-h-32 overflow-scroll'>
                                     {genre_list.slice().sort().map((genre, index) => (
                                         <div onClick={() => handleGenreSwitch(genre)} key={index} className={genres.includes(genre) ? `px-2 py-1 rounded-lg text-white font-bold ${returnColor(genre)} cursor-pointer opacity-100 transition-all duration-300 ease-in-out hover:opacity-30` :

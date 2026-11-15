@@ -17,6 +17,7 @@ export default function UpdateGamesModal({ game }: {
         comments: string;
         rank: number;
         genres: string[];
+        date?: string | null;
         id: string;
     }
 }) {
@@ -24,6 +25,7 @@ export default function UpdateGamesModal({ game }: {
     const [name, setName] = useState(game?.name || '');
     const [studio, setStudio] = useState(game?.studio || '');
     const [comments, setComments] = useState(game?.comments || '');
+    const [date, setDate] = useState(game?.date?.split('T')[0] || '');
     const [imageFile, setImageFile] = useState<File | null>(null);
     const [rank, setRank] = useState(game?.rank || '');
     const [genres, setGenres] = useState<string[]>(game?.genres || []);
@@ -45,6 +47,7 @@ export default function UpdateGamesModal({ game }: {
             setName(game.name || '');
             setStudio(game.studio || '');
             setComments(game.comments || '');
+            setDate(game.date?.split('T')[0] || '');
             setRank(game.rank || '');
             setCoverImage(game.image || game_placeholder);
             setGenres(game.genres || []);
@@ -71,6 +74,7 @@ export default function UpdateGamesModal({ game }: {
                 imageFile,
                 rank: Number(rank),
                 genres,
+                date,
             };
             await updateGames(game.id, updatedFields);
         } catch (error) {
@@ -220,6 +224,12 @@ export default function UpdateGamesModal({ game }: {
                                     placeholder="Rank"
                                     value={rank}
                                     onChange={(e) => setRank(e.target.value)}
+                                />
+                                <input
+                                    type="date"
+                                    value={date}
+                                    onChange={(e) => setDate(e.target.value)}
+                                    className="p-2 border border-gray-700 rounded bg-gray-800 text-white"
                                 />
                                 <div className='flex flex-row flex-wrap gap-2 max-h-32 overflow-scroll'>
                                     {genre_list.slice().sort().map((genre, index) => (

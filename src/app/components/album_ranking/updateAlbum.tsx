@@ -25,6 +25,7 @@ export default function UpdateAlbumModal({ album }: {
         Rank: number;
         genres: string[];
         recommender: string;
+        date?: string | null;
         id: string;
     }
 }) {
@@ -32,6 +33,7 @@ export default function UpdateAlbumModal({ album }: {
     const [name, setName] = useState(album?.name || '');
     const [artist, setArtist] = useState(album?.artist || '');
     const [comments, setComments] = useState(album?.comment || '');
+    const [date, setDate] = useState(album?.date?.split('T')[0] || '');
     const [imageFile, setImageFile] = useState<File | null>(null);
     const [rank, setRank] = useState(album?.Rank || '');
     const [genres, setGenres] = useState(album?.genres || []);
@@ -76,6 +78,7 @@ export default function UpdateAlbumModal({ album }: {
             setName(album.name || '');
             setArtist(album.artist || '');
             setComments(album.comment || '');
+            setDate(album.date?.split('T')[0] || '');
             setRank(album.Rank || '');
             setCoverImage(album.image || album_placeholder);
             setRecommender(album.recommender || '');
@@ -101,7 +104,8 @@ export default function UpdateAlbumModal({ album }: {
                 imageFile,
                 Rank: Number(rank),
                 genres,
-                recommender
+                recommender,
+                date
             };
             await updateAlbum(album.id, updatedFields);
         } catch (error) {
@@ -288,6 +292,12 @@ export default function UpdateAlbumModal({ album }: {
                                         className={`absolute -bottom-0.5 left-0 h-[2px] bg-white transition-all duration-300 ${rankFocus ? "w-full" : "w-0"}`}
                                     />
                                 </div>
+                                <input
+                                    type="date"
+                                    value={date}
+                                    onChange={(e) => setDate(e.target.value)}
+                                    className="p-2 border border-gray-700 rounded bg-gray-800 text-white"
+                                />
                                 <div className="flex flex-row flex-wrap gap-2 max-h-32 overflow-scroll">
                                     {Object.values(allGenres)
                                         .sort((a, b) => a.title.localeCompare(b.title))

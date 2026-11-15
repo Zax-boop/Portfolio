@@ -17,6 +17,7 @@ export default function UpdateAnimeModal({ anime }: {
         image: string;
         rank: number;
         genres: string[];
+        date?: string | null;
         id: string;
     }
 }) {
@@ -24,6 +25,7 @@ export default function UpdateAnimeModal({ anime }: {
     const [name, setName] = useState(anime?.name || '');
     const [studio, setStudio] = useState(anime?.studio || '');
     const [comments, setComments] = useState(anime?.comments || '');
+    const [date, setDate] = useState(anime?.date?.split('T')[0] || '');
     const [imageFile, setImageFile] = useState<File | null>(null);
     const [rank, setRank] = useState(anime?.rank || '');
     const [genres, setGenres] = useState(anime?.genres || []);
@@ -49,6 +51,7 @@ export default function UpdateAnimeModal({ anime }: {
             setName(anime.name || '');
             setStudio(anime.studio || '');
             setComments(anime.comments || '');
+            setDate(anime.date?.split('T')[0] || '');
             setRank(anime.rank || '');
             setGenres(anime.genres || []);
             setCoverImage(anime.image || show_placeholder);
@@ -74,7 +77,8 @@ export default function UpdateAnimeModal({ anime }: {
                 comments: comments,
                 imageFile,
                 rank: Number(rank),
-                genres
+                genres,
+                date
             };
             await updateAnime(anime.id, updatedFields);
         } catch (error) {
@@ -242,6 +246,12 @@ export default function UpdateAnimeModal({ anime }: {
                                         className={`absolute -bottom-0.5 left-0 h-[2px] bg-white transition-all duration-300 ${rankFocus ? "w-full" : "w-0"}`}
                                     />
                                 </div>
+                                <input
+                                    type="date"
+                                    value={date}
+                                    onChange={(e) => setDate(e.target.value)}
+                                    className="p-2 border border-gray-700 rounded bg-gray-800 text-white"
+                                />
                                 <div className='flex flex-row flex-wrap gap-2 max-h-32 overflow-scroll'>
                                     {genre_list.slice().sort().map((genre, index) => (
                                         <div onClick={() => handleGenreSwitch(genre)} key={index} className={genres.includes(genre) ? `px-2 py-1 rounded-lg text-white font-bold ${returnColor(genre)} cursor-pointer opacity-100 transition-all duration-300 ease-in-out hover:opacity-30` :

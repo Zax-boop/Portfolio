@@ -111,7 +111,7 @@ export default function Scrapbook() {
         });
 
         const normalizedAnime: Scrap[] = (animeData || []).map((anime) => {
-            const dateOnly = anime.created_at?.split("T")[0] ?? null;
+            const dateOnly = anime.date ?? anime.created_at?.split("T")[0] ?? null;
             return {
                 id: anime.id,
                 created_at: dateOnly,
@@ -135,7 +135,7 @@ export default function Scrapbook() {
         });
 
         const normalizedBooks: Scrap[] = (bookData || []).map((book) => {
-            const dateOnly = book.created_at?.split("T")[0] ?? null;
+            const dateOnly = book.date ?? book.created_at?.split("T")[0] ?? null;
             return {
                 id: book.id,
                 created_at: dateOnly,
@@ -147,7 +147,7 @@ export default function Scrapbook() {
         });
 
         const normalizedTv: Scrap[] = (tvFiles || []).map((tv) => {
-            const dateOnly = tv.created_at?.split("T")[0] ?? null;
+            const dateOnly = tv.date ?? tv.created_at?.split("T")[0] ?? null;
             return {
                 id: tv.id,
                 created_at: dateOnly,
@@ -159,7 +159,7 @@ export default function Scrapbook() {
         });
 
         const normalizedGames: Scrap[] = (gameData || []).map((game) => {
-            const dateOnly = game.created_at?.split("T")[0] ?? null;
+            const dateOnly = game.date ?? game.created_at?.split("T")[0] ?? null;
             return {
                 id: game.id,
                 created_at: dateOnly,

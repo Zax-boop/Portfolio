@@ -1,7 +1,7 @@
 import supabase from "../general/supabaseclient";
 
 export default async function updateGames(id, updatedFields) {
-    const { name, studio, comments, imageFile, rank, genres } = updatedFields;
+    const { name, studio, comments, imageFile, rank, genres, date } = updatedFields;
     let imageUrl;
     if (imageFile) {
         const fileName = `${Date.now()}_${imageFile.name}`;
@@ -89,6 +89,7 @@ export default async function updateGames(id, updatedFields) {
         ...(imageUrl && { image: imageUrl }),
         ...(genres !== undefined && { genres }),
         ...(rank !== undefined && { rank }),
+        ...(date !== undefined && { date: date || null }),
     };
 
     const { error } = await supabase
