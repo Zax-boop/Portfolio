@@ -1,14 +1,17 @@
 import { useState, forwardRef } from "react";
+import Image from "next/image";
 
 type VideoWithPlaceholderProps = {
     src: string;
     className?: string;
     aspect?: string;
+    fallbackSrc?: string;
 };
 
 const VideoWithPlaceholder = forwardRef<HTMLVideoElement, VideoWithPlaceholderProps>(
-    ({ src, className, aspect = "aspect-video" }, ref) => {
+    ({ src, className, aspect = "aspect-video", fallbackSrc }, ref) => {
         const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+        const [isVideoFailed, setIsVideoFailed] = useState(false);
         const [dynamicAspect, setDynamicAspect] = useState(aspect);
 
         return (
@@ -33,7 +36,24 @@ const VideoWithPlaceholder = forwardRef<HTMLVideoElement, VideoWithPlaceholderPr
                         }
                     }}
                     onLoadedData={() => setIsVideoLoaded(true)}
+                    onError={() => {
+                        if (fallbackSrc) {
+                            setIsVideoFailed(true);
+                        }
+                    }}
                 />
+
+                {isVideoFailed && fallbackSrc && (
+                    <Image
+                        src={fallbackSrc}
+                        alt=""
+                        fill
+                        unoptimized
+                        className="object-cover"
+                        sizes="100vw"
+                        onLoad={() => setIsVideoLoaded(true)}
+                    />
+                )}
 
                 {!isVideoLoaded && (
                     <div className="absolute inset-0 flex justify-center items-center bg-gray-300">
