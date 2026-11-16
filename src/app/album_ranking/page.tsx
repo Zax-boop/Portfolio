@@ -20,7 +20,7 @@ import { ChevronUp, ChevronsUp, ChevronDown, ChevronsDown } from 'lucide-react';
 import Loading from '../components/general/loading';
 import RecommenderDashboard from '../components/album_ranking/recommenderDashboard';
 import supabase from '../../../utils/general/supabaseclient';
-import RecentlyPlayed from '../components/landing/recentlyPlayed';
+import RecentlyPlayed from '../components/album_ranking/recentlyPlayed';
 
 export default function Albums() {
     const [albums, setAlbums] = useState<{
