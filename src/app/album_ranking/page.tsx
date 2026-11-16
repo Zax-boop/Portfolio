@@ -21,7 +21,6 @@ import Loading from '../components/general/loading';
 import RecommenderDashboard from '../components/album_ranking/recommenderDashboard';
 import supabase from '../../../utils/general/supabaseclient';
 import RecentlyPlayed from '../components/landing/recentlyPlayed';
-import SpotifyTopItems from '../components/landing/spotifyTopItems';
 
 export default function Albums() {
     const [albums, setAlbums] = useState<{
@@ -232,7 +231,6 @@ export default function Albums() {
                 : showRecommendations ? <AlbumRecommendations albums={albums} recSelect={recSelect} /> :
                     <div className="flex flex-col xs:w-[95%] sm:w-4/5 xs:mt-2 sm:mt-8">
                         <RecentlyPlayed />
-                        <SpotifyTopItems />
                         <div className='flex flex-row items-center xs:justify-end sm:justify-start'>
                             <AlbumForm />
                             <Link href="https://open.spotify.com/playlist/1BjbHX9ACQUNCBt5zWZjtV?si=3d5ac7a5e3ae4f06" target="_blank" className=''>

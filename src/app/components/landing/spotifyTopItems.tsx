@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { ChevronDown } from "lucide-react";
 import { useEffect, useState } from "react";
 
 type ItemType = "artists" | "tracks";
@@ -66,7 +67,7 @@ export default function SpotifyTopItems() {
   }, [type, timeRange]);
 
   return (
-    <section className="mt-4 mb-4 rounded-xl border border-white/10 bg-white/[0.03] p-4 sm:p-5" aria-labelledby="spotify-top-heading">
+    <section aria-labelledby="spotify-top-heading">
       <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
         <div>
           <h2 id="spotify-top-heading" className="text-xl font-semibold sm:text-2xl">
@@ -74,17 +75,21 @@ export default function SpotifyTopItems() {
           </h2>
           <p className="mt-1 text-sm text-white/60">Ranked by Spotify&apos;s listening affinity</p>
         </div>
-        <label className="text-sm text-white/70">
+        <label className="relative text-sm text-white/70">
           <span className="sr-only">Listening period</span>
           <select
             value={timeRange}
             onChange={(event) => setTimeRange(event.target.value as TimeRange)}
-            className="rounded-md border border-white/15 bg-black px-2 py-1.5 text-white"
+            className="appearance-none rounded-md border border-white/15 bg-black py-1.5 pl-2 pr-9 text-white"
           >
             {timeRanges.map((range) => (
               <option key={range.value} value={range.value}>{range.label}</option>
             ))}
           </select>
+          <ChevronDown
+            aria-hidden="true"
+            className="pointer-events-none absolute right-2 top-1/2 h-4 w-4 -translate-y-1/2 text-white/70"
+          />
         </label>
       </div>
 

@@ -34,7 +34,7 @@ export async function GET() {
   let historyResponse: Response;
   try {
     historyResponse = await fetch(
-      "https://api.spotify.com/v1/me/player/recently-played?limit=5",
+      "https://api.spotify.com/v1/me/player/recently-played?limit=1",
       {
         headers: { Authorization: `Bearer ${accessToken}` },
         cache: "no-store",
