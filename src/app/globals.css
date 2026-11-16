@@ -57,6 +57,57 @@ input[type="number"] {
   animation: fadeIn 0.5s forwards;
 }
 
+.home-hero {
+  background:
+    radial-gradient(ellipse at 78% 45%, rgba(255, 255, 255, 0.09), transparent 38%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.035), transparent 62%);
+}
+
+.typing-cursor {
+  display: inline-block;
+  width: 0.055em;
+  height: 0.82em;
+  margin-left: 0.08em;
+  vertical-align: -0.02em;
+  background: currentColor;
+}
+
+.typing-cursor--typing {
+  animation: cursorBlink 1s steps(2, start) infinite;
+}
+
+.typing-cursor--finish {
+  animation: cursorBlinkTwice 1s steps(1, end) 1 forwards;
+}
+
+@keyframes cursorBlink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes cursorBlinkTwice {
+  0%,
+  24%,
+  50%,
+  74% {
+    opacity: 1;
+  }
+
+  25%,
+  49%,
+  75%,
+  100% {
+    opacity: 0;
+  }
+}
+
 @keyframes spotifyAmbientGlow {
   0%,
   100% {
@@ -73,7 +124,10 @@ input[type="number"] {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .spotify-ambient {
+  .spotify-ambient,
+  .typing-cursor--typing,
+  .typing-cursor--finish {
     animation: none;
   }
+
 }

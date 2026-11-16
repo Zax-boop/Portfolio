@@ -2,19 +2,13 @@
 import { useState, useEffect, useRef } from "react";
 
 interface VideoSliderProps {
-  videos: string[]; 
+  videos: string[];
+  isActive: boolean;
 }
 
-export default function VideoSlider({ videos }: VideoSliderProps): JSX.Element {
+export default function VideoSlider({ videos, isActive }: VideoSliderProps): JSX.Element {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const [timer, setTimer] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
-  useEffect(() => {
-    const timerId = setTimeout(() => {
-      setTimer(true);
-    }, 2800);
-    return () => clearTimeout(timerId);
-  }, []);
   const nextSlide = (): void => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % videos.length);
   };
@@ -22,8 +16,8 @@ export default function VideoSlider({ videos }: VideoSliderProps): JSX.Element {
   useEffect(() => {
     const videoElement = videoRef.current;
 
-    if (videoElement) {
-      videoElement.playbackRate = 1.5; 
+    if (videoElement && isActive) {
+      videoElement.playbackRate = 1.5;
       videoElement.currentTime = 0;
 
       const handleVideoEnd = (): void => {
@@ -32,33 +26,33 @@ export default function VideoSlider({ videos }: VideoSliderProps): JSX.Element {
 
       videoElement.addEventListener("ended", handleVideoEnd);
 
+      void videoElement.play().catch((error: unknown) => {
+        console.error("Unable to play the selected work preview.", error);
+      });
+
       return () => {
         videoElement.removeEventListener("ended", handleVideoEnd);
       };
     }
-  }, [currentIndex]);
+  }, [currentIndex, isActive]);
 
-  useEffect(() => {
-    if (videoRef.current && timer) {
-      videoRef.current.play();
-    }
-  }, [currentIndex]);
   return (
-    <div className="relative w-full mx-auto xs:mt-8 xl:mt-0">
-      <div className="relative xs:w-[20rem] xs:h-[11.4rem] sm:w-[30rem] sm:h-[16.8rem] xs: xl:w-[35rem] xl:h-[20rem] group overflow-hidden">
+    <div className="relative mx-auto w-full">
+      <div className="group relative aspect-video w-full overflow-hidden rounded-2xl border border-white/15 bg-white/[0.03] shadow-[0_24px_70px_rgba(0,0,0,0.4)]">
         {videos.map((video, index) => (
           <div
             key={index}
-            className={`absolute inset-0 xl:transition-opacity xl:duration-1000 xl:ease-in-out ${
+            className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
               index === currentIndex ? "opacity-100" : "opacity-0"
             }`}
           >
             <video
               ref={index === currentIndex ? videoRef : null}
               src={video}
-              className="w-full h-full object-cover rounded-xl"
+              className="h-full w-full object-cover"
               muted
-              autoPlay
+              autoPlay={isActive && index === currentIndex}
+              preload={index === currentIndex ? (isActive ? "auto" : "metadata") : "none"}
               controls={false} 
               playsInline 
               onPlay={(e) => {

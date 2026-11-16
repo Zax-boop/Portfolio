@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import PoppingLetters from "./components/general/poppingLetters";
+import { useCallback, useState, useEffect } from "react";
+import TypingSequence, { type TypingLine } from "./components/general/typingSequence";
 import linkedin_logo from "../../public/linkedinLogo.png";
 import github_logo from "../../public/github_logo.png";
 import Image from "next/image";
@@ -12,132 +12,136 @@ import ProjectSection from "./components/landing/projectSection";
 import ContactSection from "./components/landing/contactSection";
 import SignInForm from "./components/general/signIn"
 import LazyLoader from "./components/general/lazyLoader";
-import { useMediaQuery } from "react-responsive";
 import HomeHeader from "./components/landing/homeHeader";
+import { ScrollText } from "lucide-react";
 
 const videos = ["/hatch_demo.mp4", "prismera_demo.mp4", "/addAlbum.mp4", "/colombo_demo.mp4"];
+const introLines: TypingLine[] = [
+  {
+    text: "ROHAN ARYA",
+    className:
+      "font-semibold leading-[0.88] tracking-[-0.075em] text-[clamp(2.75rem,12vw,10rem)]",
+    speed: 35,
+  },
+  {
+    text: "Full Stack Developer",
+    className:
+      "text-[clamp(1.7rem,4vw,3.8rem)] font-medium leading-[1.08] tracking-[-0.045em] text-white/90",
+    speed: 24,
+  },
+  {
+    text: "Based in California",
+    className: "mt-2 text-sm tracking-[0.08em] text-white/55 sm:text-base",
+    speed: 24,
+  },
+];
 
 export default function Home() {
-  const isMobile = useMediaQuery({ query: '(max-width: 650px)' })
-  const [timer, setTimer] = useState(false);
-  useEffect(() => {
-    const timerId = setTimeout(() => {
-      setTimer(true);
-    }, 2800);
-    return () => clearTimeout(timerId);
-  }, []);
+  const [introComplete, setIntroComplete] = useState(false);
+  const [visibleActionCount, setVisibleActionCount] = useState(0);
+  const [showPreview, setShowPreview] = useState(false);
+  const handleIntroComplete = useCallback(() => setIntroComplete(true), []);
 
   useEffect(() => {
-    const svg = document.querySelector("svg.squiggle");
-    const path = svg?.querySelector("path");
+    if (!introComplete) return;
 
-    if (!svg || !path) return;
+    const timeouts = [
+      setTimeout(() => setVisibleActionCount(1), 0),
+      setTimeout(() => setVisibleActionCount(2), 150),
+      setTimeout(() => setVisibleActionCount(3), 300),
+      setTimeout(() => setShowPreview(true), 650),
+    ];
 
-    const threshold = 40 * 16;
+    return () => timeouts.forEach(clearTimeout);
+  }, [introComplete]);
 
-    const scroll = () => {
-      const distance = window.scrollY;
-
-      if (distance < threshold) {
-        const pathLength = path.getTotalLength();
-        path.style.strokeDasharray = `${pathLength}`;
-        path.style.strokeDashoffset = `${pathLength}`;
-        return;
-      }
-
-      const totalDistance = svg.clientHeight - window.innerHeight;
-      const adjustedDistance = distance - threshold;
-      const percentage = Math.min(Math.max(adjustedDistance / totalDistance, 0), 1);
-
-      const pathLength = path.getTotalLength();
-
-      path.style.strokeDasharray = `${pathLength}`;
-      path.style.strokeDashoffset = `${pathLength * (1 - percentage)}`;
-    };
-
-    scroll();
-
-    window.addEventListener("scroll", scroll);
-
-    return () => window.removeEventListener("scroll", scroll);
-  }, []);
   return (
     <div className={`flex flex-col w-full h-full items-center`}>
       <SignInForm />
-      <svg
-        width={isMobile ? "200" : "100%"}
-        height={isMobile ? "1000" : "2000"}
-        viewBox={isMobile ? "0 0 500 1000" : "0 0 1000 2000"}
-        fill="none"
-        className="absolute xs:top-[10rem] sm:top-[45rem] xl:top-[40rem] left-0 w-full h-auto z-0 squiggle"
-      >
-        <path
-          d="M-24.5 101C285 315 5.86278 448.291 144.223 631.238C239.404 757.091 559.515 782.846 608.808 617.456C658.101 452.067 497.627 367.073 406.298 426.797C314.968 486.521 263.347 612.858 322.909 865.537C384.086 1125.06 79.3992 1007.94 100 1261.99C144.222 1807.35 819 1325 513 1142.5C152.717 927.625 -45 1916.5 1191.5 1852"
-          stroke="#FFFFFF"
-          strokeWidth="5"
-          strokeOpacity={0.3}
-          strokeLinejoin="round"
-          strokeLinecap="round"
-        />
-      </svg>
       <HomeHeader />
-      <div className="relative flex flex-col w-full mt-1 xl:h-[90vh] items-center overflow-hidden">
-        <div className="absolute inset-0 bg-black opacity-50"></div>
-        <div className="relative flex flex-col w-4/5 items-start z-10">
-          <PoppingLetters
-            className="font-semibold xs:text-[2.5rem] sm:text-[5rem] lg:text-[7rem] xl:text-[10rem] xs:mt-2 sm:mt-0 xl:mt-12"
-            text={"ROHAN ARYA"}
-          />
-          <div className="flex xs:flex-col xl:flex-row justify-between w-full xs:mt-4 xl:mt-20">
-            <div className="flex flex-col w-4/5">
-              <PoppingLetters
-                className="xs:text-[1.5rem] sm:text-[3rem] xl:text-6xl 2xl:text-7xl"
-                text="Full Stack Developer Based in California"
-                initialDelay={1000}
-                speed={30}
-              />
-              <div className="flex flex-row xl:mt-4 xs:text-[1.2rem] sm:text-[2rem] xl:text-3xl 2xl:text-4xl w-full">
-                <div className="relative group">
-                  <a href="/Resume_Rohan_Arya.pdf" target="_blank">
-                    <PoppingLetters text="Resume" initialDelay={2200} speed={30} />
-                  </a>
-                  <span className="absolute xs:-bottom-[0.075rem] sm:-bottom-[0.1rem] left-0 w-0 xs:h-[0.1rem] sm:h-1 bg-white transition-all group-hover:w-full"></span>
-                </div>
-              </div>
-              <div
-                className={`flex flex-row mt-2 gap-2 ${!timer && "opacity-0"
-                  } animate-fadeInDelayed`}
-              >
-                <a
-                  target="_blank"
-                  href="https://www.linkedin.com/in/rohan-arya/"
-                  className="transform transition-transform duration-200 hover:scale-105"
-                >
-                  <Image src={linkedin_logo} className="xs:w-[3rem] sm:w-[3rem]" alt="linkedin" />
-                </a>
-
-                <a
-                  target="_blank"
-                  href="https://github.com/Zax-boop"
-                  className="transform transition-transform duration-200 hover:scale-105"
-                >
-                  <Image
-                    src={github_logo}
-                    className="xs:w-[3rem] sm:w-[3rem] bg-white rounded-sm"
-                    alt="github"
-                  />
-                </a>
-              </div>
-            </div>
-            {<div
-              className={`flex transform transition-transform duration-200 hover:scale-105 flex-col justify-end items-end w-2/5 ${!timer && "opacity-0"
-                } animate-fadeInDelayed xs:mb-[20rem] sm:mb-0`}
-            >
-              <VideoSlider videos={videos} />
-            </div>}
+      <section className="home-hero relative flex min-h-screen w-full mt-1 items-start overflow-hidden border-y border-white/10">
+        <div className="relative z-10 mx-auto flex w-11/12 max-w-7xl flex-col pt-8 pb-12 sm:pt-10 sm:pb-16 xl:pt-12 xl:pb-20">
+          <div className="mb-5 flex items-center gap-3 text-[0.65rem] font-medium uppercase tracking-[0.3rem] text-white/55 sm:text-xs">
+            <span className="h-px w-8 bg-white/50" />
+            Software engineer · California
           </div>
+          <TypingSequence
+            lines={introLines}
+            initialDelay={1000}
+            initialCursorBlink
+            onComplete={handleIntroComplete}
+          >
+            {(renderLine) => (
+              <>
+                {renderLine(0)}
+                <div className="mt-10 flex w-full flex-col gap-10 sm:mt-14 xl:flex-row xl:items-end xl:justify-between">
+                  <div className="flex w-full flex-col xl:max-w-[52%]">
+                    {renderLine(1)}
+                    {renderLine(2)}
+                    <div className="mt-7 flex flex-wrap items-center gap-3">
+                      <a
+                        href="/Resume_Rohan_Arya.pdf"
+                        target="_blank"
+                        rel="noreferrer"
+                        aria-label="Resume"
+                        tabIndex={visibleActionCount > 0 ? 0 : -1}
+                        className={`rounded-full border border-white/15 bg-white/[0.04] p-2 transition-[opacity,transform,background-color,border-color] duration-300 hover:-translate-y-1 hover:border-white/40 hover:bg-white/10 ${
+                          visibleActionCount > 0
+                            ? "translate-y-0 opacity-100"
+                            : "pointer-events-none translate-y-2 opacity-0"
+                        }`}
+                      >
+                        <ScrollText className="h-5 w-5 sm:h-6 sm:w-6" aria-hidden="true" />
+                      </a>
+                      <a
+                        target="_blank"
+                        rel="noreferrer"
+                        href="https://www.linkedin.com/in/rohan-arya/"
+                        aria-label="LinkedIn"
+                        tabIndex={visibleActionCount > 1 ? 0 : -1}
+                        className={`rounded-full border border-white/15 bg-white/[0.04] p-2 transition-[opacity,transform,background-color,border-color] duration-300 hover:-translate-y-1 hover:border-white/40 hover:bg-white/10 ${
+                          visibleActionCount > 1
+                            ? "translate-y-0 opacity-100"
+                            : "pointer-events-none translate-y-2 opacity-0"
+                        }`}
+                      >
+                        <Image src={linkedin_logo} className="h-5 w-5 sm:h-6 sm:w-6" alt="" />
+                      </a>
+                      <a
+                        target="_blank"
+                        rel="noreferrer"
+                        href="https://github.com/Zax-boop"
+                        aria-label="GitHub"
+                        tabIndex={visibleActionCount > 2 ? 0 : -1}
+                        className={`rounded-full border border-white/15 bg-white/[0.04] p-2 transition-[opacity,transform,background-color,border-color] duration-300 hover:-translate-y-1 hover:border-white/40 hover:bg-white/10 ${
+                          visibleActionCount > 2
+                            ? "translate-y-0 opacity-100"
+                            : "pointer-events-none translate-y-2 opacity-0"
+                        }`}
+                      >
+                        <Image src={github_logo} className="h-5 w-5 rounded-sm bg-white sm:h-6 sm:w-6" alt="" />
+                      </a>
+                    </div>
+                  </div>
+                  <div
+                    className={`flex w-full flex-col transition-[opacity,transform] duration-700 ease-out xl:w-[44%] ${
+                      showPreview
+                        ? "translate-y-0 opacity-100"
+                        : "pointer-events-none translate-y-3 opacity-0"
+                    }`}
+                  >
+                    <div className="mb-3 flex items-center gap-2 text-[0.65rem] font-medium uppercase tracking-[0.24em] text-white/45">
+                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-300/80" />
+                      Selected work
+                    </div>
+                    <VideoSlider videos={videos} isActive={showPreview} />
+                  </div>
+                </div>
+              </>
+            )}
+          </TypingSequence>
         </div>
-      </div>
+      </section>
       <div className="w-4/5 flex flex-col mt-2 xl:mt-[1rem] z-10">
         <LazyLoader id="experience">
           <ExperienceTimeline />

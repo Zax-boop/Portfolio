@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 const PoppingLetters = ({
   text,
   className = "",
-  initialDelay = 0, 
+  initialDelay = 0,
   speed = 100,
 }: {
   text: string;
@@ -12,32 +12,33 @@ const PoppingLetters = ({
   initialDelay?: number;
   speed?: number;
 }) => {
-  const [displayedText, setDisplayedText] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [initialDelayDone, setInitialDelayDone] = useState(initialDelay === 0);
 
   useEffect(() => {
-    if (initialDelay > 0) {
-      const delayTimeout = setTimeout(() => {
-        setInitialDelayDone(true);
-      }, initialDelay);
-
-      return () => clearTimeout(delayTimeout);
-    }
-  }, [initialDelay]);
+    setCurrentIndex(0);
+  }, [initialDelay, speed, text]);
 
   useEffect(() => {
-    if (initialDelayDone && currentIndex < text.length) {
-      const timeoutId = setTimeout(() => {
-        setDisplayedText((prevText) => prevText + text.charAt(currentIndex));
-        setCurrentIndex((prevIndex) => prevIndex + 1);
-      }, speed);
-
-      return () => clearTimeout(timeoutId);
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setCurrentIndex(text.length);
+      return;
     }
-  }, [currentIndex, text, initialDelayDone]);
 
-  return <div className={className}>{displayedText}</div>;
+    if (currentIndex >= text.length) return;
+
+    const timeoutId = setTimeout(
+      () => setCurrentIndex((index) => index + 1),
+      currentIndex === 0 ? initialDelay : speed
+    );
+
+    return () => clearTimeout(timeoutId);
+  }, [currentIndex, initialDelay, speed, text]);
+
+  return (
+    <div className={className} role="text" aria-label={text}>
+      <span aria-hidden="true" className="whitespace-pre-wrap">{text.slice(0, currentIndex)}</span>
+    </div>
+  );
 };
 
 export default PoppingLetters;

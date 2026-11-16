@@ -1,35 +1,13 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useState } from "react";
 import linkedin_logo from "../../../../public/linkedinLogo.png";
 import github_logo from "../../../../public/github_logo.png";
 import Image from "next/image";
 import Link from "next/link";
 import { ListOrdered, ScrollText } from "lucide-react";
 export default function HomeHeader() {
-    const lineRef = useRef<HTMLDivElement>(null);
-    const [isVisible, setIsVisible] = useState(false);
     const [dropdownOpen, setDropdownOpen] = useState(false);
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            (entries) => {
-                if (entries[0].isIntersecting) {
-                    setIsVisible(true);
-                }
-            },
-            { threshold: 0.1 }
-        );
-
-        if (lineRef.current) {
-            observer.observe(lineRef.current);
-        }
-
-        return () => {
-            if (lineRef.current) {
-                observer.unobserve(lineRef.current);
-            }
-        };
-    }, []);
     return (
         <header className={`w-4/5 flex flex-col items-start mt-4 xs:py-1 xl:py-3`}>
             <div className="flex flex-row items-center w-full justify-between">
@@ -143,10 +121,7 @@ export default function HomeHeader() {
                 </div>
             </div>
 
-            <div
-                ref={lineRef}
-                className={`h-[0.1rem] bg-white transition-all duration-700 mt-2 ${isVisible ? "w-full" : "w-0"}`}
-            />
+            <div className="mt-2 h-[0.1rem] w-full bg-white" />
         </header>
     )
 }
