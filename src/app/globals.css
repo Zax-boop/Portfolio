@@ -123,11 +123,57 @@ input[type="number"] {
   animation: spotifyAmbientGlow 7s ease-in-out infinite;
 }
 
+@keyframes spotifyEqualizer {
+  0%,
+  100% {
+    transform: scaleY(0.35);
+  }
+
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+.spotify-equalizer {
+  display: flex;
+  height: 1.25rem;
+  align-items: center;
+  gap: 2px;
+}
+
+.spotify-equalizer span {
+  width: 3px;
+  border-radius: 9999px;
+  background: #4ade80;
+  transform: scaleY(0.35);
+  animation: spotifyEqualizer 0.9s ease-in-out infinite;
+}
+
+.spotify-equalizer span:nth-child(1) {
+  height: 0.55rem;
+  animation-delay: -0.2s;
+}
+
+.spotify-equalizer span:nth-child(2) {
+  height: 1rem;
+  animation-delay: -0.55s;
+}
+
+.spotify-equalizer span:nth-child(3) {
+  height: 0.75rem;
+  animation-delay: -0.35s;
+}
+
+.spotify-equalizer span:nth-child(4) {
+  height: 1.2rem;
+  animation-delay: -0.7s;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .spotify-ambient,
+  .spotify-equalizer span,
   .typing-cursor--typing,
   .typing-cursor--finish {
     animation: none;
   }
-
 }

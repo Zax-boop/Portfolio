@@ -88,12 +88,20 @@ export default function RecentlyPlayed() {
         )}
 
         {trackState.status === "ready" && trackState.tracks[0] ? (
-          <span className="min-w-0 flex-1">
-            <span className={`block truncate font-medium ${isOpen ? "" : "text-sm"}`}>
-              {trackState.tracks[0].name}
+          <span className="flex min-w-0 flex-1 items-center">
+            <span className="min-w-0 flex-1">
+              <span className={`block truncate font-medium ${isOpen ? "" : "text-sm"}`}>
+                {trackState.tracks[0].name}
+              </span>
+              <span className="block truncate text-xs text-white/60">
+                {trackState.tracks[0].artists}
+              </span>
             </span>
-            <span className="block truncate text-xs text-white/60">
-              {trackState.tracks[0].artists}
+            <span className="spotify-equalizer ml-3 shrink-0" aria-hidden="true">
+              <span />
+              <span />
+              <span />
+              <span />
             </span>
           </span>
         ) : (
